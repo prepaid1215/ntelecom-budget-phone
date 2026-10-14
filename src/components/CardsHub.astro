@@ -1,6 +1,6 @@
 ---
 import { siteConfig as site, activationLink, toPublicPath } from "../lib/site-config.js";
-import { plans, cards } from "../lib/catalog.js";
+import { plans, cards, benefits } from "../lib/catalog.js";
 const { model }=Astro.props;
 
 const won=n=>n.toLocaleString("ko-KR")+"원";
@@ -15,10 +15,15 @@ const cardPath={"card-kt-my-alttel-bc-baro":"/card/kt-my-alttle-bc-baro/","card-
 const firstTier=c=>c.discount_tiers[0];
 const payback=c=>Math.ceil((c.annual_fee||0)/firstTier(c).monthly_discount);
 
+const benefitAmounts={"benefit-coupang-cash":5000,"benefit-naverpay":5000,"benefit-daiso":5000,"benefit-millie":11900,"benefit-oliveyoung":5000,"benefit-cu":5000};
 const calcPlans=[...plans].sort((a,b)=>a.network.localeCompare(b.network) || a.monthly_price-b.monthly_price || a.name.localeCompare(b.name,"ko"))
-  .map(p=>({id:p.id,network:p.network,name:p.name.replace(/^앤텔레콤\s+/,""),price:p.monthly_price}));
+  .map(p=>{
+    const benefitId=(p.benefit_ids||[])[0];
+    const benefit=benefits.find(b=>b.id===benefitId);
+    return {id:p.id,network:p.network,name:p.name.replace(/^앤텔레콤\s+/,""),price:p.monthly_price,benefit:benefit ? {id:benefit.id,name:benefit.name,amount:benefitAmounts[benefit.id]||0} : null};
+  });
 const calcCards=Object.fromEntries(Object.entries(cardByNetwork).map(([n,c])=>[n,{name:c.name,fee:c.annual_fee||0,tiers:c.discount_tiers.map(t=>({spend:t.monthly_spend,off:t.monthly_discount}))}]));
-const defaultId="ntelecom-k-15gb-millie";
+const defaultId="ntelecom-k-7gb-cu";
 
 const pick=(net,pred)=>plans.filter(p=>p.network===net && pred(p)).sort((a,b)=>a.monthly_price-b.monthly_price)[0];
 const samples=[
@@ -46,7 +51,7 @@ const offAt=(c,spend)=>{ const t=[...c.discount_tiers].reverse().find(x=>spend>=
 
 <section class="section soft"><div class="wrap">
   <h2>내 요금, 카드 쓰면 얼마?</h2>
-  <p class="section-lead">요금제와 한 달 카드 사용액을 고르면 실제 납부액을 바로 계산해 드려요.</p>
+  <p class="section-lead">요금제와 한 달 카드 사용액을 고르면 실제 납부액과 생활혜택을 모두 썼을 때의 체감 비용을 함께 보여드려요.</p>
   <div class="calc" id="card-calc" data-plans={JSON.stringify(calcPlans)} data-cards={JSON.stringify(calcCards)}>
     <label class="calc-label" for="calc-plan">요금제</label>
     <select id="calc-plan" class="calc-select">{["K","L"].map(n=><optgroup label={n==="K" ? "K망 (KT망)" : "L망 (LG U+망)"}>{calcPlans.filter(p=>p.network===n).map(p=><option value={p.id} selected={p.id===defaultId}>{p.name} · {won(p.price)}</option>)}</optgroup>)}</select>
@@ -58,9 +63,12 @@ const offAt=(c,spend)=>{ const t=[...c.discount_tiers].reverse().find(x=>spend>=
         <div><dt>카드 없이 12개월</dt><dd id="calc-base12">-</dd></div>
         <div><dt>카드 쓰면 12개월</dt><dd id="calc-card12">-</dd></div>
         <div class="calc-save"><dt>연회비 빼고 1년 절약</dt><dd id="calc-save">-</dd></div>
+        <div id="calc-benefit-row"><dt>생활혜택 가치</dt><dd id="calc-benefit">-</dd></div>
+        <div class="calc-feel"><dt>혜택 반영 체감 비용</dt><dd id="calc-feel">-</dd></div>
       </dl>
+      <p class="calc-feel-note" id="calc-feel-note"></p>
     </div>
-    <p class="pd-note">전월 카드 실적과 통신요금 자동납부 조건을 채웠을 때 기준이에요. 실적으로 인정되는 결제 범위는 카드사 약관을 확인하세요.</p>
+    <p class="pd-note">‘월 납부액’은 카드 할인 후 실제 통신요금이고, ‘체감 비용’은 생활혜택을 모두 사용했다고 가정한 비교값이에요. 전월 카드 실적과 통신요금 자동납부 조건을 채웠을 때 기준이며 카드 연회비는 별도예요.</p>
   </div>
 </div></section>
 
@@ -128,6 +136,7 @@ const offAt=(c,spend)=>{ const t=[...c.discount_tiers].reverse().find(x=>spend>=
   function render(){
     var p=plans.filter(function(x){return x.id===sel.value;})[0]; if(!p) return;
     var c=cards[p.network], d=off(c,spend), pay=Math.max(0,p.price-d);
+    var benefit=p.benefit, benefitAmount=benefit ? benefit.amount : 0, feel=Math.max(0,pay-benefitAmount);
     var base12=p.price*12, card12=pay*12, save=base12-card12-(d>0?c.fee:0);
     document.getElementById("calc-card").textContent=c.name;
     document.getElementById("calc-pay").textContent="월 "+fmt(pay);
@@ -135,6 +144,15 @@ const offAt=(c,spend)=>{ const t=[...c.discount_tiers].reverse().find(x=>spend>=
     document.getElementById("calc-base12").textContent=fmt(base12);
     document.getElementById("calc-card12").textContent=fmt(card12);
     document.getElementById("calc-save").textContent=d>0 ? (save>0 ? fmt(save) : "연회비가 더 커요") : "-";
+    var benefitRow=document.getElementById("calc-benefit-row"), benefitEl=document.getElementById("calc-benefit"), feelEl=document.getElementById("calc-feel"), noteEl=document.getElementById("calc-feel-note");
+    benefitRow.hidden=!benefit;
+    feelEl.textContent=benefit ? fmt(feel)+" 상당" : fmt(pay);
+    if(!benefit){benefitEl.textContent="-";noteEl.textContent="생활혜택이 없는 요금제는 카드 할인 후 납부액과 체감 비용이 같아요.";return;}
+    benefitEl.textContent=benefit.name+" −"+fmt(benefitAmount)+(benefit.id==="benefit-cu" ? " (최대)" : " 상당");
+    var prefix="실제 통신요금 청구액은 월 "+fmt(pay)+"이에요. ";
+    if(benefit.id==="benefit-cu") noteEl.textContent=prefix+"포켓CU 인증 후 할인 대상 품목을 월 25,000원 이상 결제해 최대 5,000원을 모두 할인받았을 때의 체감 비용이에요.";
+    else if(benefit.id==="benefit-millie") noteEl.textContent=prefix+"기존에 밀리의서재 월 구독료를 지출하던 사람이 제휴 구독을 활성화해 이용할 때의 체감 비용이에요.";
+    else noteEl.textContent=prefix+"사용일수 30일과 31일차 요금제 유지 조건을 채우고, 매월 받은 혜택을 기한 안에 모두 사용했을 때의 체감 비용이에요.";
   }
   sel.addEventListener("change",render);
   chips.forEach(function(b){b.addEventListener("click",function(){chips.forEach(function(x){x.classList.remove("is-on");});b.classList.add("is-on");spend=Number(b.dataset.spend);render();});});
