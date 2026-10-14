@@ -73,8 +73,7 @@ const offAt=(c,spend)=>{ const t=[...c.discount_tiers].reverse().find(x=>spend>=
         <div class="calc-save"><dt>1년 절약</dt><dd id="calc-save">-</dd></div>
       </dl>
       <div class="calc-step is-extra" id="calc-extra">
-        <small>② 요금제에 붙은 혜택까지 쓰면 <i>(선택)</i></small>
-        <em class="calc-total" id="calc-total">-</em>
+        <small>② 요금제에 붙은 혜택까지 쓰면 <i>(쓸 때만 받아요)</i></small>
         <strong id="calc-feel">-</strong>
         <span id="calc-eq">-</span>
         <p id="calc-feel-note"></p>
@@ -144,10 +143,6 @@ const offAt=(c,spend)=>{ const t=[...c.discount_tiers].reverse().find(x=>spend>=
   var sel=document.getElementById("calc-plan"), chips=root.querySelectorAll(".calc-chip");
   var spend=700000;
   var fmt=function(n){return n.toLocaleString("ko-KR")+"원";};
-  function totalText(price,d,amount,label,feel){
-    var t=fmt(price)+(d>0 ? " − "+fmt(d)+"(카드 할인)" : "")+" − "+fmt(amount)+"("+label+")";
-    return feel===0 && price-d-amount<0 ? t+" → 혜택이 더 커서 0원" : t+" = "+fmt(feel);
-  }
   function off(card,s){var o=0;card.tiers.forEach(function(t){if(s>=t.spend)o=t.off;});return o;}
   function render(){
     var p=plans.filter(function(x){return x.id===sel.value;})[0]; if(!p) return;
@@ -163,19 +158,18 @@ const offAt=(c,spend)=>{ const t=[...c.discount_tiers].reverse().find(x=>spend>=
     var extra=document.getElementById("calc-extra");
     extra.hidden=!benefit;
     if(!benefit) return;
-    var totalEl=document.getElementById("calc-total"), feelEl=document.getElementById("calc-feel"), eqEl=document.getElementById("calc-eq"), noteEl0=document.getElementById("calc-feel-note");
+    var feelEl=document.getElementById("calc-feel"), eqEl=document.getElementById("calc-eq"), noteEl0=document.getElementById("calc-feel-note");
     if(benefit.id==="benefit-millie"){
-      totalEl.hidden=true; feelEl.hidden=true;
+      feelEl.hidden=true;
       eqEl.textContent="+ 밀리의서재 월 "+fmt(benefit.amount)+" 구독권이 포함돼요";
       noteEl0.textContent="통신요금에서 빠지는 금액이 아니라 별도로 받는 혜택이에요. 이미 밀리의서재를 구독 중이라면 그 구독료만큼 아끼는 셈이에요. 통신요금은 위 ①을 기준으로 보세요.";
       return;
     }
-    totalEl.hidden=false; feelEl.hidden=false;
+    feelEl.hidden=false;
     var label=benefit.id==="benefit-cu" ? "CU 할인 최대" : benefit.id==="benefit-millie" ? "밀리의서재 구독료" : benefit.name+" 혜택";
-    document.getElementById("calc-feel").textContent="월 "+fmt(feel);
-    var totalOff=p.price-feel;
-    document.getElementById("calc-total").textContent="총 −"+fmt(totalOff)+" 할인";
-    document.getElementById("calc-eq").textContent=totalText(p.price,d,benefitAmount,label,feel);
+    var totalOff=Math.min(p.price,d+benefitAmount);
+    document.getElementById("calc-feel").textContent="총 "+fmt(totalOff)+" 혜택 할인";
+    document.getElementById("calc-eq").textContent=(d>0 ? "카드 할인 "+fmt(d)+" + " : "")+label+" "+fmt(benefitAmount);
     var note=document.getElementById("calc-feel-note");
     if(benefit.id==="benefit-cu") note.textContent="CU에서 월 25,000원 이상 결제해야 5,000원을 모두 받아요. 포켓CU 인증이 필요해요.";
     else if(benefit.id==="benefit-millie") note.textContent="이미 밀리의서재를 구독 중이라면, 그 구독료만큼 아끼는 셈이에요.";

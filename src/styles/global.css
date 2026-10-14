@@ -374,3 +374,5 @@ p,dd,li,summary,strong,small,span,td,th{word-break:keep-all;overflow-wrap:break-
 
 .gd-prep{margin-top:16px;padding:16px;border-radius:16px;background:#f7f7f8;border:1px solid var(--line)}
 .gd-prep strong{font-size:16px}.gd-prep p{margin:6px 0 0;color:#52545c;font-size:14px;line-height:1.65;word-break:keep-all}
+.calc-step.is-extra>strong{margin-top:6px;font-size:30px;letter-spacing:-1px}
+.calc-step.is-extra>span{margin-top:8px;font-size:15px}
