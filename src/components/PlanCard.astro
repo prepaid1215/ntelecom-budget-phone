@@ -1,5 +1,5 @@
 ---
-import site from "../data/site.json";
+import { siteConfig as site } from "../lib/site-config.js";
 const { plan }=Astro.props;
 const benefit = (plan.benefit_ids||[])[0];
 const bLabel = benefit ? benefit.replace("benefit-","").replace("coupang-cash","쿠팡캐쉬").replace("naverpay","네이버페이").replace("daiso","다이소").replace("millie","밀리의서재").replace("oliveyoung","올리브영").replace("cu","CU") : null;

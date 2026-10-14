@@ -1,5 +1,5 @@
 ---
-import site from "../data/site.json";
+import { siteConfig as site, toPublicPath } from "../lib/site-config.js";
 import PlanCard from "./PlanCard.astro";
 import CardOffer from "./CardOffer.astro";
 import BenefitOffer from "./BenefitOffer.astro";
@@ -25,6 +25,6 @@ const showPlans=model.matched.slice(0,9);
 
 <section class="section"><div class="wrap"><h2>자주 묻는 질문</h2><div class="faq-list">{model.faqs.map(f=><details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>)}</div></div></section>
 
-<section class="section soft"><div class="wrap"><h2>같이 보면 좋은 페이지</h2><div class="link-list">{model.related.map(p=><a href={p.path}><span>{p.keyword}</span><span>›</span></a>)}</div><div class="data-note">상품 정보 기준일 {site.dataCheckedAt}. 프로모션·생활혜택·카드 조건은 가입 시점의 최종 안내를 확인하세요.</div></div></section>
+<section class="section soft"><div class="wrap"><h2>같이 보면 좋은 페이지</h2><div class="link-list">{model.related.map(p=><a href={toPublicPath(p.path)}><span>{p.keyword}</span><span>›</span></a>)}</div><div class="data-note">상품 정보 기준일 {site.dataCheckedAt}. 프로모션·생활혜택·카드 조건은 가입 시점의 최종 안내를 확인하세요.</div></div></section>
 
 <section class="section"><div class="wrap final-box"><h2>조건이 정해졌다면 바로 개통</h2><p>추가 설문 없이 지정된 개통 페이지로 이동합니다.</p><a class="final-button" href={site.activationUrl}>바로 개통하기</a></div></section>

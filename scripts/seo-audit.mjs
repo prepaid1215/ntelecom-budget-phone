@@ -5,10 +5,13 @@ import pages from "../src/data/generated-pages.json" with { type: "json" };
 
 const root=path.resolve("dist");
 const productionReady=process.env.PRODUCTION_READY==="true" ? true : process.env.PRODUCTION_READY==="false" ? false : rawSite.productionReady;
-const expectedSite=new URL(process.env.SITE_URL?.trim() || rawSite.siteUrl);
-expectedSite.pathname="/";
-expectedSite.search="";
-expectedSite.hash="";
+const expectedOrigin=new URL(process.env.SITE_URL?.trim() || rawSite.siteUrl);
+expectedOrigin.pathname="/";
+expectedOrigin.search="";
+expectedOrigin.hash="";
+const baseValue=String(process.env.BASE_PATH || "/").trim().replace(/^\/+|\/+$/g,"");
+const basePrefix=baseValue ? "/"+baseValue : "";
+const withBase=value=>basePrefix+(value.startsWith("/") ? value : "/"+value);
 
 const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(entry=>{
   const full=path.join(dir,entry.name);
@@ -44,7 +47,7 @@ for(const file of htmlFiles){
   const googlebot=attr(html,/<meta name="googlebot" content="([^"]+)"/i);
   const canonical=attr(html,/<link rel="canonical" href="([^"]+)"/i);
   const hreflang=attr(html,/<link rel="alternate" hreflang="ko-KR" href="([^"]+)"/i);
-  const expectedCanonical=new URL(route,expectedSite).toString();
+  const expectedCanonical=new URL(withBase(route),expectedOrigin).toString();
   const expectedRobots=productionReady && source?.effectiveIndex==="index" ? "index,follow" : "noindex,follow";
 
   if(!title) errors.push("title 없음: "+route);
@@ -74,8 +77,13 @@ for(const file of htmlFiles){
     const value=href[1];
     if(!value.startsWith("/") || value.startsWith("//")) continue;
     const clean=value.split(/[?#]/)[0];
-    if(clean.startsWith("/images/") || clean.startsWith("/_astro/") || clean==="/favicon.svg") continue;
-    const normalized=clean.endsWith("/") ? clean : clean+"/";
+    if(basePrefix && clean!==basePrefix && !clean.startsWith(basePrefix+"/")){
+      errors.push("base 경로 누락: "+route+" -> "+value);
+      continue;
+    }
+    const local=basePrefix ? (clean.slice(basePrefix.length) || "/") : clean;
+    if(local.startsWith("/images/") || local.startsWith("/_astro/") || local==="/favicon.svg") continue;
+    const normalized=local.endsWith("/") ? local : local+"/";
     if(!builtRoutes.has(normalized)) errors.push("깨진 내부 링크: "+route+" -> "+value);
   }
   recordDuplicate(titles,title,route,"title");
@@ -99,6 +107,7 @@ console.log(JSON.stringify({
   htmlPages:htmlFiles.length,
   uniqueTitles:titles.size,
   uniqueCanonicals:canonicals.size,
+  basePath:basePrefix || "/",
   sitemapUrls,
   productionReady,
   errors:errors.length

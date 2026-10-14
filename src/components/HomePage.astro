@@ -1,5 +1,5 @@
 ---
-import site from "../data/site.json";
+import { siteConfig as site, toPublicPath } from "../lib/site-config.js";
 import PlanCard from "./PlanCard.astro";
 import CardOffer from "./CardOffer.astro";
 import BenefitOffer from "./BenefitOffer.astro";
@@ -9,10 +9,10 @@ const cheapest=(tag)=>plans.filter(p=>p.tags.includes(tag)).sort((a,b)=>a.monthl
 const featured=[cheapest("7gb"),cheapest("15gb"),cheapest("100gb")].filter(Boolean);
 ---
 <section class="quick"><div class="wrap quick-inner">
-  <a href="/plans/"><span class="quick-icon"><img src="/images/quick-plans.webp" width="64" height="64" alt="" loading="lazy" decoding="async" /></span><b>요금제</b><small>데이터별 비교</small></a>
-  <a href="/number-transfer/"><span class="quick-icon"><img src="/images/quick-transfer.webp" width="64" height="64" alt="" loading="lazy" decoding="async" /></span><b>번호이동</b><small>번호 그대로</small></a>
-  <a href="/card/"><span class="quick-icon"><img src="/images/quick-card.webp" width="64" height="64" alt="" loading="lazy" decoding="async" /></span><b>제휴카드</b><small>할인조건</small></a>
-  <a href="/benefits/"><span class="quick-icon"><img src="/images/quick-benefits.webp" width="64" height="64" alt="" loading="lazy" decoding="async" /></span><b>생활혜택</b><small>6종 비교</small></a>
+  <a href={toPublicPath("/plans/")}><span class="quick-icon"><img src={toPublicPath("/images/quick-plans.webp")} width="64" height="64" alt="" loading="lazy" decoding="async" /></span><b>요금제</b><small>데이터별 비교</small></a>
+  <a href={toPublicPath("/number-transfer/")}><span class="quick-icon"><img src={toPublicPath("/images/quick-transfer.webp")} width="64" height="64" alt="" loading="lazy" decoding="async" /></span><b>번호이동</b><small>번호 그대로</small></a>
+  <a href={toPublicPath("/card/")}><span class="quick-icon"><img src={toPublicPath("/images/quick-card.webp")} width="64" height="64" alt="" loading="lazy" decoding="async" /></span><b>제휴카드</b><small>할인조건</small></a>
+  <a href={toPublicPath("/benefits/")}><span class="quick-icon"><img src={toPublicPath("/images/quick-benefits.webp")} width="64" height="64" alt="" loading="lazy" decoding="async" /></span><b>생활혜택</b><small>6종 비교</small></a>
 </div></section>
 
 <section class="section soft"><div class="wrap"><h2>많이 찾는 데이터 구간</h2><p class="section-lead">현재 판매 중인 상품에서 가격이 낮은 대표 상품을 먼저 보여줍니다.</p><div class="grid cols-3">{featured.map(p=><PlanCard plan={p}/>)}</div></div></section>
@@ -28,10 +28,10 @@ const featured=[cheapest("7gb"),cheapest("15gb"),cheapest("100gb")].filter(Boole
 <section class="section"><div class="wrap"><h2>혜택으로 고르기</h2><p class="section-lead">혜택 금액을 임의로 만들지 않고 실제 연결이 확인된 상품만 모읍니다.</p><div class="grid cols-3">{model.benefits.map(b=><BenefitOffer benefit={b}/>)}</div></div></section>
 
 <section class="section soft"><div class="wrap"><h2>바로 찾아보기</h2><div class="link-list">
-<a href="/plans/k/"><span>K망 후불 요금제</span><span>›</span></a>
-<a href="/plans/l/"><span>L망 후불 요금제</span><span>›</span></a>
-<a href="/plans/15gb/"><span>15GB 요금제</span><span>›</span></a>
-<a href="/plans/price/under-30000/"><span>3만원 이하 요금제</span><span>›</span></a>
-<a href="/no-contract/"><span>무약정 후불</span><span>›</span></a>
-<a href="/self-phone/"><span>자급제폰 후불</span><span>›</span></a>
+<a href={toPublicPath("/plans/k/")}><span>K망 후불 요금제</span><span>›</span></a>
+<a href={toPublicPath("/plans/l/")}><span>L망 후불 요금제</span><span>›</span></a>
+<a href={toPublicPath("/plans/15gb/")}><span>15GB 요금제</span><span>›</span></a>
+<a href={toPublicPath("/plans/price/under-30000/")}><span>3만원 이하 요금제</span><span>›</span></a>
+<a href={toPublicPath("/no-contract/")}><span>무약정 후불</span><span>›</span></a>
+<a href={toPublicPath("/self-phone/")}><span>자급제폰 후불</span><span>›</span></a>
 </div><div class="data-note">상품 데이터 기준일 {site.dataCheckedAt}. 프로모션과 혜택 조건은 가입 시점에 달라질 수 있습니다.</div></div></section>

@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import { siteConfig as site } from "../lib/site-config.js";
+import { siteConfig as site, toPublicPath, toSiteUrl } from "../lib/site-config.js";
 const {
   title,
   description=site.defaultDescription,
@@ -10,17 +10,17 @@ const {
   image="/images/hero-mobile.webp"
 } = Astro.props;
 const fullTitle = title === site.brandName ? title : `${title}${site.defaultTitleSuffix}`;
-const canonical = new URL(pagePath, site.siteUrl).toString();
-const socialImage = new URL(image, site.siteUrl).toString();
+const canonical = toSiteUrl(pagePath);
+const socialImage = toSiteUrl(image);
 const robots = site.productionReady && index==="index" ? "index,follow" : "noindex,follow";
-const websiteId = new URL("/#website", site.siteUrl).toString();
+const websiteId = toSiteUrl("/#website");
 const schemas={
   "@context":"https://schema.org",
   "@graph":[
     {
       "@type":"WebSite",
       "@id":websiteId,
-      "url":new URL("/",site.siteUrl).toString(),
+      "url":toSiteUrl("/"),
       "name":site.brandName,
       "inLanguage":"ko-KR"
     },
@@ -57,7 +57,7 @@ if(faqs.length) schemas["@graph"].push({
 <meta name="theme-color" content={site.primaryColor} />
 <link rel="canonical" href={canonical} />
 <link rel="alternate" hreflang="ko-KR" href={canonical} />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/svg+xml" href={toPublicPath("/favicon.svg")} />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="ko_KR" />
 <meta property="og:site_name" content={site.brandName} />
@@ -76,8 +76,8 @@ if(faqs.length) schemas["@graph"].push({
 </head>
 <body>
 <header class="header"><div class="wrap header-inner">
-  <a class="logo" href="/"><span class="logo-mark">M</span><span>{site.brandName}</span></a>
-  <nav class="header-nav" aria-label="주요 메뉴"><a href="/plans/">요금제</a><a href="/benefits/">혜택</a><a href="/card/">제휴카드</a><a href="/guide/">개통안내</a></nav>
+  <a class="logo" href={toPublicPath("/")}><span class="logo-mark">M</span><span>{site.brandName}</span></a>
+  <nav class="header-nav" aria-label="주요 메뉴"><a href={toPublicPath("/plans/")}>요금제</a><a href={toPublicPath("/benefits/")}>혜택</a><a href={toPublicPath("/card/")}>제휴카드</a><a href={toPublicPath("/guide/")}>개통안내</a></nav>
   <a class="header-cta" href={site.activationUrl}>즉시 개통</a>
 </div></header>
 <main>
