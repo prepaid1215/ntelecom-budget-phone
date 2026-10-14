@@ -1,0 +1,162 @@
+---
+import { toPublicPath } from "../lib/site-config.js";
+import PlanFinderIcon from "./PlanFinderIcon.astro";
+
+const { model }=Astro.props;
+const plans=[...model.matched];
+const shortId=p=>p.id.replace("ntelecom-k-","").replace("ntelecom-l-","");
+const planPath=p=>toPublicPath("/plans/"+p.network.toLowerCase()+"/item/"+shortId(p)+"/");
+const groups=p=>[
+  "all",
+  p.network.toLowerCase(),
+  p.monthly_price<=20000 ? "under20" : "",
+  p.data_gb===7 ? "data7" : "",
+  p.data_gb===15 ? "data15" : "",
+  p.data_gb===100 ? "data100" : "",
+  p.daily_data_gb ? "daily" : "",
+  (p.benefit_ids||[]).length ? "benefit" : ""
+].filter(Boolean);
+const count=id=>id==="all" ? plans.length : plans.filter(p=>groups(p).includes(id)).length;
+const categories=[
+  {id:"all",icon:"ALL",label:"전체보기",href:"/plans/"},
+  {id:"under20",icon:"₩",label:"2만원 이하",href:"/plans/price/under-20000/"},
+  {id:"data7",icon:"7",label:"7GB",href:"/plans/7gb/"},
+  {id:"data15",icon:"15",label:"15GB",href:"/plans/15gb/"},
+  {id:"data100",icon:"100",label:"100GB",href:"/plans/100gb/"},
+  {id:"daily",icon:"∞",label:"매일 데이터",href:"/plans/"},
+  {id:"benefit",icon:"♥",label:"생활혜택",href:"/benefits/"},
+  {id:"k",icon:"K",label:"KT망",href:"/plans/k/"},
+  {id:"l",icon:"L",label:"LG U+망",href:"/plans/l/"}
+];
+const benefitNames=Object.fromEntries((model.benefits||[]).map(b=>[b.id,b.name]));
+const finderPlans=plans.map(p=>({
+  name:p.name.replace("앤텔레콤 ",""),
+  price:p.monthly_price,
+  data:p.data_gb||((p.daily_data_gb||0)*30),
+  benefit:benefitNames[(p.benefit_ids||[])[0]]||"",
+  groups:groups(p),
+  path:planPath(p)
+}));
+---
+
+<section class="pf" data-plan-finder>
+  <div class="pf-top">
+    <div class="wrap">
+      <div class="pf-head"><div><span>빠른 조건 찾기</span><h2>어떤 요금제를 찾으세요?</h2></div><a href={toPublicPath("/guide/")}>개통 방법 보기 <b>›</b></a></div>
+      <div class="pf-scroll" role="group" aria-label="요금제 조건 선택">
+        {categories.map((c,i)=><button class:list={["pf-category",{"is-on":i===0}]} type="button" data-category={c.id} data-label={c.label} data-href={toPublicPath(c.href)} aria-pressed={i===0 ? "true" : "false"}>
+          <span class={"pf-icon pf-icon-"+c.id}><PlanFinderIcon name={c.id}/></span><strong>{c.label}</strong><small>{count(c.id)}개</small>
+        </button>)}
+      </div>
+    </div>
+  </div>
+  <div class="pf-tools">
+    <div class="wrap">
+      <div class="pf-controls">
+        <label class="pf-search"><span aria-hidden="true">⌕</span><input type="search" placeholder="요금제명·혜택 검색" aria-label="요금제명 또는 혜택 검색" data-finder-search /></label>
+        <label class="pf-sort"><span>정렬</span><select data-finder-sort aria-label="검색 결과 정렬"><option value="low">낮은 가격순</option><option value="data">데이터 많은순</option><option value="high">높은 가격순</option></select></label>
+      </div>
+      <div class="pf-suggestions" data-finder-suggestions aria-live="polite" hidden></div>
+      <a class="pf-result" href={toPublicPath("/plans/")} data-finder-result><span data-finder-label>전체 요금제</span> <b><i data-finder-count>{plans.length}</i>개</b><em>조건에 맞는 요금제 보기 ›</em></a>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{finderPlans}}>
+  const root=document.querySelector("[data-plan-finder]");
+  if(root){
+    const buttons=[...root.querySelectorAll("[data-category]")];
+    const search=root.querySelector("[data-finder-search]");
+    const sort=root.querySelector("[data-finder-sort]");
+    const countEl=root.querySelector("[data-finder-count]");
+    const labelEl=root.querySelector("[data-finder-label]");
+    const result=root.querySelector("[data-finder-result]");
+    const suggestions=root.querySelector("[data-finder-suggestions]");
+    let active="all";
+    let activeHref=result.getAttribute("href");
+    const won=n=>Number(n).toLocaleString("ko-KR")+"원";
+    const matches=()=>{
+      const query=(search.value||"").trim().toLowerCase();
+      const mode=sort.value;
+      const list=finderPlans.filter(p=>(active==="all"||p.groups.includes(active))&&(!query||(p.name+" "+p.benefit).toLowerCase().includes(query)));
+      list.sort((a,b)=>mode==="high" ? b.price-a.price : mode==="data" ? b.data-a.data||a.price-b.price : a.price-b.price);
+      return list;
+    };
+    const render=()=>{
+      const list=matches();
+      const query=(search.value||"").trim();
+      countEl.textContent=String(list.length);
+      labelEl.textContent=query ? "검색 결과" : (active==="all" ? "전체 요금제" : (buttons.find(b=>b.dataset.category===active)?.dataset.label||"요금제"));
+      result.setAttribute("href",query&&list.length===1 ? list[0].path : activeHref);
+      suggestions.replaceChildren();
+      if(!query){suggestions.hidden=true;return;}
+      const head=document.createElement("div");
+      head.className="pf-suggest-head";
+      head.textContent=list.length ? "검색 결과 "+list.length+"개 중 "+Math.min(5,list.length)+"개" : "검색 결과가 없습니다";
+      suggestions.appendChild(head);
+      list.slice(0,5).forEach(p=>{
+        const link=document.createElement("a");
+        link.className="pf-suggestion";
+        link.href=p.path;
+        const copy=document.createElement("span");
+        copy.className="pf-suggestion-copy";
+        const title=document.createElement("strong");
+        title.textContent=p.name;
+        const meta=document.createElement("small");
+        meta.textContent=p.benefit ? p.benefit+" 혜택" : "제휴카드 할인 가능";
+        const price=document.createElement("b");
+        price.textContent=won(p.price);
+        const arrow=document.createElement("i");
+        arrow.textContent="›";
+        copy.append(title,meta);
+        link.append(copy,price,arrow);
+        suggestions.appendChild(link);
+      });
+      suggestions.hidden=false;
+    };    buttons.forEach(button=>button.addEventListener("click",()=>{
+      active=button.dataset.category||"all";
+      activeHref=button.dataset.href||result.getAttribute("href");
+      buttons.forEach(item=>{const on=item===button;item.classList.toggle("is-on",on);item.setAttribute("aria-pressed",String(on));});
+      render();
+    }));
+    search.addEventListener("input",render);
+    search.addEventListener("focus",render);
+    search.addEventListener("keydown",event=>{if(event.key==="Enter"){const first=matches()[0];if(first){event.preventDefault();location.href=first.path;}}});
+    sort.addEventListener("change",render);
+    render();
+  }
+</script>
+
+<style is:global>
+  .pf{border-top:1px solid #eee8f3;border-bottom:1px solid #e7e7eb;background:#fff}
+  .pf-top{padding:38px 0 30px}
+  .pf-head{display:flex;align-items:end;justify-content:space-between;gap:16px}
+  .pf-head>div>span{color:#ff438b;font-size:12px;font-weight:900}
+  .pf-head h2{margin:6px 0 0;font-size:29px;letter-spacing:-1.1px}
+  .pf-head>a{color:#5e5964;font-size:13px;font-weight:850;white-space:nowrap}.pf-head>a b{font-size:18px}
+  .pf-scroll{display:flex;gap:18px;margin-top:25px;padding:0 2px 10px;overflow-x:auto;scrollbar-width:thin}
+  .pf-category{flex:0 0 92px;padding:0;border:0;background:none;color:#55515a;text-align:center;cursor:pointer}
+  .pf-icon{width:76px;height:76px;margin:0 auto 10px;border-radius:50%;display:grid;place-items:center;background:#f5f4f6;border:1px solid #dedce2;transition:.2s;box-shadow:inset 0 1px 0 rgba(255,255,255,.8)}
+  .pf-category strong,.pf-category small{display:block}.pf-category strong{font-size:13px;white-space:nowrap}.pf-category small{margin-top:3px;color:#99939d;font-size:10px}
+  .pf-category.is-on .pf-icon{background:#fff;border:5px solid #36333a;box-shadow:0 9px 20px rgba(35,30,39,.18);transform:translateY(-2px)}.pf-category.is-on strong{color:#111;font-weight:950}
+  .pf-icon-under20{background:#fff4da;color:#9c6a00}.pf-icon-data7{background:#e7f6ff;color:#1676a8}.pf-icon-data15{background:#eeeaff;color:#654fd3}.pf-icon-data100{background:#ffe9f1;color:#c82d67}.pf-icon-daily{background:#e5fff0;color:#118149}.pf-icon-benefit{background:#fff0f6;color:#ff438b}.pf-icon-k{background:#fff2d9;color:#8b5c00}.pf-icon-l{background:#ece8ff;color:#5e45c7}
+  .pf-tools{padding:28px 0 24px;background:#f7f7f9;border-top:1px solid #e7e7eb}
+  .pf-controls{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:10px}
+  .pf-search{min-height:52px;display:flex;align-items:center;gap:10px;padding:0 16px;border-radius:15px;background:#fff;border:1px solid #d8d8df}.pf-search>span{font-size:23px;transform:rotate(-20deg)}.pf-search input{width:100%;border:0;outline:0;background:transparent;font:inherit;font-size:14px}
+  .pf-sort{min-height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-radius:15px;background:#fff;border:1px solid #d8d8df}.pf-sort>span{color:#85808a;font-size:12px}.pf-sort select{border:0;outline:0;background:#fff;font:inherit;font-size:13px;font-weight:850}
+  .pf-result{margin-top:24px;display:flex;align-items:center;gap:5px;color:#121014;font-size:23px;font-weight:950;letter-spacing:-.7px}.pf-result b{color:#ff438b;font-size:14px}.pf-result i{font-style:normal}.pf-result em{margin-left:auto;color:#6d6871;font-size:12px;font-style:normal;font-weight:800;letter-spacing:0}
+  .pf-suggestions{margin-top:10px;border-radius:16px;background:#fff;border:1px solid #dedde2;overflow:hidden;box-shadow:0 12px 28px rgba(41,34,48,.08)}
+  .pf-suggestions .pf-suggest-head{padding:9px 14px;background:#f4f2f6;color:#77717b;font-size:10px;font-weight:800}
+  .pf-suggestions .pf-suggestion{display:grid;grid-template-columns:minmax(0,1fr) auto 18px;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid #eeeef1;color:#252128;transition:background .15s}
+  .pf-suggestions .pf-suggestion:hover{background:#fff5f9}
+  .pf-suggestions .pf-suggestion:last-child{border-bottom:0}
+  .pf-suggestions .pf-suggestion-copy,.pf-suggestions .pf-suggestion-copy strong,.pf-suggestions .pf-suggestion-copy small{display:block;min-width:0}
+  .pf-suggestions .pf-suggestion-copy strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}
+  .pf-suggestions .pf-suggestion-copy small{margin-top:3px;color:#8b858e;font-size:10px}
+  .pf-suggestions .pf-suggestion>b{color:#ff438b;font-size:14px;white-space:nowrap}
+  .pf-suggestions .pf-suggestion>i{color:#8c8790;font-size:20px;font-style:normal}
+  .pf-suggestions[hidden]{display:none}
+  @media(min-width:1000px){.pf-scroll{justify-content:space-between;gap:12px}}
+  @media(max-width:799px){.pf-top{padding:30px 0 24px}.pf-head h2{font-size:25px}.pf-scroll{gap:13px}.pf-category{flex-basis:82px}.pf-icon{width:68px;height:68px;font-size:18px}.pf-controls{grid-template-columns:1fr}.pf-result{font-size:21px}.pf-result em{display:none}}
+  @media(max-width:420px){.pf-head>a{font-size:11px}.pf-head h2{font-size:25px}.pf-scroll{padding-left:0;padding-right:0}}
+</style>
