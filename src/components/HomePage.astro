@@ -20,8 +20,6 @@ const featured=[cheapest("7gb"),cheapest("15gb"),cheapest("100gb")].filter(Boole
 
 <HomePlanFinder model={model}/>
 
-<section class="section soft"><div class="wrap"><h2>많이 선택하는 요금제</h2><p class="section-lead">7GB, 15GB, 100GB 구간에서 가장 저렴한 상품이에요.</p><div class="grid cols-3">{featured.map(p=><PlanCard plan={p} slot="home"/>)}</div></div></section>
-
 <section class="section"><div class="wrap"><h2>제휴카드 할인까지 계산해 보면</h2><p class="section-lead">월 기본료에서 카드 할인을 뺀 실제 납부액을 예시로 보여드려요.</p><div class="grid cols-2">{model.cards.map(c=><CardOffer card={c} plan={plans.filter(p=>(c.eligible_networks||[]).includes(p.network)).sort((a,b)=>a.monthly_price-b.monthly_price)[0]}/>)}</div></div></section>
 
 <section class="section dark"><div class="wrap"><h2>앤텔레콤 알뜰폰, 이런 점이 좋아요</h2><div class="grid cols-3">

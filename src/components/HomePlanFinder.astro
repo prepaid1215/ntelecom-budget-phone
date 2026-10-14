@@ -1,5 +1,5 @@
 ---
-import { toPublicPath } from "../lib/site-config.js";
+import { toPublicPath, activationLink } from "../lib/site-config.js";
 import PlanFinderIcon from "./PlanFinderIcon.astro";
 
 const { model }=Astro.props;
@@ -29,14 +29,30 @@ const categories=[
   {id:"l",icon:"L",label:"LG U+망",href:"/plans/l/"}
 ];
 const benefitNames=Object.fromEntries((model.benefits||[]).map(b=>[b.id,b.name]));
-const finderPlans=plans.map(p=>({
-  name:p.name.replace("앤텔레콤 ",""),
-  price:p.monthly_price,
-  data:p.data_gb||((p.daily_data_gb||0)*30),
-  benefit:benefitNames[(p.benefit_ids||[])[0]]||"",
-  groups:groups(p),
-  path:planPath(p)
-}));
+const cardOff={};
+for(const c of (model.cards||[])) for(const n of (c.eligible_networks||[])) cardOff[n]=Math.max(cardOff[n]||0,...c.discount_tiers.map(t=>t.monthly_discount));
+const benefitInfo=Object.fromEntries((model.benefits||[]).map(b=>[b.id,b]));
+const finderPlans=plans.map(p=>{
+  const b=benefitInfo[(p.benefit_ids||[])[0]];
+  return {
+    name:p.name.replace("앤텔레콤 ","").replace(/^([KL])망\s*/,"$1망 "),
+    net:p.network,
+    price:p.monthly_price,
+    cardPrice:Math.max(0,p.monthly_price-(cardOff[p.network]||0)),
+    data:p.data_gb||((p.daily_data_gb||0)*30),
+    dataText:p.data_gb ? (p.daily_data_gb ? p.data_gb+"GB + 매일 "+p.daily_data_gb+"GB" : p.data_gb+"GB") : p.daily_data_gb ? "매일 "+p.daily_data_gb+"GB" : "-",
+    extra:p.monthly_extra_data_gb ? "매월 "+p.monthly_extra_data_gb+"GB 추가(24개월)" : "",
+    speed:p.after_speed ? "소진 후 최대 "+p.after_speed : "",
+    calls:p.calls,
+    sms:p.sms,
+    benefit:b ? b.name : "",
+    benefitValue:b ? b.value : "",
+    promo:!!(p.promotion&&p.promotion.active),
+    groups:groups(p),
+    path:planPath(p)
+  };
+});
+const applyUrl=activationLink("home");
 ---
 
 <section class="pf" data-plan-finder>
@@ -52,17 +68,20 @@ const finderPlans=plans.map(p=>({
   </div>
   <div class="pf-tools">
     <div class="wrap">
-      <div class="pf-controls">
-        <label class="pf-search"><span aria-hidden="true">⌕</span><input type="search" placeholder="요금제명·혜택 검색" aria-label="요금제명 또는 혜택 검색" data-finder-search /></label>
-        <label class="pf-sort"><span>정렬</span><select data-finder-sort aria-label="검색 결과 정렬"><option value="low">낮은 가격순</option><option value="data">데이터 많은순</option><option value="high">높은 가격순</option></select></label>
+      <label class="pf-search"><span aria-hidden="true">⌕</span><input type="search" placeholder="요금제명·혜택 검색 (예: 쿠팡, 15GB)" aria-label="요금제명 또는 혜택 검색" data-finder-search /></label>
+      <div class="pf-bar">
+        <div class="pf-total"><strong>총 <i data-finder-count>{plans.length}</i>개</strong><span data-finder-label>전체 요금제</span></div>
+        <button class="pf-reset" type="button" data-finder-reset hidden>초기화</button>
+        <label class="pf-sort"><span class="sr-only">정렬</span><select data-finder-sort aria-label="정렬"><option value="low">낮은 가격순</option><option value="data">데이터 많은순</option><option value="high">높은 가격순</option><option value="card">카드 할인 적용가순</option></select></label>
       </div>
-      <div class="pf-suggestions" data-finder-suggestions aria-live="polite" hidden></div>
-      <a class="pf-result" href={toPublicPath("/plans/")} data-finder-result><span data-finder-label>전체 요금제</span> <b><i data-finder-count>{plans.length}</i>개</b><em>조건에 맞는 요금제 보기 ›</em></a>
+      <div class="pf-list" data-finder-list aria-live="polite"></div>
+      <button class="pf-more" type="button" data-finder-more>더보기</button>
+      <p class="pf-note">월 기본료는 부가세 포함이며, 카드 최대 할인 시 금액은 전월 실적 최대 구간 기준이에요. 혜택 조건은 가입 시점에 달라질 수 있어요.</p>
     </div>
   </div>
 </section>
 
-<script define:vars={{finderPlans}}>
+<script define:vars={{finderPlans,applyUrl}}>
   const root=document.querySelector("[data-plan-finder]");
   if(root){
     const buttons=[...root.querySelectorAll("[data-category]")];
@@ -70,93 +89,117 @@ const finderPlans=plans.map(p=>({
     const sort=root.querySelector("[data-finder-sort]");
     const countEl=root.querySelector("[data-finder-count]");
     const labelEl=root.querySelector("[data-finder-label]");
-    const result=root.querySelector("[data-finder-result]");
-    const suggestions=root.querySelector("[data-finder-suggestions]");
-    let active="all";
-    let activeHref=result.getAttribute("href");
+    const list=root.querySelector("[data-finder-list]");
+    const more=root.querySelector("[data-finder-more]");
+    const reset=root.querySelector("[data-finder-reset]");
+    const PAGE=6;
+    let active="all", shown=PAGE;
     const won=n=>Number(n).toLocaleString("ko-KR")+"원";
+    const el=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;};
     const matches=()=>{
-      const query=(search.value||"").trim().toLowerCase();
+      const q=(search.value||"").trim().toLowerCase();
       const mode=sort.value;
-      const list=finderPlans.filter(p=>(active==="all"||p.groups.includes(active))&&(!query||(p.name+" "+p.benefit).toLowerCase().includes(query)));
-      list.sort((a,b)=>mode==="high" ? b.price-a.price : mode==="data" ? b.data-a.data||a.price-b.price : a.price-b.price);
-      return list;
+      const out=finderPlans.filter(p=>(active==="all"||p.groups.includes(active))&&(!q||(p.name+" "+p.benefit+" "+p.dataText).toLowerCase().includes(q)));
+      out.sort((a,b)=>mode==="high" ? b.price-a.price : mode==="data" ? b.data-a.data||a.price-b.price : mode==="card" ? a.cardPrice-b.cardPrice||a.price-b.price : a.price-b.price);
+      return out;
+    };
+    const row=(k,v)=>{const d=el("div");d.append(el("dt",null,k),el("dd",null,v));return d;};
+    const card=p=>{
+      const art=el("article","pf-card");
+      const tags=el("div","pf-tags");
+      tags.append(el("span","pf-tag is-net",p.net==="K"?"KT망":"LG U+망"));
+      if(p.benefit) tags.append(el("span","pf-tag is-benefit",p.benefit));
+      tags.append(el("span","pf-tag","무약정"));
+      if(p.promo) tags.append(el("span","pf-tag is-promo","프로모션"));
+      const head=el("h3",null,p.name);
+      const spec=el("dl","pf-spec");
+      spec.append(row("데이터",p.dataText+(p.extra?" · "+p.extra:"")));
+      if(p.speed) spec.append(row("속도",p.speed));
+      spec.append(row("통화",p.calls),row("문자",p.sms));
+      const priceBox=el("div","pf-price");
+      const main=el("div","pf-price-main");
+      main.append(el("small",null,"월 기본료"),el("strong",null,won(p.price)));
+      priceBox.append(main);
+      if(p.cardPrice<p.price){const c=el("div","pf-price-card");c.append(el("small",null,"카드 최대 할인 시"),el("b",null,won(p.cardPrice)));priceBox.append(c);}
+      art.append(tags,head,spec,priceBox);
+      if(p.benefitValue) art.append(el("p","pf-benefit",p.benefitValue));
+      const actions=el("div","pf-actions");
+      const detail=el("a","pf-btn","자세히 보기");detail.href=p.path;
+      const apply=el("a","pf-btn is-primary","신청하기");apply.href=applyUrl;
+      actions.append(detail,apply);
+      art.append(actions);
+      return art;
     };
     const render=()=>{
-      const list=matches();
-      const query=(search.value||"").trim();
-      countEl.textContent=String(list.length);
-      labelEl.textContent=query ? "검색 결과" : (active==="all" ? "전체 요금제" : (buttons.find(b=>b.dataset.category===active)?.dataset.label||"요금제"));
-      result.setAttribute("href",query&&list.length===1 ? list[0].path : activeHref);
-      suggestions.replaceChildren();
-      if(!query){suggestions.hidden=true;return;}
-      const head=document.createElement("div");
-      head.className="pf-suggest-head";
-      head.textContent=list.length ? "검색 결과 "+list.length+"개 중 "+Math.min(5,list.length)+"개" : "검색 결과가 없습니다";
-      suggestions.appendChild(head);
-      list.slice(0,5).forEach(p=>{
-        const link=document.createElement("a");
-        link.className="pf-suggestion";
-        link.href=p.path;
-        const copy=document.createElement("span");
-        copy.className="pf-suggestion-copy";
-        const title=document.createElement("strong");
-        title.textContent=p.name;
-        const meta=document.createElement("small");
-        meta.textContent=p.benefit ? p.benefit+" 혜택" : "제휴카드 할인 가능";
-        const price=document.createElement("b");
-        price.textContent=won(p.price);
-        const arrow=document.createElement("i");
-        arrow.textContent="›";
-        copy.append(title,meta);
-        link.append(copy,price,arrow);
-        suggestions.appendChild(link);
-      });
-      suggestions.hidden=false;
-    };    buttons.forEach(button=>button.addEventListener("click",()=>{
+      const all=matches();
+      const q=(search.value||"").trim();
+      const activeLabel=buttons.find(b=>b.dataset.category===active)?.dataset.label||"전체 요금제";
+      countEl.textContent=String(all.length);
+      labelEl.textContent=q ? "‘"+q+"’ 검색 결과" : (active==="all" ? "전체 요금제" : activeLabel);
+      reset.hidden=!(q||active!=="all");
+      list.replaceChildren();
+      if(!all.length){list.appendChild(el("div","pf-empty","조건에 맞는 요금제가 없어요. 조건을 바꿔 보세요."));more.hidden=true;return;}
+      all.slice(0,shown).forEach(p=>list.appendChild(card(p)));
+      const left=all.length-shown;
+      more.hidden=left<=0;
+      more.textContent="요금제 더보기 ("+Math.max(0,left)+"개 남음)";
+    };
+    buttons.forEach(button=>button.addEventListener("click",()=>{
       active=button.dataset.category||"all";
-      activeHref=button.dataset.href||result.getAttribute("href");
+      shown=PAGE;
       buttons.forEach(item=>{const on=item===button;item.classList.toggle("is-on",on);item.setAttribute("aria-pressed",String(on));});
       render();
     }));
-    search.addEventListener("input",render);
-    search.addEventListener("focus",render);
-    search.addEventListener("keydown",event=>{if(event.key==="Enter"){const first=matches()[0];if(first){event.preventDefault();location.href=first.path;}}});
-    sort.addEventListener("change",render);
+    search.addEventListener("input",()=>{shown=PAGE;render();});
+    sort.addEventListener("change",()=>{shown=PAGE;render();});
+    more.addEventListener("click",()=>{shown+=PAGE;render();});
+    reset.addEventListener("click",()=>{
+      active="all";shown=PAGE;search.value="";sort.value="low";
+      buttons.forEach((item,i)=>{item.classList.toggle("is-on",i===0);item.setAttribute("aria-pressed",String(i===0));});
+      render();
+    });
     render();
   }
 </script>
 
 <style is:global>
+  .pf .wrap{padding-left:16px;padding-right:16px}
+  @media(min-width:800px){.pf .wrap{max-width:1228px;padding-left:34px;padding-right:34px}}
   .pf{border-top:1px solid #eee8f3;border-bottom:1px solid #e7e7eb;background:#fff}
   .pf-top{padding:38px 0 30px}
   .pf-head{display:flex;align-items:end;justify-content:space-between;gap:16px}
-  .pf-head>div>span{color:#ff438b;font-size:12px;font-weight:900}
+  .pf-head>div>span{color:#e92d76;font-size:13px;font-weight:900}
   .pf-head h2{margin:6px 0 0;font-size:29px;letter-spacing:-1.1px}
-  .pf-head>a{color:#5e5964;font-size:13px;font-weight:850;white-space:nowrap}.pf-head>a b{font-size:18px}
+  .pf-head>a{color:#4a4650;font-size:14px;font-weight:850;white-space:nowrap}.pf-head>a b{font-size:18px}
   .pf-scroll{display:flex;gap:18px;margin-top:25px;padding:0 2px 10px;overflow-x:auto;scrollbar-width:thin}
   .pf-category{flex:0 0 92px;padding:0;border:0;background:none;color:#55515a;text-align:center;cursor:pointer}
   .pf-icon{width:76px;height:76px;margin:0 auto 10px;border-radius:50%;display:grid;place-items:center;background:#f5f4f6;border:1px solid #dedce2;transition:.2s;box-shadow:inset 0 1px 0 rgba(255,255,255,.8)}
-  .pf-category strong,.pf-category small{display:block}.pf-category strong{font-size:13px;white-space:nowrap}.pf-category small{margin-top:3px;color:#99939d;font-size:10px}
+  .pf-category strong,.pf-category small{display:block}.pf-category strong{font-size:14px;white-space:nowrap}.pf-category small{margin-top:3px;color:#5f5a64;font-size:12px}
   .pf-category.is-on .pf-icon{background:#fff;border:5px solid #36333a;box-shadow:0 9px 20px rgba(35,30,39,.18);transform:translateY(-2px)}.pf-category.is-on strong{color:#111;font-weight:950}
   .pf-icon-under20{background:#fff4da;color:#9c6a00}.pf-icon-data7{background:#e7f6ff;color:#1676a8}.pf-icon-data15{background:#eeeaff;color:#654fd3}.pf-icon-data100{background:#ffe9f1;color:#c82d67}.pf-icon-daily{background:#e5fff0;color:#118149}.pf-icon-benefit{background:#fff0f6;color:#ff438b}.pf-icon-k{background:#fff2d9;color:#8b5c00}.pf-icon-l{background:#ece8ff;color:#5e45c7}
   .pf-tools{padding:28px 0 24px;background:#f7f7f9;border-top:1px solid #e7e7eb}
-  .pf-controls{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:10px}
-  .pf-search{min-height:52px;display:flex;align-items:center;gap:10px;padding:0 16px;border-radius:15px;background:#fff;border:1px solid #d8d8df}.pf-search>span{font-size:23px;transform:rotate(-20deg)}.pf-search input{width:100%;border:0;outline:0;background:transparent;font:inherit;font-size:14px}
-  .pf-sort{min-height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-radius:15px;background:#fff;border:1px solid #d8d8df}.pf-sort>span{color:#85808a;font-size:12px}.pf-sort select{border:0;outline:0;background:#fff;font:inherit;font-size:13px;font-weight:850}
-  .pf-result{margin-top:24px;display:flex;align-items:center;gap:5px;color:#121014;font-size:23px;font-weight:950;letter-spacing:-.7px}.pf-result b{color:#ff438b;font-size:14px}.pf-result i{font-style:normal}.pf-result em{margin-left:auto;color:#6d6871;font-size:12px;font-style:normal;font-weight:800;letter-spacing:0}
-  .pf-suggestions{margin-top:10px;border-radius:16px;background:#fff;border:1px solid #dedde2;overflow:hidden;box-shadow:0 12px 28px rgba(41,34,48,.08)}
-  .pf-suggestions .pf-suggest-head{padding:9px 14px;background:#f4f2f6;color:#77717b;font-size:10px;font-weight:800}
-  .pf-suggestions .pf-suggestion{display:grid;grid-template-columns:minmax(0,1fr) auto 18px;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid #eeeef1;color:#252128;transition:background .15s}
-  .pf-suggestions .pf-suggestion:hover{background:#fff5f9}
-  .pf-suggestions .pf-suggestion:last-child{border-bottom:0}
-  .pf-suggestions .pf-suggestion-copy,.pf-suggestions .pf-suggestion-copy strong,.pf-suggestions .pf-suggestion-copy small{display:block;min-width:0}
-  .pf-suggestions .pf-suggestion-copy strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}
-  .pf-suggestions .pf-suggestion-copy small{margin-top:3px;color:#8b858e;font-size:10px}
-  .pf-suggestions .pf-suggestion>b{color:#ff438b;font-size:14px;white-space:nowrap}
-  .pf-suggestions .pf-suggestion>i{color:#8c8790;font-size:20px;font-style:normal}
-  .pf-suggestions[hidden]{display:none}
+  .pf-search{min-height:54px;display:flex;align-items:center;gap:10px;padding:0 16px;border-radius:15px;background:#fff;border:1px solid #d8d8df}.pf-search>span{font-size:23px;transform:rotate(-20deg)}.pf-search input{width:100%;border:0;outline:0;background:transparent;font:inherit;font-size:16px}
+  .pf-bar{display:flex;align-items:center;gap:10px;margin:20px 0 14px;flex-wrap:wrap}
+  .pf-total{display:flex;align-items:baseline;gap:8px;margin-right:auto;min-width:0}.pf-total strong{font-size:22px;letter-spacing:-.6px}.pf-total i{font-style:normal;color:#e92d76}.pf-total span{color:#5f5a64;font-size:14px;font-weight:700}
+  .pf-reset{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid #cfcdd4;background:#fff;color:#4a4650;font-size:14px;font-weight:800}
+  .pf-sort{display:flex;align-items:center;border-radius:12px;background:#fff;border:1px solid #d8d8df;padding:0 10px}.pf-sort select{min-height:40px;border:0;outline:0;background:#fff;font:inherit;font-size:14px;font-weight:800;color:#252128}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .pf-list{display:grid;gap:14px}
+  .pf-card{display:flex;flex-direction:column;gap:10px;padding:18px;border-radius:20px;background:#fff;border:1px solid #dedee2}
+  .pf-tags{display:flex;flex-wrap:wrap;gap:6px}.pf-tag{padding:5px 10px;border-radius:999px;background:#f1f1f4;color:#4a4650;font-size:12px;font-weight:800}.pf-tag.is-net{background:#ece8ff;color:#5e45c7}.pf-tag.is-benefit{background:#fff0f6;color:#c82d67}.pf-tag.is-promo{background:#e5fff0;color:#0f7a43}
+  .pf-card h3{margin:0;font-size:19px;line-height:1.3;letter-spacing:-.5px;word-break:keep-all}
+  .pf-spec{margin:0;border-top:1px solid #eeeef1}.pf-spec>div{display:grid;grid-template-columns:56px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid #eeeef1;font-size:14px;line-height:1.5}.pf-spec dt{color:#5f5a64;font-weight:700}.pf-spec dd{margin:0;font-weight:700;word-break:keep-all}
+  .pf-price{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:2px}
+  .pf-price-main small{display:block;color:#5f5a64;font-size:12px;font-weight:700}.pf-price-main strong{font-size:28px;letter-spacing:-1px;line-height:1.1}
+  .pf-price-card{text-align:right}.pf-price-card small{display:block;color:#5f5a64;font-size:12px;font-weight:700}.pf-price-card b{color:#e92d76;font-size:20px;letter-spacing:-.5px}
+  .pf-benefit{margin:0;padding:10px 12px;border-radius:12px;background:#fff7ea;color:#6d4a0b;font-size:13px;font-weight:700;line-height:1.5}
+  .pf-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto;padding-top:4px}
+  .pf-btn{min-height:48px;border-radius:12px;border:1px solid #d8d8df;background:#fff;display:grid;place-items:center;font-size:15px;font-weight:900;color:#39343f}.pf-btn.is-primary{background:#ff438b;border-color:#ff438b;color:#fff}
+  .pf-more{display:block;width:100%;min-height:52px;margin-top:16px;border-radius:14px;border:1px solid #cfcdd4;background:#fff;font-size:15px;font-weight:900;color:#39343f}.pf-more[hidden],.pf-reset[hidden]{display:none}
+  .pf-empty{padding:28px 16px;border-radius:16px;background:#fff;border:1px dashed #cfcdd4;text-align:center;color:#5f5a64;font-size:15px}
+  .pf-note{margin:14px 0 0;color:#5f5a64;font-size:13px;line-height:1.6}
+  @media(min-width:800px){.pf-list{grid-template-columns:repeat(3,1fr)}.pf-more{max-width:360px;margin-left:auto;margin-right:auto}}
   @media(min-width:1000px){.pf-scroll{justify-content:space-between;gap:12px}}
-  @media(max-width:799px){.pf-top{padding:30px 0 24px}.pf-head h2{font-size:25px}.pf-scroll{gap:13px}.pf-category{flex-basis:82px}.pf-icon{width:68px;height:68px;font-size:18px}.pf-controls{grid-template-columns:1fr}.pf-result{font-size:21px}.pf-result em{display:none}}
-  @media(max-width:420px){.pf-head>a{font-size:11px}.pf-head h2{font-size:25px}.pf-scroll{padding-left:0;padding-right:0}}
+  @media(max-width:799px){.pf-top{padding:30px 0 24px}.pf-head h2{font-size:25px}.pf-scroll{gap:13px}.pf-category{flex-basis:82px}.pf-icon{width:68px;height:68px;font-size:18px}}
+  @media(max-width:420px){.pf-head>a{font-size:13px}.pf-head h2{font-size:25px}.pf-scroll{padding-left:0;padding-right:0}}
 </style>
