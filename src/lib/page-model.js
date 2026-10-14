@@ -206,6 +206,18 @@ function cardHubFaqs(){
   ];
 }
 
+function guideFaqs(){
+  return [
+    {q:"개통까지 얼마나 걸리나요?",a:"신청 자체는 준비물만 있으면 몇 분이면 끝나요. 다만 신청 후 본사 확인 전화(해피콜)를 받아야 개통이 완료되고, 해피콜에는 순번 대기가 있을 수 있어요."},
+    {q:"준비물은 무엇인가요?",a:"편의점에서 산 유심과 본인 명의 휴대폰의 간편인증, 두 가지예요."},
+    {q:"K망 요금제에 다이소 유심을 써도 되나요?",a:"아니요. 다이소 유심은 L망에서만 쓸 수 있어요. K망은 바로유심(8982로 시작하는 19자리)을 편의점에서 구매하세요."},
+    {q:"유심번호는 어떻게 입력하나요?",a:"K망은 19자리 숫자를 입력해요. L망은 유심의 모델명과 모델번호(숫자 8자리)를 입력하고, 예를 들면 K3600 + 12345678처럼 써요."},
+    {q:"신청만 하면 개통되나요?",a:"아니요. 신청 후 해피콜을 받아야 개통이 완료돼요. 순번 대기가 있을 수 있으니 전화를 꼭 받아 주세요."},
+    {q:"자급제폰으로도 개통할 수 있나요?",a:"네, 자급제폰에 유심을 꽂아 쓸 수 있어요. LTE 후불 요금제는 5G 자급 단말로도 가입할 수 있어요."},
+    {q:"개통하다 막히면 어디로 문의하나요?",a:"카카오톡 채널 채팅이나 전화(010-7305-8253)로 바로 문의하세요. 운영시간은 평일 09:00~18:00이고 점심(12:00~13:00), 주말·공휴일은 쉬어요."}
+  ];
+}
+
 function metaFor(page,matched){
   const low=matched.length ? Math.min(...matched.map(p=>p.monthly_price)) : null;
   let text;
@@ -243,7 +255,7 @@ export function buildModel(page){
     directAnswer:directAnswer(page,matched),
     checks:checks(page),
     steps:steps(page),
-    faqs:one ? planFaqs(one,pageCards,pageBenefits) : page.path==="/benefits/" ? benefitHubFaqs() : page.path==="/card/" ? cardHubFaqs() : pageFaqs(page),
+    faqs:one ? planFaqs(one,pageCards,pageBenefits) : page.path==="/benefits/" ? benefitHubFaqs() : page.path==="/card/" ? cardHubFaqs() : page.path==="/guide/" ? guideFaqs() : pageFaqs(page),
     related:related(page),
     seoTitle:page.pageType==="home" ? "앤텔레콤 알뜰폰" : seoTitle,
     meta:metaFor(page,matched),

@@ -236,3 +236,12 @@ a{text-decoration:none;color:inherit}button{font:inherit;cursor:pointer}.wrap{ma
 .ch-table tbody th{text-align:left;white-space:normal;font-weight:800;min-width:150px}.ch-table tbody th small,.ch-table td small{display:block;margin-top:2px;color:#80828a;font-size:11px;font-weight:500}
 .ch-table td b{color:var(--brand-deep);font-size:16px}.ch-table thead th:first-child{text-align:left}
 @media(min-width:800px){.ch-grid{grid-template-columns:repeat(2,1fr)}.calc{max-width:640px}}
+
+/* 개통 안내 */
+.gd-two{grid-template-columns:1fr}
+.gd-callout{margin-top:14px;padding:16px;border-radius:16px;background:#fff6fa;border:1px solid #ffe0ec}.gd-callout strong{font-size:16px;color:var(--brand-deep)}.gd-callout p{margin:6px 0 0;font-size:14px;line-height:1.65;color:#5f6168}
+.gd-table tbody th{min-width:80px}.gd-table td{text-align:left;white-space:normal;vertical-align:top}.gd-table thead th{text-align:left}.gd-table{min-width:0;table-layout:fixed;font-size:13px}.gd-table th,.gd-table td{padding:12px 8px}.gd-table thead th:first-child,.gd-table tbody th{width:64px;min-width:0}
+.gd-trouble>div{grid-template-columns:150px 1fr}
+.gd-contact{margin-top:16px;padding:18px;border-radius:18px;background:var(--soft);display:grid;gap:10px}.gd-contact strong{font-size:17px}.gd-contact a{min-height:50px;font-size:15px}.gd-contact p{margin:2px 0 0;color:#6c6f76;font-size:13px;line-height:1.6}
+@media(min-width:800px){.gd-two{grid-template-columns:repeat(2,1fr)}.gd-contact{grid-template-columns:1fr 1fr;align-items:center}.gd-contact strong,.gd-contact p{grid-column:1 / -1}}
+@media(max-width:560px){.gd-trouble>div{grid-template-columns:1fr;gap:4px}}
