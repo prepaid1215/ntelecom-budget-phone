@@ -273,3 +273,12 @@ p,dd,li,summary,strong,small,span,td,th{word-break:keep-all;overflow-wrap:break-
   .section>.wrap>p,.faq-list,.steps,.link-list{max-width:900px}
   .section h2{font-size:32px}
 }
+
+/* 유심 이미지 */
+.usim-thumbs{display:flex;gap:12px;margin:12px 0 4px;flex-wrap:wrap}
+.usim-thumbs figure{margin:0;width:150px}
+.usim-thumbs img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:#fff}
+.usim-thumbs figcaption{margin-top:6px;color:#52545c;font-size:13px;font-weight:700;text-align:center}
+.section>.wrap>.usim-thumbs{gap:16px;margin:4px 0 18px}
+.section>.wrap>.usim-thumbs figure{width:calc(50% - 8px);max-width:260px}
+@media(min-width:800px){.usim-thumbs figure{width:170px}.section>.wrap>.usim-thumbs figure{width:240px}}
