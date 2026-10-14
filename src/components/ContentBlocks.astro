@@ -28,7 +28,7 @@ const planHubChecks=[
   ["월 기본료","제휴카드 할인을 적용하기 전 요금제 자체의 월 요금입니다. 비슷한 데이터 구간끼리 먼저 비교하면 실제 통신비를 판단하기 쉬워요.","현재 판매 상품은 월 17,900원부터"],
   ["데이터","기본 제공량과 소진 후 속도를 함께 보세요. 1Mbps는 메신저·가벼운 웹 이용, 3Mbps는 일반 영상 시청, 5Mbps는 더 여유로운 영상 이용에 적합해요.","사용 장소와 단말 상태에 따라 체감 속도는 달라질 수 있어요"],
   ["통화·문자","‘기본제공’ 상품과 100분·300분처럼 한도가 있는 상품을 구분하세요. 업무나 가족 통화가 많다면 통화 기본제공 상품이 편해요.","문자 인증을 자주 사용한다면 문자 제공 조건도 확인"],
-  ["가입 방법","신규가입은 새 번호를 받는 방식이고, 번호이동은 현재 번호를 그대로 옮기는 방식입니다. 번호이동은 요금 연체나 최근 이동 이력에 따라 제한될 수 있어요.","신청 후 본사 확인 전화(해피콜)를 받아야 개통돼요"]
+  ["가입 방법","신규가입은 새 번호를 받는 방식이고, 번호이동은 현재 번호를 그대로 옮기는 방식입니다. 번호이동은 요금 연체나 최근 이동 이력에 따라 제한될 수 있어요.","신청하면 개통돼요. 해피콜은 꼭 받아 주세요"]
 ];
 const displayedChecks=isPlanHub ? planHubChecks : model.checks;
 /* 혜택 브랜드만 다른 유사 상품을 처음부터 나열하지 않고, 사용량별 대표 선택지를 먼저 제안한다. */
@@ -61,4 +61,4 @@ const recommendedPlans=[
 
 <section class="section soft"><div class="wrap"><h2>함께 보면 좋은 페이지</h2><div class="link-list">{model.related.map(p=><a href={toPublicPath(p.path)}><span>{p.keyword}</span><span>›</span></a>)}</div><div class="data-note">요금 정보는 {dataDate} 기준이에요. 프로모션·혜택·카드 조건은 가입 시점에 달라질 수 있어요.</div></div></section>
 
-<section class="section"><div class="wrap final-box"><h2>요금제를 골랐다면 바로 신청하세요</h2><p>신청 후 본사 확인 전화(해피콜)를 받으면 개통이 완료돼요. 신청만으로는 개통되지 않으니 전화를 꼭 받아 주세요.</p><a class="final-button" href={activationLink("final")}>바로 개통하기</a></div></section>
+<section class="section"><div class="wrap final-box"><h2>요금제를 골랐다면 바로 신청하세요</h2><p>신청하면 개통돼서 바로 쓸 수 있어요. 해피콜은 꼭 받아 주세요.</p><a class="final-button" href={activationLink("final")}>바로 개통하기</a></div></section>

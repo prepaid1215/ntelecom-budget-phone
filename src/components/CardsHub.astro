@@ -116,14 +116,14 @@ const offAt=(c,spend)=>{ const t=[...c.discount_tiers].reverse().find(x=>spend>=
     <article class="step"><span>1</span><div><strong>유심 구매</strong><p>K망은 바로유심(8982로 시작하는 19자리)을 CU, GS25, 이마트24에서, L망은 원칩 유심을 이마트24·배민 B마트·스토리웨이에서 구매하세요. 다이소 유심은 L망에서 쓸 수 있어요.</p></div></article>
     <article class="step"><span>2</span><div><strong>신청 페이지 접속</strong><p>‘신청하기’를 눌러 개통 페이지로 이동한 뒤 요금제를 고르고 안면인증·간편인증으로 본인 확인을 진행해요.</p></div></article>
     <article class="step"><span>3</span><div><strong>유심번호 입력 후 신청</strong><p>K망은 19자리 숫자를, L망은 유심의 모델명과 모델번호(숫자 8자리)를 입력해요. 예: K3600 + 12345678</p></div></article>
-    <article class="step"><span>4</span><div><strong>해피콜 받고 개통</strong><p>신청만으로는 개통되지 않아요. 본사 확인 전화(해피콜)를 받아야 개통이 완료돼요. 개통 후 통신요금 자동납부를 카드로 등록하면 할인이 시작돼요.</p></div></article>
+    <article class="step"><span>4</span><div><strong>유심 꽂고 바로 사용</strong><p>신청이 끝나면 개통이 완료돼요. 유심을 휴대폰에 꽂으면 바로 쓸 수 있어요. 이후 통신요금 자동납부를 카드로 등록하면 할인이 시작돼요. 사용 중에 본사 확인 전화(해피콜)가 오면 꼭 받아 주세요. 받지 않으면 회선이 해지될 수 있어요.</p></div></article>
   </div>
   <p class="pd-note">막히는 부분이 있으면 <a href={site.business.kakao} rel="noopener">카카오톡 채널</a> 또는 {site.business.phone}으로 바로 문의하세요. 운영시간: {site.business.hours}</p>
 </div></section>
 
 <section class="section"><div class="wrap"><h2>자주 묻는 질문</h2><div class="faq-list">{model.faqs.map(f=><details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>)}</div></div></section>
 
-<section class="section soft"><div class="wrap final-box"><h2>카드 할인까지 챙겨서 시작하세요</h2><p>신청 후 해피콜을 받으면 개통이 완료돼요.</p><a class="final-button" href={activationLink("final")}>바로 신청하기</a></div></section>
+<section class="section soft"><div class="wrap final-box"><h2>카드 할인까지 챙겨서 시작하세요</h2><p>신청하면 개통돼서 바로 쓸 수 있어요. 해피콜은 꼭 받아 주세요.</p><a class="final-button" href={activationLink("final")}>바로 신청하기</a></div></section>
 
 <script is:inline>
 (function(){
