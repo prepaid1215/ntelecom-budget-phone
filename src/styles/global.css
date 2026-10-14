@@ -313,3 +313,13 @@ p,dd,li,summary,strong,small,span,td,th{word-break:keep-all;overflow-wrap:break-
 .usim-guide{margin:14px 0 2px;max-width:560px}
 .usim-guide img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--line);background:#fff}
 .usim-guide figcaption{margin-top:6px;color:#52545c;font-size:13px;font-weight:700}
+
+/* 신청 순서: 이미지가 있는 단계는 데스크톱에서 글(왼쪽) + 이미지(오른쪽) */
+@media(min-width:900px){
+  .steps-flow .step>div:has(.usim-guide,.usim-thumbs){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,500px);column-gap:32px;align-items:start}
+  .steps-flow .step>div:has(.usim-guide,.usim-thumbs)>strong,.steps-flow .step>div:has(.usim-guide,.usim-thumbs)>p{grid-column:1}
+  .steps-flow .step>div:has(.usim-guide,.usim-thumbs)>.usim-guide,.steps-flow .step>div:has(.usim-guide,.usim-thumbs)>.usim-thumbs{grid-column:2;grid-row:1 / span 4;margin:0;max-width:none}
+  .steps-flow .step .usim-thumbs{justify-content:center;gap:18px}
+  .steps-flow .step .usim-thumbs figure{width:200px}
+  .usim-guide{max-width:none}
+}
