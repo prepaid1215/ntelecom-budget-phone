@@ -93,7 +93,15 @@ for(const file of htmlFiles){
 if(htmlFiles.length!==pages.length) errors.push("HTML 수 "+htmlFiles.length+", 페이지 맵 "+pages.length);
 const robotsText=fs.readFileSync(path.join(root,"robots.txt"),"utf8");
 const sitemapText=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
-const sitemapUrls=(sitemapText.match(/<url>/g)||[]).length;
+const childSitemaps=[...sitemapText.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>path.basename(new URL(m[1].replace(/&amp;/g,"&")).pathname)).filter(()=>sitemapText.includes("<sitemapindex"));
+let sitemapUrls=(sitemapText.match(/<url>/g)||[]).length;
+for(const name of childSitemaps){
+  const childText=fs.readFileSync(path.join(root,name),"utf8");
+  const count=(childText.match(/<url>/g)||[]).length;
+  if(count>1500) errors.push("sitemap 파일 URL 초과: "+name+" "+count);
+  if((childText.match(/<priority>/g)||[]).length!==count) errors.push("sitemap priority 누락: "+name);
+  sitemapUrls+=count;
+}
 const expectedSitemapUrls=productionReady ? pages.filter(page=>page.effectiveIndex==="index").length : 0;
 if(sitemapUrls!==expectedSitemapUrls) errors.push("sitemap URL 수 "+sitemapUrls+", 기대값 "+expectedSitemapUrls);
 if(productionReady){

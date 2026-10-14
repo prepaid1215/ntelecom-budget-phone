@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import pagesData from "../data/generated-pages.json";
 import { siteConfig as site, activationLink, toPublicPath, toSiteUrl } from "../lib/site-config.js";
 const {
   title,
@@ -14,6 +15,17 @@ const canonical = toSiteUrl(pagePath);
 const socialImage = toSiteUrl(image);
 const robots = site.productionReady && index==="index" ? "index,follow" : "noindex,follow";
 const websiteId = toSiteUrl("/#website");
+const organizationId = toSiteUrl("/#organization");
+// Breadcrumb trail = home + every existing generated page whose path is a prefix of this one.
+const pageByPath = new Map(pagesData.map(p=>[p.path,p]));
+const trail = [];
+const segments = pagePath.replace(/^\/|\/$/g,"").split("/").filter(Boolean);
+for(let i=1;i<=segments.length;i++){
+  const path="/"+segments.slice(0,i).join("/")+"/";
+  const hit=pageByPath.get(path);
+  if(hit) trail.push({name:hit.keyword,path});
+}
+const crumbs=[{name:site.brandName,path:"/"},...trail.filter(c=>c.path!=="/")];
 const schemas={
   "@context":"https://schema.org",
   "@graph":[
@@ -22,7 +34,18 @@ const schemas={
       "@id":websiteId,
       "url":toSiteUrl("/"),
       "name":site.brandName,
-      "inLanguage":"ko-KR"
+      "inLanguage":"ko-KR",
+      "publisher":{"@id":organizationId}
+    },
+    {
+      "@type":"Organization",
+      "@id":organizationId,
+      "name":site.business.name,
+      "legalName":site.business.operator,
+      "url":toSiteUrl("/"),
+      "telephone":site.business.phone,
+      "address":{"@type":"PostalAddress","streetAddress":site.business.address,"addressCountry":"KR"},
+      "sameAs":[site.business.kakao]
     },
     {
       "@type":"WebPage",
@@ -33,7 +56,13 @@ const schemas={
       "inLanguage":"ko-KR",
       "isPartOf":{"@id":websiteId},
       "dateModified":site.dataCheckedAt,
-      "primaryImageOfPage":{"@type":"ImageObject","url":socialImage}
+      "primaryImageOfPage":{"@type":"ImageObject","url":socialImage},
+      "breadcrumb":{"@id":`${canonical}#breadcrumb`}
+    },
+    {
+      "@type":"BreadcrumbList",
+      "@id":`${canonical}#breadcrumb`,
+      "itemListElement":crumbs.map((c,i)=>({"@type":"ListItem","position":i+1,"name":c.name,"item":toSiteUrl(c.path)}))
     }
   ]
 };
