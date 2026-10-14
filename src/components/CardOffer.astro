@@ -12,7 +12,7 @@ const promoDiscountFor=tier=>promoTiers.find(p=>p.monthly_spend===tier.monthly_s
   <div class:list={["cz-head",{"has-img":!!img}]}>
     {img && <img class="cz-img" src={toPublicPath(img.src)} width={img.w} height={img.h} alt={img.alt} loading="lazy" decoding="async" />}
     <div><h3>{card.name}</h3>
-    <p>{card.card_company} · 연회비 {card.annual_fee?.toLocaleString("ko-KR")}원 · 통신요금 자동납부 필요</p></div>
+    <p>{card.card_company} · 통신요금 자동납부 필요</p></div>
   </div>
   <div class="tier-table">
     {card.discount_tiers.map(t => (

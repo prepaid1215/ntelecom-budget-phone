@@ -106,7 +106,7 @@ const adLabel={price:"월 요금",card:"카드 할인","number-transfer":"번호
     <div class="pay-head"><span>조건</span><span>월 납부액</span><span>12개월</span></div>
     {rows.map(r=><div class="pay-row"><span>{r.label}</span><strong>{won(r.monthly)}</strong><em>{won(r.monthly*12)}</em></div>)}
   </div>
-  <p class="pd-note">카드 연회비 {primary.annual_fee?.toLocaleString("ko-KR")}원은 별도예요. 할인은 전월 카드 실적을 채우고 통신요금을 자동납부할 때 적용돼요.</p>
+  <p class="pd-note">할인은 전월 카드 실적을 채우고 통신요금을 자동납부할 때 적용돼요.</p>
   <div class="grid cols-2" style="margin-top:16px">{cards.map(c=><CardOffer card={c} />)}</div>
 </div></section>}
 

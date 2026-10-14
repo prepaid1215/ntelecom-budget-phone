@@ -95,7 +95,7 @@ function directAnswer(page, matched){
     return b ? `${b.name} 결합 요금제의 현재 혜택은 ${b.value}입니다. ${b.conditions} 조건을 확인하세요.` : page.angle;
   }
   if(page.path==="/card/") return "K망은 KT 마이알뜰폰 BC 바로카드, L망은 U+알뜰폰 파트너스 삼성카드를 쓸 수 있어요. 카드 할인은 전월 실적을 채워야 적용돼요.";
-  if(page.path==="/card/compare/") return "두 카드 모두 연회비가 있고 통신요금 자동납부가 필요해요. 전월 실적 구간별 할인액을 비교해 보세요.";
+  if(page.path==="/card/compare/") return "두 카드 모두 통신요금 자동납부가 필요해요. 전월 실적 구간별 할인액을 비교해 보세요.";
   if(page.path==="/benefits/") return "쿠팡캐쉬, 네이버페이, 다이소 등 혜택이 붙는 요금제를 혜택별로 모았어요.";
   if(page.path==="/guide/") return "요금제를 고르고 신청하면 개통이 완료돼요. 유심을 꽂고 바로 쓰고, 사용 중에 오는 본사 확인 전화(해피콜, 1899-7700)는 꼭 받아 주세요.";
   if(page.path==="/compare/") return `판매 중인 ${n}개 요금제를 월 기본료와 데이터 기준으로 한눈에 비교할 수 있어요.`;
@@ -116,7 +116,7 @@ function checks(page){
     ["통화·문자","기본제공인지, 100분·300분처럼 제한이 있는지 확인하세요."]
   ];
   if(tags.has("number-transfer")) out.push(["번호이동 제한","요금 연체나 최근 번호이동 이력이 있으면 막힐 수 있어요."]);
-  else if(cardFocus) out.push(["카드 조건","전월 실적, 연회비, 자동납부, 프로모션 기간을 따로 확인하세요."]);
+  else if(cardFocus) out.push(["카드 조건","전월 실적, 자동납부, 프로모션 기간을 따로 확인하세요."]);
   else if([...tags].some(t=>["coupang","naverpay","daiso","content-benefit","oliveyoung","cu"].includes(t))) out.push(["혜택 조건","쿠폰형은 30일 사용 후 31일차 유지, 구독·할인형은 앱 제휴 인증 등 혜택별 조건을 확인하세요."]);
   else out.push(["가입 방법","신규가입인지 번호이동인지에 따라 절차가 조금 달라요."]);
   return out.slice(0,4);
@@ -170,7 +170,7 @@ function planFaqs(plan, pageCards, pageBenefits){
   if(c && c.discount_tiers?.length){
     const top=c.discount_tiers[c.discount_tiers.length-1];
     const low=Math.max(0,plan.monthly_price-top.monthly_discount);
-    out.push({q:"제휴카드를 쓰면 월 얼마까지 내려가나요?",a:`${withTool(c.name)} 전월 ${Math.round(top.monthly_spend/10000)}만원 이상 쓰면 월 ${won(plan.monthly_price)}에서 ${won(top.monthly_discount)}이 빠져 ${won(low)}이 돼요. 연회비 ${won(c.annual_fee||0)}은 별도예요.`});
+    out.push({q:"제휴카드를 쓰면 월 얼마까지 내려가나요?",a:`${withTool(c.name)} 전월 ${Math.round(top.monthly_spend/10000)}만원 이상 쓰면 월 ${won(plan.monthly_price)}에서 ${won(top.monthly_discount)}이 빠져 ${won(low)}이 돼요.`});
   }
   if(pageBenefits.length){
     const b=pageBenefits[0];
@@ -199,7 +199,6 @@ function cardHubFaqs(){
   return [
     {q:"앤텔레콤에는 어떤 제휴카드를 쓸 수 있나요?",a:"K망 요금제는 KT 마이알뜰폰 BC 바로카드, L망 요금제는 U+알뜰폰 파트너스 삼성카드를 쓸 수 있어요."},
     {q:"카드를 만들면 월 얼마나 할인되나요?",a:"전월 카드 실적 30만원 이상이면 두 카드 모두 월 7,000원이 할인돼요. 실적이 높을수록 커지고, BC 바로카드는 최대 13,000원, 삼성카드는 최대 13,000원(생활요금 자동납부 포함 시 16,000원)이에요."},
-    {q:"연회비는 얼마인가요?",a:"두 카드 모두 국내 전용 기준 연회비 20,000원이에요(BC 바로카드의 비자 브랜드는 23,000원). 가장 낮은 구간(7,000원 할인)만 받아도 3개월이면 회수돼요."},
     {q:"카드 할인은 어떻게 적용되나요?",a:"통신요금 자동납부를 앤텔레콤을 통해 카드로 등록하면, 카드사에 요금이 청구되는 시점부터 전월 실적에 따라 할인돼요."},
     {q:"카드 실적을 못 채우면요?",a:"실적 구간별 할인이라 전월 30만원 미만이면 할인이 없어요. 평소 카드 사용액이 30만원 이상인지 먼저 확인하세요."},
     {q:"K망에 삼성카드를 써도 되나요?",a:"아니요. 카드는 망에 맞춰 적용돼요. K망은 BC 바로카드, L망은 삼성카드만 해당돼요."}

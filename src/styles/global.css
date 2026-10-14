@@ -368,3 +368,6 @@ p,dd,li,summary,strong,small,span,td,th{word-break:keep-all;overflow-wrap:break-
 
 .calc-total{display:inline-block;margin-top:8px;padding:5px 12px;border-radius:999px;background:var(--brand);color:#fff;font-size:15px;font-style:normal;font-weight:900;letter-spacing:-.3px}
 .calc-step.is-extra>strong{margin-top:6px}
+
+.calc-total[hidden],.calc-step>strong[hidden]{display:none}
+.calc-step.is-extra>span{font-weight:800}

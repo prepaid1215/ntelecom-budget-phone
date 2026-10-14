@@ -43,10 +43,9 @@ const offAt=(c,spend)=>{ const t=[...c.discount_tiers].reverse().find(x=>spend>=
   <p class="section-lead">카드는 요금제의 망에 맞춰 골라요. K망은 BC 바로카드, L망은 삼성카드가 적용돼요.</p>
   <div class="ch-grid">{[cardByNetwork.K,cardByNetwork.L].map(c=>
     <article class="ch-card">
-      <div class="ch-head">{cardImages[c.id] && <img class="ch-img" src={toPublicPath(cardImages[c.id].src)} width={cardImages[c.id].w} height={cardImages[c.id].h} alt={cardImages[c.id].alt} loading="lazy" decoding="async" />}<div><span class="ch-net-tag">{c.eligible_networks[0]}망 요금제용</span><strong>{c.name}</strong><em>{c.card_company} · 연회비 {won(c.annual_fee)}</em></div></div>
+      <div class="ch-head">{cardImages[c.id] && <img class="ch-img" src={toPublicPath(cardImages[c.id].src)} width={cardImages[c.id].w} height={cardImages[c.id].h} alt={cardImages[c.id].alt} loading="lazy" decoding="async" />}<div><span class="ch-net-tag">{c.eligible_networks[0]}망 요금제용</span><strong>{c.name}</strong><em>{c.card_company} · 통신요금 자동납부 필요</em></div></div>
       <div class="ch-max"><small>월 최대 할인</small><strong>{won(c.max_monthly_discount)}</strong>{c.max_monthly_discount>baseMax(c) && <span>생활요금 자동납부 포함 시</span>}</div>
       <div class="tier-table">{c.discount_tiers.map(t=><div class="tier-row"><span>전월 {man(t.monthly_spend)} 이상</span><strong>{won(t.monthly_discount)} 할인</strong></div>)}</div>
-      <p class="ch-fee">연회비 {won(c.annual_fee)}은 첫 구간 할인만 받아도 <b>{payback(c)}개월</b>이면 회수돼요.</p>
       <div class="ch-actions"><a class="btn-secondary" href={toPublicPath(cardPath[c.id])}>카드 자세히 보기</a><a class="btn-secondary" href={c.application_url} target="_blank" rel="noopener noreferrer">카드사에서 신청</a></div>
     </article>)}
   </div>
@@ -98,7 +97,7 @@ const offAt=(c,spend)=>{ const t=[...c.discount_tiers].reverse().find(x=>spend>=
       <td><b>{won(Math.max(0,p.monthly_price-top.monthly_discount))}</b><small>전월 {man(top.monthly_spend)}</small></td>
     </tr>; })}</tbody>
   </table></div>
-  <p class="pd-note">연회비 {won(cardByNetwork.K.annual_fee)}은 별도예요. 표의 금액은 기본 할인만 반영한 값이에요.</p>
+  <p class="pd-note">표의 금액은 기본 할인만 반영한 값이에요.</p>
 </div></section>
 
 <section class="section soft"><div class="wrap">
@@ -164,6 +163,14 @@ const offAt=(c,spend)=>{ const t=[...c.discount_tiers].reverse().find(x=>spend>=
     var extra=document.getElementById("calc-extra");
     extra.hidden=!benefit;
     if(!benefit) return;
+    var totalEl=document.getElementById("calc-total"), feelEl=document.getElementById("calc-feel"), eqEl=document.getElementById("calc-eq"), noteEl0=document.getElementById("calc-feel-note");
+    if(benefit.id==="benefit-millie"){
+      totalEl.hidden=true; feelEl.hidden=true;
+      eqEl.textContent="+ 밀리의서재 월 "+fmt(benefit.amount)+" 구독권이 포함돼요";
+      noteEl0.textContent="통신요금에서 빠지는 금액이 아니라 별도로 받는 혜택이에요. 이미 밀리의서재를 구독 중이라면 그 구독료만큼 아끼는 셈이에요. 통신요금은 위 ①을 기준으로 보세요.";
+      return;
+    }
+    totalEl.hidden=false; feelEl.hidden=false;
     var label=benefit.id==="benefit-cu" ? "CU 할인 최대" : benefit.id==="benefit-millie" ? "밀리의서재 구독료" : benefit.name+" 혜택";
     document.getElementById("calc-feel").textContent="월 "+fmt(feel);
     var totalOff=p.price-feel;
