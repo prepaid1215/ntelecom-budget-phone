@@ -14,7 +14,8 @@ const groups=p=>[
   p.data_gb===15 ? "data15" : "",
   p.data_gb===100 ? "data100" : "",
   p.daily_data_gb ? "daily" : "",
-  (p.benefit_ids||[]).length ? "benefit" : ""
+  (p.benefit_ids||[]).length ? "benefit" : "",
+  ...(p.benefit_ids||[]).map(id=>"bf-"+id.replace("benefit-",""))
 ].filter(Boolean);
 const count=id=>id==="all" ? plans.length : plans.filter(p=>groups(p).includes(id)).length;
 const categories=[
@@ -24,9 +25,17 @@ const categories=[
   {id:"data15",icon:"15",label:"15GB",href:"/plans/15gb/"},
   {id:"data100",icon:"100",label:"100GB",href:"/plans/100gb/"},
   {id:"daily",icon:"∞",label:"매일 데이터",href:"/plans/"},
-  {id:"benefit",icon:"♥",label:"생활혜택",href:"/benefits/"},
   {id:"k",icon:"K",label:"KT망",href:"/plans/k/"},
   {id:"l",icon:"L",label:"LG U+망",href:"/plans/l/"}
+];
+const benefitRow=[
+  {id:"benefit",icon:"benefit",label:"혜택 전체",svg:""},
+  {id:"bf-coupang-cash",label:"쿠팡캐쉬",svg:"coupang-cash.svg"},
+  {id:"bf-millie",label:"밀리의서재",svg:"millie.svg"},
+  {id:"bf-naverpay",label:"네이버페이",svg:"naverpay.svg"},
+  {id:"bf-daiso",label:"다이소",svg:"daiso.svg"},
+  {id:"bf-oliveyoung",label:"올리브영",svg:"oliveyoung.svg"},
+  {id:"bf-cu",label:"CU",svg:"cu.svg"}
 ];
 const benefitNames=Object.fromEntries((model.benefits||[]).map(b=>[b.id,b.name]));
 const cardOff={};
@@ -59,9 +68,16 @@ const applyUrl=activationLink("home");
   <div class="pf-top">
     <div class="wrap">
       <div class="pf-head"><div><span>빠른 조건 찾기</span><h2>어떤 요금제를 찾으세요?</h2></div><a href={toPublicPath("/guide/")}>개통 방법 보기 <b>›</b></a></div>
-      <div class="pf-scroll" role="group" aria-label="요금제 조건 선택">
-        {categories.map((c,i)=><button class:list={["pf-category",{"is-on":i===0}]} type="button" data-category={c.id} data-label={c.label} data-href={toPublicPath(c.href)} aria-pressed={i===0 ? "true" : "false"}>
+      <div class="pf-row-label">가격·데이터·망</div>
+      <div class="pf-scroll" role="group" aria-label="가격·데이터·망 조건 선택">
+        {categories.map((c,i)=><button class:list={["pf-category",{"is-on":i===0}]} type="button" data-category={c.id} data-label={c.label} aria-pressed={i===0 ? "true" : "false"}>
           <span class={"pf-icon pf-icon-"+c.id}><PlanFinderIcon name={c.id}/></span><strong>{c.label}</strong><small>{count(c.id)}개</small>
+        </button>)}
+      </div>
+      <div class="pf-row-label">혜택으로 찾기</div>
+      <div class="pf-scroll pf-scroll-benefit" role="group" aria-label="혜택 조건 선택">
+        {benefitRow.map(c=><button class="pf-category" type="button" data-category={c.id} data-label={c.label} aria-pressed="false">
+          <span class={"pf-icon "+(c.svg ? "pf-icon-benefit-brand" : "pf-icon-benefit")}>{c.svg ? <img src={toPublicPath("/images/benefits/"+c.svg)} width="34" height="34" alt="" loading="lazy" decoding="async" /> : <PlanFinderIcon name="benefit"/>}</span><strong>{c.label}</strong><small>{count(c.id)}개</small>
         </button>)}
       </div>
     </div>
@@ -171,6 +187,8 @@ const applyUrl=activationLink("home");
   .pf-head>div>span{color:#e92d76;font-size:13px;font-weight:900}
   .pf-head h2{margin:6px 0 0;font-size:29px;letter-spacing:-1.1px}
   .pf-head>a{color:#4a4650;font-size:14px;font-weight:850;white-space:nowrap}.pf-head>a b{font-size:18px}
+  .pf-row-label{margin-top:22px;color:#5f5a64;font-size:13px;font-weight:800}
+  .pf-row-label+.pf-scroll{margin-top:8px}
   .pf-scroll{display:flex;gap:18px;margin-top:25px;padding:0 2px 10px;overflow-x:auto;scrollbar-width:thin}
   .pf-category{flex:0 0 92px;padding:0;border:0;background:none;color:#55515a;text-align:center;cursor:pointer}
   .pf-icon{width:76px;height:76px;margin:0 auto 10px;border-radius:50%;display:grid;place-items:center;background:#f5f4f6;border:1px solid #dedce2;transition:.2s;box-shadow:inset 0 1px 0 rgba(255,255,255,.8)}
@@ -199,7 +217,9 @@ const applyUrl=activationLink("home");
   .pf-empty{padding:28px 16px;border-radius:16px;background:#fff;border:1px dashed #cfcdd4;text-align:center;color:#5f5a64;font-size:15px}
   .pf-note{margin:14px 0 0;color:#5f5a64;font-size:13px;line-height:1.6}
   @media(min-width:800px){.pf-list{grid-template-columns:repeat(3,1fr)}.pf-more{max-width:360px;margin-left:auto;margin-right:auto}}
-  @media(min-width:1000px){.pf-scroll{justify-content:space-between;gap:12px}}
+  .pf-icon-benefit-brand{background:#fff7ea;border-color:#ecdcc0}.pf-icon-benefit-brand img{width:36px;height:36px;object-fit:contain;display:block}
+  .pf-scroll-benefit{padding-bottom:4px}
+  @media(min-width:1000px){.pf-scroll{display:grid;grid-template-columns:repeat(8,1fr);gap:12px;overflow:visible}.pf-category{flex:none}}
   @media(max-width:799px){.pf-top{padding:30px 0 24px}.pf-head h2{font-size:25px}.pf-scroll{gap:13px}.pf-category{flex-basis:82px}.pf-icon{width:68px;height:68px;font-size:18px}}
   @media(max-width:420px){.pf-head>a{font-size:13px}.pf-head h2{font-size:25px}.pf-scroll{padding-left:0;padding-right:0}}
 </style>
