@@ -365,3 +365,6 @@ p,dd,li,summary,strong,small,span,td,th{word-break:keep-all;overflow-wrap:break-
 .calc-step.is-extra>strong{font-size:28px;color:var(--brand-deep)}
 .calc-step.is-extra p{margin:8px 0 0;color:#52545c;font-size:13px;line-height:1.6}
 .calc-step[hidden]{display:none}
+
+.calc-total{display:inline-block;margin-top:8px;padding:5px 12px;border-radius:999px;background:var(--brand);color:#fff;font-size:15px;font-style:normal;font-weight:900;letter-spacing:-.3px}
+.calc-step.is-extra>strong{margin-top:6px}
