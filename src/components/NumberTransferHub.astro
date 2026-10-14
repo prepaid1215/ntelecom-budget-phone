@@ -44,7 +44,7 @@ const lowest=Math.min(...portable.map(p=>p.monthly_price));
     <a href={toPublicPath("/benefits/")}><span>혜택별로 번호이동 요금제 고르기</span><span>›</span></a>
     <a href={toPublicPath("/card/")}><span>제휴카드 할인까지 계산해 보기</span><span>›</span></a>
   </div>
-  {unknownNet.length>0 && <div class="gd-callout"><strong>L망(LG U+) 요금제는 먼저 문의해 주세요</strong><p>L망 요금제 {unknownNet.length}개는 번호이동 가능 여부가 확인되지 않았어요. L망으로 번호이동을 원하면 신청 전에 카카오톡 채널이나 {biz.phone}으로 문의해 주세요.</p></div>}
+  {unknownNet.length>0 && <div class="gd-callout"><strong>L망(LG U+) 요금제는 먼저 문의해 주세요</strong><p>L망 요금제 {unknownNet.length}개는 번호이동 가능 여부가 확인되지 않았어요. L망으로 번호이동을 원하면 신청 전에 카카오톡 채널로 문의해 주세요.</p></div>}
 </div></section>
 
 <section class="section"><div class="wrap">
@@ -70,7 +70,6 @@ const lowest=Math.min(...portable.map(p=>p.monthly_price));
   <div class="gd-contact">
     <strong>바로 물어보세요</strong>
     <a class="btn-primary" href={biz.kakao} rel="noopener">카카오톡 채팅 상담</a>
-    <a class="btn-secondary" href={`tel:${biz.phone}`}>{biz.phone}</a>
     <p>{biz.hours}</p>
   </div>
   <div class="link-list" style="margin-top:14px">

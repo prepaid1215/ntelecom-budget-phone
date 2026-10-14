@@ -380,3 +380,4 @@ p,dd,li,summary,strong,small,span,td,th{word-break:keep-all;overflow-wrap:break-
 /* 목록 카드: 강조는 이름·가격에만 */
 .lp-tags em{font-weight:600}
 .lp-main>span,.lp-price small,.lp-stats small,.lp-stats span{font-weight:400}
+.gd-contact .btn-primary:only-of-type{grid-column:1 / -1}
