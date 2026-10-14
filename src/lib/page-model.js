@@ -195,6 +195,17 @@ function benefitHubFaqs(){
   ];
 }
 
+function cardHubFaqs(){
+  return [
+    {q:"앤텔레콤에는 어떤 제휴카드를 쓸 수 있나요?",a:"K망 요금제는 KT 마이알뜰폰 BC 바로카드, L망 요금제는 U+알뜰폰 파트너스 삼성카드를 쓸 수 있어요."},
+    {q:"카드를 만들면 월 얼마나 할인되나요?",a:"전월 카드 실적 30만원 이상이면 두 카드 모두 월 7,000원이 할인돼요. 실적이 높을수록 커지고, BC 바로카드는 최대 13,000원, 삼성카드는 최대 13,000원(생활요금 자동납부 포함 시 16,000원)이에요."},
+    {q:"연회비는 얼마인가요?",a:"두 카드 모두 국내 전용 기준 연회비 20,000원이에요(BC 바로카드의 비자 브랜드는 23,000원). 가장 낮은 구간(7,000원 할인)만 받아도 3개월이면 회수돼요."},
+    {q:"카드 할인은 어떻게 적용되나요?",a:"통신요금 자동납부를 앤텔레콤을 통해 카드로 등록하면, 카드사에 요금이 청구되는 시점부터 전월 실적에 따라 할인돼요."},
+    {q:"카드 실적을 못 채우면요?",a:"실적 구간별 할인이라 전월 30만원 미만이면 할인이 없어요. 평소 카드 사용액이 30만원 이상인지 먼저 확인하세요."},
+    {q:"K망에 삼성카드를 써도 되나요?",a:"아니요. 카드는 망에 맞춰 적용돼요. K망은 BC 바로카드, L망은 삼성카드만 해당돼요."}
+  ];
+}
+
 function metaFor(page,matched){
   const low=matched.length ? Math.min(...matched.map(p=>p.monthly_price)) : null;
   let text;
@@ -232,7 +243,7 @@ export function buildModel(page){
     directAnswer:directAnswer(page,matched),
     checks:checks(page),
     steps:steps(page),
-    faqs:one ? planFaqs(one,pageCards,pageBenefits) : page.path==="/benefits/" ? benefitHubFaqs() : pageFaqs(page),
+    faqs:one ? planFaqs(one,pageCards,pageBenefits) : page.path==="/benefits/" ? benefitHubFaqs() : page.path==="/card/" ? cardHubFaqs() : pageFaqs(page),
     related:related(page),
     seoTitle:page.pageType==="home" ? "앤텔레콤 알뜰폰" : seoTitle,
     meta:metaFor(page,matched),
