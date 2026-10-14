@@ -92,7 +92,7 @@ function directAnswer(page, matched){
   }
   if(page.pageType==="benefit"){
     const b=benefitById(page.benefitId);
-    return b ? `${b.name} 혜택이 붙는 앤텔레콤 후불 요금제를 모았어요. 지급액과 조건은 요금제마다 다르니 신청 전에 확인하세요.` : page.angle;
+    return b ? `${b.name} 혜택이 붙는 앤텔레콤 후불 요금제를 모았어요. 세부 내용은 상담 시 안내해 드려요.` : page.angle;
   }
   if(page.path==="/card/") return "K망은 KT 마이알뜰폰 BC 바로카드, L망은 U+알뜰폰 파트너스 삼성카드를 쓸 수 있어요. 카드 할인은 전월 실적을 채워야 적용돼요.";
   if(page.path==="/card/compare/") return "두 카드 모두 연회비가 있고 통신요금 자동납부가 필요해요. 전월 실적 구간별 할인액을 비교해 보세요.";
@@ -117,7 +117,7 @@ function checks(page){
   ];
   if(tags.has("number-transfer")) out.push(["번호이동 제한","요금 연체나 최근 번호이동 이력이 있으면 막힐 수 있어요."]);
   else if(cardFocus) out.push(["카드 조건","전월 실적, 연회비, 자동납부, 프로모션 기간을 따로 확인하세요."]);
-  else if([...tags].some(t=>["coupang","naverpay","daiso","content-benefit","oliveyoung","cu"].includes(t))) out.push(["혜택 조건","지급액과 지급 방식, 유지 조건은 신청 전에 다시 확인하세요."]);
+  else if([...tags].some(t=>["coupang","naverpay","daiso","content-benefit","oliveyoung","cu"].includes(t))) out.push(["혜택 조건","세부 내용은 신청 전 상담으로 안내받으세요."]);
   else out.push(["가입 방법","신규가입인지 번호이동인지에 따라 절차가 조금 달라요."]);
   return out.slice(0,4);
 }
@@ -151,6 +151,37 @@ function steps(page){
     ["3","혜택·카드 확인하기","요금제를 정한 뒤 혜택과 카드 할인을 따로 확인하세요."],
     ["4","신청하기",callTip]
   ];
+}
+
+function planFaqs(plan, pageCards, pageBenefits){
+  const name=plan.name.replace(/^앤텔레콤\s+/,"");
+  const out=[];
+  const daily=plan.daily_data_gb && !plan.data_gb;
+  if(plan.after_speed){
+    out.push({q:`${name} 데이터를 다 쓰면 어떻게 되나요?`,a: daily
+      ? `매일 ${plan.daily_data_gb}GB를 다 쓰면 최대 ${plan.after_speed} 속도로 계속 쓸 수 있어요.`
+      : `기본 ${plan.data_gb}GB${plan.daily_data_gb ? "와 매일 "+plan.daily_data_gb+"GB" : ""}를 다 쓰면 최대 ${plan.after_speed} 속도로 계속 쓸 수 있어요.`});
+  }
+  if(promoActive(plan.promotion) && plan.monthly_extra_data_gb){
+    const end=plan.promotion.end_date ? plan.promotion.end_date.replace(/^(\d+)-0?(\d+)-0?(\d+)$/,"$1년 $2월 $3일") : null;
+    out.push({q:`추가 데이터 ${plan.monthly_extra_data_gb}GB는 얼마 동안 받나요?`,a:`가입 후 24개월 동안 매월 ${plan.monthly_extra_data_gb}GB가 더해져요.${end ? " 이 프로모션은 "+end+"까지로 확인돼요." : ""} 기간이 끝나면 기본 제공량만 쓸 수 있어요.`});
+  }
+  const c=pageCards[0];
+  if(c && c.discount_tiers?.length){
+    const top=c.discount_tiers[c.discount_tiers.length-1];
+    const low=Math.max(0,plan.monthly_price-top.monthly_discount);
+    out.push({q:"제휴카드를 쓰면 월 얼마까지 내려가나요?",a:`${withTool(c.name)} 전월 ${Math.round(top.monthly_spend/10000)}만원 이상 쓰면 월 ${won(plan.monthly_price)}에서 ${won(top.monthly_discount)}이 빠져 ${won(low)}이 돼요. 연회비 ${won(c.annual_fee||0)}은 별도예요.`});
+  }
+  if(pageBenefits.length){
+    const b=pageBenefits[0];
+    out.push({q:`${b.name} 혜택은 어떻게 받나요?`,a:`혜택의 세부 내용은 카카오톡 채널이나 전화(010-7305-8253)로 문의하시면 안내해 드려요.`});
+  }
+  if(plan.port_available===true){
+    out.push({q:"지금 쓰는 번호 그대로 가입할 수 있나요?",a:"네, 번호이동으로 가입할 수 있어요. 요금을 연체 중이거나 최근 3개월 안에 번호이동을 했다면 제한될 수 있어요."});
+  }
+  out.push({q:"약정이 있나요?",a:"약정 없이 가입해요. 다만 프로모션이나 혜택에는 유지 기간 조건이 붙을 수 있어요."});
+  out.push({q:"신청하면 바로 개통되나요?",a:"아니요. 신청 후 본사 확인 전화(해피콜)를 받아야 개통이 완료돼요. 순번 대기가 있을 수 있으니 전화를 꼭 받아 주세요."});
+  return out.slice(0,7);
 }
 
 function metaFor(page,matched){
@@ -190,7 +221,7 @@ export function buildModel(page){
     directAnswer:directAnswer(page,matched),
     checks:checks(page),
     steps:steps(page),
-    faqs:pageFaqs(page),
+    faqs:one ? planFaqs(one,pageCards,pageBenefits) : pageFaqs(page),
     related:related(page),
     seoTitle:page.pageType==="home" ? "앤텔레콤 알뜰폰" : seoTitle,
     meta:metaFor(page,matched),

@@ -2,7 +2,7 @@
 import Hero from "./Hero.astro";
 import HomePage from "./HomePage.astro";
 import ContentBlocks from "./ContentBlocks.astro";
+import PlanDetail from "./PlanDetail.astro";
 const { model }=Astro.props;
 ---
-<Hero model={model}/>
-{model.page.pageType==="home" ? <HomePage model={model}/> : <ContentBlocks model={model}/>}
+{model.one ? <PlanDetail model={model}/> : <><Hero model={model}/>{model.page.pageType==="home" ? <HomePage model={model}/> : <ContentBlocks model={model}/>}</>}

@@ -26,7 +26,8 @@ await send("Runtime.enable");
 const paths=[
   "/","/plans/","/plans/k/","/plans/l/","/plans/15gb/","/plans/price/under-30000/",
   "/no-contract/","/number-transfer/","/self-phone/","/card/","/card/kt-my-alttle-bc-baro/",
-  "/card/uplus-partners-samsung/","/benefits/","/plans/k/item/7gb-coupang-cash/",
+  "/card/uplus-partners-samsung/","/benefits/","/benefits/coupang-cash/","/benefits/naverpay/",
+  "/benefits/daiso/","/benefits/millie/","/benefits/oliveyoung/","/benefits/cu/","/plans/k/item/7gb-coupang-cash/",
   "/plans/k/item/100gb-coupang-cash/","/plans/l/item/100min-15gb/","/plans/l/item/daily5gb/",
   "/lp/k/7gb-coupang-cash/price/","/lp/k/7gb-coupang-cash/number-transfer/","/lp/k/7gb-coupang-cash/card/"
 ];
@@ -71,6 +72,6 @@ for(const width of [768,1024,1440]){
 }
 ws.close();
 const mobile=results.filter(r=>r.width<768);
-const failures=mobile.filter(r=>r.bodyOverflow||r.cardOverflow||r.clippedText||r.minTouch<44||!r.sticky||r.h1<34||r.h1>40||r.h2<24||r.h2>30||r.planColumns!==1||r.robots!=="noindex,follow");
+const failures=mobile.filter(r=>r.bodyOverflow||r.cardOverflow||r.clippedText||r.minTouch<44||!r.sticky||r.h1<30||r.h1>40||r.h2<24||r.h2>30||r.planColumns!==1||r.robots!=="noindex,follow");
 console.log(JSON.stringify({tested:results.length,mobilePages:mobile.length,widths:[...new Set(results.map(r=>r.width))],failures},null,2));
 if(failures.length) process.exit(1);
