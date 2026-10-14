@@ -236,7 +236,7 @@ a{text-decoration:none;color:inherit}button{font:inherit;cursor:pointer}.wrap{ma
 .ch-table thead th{background:#fafafb;color:#5c5e66;font-size:13px;font-weight:700}
 .ch-table tbody th{text-align:left;white-space:normal;font-weight:800;min-width:150px}.ch-table tbody th small,.ch-table td small{display:block;margin-top:2px;color:#5c5e66;font-size:12px;font-weight:500}
 .ch-table td b{color:var(--brand-deep);font-size:16px}.ch-table thead th:first-child{text-align:left}
-@media(min-width:800px){.ch-grid{grid-template-columns:repeat(2,1fr)}.calc{max-width:640px}}
+@media(min-width:800px){.ch-grid{grid-template-columns:repeat(2,1fr)}.calc{display:grid;grid-template-columns:1fr 1fr;column-gap:28px;align-items:start}.calc>.calc-result{grid-column:2;grid-row:1 / span 4}.calc>.pd-note{grid-column:1 / -1}}
 
 /* 개통 안내 */
 .gd-two{grid-template-columns:1fr}
@@ -270,7 +270,7 @@ p,dd,li,summary,strong,small,span,td,th{word-break:keep-all;overflow-wrap:break-
 .btn-primary,.btn-secondary,.cta-btn,.muted-btn{min-height:52px;font-size:15px}
 @media(min-width:800px){
   .section{padding:56px 34px}
-  .section>.wrap>p,.faq-list,.steps,.link-list{max-width:900px}
+  .section>.wrap>p{max-width:760px}
   .section h2{font-size:32px}
 }
 
@@ -283,3 +283,6 @@ p,dd,li,summary,strong,small,span,td,th{word-break:keep-all;overflow-wrap:break-
 .section>.wrap>.usim-thumbs{gap:16px;margin:4px 0 20px}
 .section>.wrap>.usim-thumbs figure{flex:1 1 0;width:auto;max-width:260px}
 @media(min-width:800px){.usim-thumbs figure{width:170px}.section>.wrap>.usim-thumbs figure{flex:0 0 240px;width:240px;max-width:none}}
+
+/* 홀수 개 단계일 때 마지막 카드는 가로 전체 */
+@media(min-width:800px){.steps .step:last-child:nth-child(odd){grid-column:1 / -1}}
