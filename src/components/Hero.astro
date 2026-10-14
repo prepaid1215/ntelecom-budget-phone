@@ -4,20 +4,26 @@ const { model }=Astro.props;
 const { page, one, matched }=model;
 const isHome=page.pageType==="home";
 const isPlanHub=page.path==="/plans/";
+const isBenefitHub=page.path==="/benefits/";
+const isHub=page.pageType.endsWith("hub");
 const price=one?.monthly_price ?? (matched.length ? Math.min(...matched.map(p=>p.monthly_price)) : null);
 const lines = isHome
  ? ["약정 없이,","번호는 그대로","월 "+(price ?? 0).toLocaleString("ko-KR")+"원부터"]
  : isPlanHub
    ? ["앤텔레콤 후불 요금제","데이터·가격·망별 비교"]
-   : [page.keyword,page.angle];
+   : isBenefitHub
+     ? ["앤텔레콤 후불 혜택","쿠팡·네이버페이·CU까지 6가지"]
+     : [page.keyword,page.angle];
 const description=isHome
  ? "쓰는 데이터에 맞는 요금제를 고르고, 제휴카드 할인까지 반영한 실제 월 요금을 확인해 보세요."
- : isPlanHub
+ : isBenefitHub
+   ? "혜택마다 받는 방법과 조건이 달라요. 평소 자주 쓰는 곳을 기준으로 요금제를 비교해 보세요."
+   : isPlanHub
    ? "판매 중인 "+matched.length+"개 요금제를 데이터 제공량, 월 기본료, K망·L망 기준으로 비교해 보세요."
    : one
      ? "카드 할인을 반영한 실제 납부액은 아래에서 확인하세요."
      : matched.length+"개 요금제의 월 기본료와 데이터를 한눈에 비교해 보세요.";
-const priceLabel=one ? "월 기본료" : isHome ? "월 기본료 · 판매 중인 최저가" : "월 기본료 · 이 조건의 최저가";
+const priceLabel=one ? "월 기본료" : isHome || isHub ? "월 기본료 · 판매 중인 최저가" : "월 기본료 · 이 조건의 최저가";
 const secondaryHref=isPlanHub ? "#plans" : toPublicPath("/plans/");
 const secondaryLabel=isPlanHub ? "요금제 비교하기" : "요금제 보기";
 ---

@@ -184,6 +184,17 @@ function planFaqs(plan, pageCards, pageBenefits){
   return out.slice(0,7);
 }
 
+function benefitHubFaqs(){
+  return [
+    {q:"요금제 하나에 혜택을 여러 개 받을 수 있나요?",a:"아니요, 요금제마다 혜택이 한 가지씩 붙어 있어요. 받고 싶은 혜택이 붙은 요금제를 골라야 해요."},
+    {q:"혜택은 가입하자마자 받나요?",a:"혜택마다 달라요. 쿠팡캐쉬·네이버페이·다이소·올리브영은 가입·변경일부터 사용일수 30일을 채우고 31일차까지 요금제를 유지해야 쿠폰이 발송돼요. 밀리의서재는 가입일부터 제공되고, CU는 포켓CU 제휴 인증 후 결제 때 할인돼요."},
+    {q:"받은 쿠폰을 바로 못 쓰면 어떻게 되나요?",a:"쿠폰은 발행일로부터 30일 안에 등록해야 해요. 등록하지 않으면 소멸하고 재발행되지 않아요."},
+    {q:"중간에 요금제를 바꾸거나 해지하면요?",a:"밀리의서재와 CU는 정지·해지·요금제 변경 시 혜택이 중단돼요. 상품권·포인트 혜택은 변경일부터 사용일수를 다시 채워야 해요."},
+    {q:"L망 요금제에도 이 혜택이 붙나요?",a:"아니요, 이 6가지 혜택은 모두 K망 요금제에 붙는 혜택이에요."},
+    {q:"신청하면 바로 개통되나요?",a:"아니요. 신청 후 본사 확인 전화(해피콜)를 받아야 개통이 완료돼요. 순번 대기가 있을 수 있으니 전화를 꼭 받아 주세요."}
+  ];
+}
+
 function metaFor(page,matched){
   const low=matched.length ? Math.min(...matched.map(p=>p.monthly_price)) : null;
   let text;
@@ -221,7 +232,7 @@ export function buildModel(page){
     directAnswer:directAnswer(page,matched),
     checks:checks(page),
     steps:steps(page),
-    faqs:one ? planFaqs(one,pageCards,pageBenefits) : pageFaqs(page),
+    faqs:one ? planFaqs(one,pageCards,pageBenefits) : page.path==="/benefits/" ? benefitHubFaqs() : pageFaqs(page),
     related:related(page),
     seoTitle:page.pageType==="home" ? "앤텔레콤 알뜰폰" : seoTitle,
     meta:metaFor(page,matched),

@@ -191,3 +191,20 @@ a{text-decoration:none;color:inherit}button{font:inherit;cursor:pointer}.wrap{ma
 .benefit-source a{color:var(--violet);font-weight:850;text-decoration:underline}
 .benefit-box>small b{color:#6d4a0b}
 @media(min-width:800px){.benefit-fact,.benefit-cautions{padding:24px}.benefit-how ol{grid-template-columns:repeat(3,1fr)}.benefit-how li{padding:50px 18px 18px}.benefit-how li:before{left:18px;top:16px}}
+/* 혜택 허브 */
+.bh-grid{display:grid;gap:12px}
+.bh-card{display:flex;flex-direction:column;gap:10px;padding:18px;border-radius:18px;background:#fff;border:1px solid var(--line)}
+.bh-top{display:flex;align-items:center;gap:11px}
+.bh-icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--cream);border:1px solid #eee3cc}
+.bh-top strong{display:block;font-size:18px;letter-spacing:-.4px}.bh-top em{display:block;margin-top:1px;color:#80828a;font-size:12px;font-style:normal}
+.bh-value{margin:0;font-size:17px;font-weight:900;line-height:1.35;letter-spacing:-.4px;word-break:keep-all;color:#6d4a0b}
+.bh-card dl{margin:0;border-top:1px solid var(--line)}
+.bh-card dl>div{display:grid;grid-template-columns:68px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px;line-height:1.5}
+.bh-card dt{color:#80828a;font-weight:700}.bh-card dd{margin:0;word-break:keep-all}
+.bh-foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:4px;font-size:13px;font-weight:800}.bh-foot b{color:var(--brand-deep)}
+.bh-tiers{display:grid;gap:18px}
+.bh-tier-head{display:flex;align-items:baseline;gap:10px;margin-bottom:8px;flex-wrap:wrap}.bh-tier-head strong{font-size:22px;letter-spacing:-.6px}.bh-tier-head span{color:#80828a;font-size:12px}
+.bh-notes{display:grid;gap:10px}
+.bh-notes article{padding:16px;border-radius:16px;background:#fff;border:1px solid var(--line)}
+.bh-notes strong{font-size:16px}.bh-notes p{margin:6px 0 0;color:#5f6168;font-size:14px;line-height:1.65;word-break:keep-all}
+@media(min-width:800px){.bh-grid{grid-template-columns:repeat(3,1fr)}.bh-tiers{grid-template-columns:repeat(2,1fr)}.bh-notes{grid-template-columns:repeat(3,1fr)}}
