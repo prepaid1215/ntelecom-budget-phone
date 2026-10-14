@@ -65,13 +65,13 @@ const offAt=(c,spend)=>{ const t=[...c.discount_tiers].reverse().find(x=>spend>=
       <dl>
         <div><dt>카드 없이 12개월</dt><dd id="calc-base12">-</dd></div>
         <div><dt>카드 쓰면 12개월</dt><dd id="calc-card12">-</dd></div>
-        <div class="calc-save"><dt>연회비 빼고 1년 절약</dt><dd id="calc-save">-</dd></div>
+        <div class="calc-save"><dt>1년 절약</dt><dd id="calc-save">-</dd></div>
         <div id="calc-benefit-row"><dt>생활혜택 가치</dt><dd id="calc-benefit">-</dd></div>
         <div class="calc-feel"><dt>혜택 반영 체감 비용</dt><dd id="calc-feel">-</dd></div>
       </dl>
       <p class="calc-feel-note" id="calc-feel-note"></p>
     </div>
-    <p class="pd-note">‘월 납부액’은 카드 할인 후 실제 통신요금이고, ‘체감 비용’은 생활혜택을 모두 사용했다고 가정한 비교값이에요. 전월 카드 실적과 통신요금 자동납부 조건을 채웠을 때 기준이며 카드 연회비는 별도예요.</p>
+    <p class="pd-note">‘월 납부액’은 카드 할인 후 실제 통신요금이고, ‘체감 비용’은 생활혜택을 모두 사용했다고 가정한 비교값이에요. 전월 카드 실적과 통신요금 자동납부 조건을 채웠을 때 기준이에요.</p>
   </div>
 </div></section>
 
@@ -140,13 +140,13 @@ const offAt=(c,spend)=>{ const t=[...c.discount_tiers].reverse().find(x=>spend>=
     var p=plans.filter(function(x){return x.id===sel.value;})[0]; if(!p) return;
     var c=cards[p.network], d=off(c,spend), pay=Math.max(0,p.price-d);
     var benefit=p.benefit, benefitAmount=benefit ? benefit.amount : 0, feel=Math.max(0,pay-benefitAmount);
-    var base12=p.price*12, card12=pay*12, save=base12-card12-(d>0?c.fee:0);
+    var base12=p.price*12, card12=pay*12, save=base12-card12;
     document.getElementById("calc-card").textContent=c.name;
     document.getElementById("calc-pay").textContent="월 "+fmt(pay);
     document.getElementById("calc-off").textContent=d>0 ? "기본료 "+fmt(p.price)+" − 카드 할인 "+fmt(d) : "전월 실적 "+Math.round(c.tiers[0].spend/10000)+"만원부터 할인돼요";
     document.getElementById("calc-base12").textContent=fmt(base12);
     document.getElementById("calc-card12").textContent=fmt(card12);
-    document.getElementById("calc-save").textContent=d>0 ? (save>0 ? fmt(save) : "연회비가 더 커요") : "-";
+    document.getElementById("calc-save").textContent=d>0 ? fmt(save) : "-";
     var benefitRow=document.getElementById("calc-benefit-row"), benefitEl=document.getElementById("calc-benefit"), feelEl=document.getElementById("calc-feel"), noteEl=document.getElementById("calc-feel-note");
     benefitRow.hidden=!benefit;
     feelEl.textContent=benefit ? fmt(feel)+" 상당" : fmt(pay);
