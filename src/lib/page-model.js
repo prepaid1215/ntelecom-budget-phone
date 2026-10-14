@@ -124,11 +124,14 @@ export function buildModel(page){
 
   const lead=pick(page.path,leadVariants).replace("{keyword}",page.keyword);
   const titleVariants=[
-    `${page.keyword} ${page.angle}`,
-    `${page.keyword} | 조건·월요금 비교`,
-    `${page.keyword}, 현재 판매 상품 기준 정리`,
-    `${page.keyword} 요금제와 가입 조건`
+    page.keyword+" "+page.angle,
+    page.keyword+" | 조건·월요금 비교",
+    page.keyword+", 현재 판매 상품 기준 정리",
+    page.keyword+" 요금제와 가입 조건"
   ];
+  const selectedTitle=pick(page.path+"title",titleVariants);
+  const compactQualifier=page.pageType==="benefit" ? "혜택 안내" : page.pageType==="tag" ? "판매 상품 비교" : "요금·조건 비교";
+  const seoTitle=selectedTitle.length<=48 ? selectedTitle : page.keyword+" | "+compactQualifier;
   return {
     page,
     matched,
@@ -141,7 +144,7 @@ export function buildModel(page){
     faqs:pageFaqs(page),
     related:related(page),
     lead,
-    seoTitle:page.pageType==="home" ? "앤텔레콤 알뜰폰" : pick(page.path+"title",titleVariants),
+    seoTitle:page.pageType==="home" ? "앤텔레콤 알뜰폰" : seoTitle,
     meta:`${page.keyword}을 현재 판매 중인 앤텔레콤 후불 상품 기준으로 정리했습니다. ${page.angle}, 월요금, 데이터, 관련 조건을 비교하세요.`,
     activation,
     promoActive

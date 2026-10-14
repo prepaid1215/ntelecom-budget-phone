@@ -11,7 +11,8 @@
     "qa:mobile": "node scripts/mobile-qa.mjs",
     "dev": "pnpm run generate && astro dev",
     "build": "pnpm run generate && pnpm run validate && astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "audit:seo": "node scripts/seo-audit.mjs"
   },
   "dependencies": {
     "astro": "^5.0.0"

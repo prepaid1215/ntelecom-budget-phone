@@ -98,22 +98,28 @@ pnpm run build
 
 Vercel에서는 저장소의 `pnpm-lock.yaml`과 `packageManager`를 사용해 정적 Astro 빌드를 그대로 실행할 수 있습니다. 별도 서버나 `vercel.json`은 필요하지 않습니다.
 
-## 운영 전에 반드시 수정
+## 운영 전에 반드시 설정
 
-TODO: 실제 도메인과 실제 미러링 개통 URL을 전달받은 뒤 아래 값을 교체합니다. 현재의 `example.com`은 의도적인 자리표시자입니다. 테스트 배포 중에는 `productionReady: false`를 유지합니다.
+실제 도메인과 미러링 개통 URL을 연결할 때 배포 환경변수에 아래 값을 입력합니다. 저장소 기본값은 의도적으로 `example.com`과 `productionReady=false`를 유지합니다.
 
-`src/data/site.json`
+| 환경변수 | 값 |
+| --- | --- |
+| `SITE_URL` | 실제 사이트 도메인(https 포함) |
+| `ACTIVATION_URL` | 실제 미러링 개통 URL(https 포함) |
+| `PRODUCTION_READY` | 최종 검수 전 `false`, 공개 색인 전환 시 `true` |
 
-```json
-{
-  "productionReady": false,
-  "siteUrl": "실제 사이트 도메인",
-  "activationUrl": "실제 미러링 개통 URL"
-}
+로컬에서는 `.env.example`을 복사해 사용할 수 있습니다. 환경변수가 없으면 `src/data/site.json`의 값이 대체값으로 쓰입니다.
+
+`PRODUCTION_READY=false`에서는 모든 HTML이 `noindex,follow`이고, `robots.txt`는 전체 크롤링을 차단하며 sitemap은 비어 있습니다. `true`로 전환하면 기존 `effectiveIndex` 판정에 따라 243개 후보만 index 대상으로 바뀌고 sitemap에 포함됩니다. 257개 noindex와 광고 LP 203개는 계속 제외됩니다.
+
+배포 전 검증:
+
+```bash
+pnpm run build
+pnpm run audit:seo
 ```
 
-실제 도메인과 개통 URL을 확인한 뒤 `productionReady`를 `true`로 변경하면 기존 `effectiveIndex` 판정이 robots에 반영되고, index 후보만 sitemap에 포함됩니다. `false`에서는 모든 HTML이 `noindex,follow`이며 sitemap은 비어 있고 robots.txt에 sitemap 주소를 노출하지 않습니다.
-
+`audit:seo`는 500개 HTML의 title, description, canonical, robots, hreflang, Open Graph, 구조화 데이터, H1, 이미지 속성, 내부 링크, sitemap을 전수 검사합니다.
 ## 페이지를 더 늘릴 때
 
 `scripts/generate-pages.mjs`의 조합 규칙을 늘립니다.

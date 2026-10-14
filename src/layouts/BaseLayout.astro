@@ -1,31 +1,88 @@
 ---
 import "../styles/global.css";
-import site from "../data/site.json";
-const { title, description=site.defaultDescription, index="index", faqs=[], pagePath=Astro.url.pathname } = Astro.props;
+import { siteConfig as site } from "../lib/site-config.js";
+const {
+  title,
+  description=site.defaultDescription,
+  index="index",
+  faqs=[],
+  pagePath=Astro.url.pathname,
+  image="/images/hero-mobile.webp"
+} = Astro.props;
 const fullTitle = title === site.brandName ? title : `${title}${site.defaultTitleSuffix}`;
 const canonical = new URL(pagePath, site.siteUrl).toString();
+const socialImage = new URL(image, site.siteUrl).toString();
 const robots = site.productionReady && index==="index" ? "index,follow" : "noindex,follow";
-const schemas=[{"@context":"https://schema.org","@type":"WebPage","name":title,"description":description,"url":canonical}];
-if(faqs.length) schemas.push({"@context":"https://schema.org","@type":"FAQPage","mainEntity":faqs.map(f=>({"@type":"Question","name":f.q,"acceptedAnswer":{"@type":"Answer","text":f.a}}))});
+const websiteId = new URL("/#website", site.siteUrl).toString();
+const schemas={
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":websiteId,
+      "url":new URL("/",site.siteUrl).toString(),
+      "name":site.brandName,
+      "inLanguage":"ko-KR"
+    },
+    {
+      "@type":"WebPage",
+      "@id":`${canonical}#webpage`,
+      "url":canonical,
+      "name":fullTitle,
+      "description":description,
+      "inLanguage":"ko-KR",
+      "isPartOf":{"@id":websiteId},
+      "dateModified":site.dataCheckedAt,
+      "primaryImageOfPage":{"@type":"ImageObject","url":socialImage}
+    }
+  ]
+};
+if(faqs.length) schemas["@graph"].push({
+  "@type":"FAQPage",
+  "@id":`${canonical}#faq`,
+  "url":canonical,
+  "inLanguage":"ko-KR",
+  "mainEntity":faqs.map(f=>({"@type":"Question","name":f.q,"acceptedAnswer":{"@type":"Answer","text":f.a}}))
+});
 ---
 <!doctype html>
-<html lang="ko">
+<html lang="ko-KR">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
 <meta name="robots" content={robots} />
+<meta name="googlebot" content={robots} />
+<meta name="theme-color" content={site.primaryColor} />
 <link rel="canonical" href={canonical} />
+<link rel="alternate" hreflang="ko-KR" href={canonical} />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:site_name" content={site.brandName} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={socialImage} />
+<meta property="og:image:width" content="1000" />
+<meta property="og:image:height" content="750" />
+<meta property="og:image:alt" content="앤텔레콤 알뜰폰 요금제와 혜택 안내" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={socialImage} />
 <script type="application/ld+json" set:html={JSON.stringify(schemas)}></script>
 </head>
 <body>
 <header class="header"><div class="wrap header-inner">
   <a class="logo" href="/"><span class="logo-mark">M</span><span>{site.brandName}</span></a>
-  <nav class="header-nav"><a href="/plans/">요금제</a><a href="/benefits/">혜택</a><a href="/card/">제휴카드</a><a href="/guide/">개통안내</a></nav>
+  <nav class="header-nav" aria-label="주요 메뉴"><a href="/plans/">요금제</a><a href="/benefits/">혜택</a><a href="/card/">제휴카드</a><a href="/guide/">개통안내</a></nav>
   <a class="header-cta" href={site.activationUrl}>즉시 개통</a>
 </div></header>
-<slot />
+<main>
+  <slot />
+</main>
 <div class="bottom"><div class="bottom-inner">
   <button class="bottom-save" onclick="localStorage.setItem('savedPage',location.href)">저장</button>
   <a class="bottom-go" href={site.activationUrl}>바로 개통하기</a>
