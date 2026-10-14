@@ -11,6 +11,7 @@ const checked=benefits.map(b=>b.checked_at).filter(Boolean).sort().pop() || site
 const [yy,mm,dd]=checked.split("-").map(Number);
 const dataDate=`${yy}년 ${mm}월 ${dd}일`;
 
+import { benefitBrand } from "../lib/benefit-brand.js";
 const icons={"benefit-coupang-cash":"coupang-cash.svg","benefit-naverpay":"naverpay.svg","benefit-daiso":"daiso.svg","benefit-millie":"millie.svg","benefit-oliveyoung":"oliveyoung.svg","benefit-cu":"cu.svg"};
 const kinds={"benefit-coupang-cash":"상품권","benefit-naverpay":"포인트","benefit-daiso":"상품권","benefit-oliveyoung":"상품권","benefit-millie":"구독","benefit-cu":"결제 할인"};
 const slug=b=>b.id.replace("benefit-","");
@@ -36,7 +37,7 @@ const cheapNames=t7 ? t7.list.filter(x=>x.p.monthly_price===t7.min).map(x=>x.b.n
   <p class="section-lead">모두 K망 요금제에 붙는 혜택이에요. 받는 방법과 조건이 다르니 평소 자주 쓰는 곳을 기준으로 고르세요.</p>
   <div class="bh-grid">{rows.map(({b,count,low})=>
     <a class="bh-card" href={toPublicPath(`/benefits/${slug(b)}/`)}>
-      <div class="bh-top"><span class="bh-icon"><img src={toPublicPath(`/images/benefits/${icons[b.id]}`)} width="22" height="22" alt="" loading="lazy" decoding="async" /></span><div><strong>{b.name}</strong><em>{kinds[b.id]}</em></div></div>
+      <div class="bh-top"><span class:list={["bh-icon","is-brand",{"is-square":benefitBrand[b.id]?.square}]}><img src={toPublicPath(benefitBrand[b.id] ? benefitBrand[b.id].src : `/images/benefits/${icons[b.id]}`)} width={benefitBrand[b.id]?.square ? 48 : 96} height={benefitBrand[b.id]?.square ? 48 : 28} alt={benefitBrand[b.id]?.alt||""} loading="lazy" decoding="async" /></span><div><strong>{b.name}</strong><em>{kinds[b.id]}</em></div></div>
       <p class="bh-value">{b.value}</p>
       <dl>
         <div><dt>받는 방법</dt><dd>{b.delivery_method}</dd></div>
