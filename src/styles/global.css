@@ -376,3 +376,7 @@ p,dd,li,summary,strong,small,span,td,th{word-break:keep-all;overflow-wrap:break-
 .gd-prep strong{font-size:16px}.gd-prep p{margin:6px 0 0;color:#52545c;font-size:14px;line-height:1.65;word-break:keep-all}
 .calc-step.is-extra>strong{margin-top:6px;font-size:30px;letter-spacing:-1px}
 .calc-step.is-extra>span{margin-top:8px;font-size:15px}
+
+/* 목록 카드: 강조는 이름·가격에만 */
+.lp-tags em{font-weight:600}
+.lp-main>span,.lp-price small,.lp-stats small,.lp-stats span{font-weight:400}
