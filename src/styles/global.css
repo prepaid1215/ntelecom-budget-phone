@@ -376,3 +376,10 @@ p,dd,li,summary,strong,small,span,td,th{word-break:keep-all;overflow-wrap:break-
 .gd-prep strong{font-size:16px}.gd-prep p{margin:6px 0 0;color:#52545c;font-size:14px;line-height:1.65;word-break:keep-all}
 .calc-step.is-extra>strong{margin-top:6px;font-size:30px;letter-spacing:-1px}
 .calc-step.is-extra>span{margin-top:8px;font-size:15px}
+
+/* 혜택 브랜드 로고 */
+.benefit-icon.is-brand,.bh-icon.is-brand{width:auto;min-width:52px;height:48px;padding:0 12px;margin-bottom:12px;border-radius:12px;background:#fff;border:1px solid #eadfc8;display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;overflow:hidden}
+.bh-icon.is-brand{margin-bottom:0}
+.benefit-icon.is-brand img,.bh-icon.is-brand img{display:block;width:auto;height:auto;max-width:96px;max-height:26px;object-fit:contain}
+.benefit-icon.is-brand.is-square,.bh-icon.is-brand.is-square{width:48px;min-width:48px;padding:0;border:0}
+.benefit-icon.is-brand.is-square img,.bh-icon.is-brand.is-square img{width:48px;height:48px;max-width:none;max-height:none;object-fit:cover}

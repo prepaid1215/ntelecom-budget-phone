@@ -1,9 +1,11 @@
 ---
 import { toPublicPath } from "../lib/site-config.js";
 import { benefitGuides } from "../data/benefit-guides.js";
+import { benefitBrand } from "../lib/benefit-brand.js";
 const { benefit }=Astro.props;
 const count=(benefit.eligible_plan_ids||[]).length;
 const detail=benefitGuides[benefit.id];
+const brand=benefitBrand[benefit.id];
 const guide={
   "benefit-naverpay":{icon:"naverpay.svg",for:"네이버 쇼핑·예약·주문을 자주 하는 분",why:"네이버페이 포인트를 평소 결제에 자연스럽게 사용할 수 있어요."},
   "benefit-coupang-cash":{icon:"coupang-cash.svg",for:"쿠팡 주문을 꾸준히 하는 분",why:"쿠팡·쿠팡이츠에서 반복되는 생활비 결제에 활용할 수 있어요."},
@@ -15,7 +17,8 @@ const guide={
 const benefitPath=toPublicPath(`/benefits/${benefit.id.replace("benefit-","")}/`);
 ---
 <article class="benefit-box">
-  <div class="benefit-icon"><img src={toPublicPath(`/images/benefits/${guide.icon}`)} width="22" height="22" alt="" loading="lazy" decoding="async" /></div>
+  {brand ? <div class:list={["benefit-icon","is-brand",{"is-square":brand.square}]}><img src={toPublicPath(brand.src)} width={brand.square ? 48 : 96} height={brand.square ? 48 : 28} alt={brand.alt} loading="lazy" decoding="async" /></div>
+  : <div class="benefit-icon"><img src={toPublicPath(`/images/benefits/${guide.icon}`)} width="22" height="22" alt="" loading="lazy" decoding="async" /></div>}
   <div class="benefit-copy"><h3>{benefit.name}</h3><strong>{guide.for}</strong><p>{guide.why}</p></div>
   <div class="benefit-bottom"><span>결합 요금제 {count}개 · K망</span><a href={benefitPath}>{benefit.name} 혜택 보기 <b>›</b></a></div>
   {detail && <small><b>{detail.value}</b><br/>지급 조건과 이용 방법을 상세 페이지에서 확인하세요.</small>}
