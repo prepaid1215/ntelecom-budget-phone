@@ -7,6 +7,7 @@ const isPlanHub=page.path==="/plans/";
 const isBenefitHub=page.path==="/benefits/";
 const isCardHub=page.path==="/card/";
 const isGuide=page.path==="/guide/";
+const isTransfer=page.path==="/number-transfer/";
 const isHub=page.pageType.endsWith("hub");
 const cardMaxOff=n=>Math.max(0,...(model.cards||[]).filter(c=>(c.eligible_networks||[]).includes(n)).flatMap(c=>c.discount_tiers.map(t=>t.monthly_discount)));
 const price=isGuide ? null : one?.monthly_price ?? (isCardHub && matched.length ? Math.min(...matched.map(p=>Math.max(0,p.monthly_price-cardMaxOff(p.network)))) : matched.length ? Math.min(...matched.map(p=>p.monthly_price)) : null);
@@ -14,7 +15,9 @@ const lines = isHome
  ? ["약정 없이,","번호는 그대로","월 "+(price ?? 0).toLocaleString("ko-KR")+"원부터"]
  : isPlanHub
    ? ["앤텔레콤 후불 요금제","데이터·가격·망별 비교"]
-   : isGuide
+   : isTransfer
+     ? ["번호는 그대로,","통신사만 바꾸세요"]
+     : isGuide
      ? ["앤텔레콤 후불 개통","준비물 2개면 끝"]
      : isCardHub
      ? ["통신비, 카드로","월 최대 "+Math.max(...(model.cards||[]).map(c=>c.max_monthly_discount||0)).toLocaleString("ko-KR")+"원 할인"]
@@ -23,7 +26,9 @@ const lines = isHome
      : [page.keyword,page.angle];
 const description=isHome
  ? "쓰는 데이터에 맞는 요금제를 고르고, 제휴카드 할인까지 반영한 실제 월 요금을 확인해 보세요."
- : isGuide
+ : isTransfer
+   ? "쓰던 번호 그대로 앤텔레콤 K망 요금제 "+matched.length+"개 중에서 고를 수 있어요. 연체 중이거나 최근 3개월 안에 번호이동을 했다면 제한돼요."
+   : isGuide
    ? "편의점 유심과 간편인증서만 있으면 바로 신청할 수 있어요. 신청하면 개통돼서 유심을 꽂고 바로 쓸 수 있어요."
    : isCardHub
    ? "K망은 BC 바로카드, L망은 삼성카드. 전월 30만원만 써도 월 7,000원이 빠져요."
@@ -35,8 +40,8 @@ const description=isHome
      ? "카드 할인을 반영한 실제 납부액은 아래에서 확인하세요."
      : matched.length+"개 요금제의 월 기본료와 데이터를 한눈에 비교해 보세요.";
 const priceLabel=one ? "월 기본료" : isCardHub ? "카드 할인 최대 구간 적용 시 월 납부액" : isHome || isHub ? "월 기본료 · 판매 중인 최저가" : "월 기본료 · 이 조건의 최저가";
-const secondaryHref=isGuide ? toPublicPath("/plans/") : isCardHub ? "#card-calc" : isPlanHub ? "#plans" : toPublicPath("/plans/");
-const secondaryLabel=isGuide ? "요금제 먼저 보기" : isCardHub ? "내 요금 계산해보기" : isPlanHub ? "요금제 비교하기" : "요금제 보기";
+const secondaryHref=isTransfer ? "#nt-plans" : isGuide ? toPublicPath("/plans/") : isCardHub ? "#card-calc" : isPlanHub ? "#plans" : toPublicPath("/plans/");
+const secondaryLabel=isTransfer ? "요금제 보기" : isGuide ? "요금제 먼저 보기" : isCardHub ? "내 요금 계산해보기" : isPlanHub ? "요금제 비교하기" : "요금제 보기";
 ---
 <section class:list={["hero",{"hero-compact":!isHome}]}><div class="wrap hero-inner">
   <div class="hero-copy">

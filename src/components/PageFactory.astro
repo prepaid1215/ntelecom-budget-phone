@@ -6,6 +6,7 @@ import PlanDetail from "./PlanDetail.astro";
 import BenefitsHub from "./BenefitsHub.astro";
 import CardsHub from "./CardsHub.astro";
 import GuideHub from "./GuideHub.astro";
+import NumberTransferHub from "./NumberTransferHub.astro";
 const { model }=Astro.props;
 ---
-{model.one ? <PlanDetail model={model}/> : <><Hero model={model}/>{model.page.pageType==="home" ? <HomePage model={model}/> : model.page.path==="/benefits/" ? <BenefitsHub model={model}/> : model.page.path==="/card/" ? <CardsHub model={model}/> : model.page.path==="/guide/" ? <GuideHub model={model}/> : <ContentBlocks model={model}/>}</>}
+{model.one ? <PlanDetail model={model}/> : <><Hero model={model}/>{model.page.pageType==="home" ? <HomePage model={model}/> : model.page.path==="/benefits/" ? <BenefitsHub model={model}/> : model.page.path==="/card/" ? <CardsHub model={model}/> : model.page.path==="/guide/" ? <GuideHub model={model}/> : model.page.path==="/number-transfer/" ? <NumberTransferHub model={model}/> : <ContentBlocks model={model}/>}</>}
