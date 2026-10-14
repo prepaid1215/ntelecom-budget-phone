@@ -275,10 +275,11 @@ p,dd,li,summary,strong,small,span,td,th{word-break:keep-all;overflow-wrap:break-
 }
 
 /* 유심 이미지 */
-.usim-thumbs{display:flex;gap:12px;margin:12px 0 4px;flex-wrap:wrap}
-.usim-thumbs figure{margin:0;width:150px}
-.usim-thumbs img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:#fff}
-.usim-thumbs figcaption{margin-top:6px;color:#52545c;font-size:13px;font-weight:700;text-align:center}
-.section>.wrap>.usim-thumbs{gap:16px;margin:4px 0 18px}
-.section>.wrap>.usim-thumbs figure{width:calc(50% - 8px);max-width:260px}
-@media(min-width:800px){.usim-thumbs figure{width:170px}.section>.wrap>.usim-thumbs figure{width:240px}}
+.usim-thumbs{display:flex;justify-content:center;align-items:flex-start;gap:12px;margin:12px 0 4px}
+.usim-thumbs figure{margin:0;flex:0 0 auto;width:150px}
+.usim-thumbs img{display:block;width:100%;aspect-ratio:1/1;height:auto;object-fit:contain;border-radius:12px;border:1px solid var(--line);background:#f1f3f5}
+.usim-thumbs figcaption{margin-top:8px;color:#52545c;font-size:13px;font-weight:700;text-align:center}
+.step .usim-thumbs{justify-content:flex-start}
+.section>.wrap>.usim-thumbs{gap:16px;margin:4px 0 20px}
+.section>.wrap>.usim-thumbs figure{flex:1 1 0;width:auto;max-width:260px}
+@media(min-width:800px){.usim-thumbs figure{width:170px}.section>.wrap>.usim-thumbs figure{flex:0 0 240px;width:240px;max-width:none}}
