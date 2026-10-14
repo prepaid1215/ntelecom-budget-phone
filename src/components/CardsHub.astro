@@ -54,7 +54,7 @@ const offAt=(c,spend)=>{ const t=[...c.discount_tiers].reverse().find(x=>spend>=
 
 <section class="section soft"><div class="wrap">
   <h2>내 요금, 카드 쓰면 얼마?</h2>
-  <p class="section-lead">요금제와 한 달 카드 사용액을 고르면 실제 납부액과 생활혜택을 모두 썼을 때의 체감 비용을 함께 보여드려요.</p>
+  <p class="section-lead">요금제와 한 달 카드 사용액을 고르면 ① 카드 할인 후 월 납부액과 ② 혜택까지 쓸 때의 실질 부담을 보여드려요.</p>
   <div class="calc" id="card-calc" data-plans={JSON.stringify(calcPlans)} data-cards={JSON.stringify(calcCards)}>
     <div class="calc-form">
     <label class="calc-label" for="calc-plan">요금제</label>
@@ -63,17 +63,24 @@ const offAt=(c,spend)=>{ const t=[...c.discount_tiers].reverse().find(x=>spend>=
     <div class="calc-chips" role="group" aria-label="한 달 카드 사용액">{[0,30,50,70,100,120].map(v=><button type="button" class:list={["calc-chip",{"is-on":v===70}]} data-spend={v*10000}>{v===0 ? "안 씀" : v+"만원"}</button>)}</div>
     </div>
     <div class="calc-result" aria-live="polite">
-      <div class="calc-main"><small id="calc-card">-</small><strong id="calc-pay">-</strong><span id="calc-off">-</span></div>
-      <dl>
-        <div><dt>카드 없이 12개월</dt><dd id="calc-base12">-</dd></div>
-        <div><dt>카드 쓰면 12개월</dt><dd id="calc-card12">-</dd></div>
+      <div class="calc-step">
+        <small>① 카드 할인 받으면 · <span id="calc-card">-</span></small>
+        <strong id="calc-pay">-</strong>
+        <span id="calc-off">-</span>
+      </div>
+      <dl class="calc-year">
+        <div><dt>1년 동안 · 카드 없이</dt><dd id="calc-base12">-</dd></div>
+        <div><dt>1년 동안 · 카드 쓰면</dt><dd id="calc-card12">-</dd></div>
         <div class="calc-save"><dt>1년 절약</dt><dd id="calc-save">-</dd></div>
-        <div id="calc-benefit-row"><dt>생활혜택 가치</dt><dd id="calc-benefit">-</dd></div>
-        <div class="calc-feel"><dt>혜택 반영 체감 비용</dt><dd id="calc-feel">-</dd></div>
       </dl>
-      <p class="calc-feel-note" id="calc-feel-note"></p>
+      <div class="calc-step is-extra" id="calc-extra">
+        <small>② 요금제에 붙은 혜택까지 쓰면 <i>(선택)</i></small>
+        <strong id="calc-feel">-</strong>
+        <span id="calc-eq">-</span>
+        <p id="calc-feel-note"></p>
+      </div>
     </div>
-    <p class="pd-note">‘월 납부액’은 카드 할인 후 실제 통신요금이고, ‘체감 비용’은 생활혜택을 모두 사용했다고 가정한 비교값이에요. 전월 카드 실적과 통신요금 자동납부 조건을 채웠을 때 기준이에요.</p>
+    <p class="pd-note">① 카드 할인은 전월 카드 실적과 통신요금 자동납부 조건을 채웠을 때 기준이에요. ② 혜택은 직접 써야 받는 금액이라 확정 요금이 아니라 비교용이에요.</p>
   </div>
 </div></section>
 
@@ -137,6 +144,7 @@ const offAt=(c,spend)=>{ const t=[...c.discount_tiers].reverse().find(x=>spend>=
   var sel=document.getElementById("calc-plan"), chips=root.querySelectorAll(".calc-chip");
   var spend=700000;
   var fmt=function(n){return n.toLocaleString("ko-KR")+"원";};
+  function amountText(pay,amount,label,feel){return amount>pay ? fmt(pay)+" − "+fmt(amount)+"("+label+") → 혜택이 더 커서 0원" : fmt(pay)+" − "+fmt(amount)+"("+label+") = "+fmt(feel);}
   function off(card,s){var o=0;card.tiers.forEach(function(t){if(s>=t.spend)o=t.off;});return o;}
   function render(){
     var p=plans.filter(function(x){return x.id===sel.value;})[0]; if(!p) return;
@@ -145,19 +153,20 @@ const offAt=(c,spend)=>{ const t=[...c.discount_tiers].reverse().find(x=>spend>=
     var base12=p.price*12, card12=pay*12, save=base12-card12;
     document.getElementById("calc-card").textContent=c.name;
     document.getElementById("calc-pay").textContent="월 "+fmt(pay);
-    document.getElementById("calc-off").textContent=d>0 ? "기본료 "+fmt(p.price)+" − 카드 할인 "+fmt(d) : "전월 실적 "+Math.round(c.tiers[0].spend/10000)+"만원부터 할인돼요";
+    document.getElementById("calc-off").textContent=d>0 ? "기본료 "+fmt(p.price)+" − 카드 할인 "+fmt(d)+" = "+fmt(pay) : "전월 카드 실적 "+Math.round(c.tiers[0].spend/10000)+"만원부터 할인돼요";
     document.getElementById("calc-base12").textContent=fmt(base12);
     document.getElementById("calc-card12").textContent=fmt(card12);
     document.getElementById("calc-save").textContent=d>0 ? fmt(save) : "-";
-    var benefitRow=document.getElementById("calc-benefit-row"), benefitEl=document.getElementById("calc-benefit"), feelEl=document.getElementById("calc-feel"), noteEl=document.getElementById("calc-feel-note");
-    benefitRow.hidden=!benefit;
-    feelEl.textContent=benefit ? fmt(feel)+" 상당" : fmt(pay);
-    if(!benefit){benefitEl.textContent="-";noteEl.textContent="생활혜택이 없는 요금제는 카드 할인 후 납부액과 체감 비용이 같아요.";return;}
-    benefitEl.textContent=benefit.name+" −"+fmt(benefitAmount)+(benefit.id==="benefit-cu" ? " (최대)" : " 상당");
-    var prefix="실제 통신요금 청구액은 월 "+fmt(pay)+"이에요. ";
-    if(benefit.id==="benefit-cu") noteEl.textContent=prefix+"포켓CU 인증 후 할인 대상 품목을 월 25,000원 이상 결제해 최대 5,000원을 모두 할인받았을 때의 체감 비용이에요.";
-    else if(benefit.id==="benefit-millie") noteEl.textContent=prefix+"기존에 밀리의서재 월 구독료를 지출하던 사람이 제휴 구독을 활성화해 이용할 때의 체감 비용이에요.";
-    else noteEl.textContent=prefix+"사용일수 30일과 31일차 요금제 유지 조건을 채우고, 매월 받은 혜택을 기한 안에 모두 사용했을 때의 체감 비용이에요.";
+    var extra=document.getElementById("calc-extra");
+    extra.hidden=!benefit;
+    if(!benefit) return;
+    var label=benefit.id==="benefit-cu" ? "CU 할인 최대" : benefit.id==="benefit-millie" ? "밀리의서재 구독료" : benefit.name+" 혜택";
+    document.getElementById("calc-feel").textContent="월 "+fmt(feel);
+    document.getElementById("calc-eq").textContent=amountText(pay,benefitAmount,label,feel);
+    var note=document.getElementById("calc-feel-note");
+    if(benefit.id==="benefit-cu") note.textContent="CU에서 월 25,000원 이상 결제해야 5,000원을 모두 받아요. 포켓CU 인증이 필요해요.";
+    else if(benefit.id==="benefit-millie") note.textContent="이미 밀리의서재를 구독 중이라면, 그 구독료만큼 아끼는 셈이에요.";
+    else note.textContent="매월 받는 혜택을 기한 안에 써야 해요. 쓰지 않으면 해당되지 않아요.";
   }
   sel.addEventListener("change",render);
   chips.forEach(function(b){b.addEventListener("click",function(){chips.forEach(function(x){x.classList.remove("is-on");});b.classList.add("is-on");spend=Number(b.dataset.spend);render();});});

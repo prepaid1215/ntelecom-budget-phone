@@ -355,3 +355,13 @@ p,dd,li,summary,strong,small,span,td,th{word-break:keep-all;overflow-wrap:break-
 .ch-img{flex:none;width:96px;height:auto;border-radius:10px;box-shadow:0 8px 18px rgba(60,30,80,.2)}
 .ch-net-tag{display:inline-block;margin-bottom:6px;padding:4px 10px;border-radius:999px;background:var(--brand);color:#fff;font-size:12px;font-weight:900}
 @media(min-width:800px){.cz-img{width:96px}.ch-img{width:116px}}
+
+/* 카드 계산기 결과: 확정 요금 / 선택 혜택 구분 */
+.calc-step small{display:block;color:#52545c;font-size:13px;font-weight:800}.calc-step small i{font-style:normal;font-weight:700;color:#6c6f76}
+.calc-step>strong{display:block;margin-top:4px;font-size:36px;letter-spacing:-1.3px;line-height:1.1}
+.calc-step>span{display:block;margin-top:6px;color:#3f4148;font-size:14px;line-height:1.5}
+.calc-year{margin:14px 0 0;border-top:1px solid #f2cfdd}.calc-year>div{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #f2cfdd;font-size:14px}.calc-year dt{color:#52545c}.calc-year dd{margin:0;font-weight:800}
+.calc-step.is-extra{margin-top:16px;padding:14px;border-radius:14px;background:#fff;border:1px dashed #ee9cbc}
+.calc-step.is-extra>strong{font-size:28px;color:var(--brand-deep)}
+.calc-step.is-extra p{margin:8px 0 0;color:#52545c;font-size:13px;line-height:1.6}
+.calc-step[hidden]{display:none}
