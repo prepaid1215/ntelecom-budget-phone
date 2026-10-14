@@ -297,3 +297,12 @@ p,dd,li,summary,strong,small,span,td,th{word-break:keep-all;overflow-wrap:break-
 .nt-check .is-no{background:#fff5f5;border-color:#f2c9c9}.nt-check .is-no b{color:#c0392b}
 .nt-go{color:var(--brand-deep);font-weight:800;font-size:14px}
 @media(min-width:800px){.nt-check{grid-template-columns:repeat(2,1fr)}}
+
+/* 요금제 허브 */
+.ph-picks{display:grid;gap:12px}
+.ph-pick{display:flex;flex-direction:column;gap:4px;padding:18px;border-radius:18px;background:#fff;border:1px solid var(--line)}
+.ph-pick small{color:var(--brand-deep);font-size:13px;font-weight:900}
+.ph-pick strong{font-size:20px;letter-spacing:-.5px;line-height:1.3;word-break:keep-all}
+.ph-pick span{color:#52545c;font-size:14px}
+.ph-pick em{margin-top:6px;font-style:normal;font-size:16px;font-weight:800}
+@media(min-width:800px){.ph-picks{grid-template-columns:repeat(3,1fr)}}

@@ -231,11 +231,24 @@ function transferFaqs(){
 }
 
 const pageTitleOverrides={
+  "/plans/":"앤텔레콤 후불 요금제 전체 비교",
   "/number-transfer/":"앤텔레콤 번호이동 방법과 조건"
 };
 const pageMetaOverrides={
+  "/plans/":"앤텔레콤 후불 요금제 47개를 데이터·가격·망·혜택별로 걸러 보고 비교하세요. 약정 없이 월 17,900원부터, 제휴카드 할인 적용가까지 한 번에 볼 수 있어요.",
   "/number-transfer/":"쓰던 번호 그대로 앤텔레콤으로 옮기는 방법이에요. 연체·3개월 제한 확인부터 K망 요금제 가격, 신청 순서와 막혔을 때 해결법까지 정리했어요."
 };
+
+function plansHubFaqs(){
+  return [
+    {q:"요금제는 어떤 기준으로 고르면 되나요?",a:"최근 한 달 데이터 사용량으로 구간(7GB, 15GB, 100GB 등)을 먼저 정하세요. 비슷한 구간끼리는 월 기본료와 소진 후 속도를 비교하면 돼요."},
+    {q:"K망과 L망은 뭐가 다른가요?",a:"K망은 KT망, L망은 LG U+망을 쓰는 요금제예요. 번호이동과 쿠팡·네이버페이 같은 혜택은 K망 요금제 기준으로 안내하고 있어요. L망 요금제는 번호이동 가능 여부를 신청 전에 문의해 주세요."},
+    {q:"약정이 있나요?",a:"약정 없이 가입해요. 다만 프로모션이나 혜택에는 유지 기간 조건이 붙을 수 있어요."},
+    {q:"데이터를 다 쓰면 어떻게 되나요?",a:"기본 데이터를 다 쓰면 요금제에 따라 최대 1Mbps, 3Mbps, 5Mbps 속도로 계속 쓸 수 있어요."},
+    {q:"제휴카드를 쓰면 얼마나 할인되나요?",a:"K망은 KT 마이알뜰폰 BC 바로카드, L망은 U+알뜰폰 파트너스 삼성카드가 적용돼요. 전월 카드 실적 30만원 이상이면 월 7,000원이 할인되고, 실적이 높을수록 커져요."},
+    {q:"신청하면 바로 개통되나요?",a:"네, 신청이 끝나면 개통이 완료돼요. 유심을 꽂으면 바로 쓸 수 있어요. 다만 사용 중에 1899-7700으로 본사 확인 전화(해피콜)가 오면 꼭 받아야 해요. 받지 않으면 회선이 해지될 수 있어요."}
+  ];
+}
 
 function metaFor(page,matched){
   const low=matched.length ? Math.min(...matched.map(p=>p.monthly_price)) : null;
@@ -274,7 +287,7 @@ export function buildModel(page){
     directAnswer:directAnswer(page,matched),
     checks:checks(page),
     steps:steps(page),
-    faqs:one ? planFaqs(one,pageCards,pageBenefits) : page.path==="/benefits/" ? benefitHubFaqs() : page.path==="/card/" ? cardHubFaqs() : page.path==="/guide/" ? guideFaqs() : page.path==="/number-transfer/" ? transferFaqs() : pageFaqs(page),
+    faqs:one ? planFaqs(one,pageCards,pageBenefits) : page.path==="/benefits/" ? benefitHubFaqs() : page.path==="/card/" ? cardHubFaqs() : page.path==="/guide/" ? guideFaqs() : page.path==="/number-transfer/" ? transferFaqs() : page.path==="/plans/" ? plansHubFaqs() : pageFaqs(page),
     related:related(page),
     seoTitle:page.pageType==="home" ? "앤텔레콤 알뜰폰" : (pageTitleOverrides[page.path]||seoTitle),
     meta:pageMetaOverrides[page.path]||metaFor(page,matched),
