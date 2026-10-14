@@ -2,6 +2,7 @@
 import { siteConfig as site, activationLink, toPublicPath } from "../lib/site-config.js";
 import { plans, benefitById, cardsForPlan, benefitsForPlan, promoActive } from "../lib/catalog.js";
 import CardOffer from "./CardOffer.astro";
+import UsimThumb from "./UsimThumb.astro";
 const { model }=Astro.props;
 const plan=model.one;
 const { page }=model;
@@ -132,10 +133,10 @@ const adLabel={price:"월 요금",card:"카드 할인","number-transfer":"번호
 <section class="section soft"><div class="wrap"><h2>신청부터 개통까지</h2>
   <p class="section-lead">준비물은 딱 2개예요. <b>편의점 유심</b>과 <b>간편인증서 1가지</b>면 돼요.</p>
   <div class="steps">
-    <article class="step"><span>1</span><div><strong>유심 구매</strong><p>{plan.network==="K" ? "바로유심(8982로 시작하는 19자리)을 CU, GS25, 이마트24에서 구매하세요." : "원칩 유심을 이마트24, 배민 B마트, 스토리웨이에서 구매하세요. 다이소 유심도 L망에서 사용할 수 있어요."}</p></div></article>
-    <article class="step"><span>2</span><div><strong>신청 페이지 접속</strong><p>‘신청하기’를 눌러 개통 페이지로 이동한 뒤 요금제를 고르고 안면인증·간편인증으로 본인 확인을 진행해요.</p></div></article>
+    <article class="step"><span>1</span><div><strong>유심 구매</strong><p>{plan.network==="K" ? "바로유심(8982로 시작하는 19자리)을 CU, GS25, 이마트24에서 구매하세요." : "모두의 원칩을 이마트24, 배민 B마트, 스토리웨이에서 구매하세요. 다이소 고고비 유심도 L망에서 사용할 수 있어요."}</p><UsimThumb network={plan.network}/></div></article>
+    <article class="step"><span>2</span><div><strong>신청 페이지 접속</strong><p>‘신청하기’를 눌러 개통 페이지로 이동한 뒤 안면인증·간편인증으로 본인 확인을 진행해요.</p></div></article>
     <article class="step"><span>3</span><div><strong>유심번호 입력 후 신청</strong><p>{plan.network==="K" ? "유심번호 19자리 숫자를 입력해요." : "유심의 모델명과 모델번호(숫자 8자리)를 입력해요. 예: K3600 + 12345678"}</p></div></article>
-    <article class="step"><span>4</span><div><strong>해피콜 받고 개통</strong><p>신청만으로는 개통되지 않아요. 본사 확인 전화(해피콜)를 받아야 개통이 완료돼요. 순번 대기가 있을 수 있으니 전화를 꼭 받아 주세요.</p></div></article>
+    <article class="step"><span>4</span><div><strong>유심 꽂고 바로 사용</strong><p>신청이 끝나면 개통이 완료돼요. 유심을 휴대폰에 꽂으면 바로 쓸 수 있어요. 사용 중에 본사 확인 전화(해피콜)가 오면 꼭 받아 주세요. 받지 않으면 회선이 해지될 수 있어요.</p></div></article>
   </div>
   <p class="pd-note">인증이 계속 안 되거나 막히는 부분이 있으면 <a href={site.business.kakao} rel="noopener">카카오톡 채널</a> 또는 {site.business.phone}으로 바로 문의하세요. 운영시간: {site.business.hours}</p>
 </div></section>
@@ -144,4 +145,4 @@ const adLabel={price:"월 요금",card:"카드 할인","number-transfer":"번호
 
 <section class="section soft"><div class="wrap"><h2>함께 보면 좋은 페이지</h2><div class="link-list">{model.related.map(p=><a href={toPublicPath(p.path)}><span>{p.keyword}</span><span>›</span></a>)}</div><div class="data-note">요금 정보는 {dateKo(site.dataCheckedAt)} 기준이에요. 프로모션·혜택·카드 조건은 가입 시점에 달라질 수 있어요.</div></div></section>
 
-<section class="section"><div class="wrap final-box"><h2>{displayName(plan)}, 신청해 볼까요?</h2><p>신청 후 해피콜을 받으면 개통이 완료돼요.</p><a class="final-button" href={activationLink("final")}>바로 신청하기</a></div></section>
+<section class="section"><div class="wrap final-box"><h2>{displayName(plan)}, 신청해 볼까요?</h2><p>신청하면 개통돼서 바로 쓸 수 있어요. 해피콜은 꼭 받아 주세요.</p><a class="final-button" href={activationLink("final")}>바로 신청하기</a></div></section>
