@@ -54,10 +54,12 @@ const offAt=(c,spend)=>{ const t=[...c.discount_tiers].reverse().find(x=>spend>=
   <h2>내 요금, 카드 쓰면 얼마?</h2>
   <p class="section-lead">요금제와 한 달 카드 사용액을 고르면 실제 납부액과 생활혜택을 모두 썼을 때의 체감 비용을 함께 보여드려요.</p>
   <div class="calc" id="card-calc" data-plans={JSON.stringify(calcPlans)} data-cards={JSON.stringify(calcCards)}>
+    <div class="calc-form">
     <label class="calc-label" for="calc-plan">요금제</label>
     <select id="calc-plan" class="calc-select">{["K","L"].map(n=><optgroup label={n==="K" ? "K망 (KT망)" : "L망 (LG U+망)"}>{calcPlans.filter(p=>p.network===n).map(p=><option value={p.id} selected={p.id===defaultId}>{p.name} · {won(p.price)}</option>)}</optgroup>)}</select>
     <span class="calc-label">한 달 카드 사용액</span>
     <div class="calc-chips" role="group" aria-label="한 달 카드 사용액">{[0,30,50,70,100,120].map(v=><button type="button" class:list={["calc-chip",{"is-on":v===70}]} data-spend={v*10000}>{v===0 ? "안 씀" : v+"만원"}</button>)}</div>
+    </div>
     <div class="calc-result" aria-live="polite">
       <div class="calc-main"><small id="calc-card">-</small><strong id="calc-pay">-</strong><span id="calc-off">-</span></div>
       <dl>
