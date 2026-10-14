@@ -1,0 +1,114 @@
+---
+import { siteConfig as site, activationLink, toPublicPath } from "../lib/site-config.js";
+import { benefits as allBenefits, cards } from "../lib/catalog.js";
+import UsimThumb from "./UsimThumb.astro";
+import UsimNumberGuide from "./UsimNumberGuide.astro";
+const { model }=Astro.props;
+const { page }=model;
+const biz=site.business;
+const list=[...model.matched].sort((a,b)=>a.monthly_price-b.monthly_price || (b.data_gb||0)-(a.data_gb||0));
+
+const won=n=>n.toLocaleString("ko-KR")+"원";
+const shortId=p=>p.id.replace("ntelecom-k-","").replace("ntelecom-l-","");
+const planPath=p=>toPublicPath(`/plans/${p.network.toLowerCase()}/item/${shortId(p)}/`);
+const displayName=p=>p.name.replace(/^앤텔레콤\s+/,"");
+const dataLabel=p=>p.data_gb ? (p.daily_data_gb ? `${p.data_gb}GB + 매일 ${p.daily_data_gb}GB` : `${p.data_gb}GB`) : p.daily_data_gb ? `매일 ${p.daily_data_gb}GB` : "-";
+const dataValue=p=>p.data_gb||((p.daily_data_gb||0)*30);
+
+const cardOff={};
+for(const c of cards.filter(c=>c.active)) for(const n of (c.eligible_networks||[])) cardOff[n]=Math.max(cardOff[n]||0,...c.discount_tiers.map(t=>t.monthly_discount));
+const cardPrice=p=>Math.max(0,p.monthly_price-(cardOff[p.network]||0));
+const benefitOf=p=>allBenefits.find(b=>b.id===(p.benefit_ids||[])[0]);
+
+const n=list.length;
+const cheapest=list[0];
+const cheapestCard=[...list].sort((a,b)=>cardPrice(a)-cardPrice(b))[0];
+const biggest=[...list].sort((a,b)=>dataValue(b)-dataValue(a) || a.monthly_price-b.monthly_price)[0];
+const kCount=list.filter(p=>p.network==="K").length, lCount=list.filter(p=>p.network==="L").length;
+const speeds=[...new Set(list.map(p=>p.after_speed).filter(Boolean))].sort((a,b)=>parseFloat(a)-parseFloat(b));
+const usedBenefits=allBenefits.filter(b=>list.some(p=>(p.benefit_ids||[]).includes(b.id)));
+const tags=new Set(page.requiredTags||[]);
+const wantsTransfer=tags.has("number-transfer");
+const netForSim=kCount && !lCount ? "K" : lCount && !kCount ? "L" : "both";
+const maxPrice=list[list.length-1].monthly_price;
+const point=[];
+point.push(["가장 저렴한 요금제",`${displayName(cheapest)} · 월 ${won(cheapest.monthly_price)}`,planPath(cheapest)]);
+if(biggest.id!==cheapest.id) point.push(["데이터가 가장 큰 요금제",`${displayName(biggest)} · ${dataLabel(biggest)} · 월 ${won(biggest.monthly_price)}`,planPath(biggest)]);
+if(cardOff[cheapestCard.network] && cardPrice(cheapestCard)<cheapestCard.monthly_price) point.push(["제휴카드 최대 할인까지 반영하면",`${displayName(cheapestCard)} · 월 ${won(cardPrice(cheapestCard))}`,planPath(cheapestCard)]);
+---
+<section class="section"><div class="wrap">
+  <h2>이 조건에 맞는 요금제 {n}개</h2>
+  <div class="lp-stats">
+    <div><small>요금제</small><strong>{n}개</strong><span>{kCount ? `K망 ${kCount}개` : ""}{kCount && lCount ? " · " : ""}{lCount ? `L망 ${lCount}개` : ""}</span></div>
+    <div><small>월 기본료</small><strong>{won(cheapest.monthly_price)}~</strong><span>{maxPrice>cheapest.monthly_price ? `최대 ${won(maxPrice)}` : "한 가지 가격"}</span></div>
+    <div><small>카드 최대 할인 시</small><strong>{won(cardPrice(cheapestCard))}~</strong><span>전월 실적 최대 구간</span></div>
+    <div><small>소진 후 속도</small><strong>{speeds.length ? (speeds.length>1 ? `${speeds[0]}~${speeds[speeds.length-1]}` : speeds[0]) : "-"}</strong><span>최대 속도 기준</span></div>
+  </div>
+</div></section>
+
+<section class="section soft"><div class="wrap">
+  <div class="lp-bar"><h2>요금제 목록</h2>
+    <label class="pf-sort"><span class="sr-only">정렬</span><select data-lp-sort aria-label="정렬"><option value="low">낮은 가격순</option><option value="data">데이터 많은순</option><option value="card">카드 할인 적용가순</option></select></label>
+  </div>
+  <div class="lp-list" data-lp-list>{list.map(p=>{ const b=benefitOf(p); return <a class="lp-row" href={planPath(p)} data-price={p.monthly_price} data-data={dataValue(p)} data-card={cardPrice(p)}>
+    <div class="lp-main">
+      <strong>{displayName(p)}</strong>
+      <span>{dataLabel(p)}{p.after_speed ? ` · 소진 후 ${p.after_speed}` : ""} · {p.calls.startsWith("기본제공") ? "통화·문자 기본제공" : `통화 ${p.calls.split(" ")[0]}·문자 ${p.sms}`}</span>
+      <div class="lp-tags"><em>{p.network==="K" ? "KT망" : "LG U+망"}</em>{b && <em class="is-benefit">{b.name}</em>}{p.promotion?.active && <em class="is-promo">프로모션</em>}</div>
+    </div>
+    <div class="lp-price"><b>월 {won(p.monthly_price)}</b>{p.monthly_price>cardPrice(p) && <small>카드 최대 할인 시 {won(cardPrice(p))}</small>}</div>
+    <i aria-hidden="true">›</i>
+  </a>; })}</div>
+  <p class="pd-note">월 기본료는 부가세 포함이에요. 카드 최대 할인 시 금액은 전월 카드 실적 최대 구간 기준이에요.</p>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <h2>이 중에서 고른다면</h2>
+  <div class="lp-points">{point.map(([t,d,href])=><a href={href}><small>{t}</small><strong>{d}</strong><span>자세히 보기 ›</span></a>)}</div>
+  <ul class="lp-notes">
+    {usedBenefits.length>0 && <li><b>붙는 혜택</b> {usedBenefits.length>2 ? usedBenefits.map(b=>b.name).join(", ")+" 중 하나가 요금제마다 붙어요" : usedBenefits.map(b=>b.value).join(" · ")}</li>}
+    {lCount>0 && <li><b>L망 요금제</b> 번호이동 가능 여부가 확인되지 않았어요. 번호이동을 원하면 신청 전에 문의해 주세요.</li>}
+    {wantsTransfer && <li><b>번호이동</b> 요금을 연체 중이거나 최근 3개월 안에 번호이동을 했다면 제한돼요. <a href={toPublicPath("/number-transfer/restrictions/")}>제한 조건 보기</a></li>}
+  </ul>
+</div></section>
+
+<section class="section soft"><div class="wrap">
+  <h2>다른 조건도 살펴보세요</h2>
+  <div class="link-list">{model.related.map(p=><a href={toPublicPath(p.path)}><span>{p.keyword}</span><span>›</span></a>)}
+    <a href={toPublicPath("/plans/")}><span>전체 요금제 47개 보기</span><span>›</span></a>
+    <a href={toPublicPath("/card/")}><span>제휴카드로 통신비 더 줄이기</span><span>›</span></a>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <h2>신청부터 사용까지</h2>
+  <p class="section-lead">준비물은 딱 2개예요. <b>편의점 유심</b>과 <b>간편인증서 1가지</b>면 돼요.</p>
+  <div class="steps steps-flow">
+    <article class="step"><span>1</span><div><strong>유심 구매</strong><p>{netForSim==="K" ? "바로유심(8982로 시작하는 19자리)을 CU, GS25, 이마트24에서 구매하세요." : netForSim==="L" ? "모두의 원칩을 이마트24·배민 B마트·스토리웨이에서 구매하세요. 다이소 고고비 유심도 L망에서 쓸 수 있어요." : "K망은 바로유심을 CU, GS25, 이마트24에서, L망은 모두의 원칩을 이마트24·배민 B마트·스토리웨이에서 구매하세요."}</p><UsimThumb network={netForSim}/></div></article>
+    <article class="step"><span>2</span><div><strong>신청 페이지 접속</strong><p>‘신청하기’를 눌러 개통 페이지로 이동한 뒤 안면인증·간편인증으로 본인 확인을 진행해요.</p></div></article>
+    <article class="step"><span>3</span><div><strong>유심번호 입력 후 신청</strong><p>{netForSim==="K" ? "유심 일련번호 숫자 19자리를 입력해요. 마지막 알파벳 F는 빼고 입력하세요." : netForSim==="L" ? "모델명(알파벳 1개+숫자 4개, 예: U8680)과 유심번호(숫자 8개, 예: 00123456)를 입력해요." : "K망은 유심 일련번호 숫자 19자리(마지막 알파벳 F는 제외)를, L망은 모델명(알파벳 1개+숫자 4개, 예: U8680)과 유심번호(숫자 8개, 예: 00123456)를 입력해요."}</p><UsimNumberGuide/></div></article>
+    <article class="step"><span>4</span><div><strong>유심 꽂고 바로 사용</strong><p>신청이 끝나면 개통이 완료돼요. 유심을 휴대폰에 꽂으면 바로 쓸 수 있어요. 사용 중에 본사 확인 전화(해피콜, 1899-7700)가 오면 꼭 받아 주세요. 받지 않으면 회선이 해지될 수 있어요.</p></div></article>
+  </div>
+  <p class="pd-note">막히는 부분이 있으면 <a href={biz.kakao} rel="noopener">카카오톡 채널</a> 또는 {biz.phone}으로 문의하세요. 운영시간: {biz.hours}</p>
+</div></section>
+
+<section class="section soft"><div class="wrap"><h2>자주 묻는 질문</h2><div class="faq-list">{model.faqs.map(f=><details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>)}</div></div></section>
+
+<section class="section"><div class="wrap final-box"><h2>마음에 드는 요금제를 골랐다면</h2><p>신청하면 개통돼서 바로 쓸 수 있어요. 해피콜은 꼭 받아 주세요.</p><a class="final-button" href={activationLink("final")}>바로 신청하기</a></div></section>
+
+<script is:inline>
+  (function(){
+    var sel=document.querySelector("[data-lp-sort]"), box=document.querySelector("[data-lp-list]");
+    if(!sel||!box) return;
+    sel.addEventListener("change",function(){
+      var rows=[].slice.call(box.children);
+      var key=sel.value==="data" ? "data" : sel.value==="card" ? "card" : "price";
+      rows.sort(function(a,b){
+        var d=Number(a.dataset[key])-Number(b.dataset[key]);
+        if(key==="data") d=-d;
+        return d||Number(a.dataset.price)-Number(b.dataset.price);
+      });
+      rows.forEach(function(r){box.appendChild(r);});
+    });
+  })();
+</script>
