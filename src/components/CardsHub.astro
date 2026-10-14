@@ -129,7 +129,7 @@ const offAt=(c,spend)=>{ const t=[...c.discount_tiers].reverse().find(x=>spend>=
     <article class="step"><span>3</span><div><strong>유심번호 입력 후 신청</strong><p>K망은 유심 일련번호 숫자 19자리(마지막 알파벳 F는 제외)를, L망은 모델명(알파벳 1개+숫자 4개, 예: U8680)과 유심번호(숫자 8개, 예: 00123456)를 입력해요.</p><UsimNumberGuide/></div></article>
     <article class="step"><span>4</span><div><strong>유심 꽂고 바로 사용</strong><p>신청이 끝나면 개통이 완료돼요. 유심을 휴대폰에 꽂으면 바로 쓸 수 있어요. 이후 통신요금 자동납부를 카드로 등록하면 할인이 시작돼요. 사용 중에 본사 확인 전화(해피콜, 1899-7700)가 오면 꼭 받아 주세요. 받지 않으면 회선이 해지될 수 있어요.</p></div></article>
   </div>
-  <p class="pd-note">막히는 부분이 있으면 <a href={site.business.kakao} rel="noopener">카카오톡 채널</a> 또는 {site.business.phone}으로 바로 문의하세요. 운영시간: {site.business.hours}</p>
+  <p class="pd-note">막히는 부분이 있으면 <a href={site.business.kakao} rel="noopener">카카오톡 채널</a>로 바로 문의하세요. 운영시간: {site.business.hours}</p>
 </div></section>
 
 <section class="section"><div class="wrap"><h2>자주 묻는 질문</h2><div class="faq-list">{model.faqs.map(f=><details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>)}</div></div></section>
