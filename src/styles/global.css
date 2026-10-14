@@ -175,3 +175,19 @@ a{text-decoration:none;color:inherit}button{font:inherit;cursor:pointer}.wrap{ma
 .benefit-checklist li:before{content:"✓";position:absolute;left:0;top:0;color:#ff78aa;font-weight:950}
 .benefit-checklist p{margin:16px 0 0;padding-top:14px;border-top:1px solid #55575d;color:#c9cbd0;font-size:12px;line-height:1.65}
 @media(min-width:800px){.benefit-guide-header{grid-template-columns:90px 1fr;align-items:center;padding:32px}.benefit-guide-icon{width:82px;height:82px}.benefit-guide-icon img{width:48px;height:48px}.benefit-guide-header h2{font-size:32px}.benefit-guide-copy{padding:30px 32px}.benefit-guide-columns{grid-template-columns:1fr 1fr}.benefit-guide-columns section{padding:22px}.benefit-empathy,.benefit-checklist{padding:24px}}
+
+.benefit-fact{padding:20px;border-radius:18px;background:#f8f8fa;border:1px solid #e9e9ed}
+.benefit-how ol{margin:0;padding:0;list-style:none;counter-reset:benefit-step;display:grid;gap:10px}
+.benefit-how li{counter-increment:benefit-step;position:relative;padding:15px 15px 15px 52px;border:1px solid #e5e5ea;border-radius:14px;color:#555860;font-size:14px;line-height:1.7}
+.benefit-how li:before{content:counter(benefit-step);position:absolute;left:14px;top:14px;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:var(--brand);color:#fff;font-size:12px;font-weight:900}
+.benefit-cautions{padding:20px;border-radius:18px;background:#34363b;color:#fff}
+.benefit-cautions h3{color:#fff}
+.benefit-cautions ul,.benefit-contact ul{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.benefit-cautions li,.benefit-contact li{position:relative;padding-left:20px;font-size:14px;line-height:1.65}
+.benefit-cautions li{color:#f1f1f3}.benefit-cautions li:before{content:"!";position:absolute;left:1px;color:#ff84af;font-weight:950}
+.benefit-contact{margin-top:22px;padding:18px;border-radius:18px;background:#fff8eb;border:1px solid #eddfc4}
+.benefit-contact h3{margin:0 0 10px;font-size:17px}.benefit-contact li{color:#665c49}.benefit-contact li:before{content:"·";position:absolute;left:4px;font-weight:950}
+.benefit-source{margin:18px 0 0!important;padding-top:16px;border-top:1px solid #e5e5e8;color:#777980!important;font-size:12px!important;line-height:1.65!important}
+.benefit-source a{color:var(--violet);font-weight:850;text-decoration:underline}
+.benefit-box>small b{color:#6d4a0b}
+@media(min-width:800px){.benefit-fact,.benefit-cautions{padding:24px}.benefit-how ol{grid-template-columns:repeat(3,1fr)}.benefit-how li{padding:50px 18px 18px}.benefit-how li:before{left:18px;top:16px}}

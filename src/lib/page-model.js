@@ -92,7 +92,7 @@ function directAnswer(page, matched){
   }
   if(page.pageType==="benefit"){
     const b=benefitById(page.benefitId);
-    return b ? `${b.name} 혜택이 붙는 앤텔레콤 후불 요금제를 모았어요. 세부 내용은 상담 시 안내해 드려요.` : page.angle;
+    return b ? `${b.name} 결합 요금제의 현재 혜택은 ${b.value}입니다. ${b.conditions} 조건을 확인하세요.` : page.angle;
   }
   if(page.path==="/card/") return "K망은 KT 마이알뜰폰 BC 바로카드, L망은 U+알뜰폰 파트너스 삼성카드를 쓸 수 있어요. 카드 할인은 전월 실적을 채워야 적용돼요.";
   if(page.path==="/card/compare/") return "두 카드 모두 연회비가 있고 통신요금 자동납부가 필요해요. 전월 실적 구간별 할인액을 비교해 보세요.";
@@ -117,7 +117,7 @@ function checks(page){
   ];
   if(tags.has("number-transfer")) out.push(["번호이동 제한","요금 연체나 최근 번호이동 이력이 있으면 막힐 수 있어요."]);
   else if(cardFocus) out.push(["카드 조건","전월 실적, 연회비, 자동납부, 프로모션 기간을 따로 확인하세요."]);
-  else if([...tags].some(t=>["coupang","naverpay","daiso","content-benefit","oliveyoung","cu"].includes(t))) out.push(["혜택 조건","세부 내용은 신청 전 상담으로 안내받으세요."]);
+  else if([...tags].some(t=>["coupang","naverpay","daiso","content-benefit","oliveyoung","cu"].includes(t))) out.push(["혜택 조건","쿠폰형은 30일 사용 후 31일차 유지, 구독·할인형은 앱 제휴 인증 등 혜택별 조건을 확인하세요."]);
   else out.push(["가입 방법","신규가입인지 번호이동인지에 따라 절차가 조금 달라요."]);
   return out.slice(0,4);
 }
@@ -174,7 +174,7 @@ function planFaqs(plan, pageCards, pageBenefits){
   }
   if(pageBenefits.length){
     const b=pageBenefits[0];
-    out.push({q:`${b.name} 혜택은 어떻게 받나요?`,a:`혜택의 세부 내용은 카카오톡 채널이나 전화(010-7305-8253)로 문의하시면 안내해 드려요.`});
+    out.push({q:`${b.name} 혜택은 어떻게 받나요?`,a:`${b.value} 혜택입니다. ${b.conditions}이며, ${b.delivery_method} 방식으로 이용합니다. 지급 시점은 ${b.delivery_timing}입니다.`});
   }
   if(plan.port_available===true){
     out.push({q:"지금 쓰는 번호 그대로 가입할 수 있나요?",a:"네, 번호이동으로 가입할 수 있어요. 요금을 연체 중이거나 최근 3개월 안에 번호이동을 했다면 제한될 수 있어요."});

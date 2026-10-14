@@ -1,14 +1,16 @@
 ---
 import { toPublicPath } from "../lib/site-config.js";
+import { benefitGuides } from "../data/benefit-guides.js";
 const { benefit }=Astro.props;
 const count=(benefit.eligible_plan_ids||[]).length;
+const detail=benefitGuides[benefit.id];
 const guide={
-  "benefit-naverpay":{icon:"naverpay.svg",for:"네이버 쇼핑·예약·주문을 자주 하는 분",why:"평소 쓰는 결제 수단과 통신비를 한 번에 고르고 싶은 경우에 잘 맞습니다."},
-  "benefit-coupang-cash":{icon:"coupang-cash.svg",for:"쿠팡 주문을 꾸준히 하는 분",why:"반복되는 생활용품·장보기 결제에서 체감할 수 있는 혜택을 찾는 경우에 잘 맞습니다."},
-  "benefit-millie":{icon:"millie.svg",for:"책·오디오북을 즐기거나 구독을 고민 중인 분",why:"통신비만 내기보다 매달 쓰는 콘텐츠 생활까지 함께 챙기고 싶은 경우에 잘 맞습니다."},
-  "benefit-daiso":{icon:"daiso.svg",for:"생활소품과 소모품을 자주 사는 분",why:"가끔이 아니라 일상적으로 쓰는 쇼핑처를 기준으로 요금제를 고르고 싶을 때 살펴볼 만합니다."},
-  "benefit-oliveyoung":{icon:"oliveyoung.svg",for:"뷰티·건강용품을 정기적으로 구매하는 분",why:"평소 소비하는 카테고리에 맞춰 통신비 선택의 만족도를 높이고 싶은 경우에 잘 맞습니다."},
-  "benefit-cu":{icon:"cu.svg",for:"편의점 이용이 잦은 분",why:"출퇴근길 간식·음료처럼 작지만 자주 발생하는 생활 소비에 맞춘 선택입니다."}
+  "benefit-naverpay":{icon:"naverpay.svg",for:"네이버 쇼핑·예약·주문을 자주 하는 분",why:"네이버페이 포인트를 평소 결제에 자연스럽게 사용할 수 있어요."},
+  "benefit-coupang-cash":{icon:"coupang-cash.svg",for:"쿠팡 주문을 꾸준히 하는 분",why:"쿠팡·쿠팡이츠에서 반복되는 생활비 결제에 활용할 수 있어요."},
+  "benefit-millie":{icon:"millie.svg",for:"전자책·오디오북을 꾸준히 이용하는 분",why:"별도 구독료 없이 해당 요금제를 유지하는 동안 제휴 구독을 이용해요."},
+  "benefit-daiso":{icon:"daiso.svg",for:"생활소품과 소모품을 자주 사는 분",why:"다이소몰과 사용 가능 매장에서 모바일상품권을 이용할 수 있어요."},
+  "benefit-oliveyoung":{icon:"oliveyoung.svg",for:"뷰티·건강용품을 정기적으로 구매하는 분",why:"온라인몰과 일반 매장에서 모바일상품권을 사용할 수 있어요."},
+  "benefit-cu":{icon:"cu.svg",for:"CU 편의점 이용이 잦은 분",why:"포켓CU 제휴 인증 후 대상 결제금액의 20%를 할인받을 수 있어요."}
 }[benefit.id]||{icon:"shopping-bag.svg",for:"평소 이 브랜드를 자주 이용하는 분",why:"일상 소비와 통신비를 함께 고려할 수 있는 선택입니다."};
 const benefitPath=toPublicPath(`/benefits/${benefit.id.replace("benefit-","")}/`);
 ---
@@ -16,5 +18,5 @@ const benefitPath=toPublicPath(`/benefits/${benefit.id.replace("benefit-","")}/`
   <div class="benefit-icon"><img src={toPublicPath(`/images/benefits/${guide.icon}`)} width="22" height="22" alt="" loading="lazy" decoding="async" /></div>
   <div class="benefit-copy"><h3>{benefit.name}</h3><strong>{guide.for}</strong><p>{guide.why}</p></div>
   <div class="benefit-bottom"><span>결합 요금제 {count}개 · K망</span><a href={benefitPath}>{benefit.name} 혜택 보기 <b>›</b></a></div>
-  <small>지급액·주기·유지 조건은 가입 전 상품 안내에서 확인하세요.</small>
+  {detail && <small><b>{detail.value}</b><br/>지급 조건과 이용 방법을 상세 페이지에서 확인하세요.</small>}
 </article>
