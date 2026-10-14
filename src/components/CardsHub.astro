@@ -2,6 +2,7 @@
 import { siteConfig as site, activationLink, toPublicPath } from "../lib/site-config.js";
 import { plans, cards, benefits } from "../lib/catalog.js";
 import UsimThumb from "./UsimThumb.astro";
+import { cardImages } from "../lib/card-images.js";
 import UsimNumberGuide from "./UsimNumberGuide.astro";
 const { model }=Astro.props;
 
@@ -42,7 +43,7 @@ const offAt=(c,spend)=>{ const t=[...c.discount_tiers].reverse().find(x=>spend>=
   <p class="section-lead">카드는 요금제의 망에 맞춰 골라요. K망은 BC 바로카드, L망은 삼성카드가 적용돼요.</p>
   <div class="ch-grid">{[cardByNetwork.K,cardByNetwork.L].map(c=>
     <article class="ch-card">
-      <div class="ch-head"><span class="ch-net">{c.eligible_networks[0]}망</span><div><strong>{c.name}</strong><em>{c.card_company} · 연회비 {won(c.annual_fee)}</em></div></div>
+      <div class="ch-head">{cardImages[c.id] && <img class="ch-img" src={toPublicPath(cardImages[c.id].src)} width={cardImages[c.id].w} height={cardImages[c.id].h} alt={cardImages[c.id].alt} loading="lazy" decoding="async" />}<div><span class="ch-net-tag">{c.eligible_networks[0]}망 요금제용</span><strong>{c.name}</strong><em>{c.card_company} · 연회비 {won(c.annual_fee)}</em></div></div>
       <div class="ch-max"><small>월 최대 할인</small><strong>{won(c.max_monthly_discount)}</strong>{c.max_monthly_discount>baseMax(c) && <span>생활요금 자동납부 포함 시</span>}</div>
       <div class="tier-table">{c.discount_tiers.map(t=><div class="tier-row"><span>전월 {man(t.monthly_spend)} 이상</span><strong>{won(t.monthly_discount)} 할인</strong></div>)}</div>
       <p class="ch-fee">연회비 {won(c.annual_fee)}은 첫 구간 할인만 받아도 <b>{payback(c)}개월</b>이면 회수돼요.</p>

@@ -1,13 +1,19 @@
 ---
 import { promoActive } from "../lib/catalog.js";
+import { toPublicPath } from "../lib/site-config.js";
+import { cardImages } from "../lib/card-images.js";
 const { card, plan=null }=Astro.props;
+const img=cardImages[card.id];
 const promo=promoActive(card.promotion);
 const promoTiers=promo ? (card.promotion.additional_discount_tiers||[]) : [];
 const promoDiscountFor=tier=>promoTiers.find(p=>p.monthly_spend===tier.monthly_spend)?.monthly_discount||0;
 ---
 <div class="card-zone">
-  <h3>{card.name}</h3>
-  <p>{card.card_company} · 연회비 {card.annual_fee?.toLocaleString("ko-KR")}원 · 통신요금 자동납부 필요</p>
+  <div class:list={["cz-head",{"has-img":!!img}]}>
+    {img && <img class="cz-img" src={toPublicPath(img.src)} width={img.w} height={img.h} alt={img.alt} loading="lazy" decoding="async" />}
+    <div><h3>{card.name}</h3>
+    <p>{card.card_company} · 연회비 {card.annual_fee?.toLocaleString("ko-KR")}원 · 통신요금 자동납부 필요</p></div>
+  </div>
   <div class="tier-table">
     {card.discount_tiers.map(t => (
       <div class="tier-row">
