@@ -30,6 +30,14 @@ export const toPublicPath=value=>{
 
 export const toSiteUrl=value=>new URL(toPublicPath(value),siteOrigin).toString();
 
+const withSlot=(base,slot)=>{
+  try{
+    const url=new URL(base);
+    if(slot && !url.searchParams.has("from")) url.searchParams.set("from","59man_budget_"+slot);
+    return url.toString();
+  }catch{ return base; }
+};
+
 export const siteConfig={
   ...rawSite,
   siteUrl:toSiteUrl("/"),
@@ -38,3 +46,5 @@ export const siteConfig={
   activationUrl:process.env.ACTIVATION_URL?.trim() || rawSite.activationUrl,
   productionReady:envBoolean(process.env.PRODUCTION_READY,rawSite.productionReady)
 };
+
+export const activationLink=slot=>withSlot(siteConfig.activationUrl,slot);

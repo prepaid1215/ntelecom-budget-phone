@@ -7,7 +7,7 @@ const promoDiscountFor=tier=>promoTiers.find(p=>p.monthly_spend===tier.monthly_s
 ---
 <div class="card-zone">
   <h3>{card.name}</h3>
-  <p>{card.card_company} · 연회비 {card.annual_fee?.toLocaleString("ko-KR")}원 · 통신요금 자동납부 조건</p>
+  <p>{card.card_company} · 연회비 {card.annual_fee?.toLocaleString("ko-KR")}원 · 통신요금 자동납부 필요</p>
   <div class="tier-table">
     {card.discount_tiers.map(t => (
       <div class="tier-row">
@@ -16,7 +16,7 @@ const promoDiscountFor=tier=>promoTiers.find(p=>p.monthly_spend===tier.monthly_s
       </div>
     ))}
   </div>
-  {promo && <div class="promo-note"><strong>현재 기간 한정 프로모션</strong><br />{card.promotion.description}</div>}
+  {promo && <div class="promo-note"><strong>기간 한정 프로모션</strong><br />{card.promotion.description}</div>}
   {plan && <div class="card-calculations">
     <strong>{plan.name} 할인 예시</strong>
     {card.discount_tiers.map(t => {
@@ -28,10 +28,10 @@ const promoDiscountFor=tier=>promoTiers.find(p=>p.monthly_spend===tier.monthly_s
           <div><dt>월 기본료</dt><dd>{plan.monthly_price.toLocaleString("ko-KR")}원</dd></div>
           <div><dt>카드 기본할인</dt><dd>-{t.monthly_discount.toLocaleString("ko-KR")}원</dd></div>
           {extra>0 && <div><dt>기간 추가할인</dt><dd>-{extra.toLocaleString("ko-KR")}원</dd></div>}
-          <div class="calculation-total"><dt>조건 충족 시</dt><dd>{final.toLocaleString("ko-KR")}원</dd></div>
+          <div class="calculation-total"><dt>실적 충족 시 납부액</dt><dd>{final.toLocaleString("ko-KR")}원</dd></div>
         </dl>
       </div>;
     })}
-    <p>카드 할인은 조건 충족 시 별도 적용되며 요금제 기본료를 변경하지 않습니다.</p>
+    <p>카드 할인은 전월 실적을 채워야 적용되고, 요금제 기본료는 그대로예요.</p>
   </div>}
 </div>

@@ -1,23 +1,35 @@
 ---
-import { siteConfig as site, toPublicPath } from "../lib/site-config.js";
+import { activationLink, toPublicPath } from "../lib/site-config.js";
 const { model }=Astro.props;
 const { page, one, matched }=model;
+const isHome=page.pageType==="home";
+const isPlanHub=page.path==="/plans/";
 const price=one?.monthly_price ?? (matched.length ? Math.min(...matched.map(p=>p.monthly_price)) : null);
-const lines = page.pageType==="home"
- ? ["약정 없이,","번호는 그대로.","통신비만 가볍게."]
- : [page.keyword,page.angle,"현재 판매 상품으로 비교하세요."];
+const lines = isHome
+ ? ["약정 없이,","번호는 그대로","월 "+(price ?? 0).toLocaleString("ko-KR")+"원부터"]
+ : isPlanHub
+   ? ["앤텔레콤 후불 요금제","데이터·가격·망별 비교"]
+   : [page.keyword,page.angle];
+const description=isHome
+ ? "쓰는 데이터에 맞는 요금제를 고르고, 제휴카드 할인까지 반영한 실제 월 요금을 확인해 보세요."
+ : isPlanHub
+   ? "판매 중인 "+matched.length+"개 요금제를 데이터 제공량, 월 기본료, K망·L망 기준으로 비교해 보세요."
+   : one
+     ? "카드 할인을 반영한 실제 납부액은 아래에서 확인하세요."
+     : matched.length+"개 요금제의 월 기본료와 데이터를 한눈에 비교해 보세요.";
+const priceLabel=one ? "월 기본료" : isHome ? "월 기본료 · 판매 중인 최저가" : "월 기본료 · 이 조건의 최저가";
+const secondaryHref=isPlanHub ? "#plans" : toPublicPath("/plans/");
+const secondaryLabel=isPlanHub ? "요금제 비교하기" : "요금제 보기";
 ---
-<section class="hero"><div class="wrap hero-inner">
-  <div>
-    <span class="eyebrow">{page.pageType==="ad" ? "광고 전용 랜딩" : "앤텔레콤 알뜰폰"}</span>
-    <h1>{lines[0]}<br />{lines[1]}<br /><em>{lines[2]}</em></h1>
-    <p>{page.pageType==="home" ? "데이터 사용량과 생활혜택, 제휴카드 조건까지 한곳에서 비교합니다." : model.directAnswer}</p>
-    {price && <div class="hero-price"><strong>{price.toLocaleString("ko-KR")}원~</strong><span>현재 연결 상품 기준</span></div>}
-    <div class="hero-actions"><a class="btn-primary" href={site.activationUrl}>바로 개통하기</a><a class="btn-secondary" href={toPublicPath("/plans/")}>요금제 보기</a></div>
+<section class:list={["hero",{"hero-compact":!isHome}]}><div class="wrap hero-inner">
+  <div class="hero-copy">
+    <span class="eyebrow">앤텔레콤 알뜰폰</span>
+    <h1>{lines[0]}{lines[1] && <><br />{isHome ? lines[1] : <em>{lines[1]}</em>}</>}{lines[2] && <><br /><em>{lines[2]}</em></>}</h1>
+    <p>{description}</p>
+    {price && <div class="hero-price"><strong>{price.toLocaleString("ko-KR")}원~</strong><span>{priceLabel}</span></div>}
+    <div class="hero-actions"><a class="btn-primary" href={activationLink("hero")}>바로 개통하기</a><a class="btn-secondary" href={secondaryHref}>{secondaryLabel}</a></div>
   </div>
   <div class="hero-visual">
-
-    <img class="hero-art" src={toPublicPath("/images/hero-mobile.webp")} width="1000" height="750" alt="스마트폰, 유심, 요금제와 혜택을 표현한 일러스트" decoding="async" fetchpriority={page.pageType==="home" ? "high" : "auto"} />
-
+    <img class="hero-art" src={toPublicPath("/images/hero-mobile.webp")} width="1000" height="750" alt="스마트폰, 유심, 요금제와 혜택을 표현한 일러스트" decoding="async" fetchpriority={isHome ? "high" : "auto"} />
   </div>
 </div></section>

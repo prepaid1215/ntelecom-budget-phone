@@ -35,12 +35,12 @@ const add=(row)=>{
 const allIds=plans.map(p=>p.id);
 const support=(tags)=>plans.filter(p=>tags.every(t=>p.tags.includes(t))).map(p=>p.id);
 
-add({path:"/",keyword:"앤텔레콤 알뜰폰",pageType:"home",template:"T0",requiredTags:["ntelecom"],supportingPlanIds:allIds,indexCandidate:true,priority:"P0",angle:"현재 판매 중인 후불 요금제를 한곳에서 비교"});
-add({path:"/plans/",keyword:"앤텔레콤 후불 요금제",pageType:"hub",template:"T1",requiredTags:["ntelecom"],supportingPlanIds:allIds,indexCandidate:true,priority:"P0",angle:"데이터·가격·망별로 요금제를 비교"});
-add({path:"/card/",keyword:"앤텔레콤 제휴카드",pageType:"card-hub",template:"T4",supportingPlanIds:allIds,indexCandidate:true,priority:"P0",angle:"K망과 L망 제휴카드 할인 조건 비교"});
-add({path:"/benefits/",keyword:"앤텔레콤 후불 혜택",pageType:"benefit-hub",template:"T4",supportingPlanIds:[...new Set(benefits.flatMap(b=>b.eligible_plan_ids||[]))],indexCandidate:true,priority:"P0",angle:"생활혜택별 후불 요금제 비교"});
-add({path:"/guide/",keyword:"앤텔레콤 후불 개통 안내",pageType:"guide-hub",template:"T5",supportingPlanIds:allIds,indexCandidate:true,angle:"가입 전에 확인할 조건 정리"});
-add({path:"/compare/",keyword:"앤텔레콤 후불 요금제 비교",pageType:"compare-hub",template:"T5",supportingPlanIds:allIds,indexCandidate:true,angle:"가격·데이터·혜택 조건 비교"});
+add({path:"/",keyword:"앤텔레콤 알뜰폰",pageType:"home",template:"T0",requiredTags:["ntelecom"],supportingPlanIds:allIds,indexCandidate:true,priority:"P0",angle:"판매 중인 후불 요금제를 한곳에서 비교"});
+add({path:"/plans/",keyword:"앤텔레콤 후불 요금제",pageType:"hub",template:"T1",requiredTags:["ntelecom"],supportingPlanIds:allIds,indexCandidate:true,priority:"P0",angle:"데이터·가격·망별 요금제 비교"});
+add({path:"/card/",keyword:"앤텔레콤 제휴카드",pageType:"card-hub",template:"T4",supportingPlanIds:allIds,indexCandidate:true,priority:"P0",angle:"K망·L망 제휴카드 할인 조건 비교"});
+add({path:"/benefits/",keyword:"앤텔레콤 후불 혜택",pageType:"benefit-hub",template:"T4",supportingPlanIds:[...new Set(benefits.flatMap(b=>b.eligible_plan_ids||[]))],indexCandidate:true,priority:"P0",angle:"혜택별로 고르는 후불 요금제"});
+add({path:"/guide/",keyword:"앤텔레콤 후불 개통 안내",pageType:"guide-hub",template:"T5",supportingPlanIds:allIds,indexCandidate:true,angle:"신청부터 개통까지 한눈에"});
+add({path:"/compare/",keyword:"앤텔레콤 후불 요금제 비교",pageType:"compare-hub",template:"T5",supportingPlanIds:allIds,indexCandidate:true,angle:"가격·데이터·혜택 한눈에 비교"});
 
 const cardPathById={
   "card-kt-my-alttel-bc-baro":"/card/kt-my-alttle-bc-baro/",
@@ -48,11 +48,11 @@ const cardPathById={
 };
 for(const c of cards){
   const ids=plans.filter(p=>(c.eligible_networks||[]).includes(p.network)).map(p=>p.id);
-  add({path:cardPathById[c.id]||`/card/${c.id.replace("card-","")}/`,keyword:`앤텔레콤 ${c.name}`,pageType:"card",template:"T4",supportingPlanIds:ids,indexCandidate:!!c.active&&!!ids.length,priority:"P0",angle:`${c.name} 실적별 통신비 할인`,cardId:c.id});
+  add({path:cardPathById[c.id]||`/card/${c.id.replace("card-","")}/`,keyword:`앤텔레콤 ${c.name}`,pageType:"card",template:"T4",supportingPlanIds:ids,indexCandidate:!!c.active&&!!ids.length,priority:"P0",angle:`${c.name} 실적별 할인액 비교`,cardId:c.id});
 }
 for(const b of benefits){
   const ids=(b.eligible_plan_ids||[]).filter(id=>allIds.includes(id));
-  add({path:`/benefits/${b.id.replace("benefit-","")}/`,keyword:`앤텔레콤 ${b.name} 후불 요금제`,pageType:"benefit",template:"T4",supportingPlanIds:ids,indexCandidate:!!b.active&&ids.length>=2,angle:`${b.name} 혜택 결합 요금제`,benefitId:b.id});
+  add({path:`/benefits/${b.id.replace("benefit-","")}/`,keyword:`앤텔레콤 ${b.name} 후불 요금제`,pageType:"benefit",template:"T4",supportingPlanIds:ids,indexCandidate:!!b.active&&ids.length>=2,angle:`${b.name} 혜택이 붙는 요금제`,benefitId:b.id});
 }
 for(const p of plans){
   const short=p.id.replace("ntelecom-k-","").replace("ntelecom-l-","");
@@ -85,7 +85,7 @@ for(const [t,m] of Object.entries(tagMeta)){
   if(["ntelecom","kt","lg"].includes(t)) continue;
   const ids=support([t]);
   if(!ids.length) continue;
-  add({path:tagPath(t),keyword:tagKeyword(t),pageType:"tag",template:"T2",requiredTags:[t],supportingPlanIds:ids,indexCandidate:ids.length>=2,priority:["k-network","l-network","15gb","under-30000","number-transfer","no-contract"].includes(t)?"P0":"P1",angle:`${m.label} 조건으로 실제 판매 상품 비교`});
+  add({path:tagPath(t),keyword:tagKeyword(t),pageType:"tag",template:"T2",requiredTags:[t],supportingPlanIds:ids,indexCandidate:ids.length>=2,priority:["k-network","l-network","15gb","under-30000","number-transfer","no-contract"].includes(t)?"P0":"P1",angle:`${m.label} 요금제 모아보기`});
 }
 
 const groups={};
@@ -122,14 +122,15 @@ for(const [ga,gb] of pairRules){
     if(!ids.length) continue;
     const path=comboPath(ga,gb,a,b);
     if(!path) continue;
-    add({path,keyword:`앤텔레콤 ${tagMeta[a].label} ${tagMeta[b].label} 후불 요금제`,pageType:"combo",template:"T3",requiredTags:[a,b],supportingPlanIds:ids,indexCandidate:ids.length>=2,angle:`${tagMeta[a].label}와 ${tagMeta[b].label} 조건을 동시에 만족하는 상품 비교`});
+    add({path,keyword:`앤텔레콤 ${tagMeta[a].label} ${tagMeta[b].label} 후불 요금제`,pageType:"combo",template:"T3",requiredTags:[a,b],supportingPlanIds:ids,indexCandidate:ids.length>=2,angle:`${tagMeta[a].label} · ${tagMeta[b].label} 요금제 모아보기`});
   }
 }
-add({path:"/number-transfer/restrictions/",keyword:"앤텔레콤 번호이동 제한",pageType:"guide",template:"T5",requiredTags:["number-transfer"],supportingPlanIds:support(["number-transfer"]),indexCandidate:true,priority:"P0",angle:"요금 체납·최근 번호이동 제한"});
-add({path:"/self-phone/guide/",keyword:"앤텔레콤 자급제폰 후불 개통",pageType:"guide",template:"T5",requiredTags:["self-phone"],supportingPlanIds:support(["self-phone"]),indexCandidate:true,priority:"P0",angle:"자급제 단말에서 후불 요금제 사용"});
-add({path:"/card/compare/",keyword:"앤텔레콤 K망 L망 제휴카드 비교",pageType:"compare",template:"T5",supportingPlanIds:allIds,indexCandidate:true,priority:"P0",angle:"두 망 제휴카드의 실적·할인 조건 비교"});
+add({path:"/number-transfer/restrictions/",keyword:"앤텔레콤 번호이동 제한",pageType:"guide",template:"T5",requiredTags:["number-transfer"],supportingPlanIds:support(["number-transfer"]),indexCandidate:true,priority:"P0",angle:"연체·최근 번호이동 제한 정리"});
+add({path:"/self-phone/guide/",keyword:"앤텔레콤 자급제폰 후불 개통",pageType:"guide",template:"T5",requiredTags:["self-phone"],supportingPlanIds:support(["self-phone"]),indexCandidate:true,priority:"P0",angle:"자급제폰으로 후불 요금제 쓰기"});
+add({path:"/card/compare/",keyword:"앤텔레콤 K망 L망 제휴카드 비교",pageType:"compare",template:"T5",supportingPlanIds:allIds,indexCandidate:true,priority:"P0",angle:"두 카드의 실적·할인액 비교"});
 
-const adAngles=[["price","월요금 중심"],["number-transfer","번호이동 중심"],["new-number","신규가입 중심"],["benefit","생활혜택 중심"],["card","제휴카드 할인 중심"]];
+const adAngles=[["price","월 요금"],["number-transfer","번호이동"],["new-number","신규가입"],["benefit","혜택"],["card","카드 할인"]];
+const adSubtitle={"price":"월 요금부터 확인하세요","number-transfer":"번호 그대로 옮겨 쓰세요","new-number":"새 번호로 가볍게 시작하세요","benefit":"혜택까지 챙겨 가입하세요","card":"카드 할인까지 반영한 실제 납부액"};
 const short=p=>p.id.replace("ntelecom-k-","").replace("ntelecom-l-","");
 for(const [key,label] of adAngles){
   for(const p of plans){
@@ -138,16 +139,17 @@ for(const [key,label] of adAngles){
     if(key==="new-number"&&!p.tags.includes("new-number")) continue;
     if(key==="benefit"&&!(p.benefit_ids||[]).length) continue;
     if(key==="card"&&!cards.some(c=>c.active&&(c.eligible_networks||[]).includes(p.network))) continue;
-    add({path:`/lp/${p.network.toLowerCase()}/${short(p)}/${key}/`,keyword:`${p.name} ${label}`,pageType:"ad",template:"T6",requiredTags:p.tags,supportingPlanIds:[p.id],indexCandidate:false,priority:"P2",angle:label,planId:p.id,adAngle:key});
+    add({path:`/lp/${p.network.toLowerCase()}/${short(p)}/${key}/`,keyword:`${p.name} ${label}`,pageType:"ad",template:"T6",requiredTags:p.tags,supportingPlanIds:[p.id],indexCandidate:false,priority:"P2",angle:adSubtitle[key],planId:p.id,adAngle:key});
   }
   if(pages.length>=500) break;
 }
 const supportedTags=Object.keys(tagMeta).filter(t=>support([t]).length>=2&&!["ntelecom","kt","lg"].includes(t));
+const catAngles=[l=>`${l} 요금제 한눈에 비교`,l=>`${l} 가장 저렴한 요금제는?`,l=>`${l} 요금제, 약정 없이 시작`,l=>`${l} 요금제 지금 확인`];
 let v=1;
 while(pages.length<500&&v<=20){
   for(const t of supportedTags){
     if(pages.length>=500) break;
-    add({path:`/lp/category/${t}/v${v}/`,keyword:`앤텔레콤 ${tagMeta[t].label} 추천`,pageType:"ad",template:"T6",requiredTags:[t],supportingPlanIds:support([t]),indexCandidate:false,priority:"P2",angle:`${tagMeta[t].label} 광고 소재 버전 ${v}`,adAngle:"category"});
+    add({path:`/lp/category/${t}/v${v}/`,keyword:`앤텔레콤 ${tagMeta[t].label} 후불 요금제`,pageType:"ad",template:"T6",requiredTags:[t],supportingPlanIds:support([t]),indexCandidate:false,priority:"P2",angle:catAngles[(v-1)%catAngles.length](tagMeta[t].label),adAngle:"category"});
   }
   v++;
 }

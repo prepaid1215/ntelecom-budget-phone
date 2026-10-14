@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import { siteConfig as site, toPublicPath, toSiteUrl } from "../lib/site-config.js";
+import { siteConfig as site, activationLink, toPublicPath, toSiteUrl } from "../lib/site-config.js";
 const {
   title,
   description=site.defaultDescription,
@@ -76,15 +76,32 @@ if(faqs.length) schemas["@graph"].push({
 </head>
 <body>
 <header class="header"><div class="wrap header-inner">
-  <a class="logo" href={toPublicPath("/")}><span class="logo-mark">M</span><span>{site.brandName}</span></a>
+  <a class="logo" href={toPublicPath("/")}><span class="logo-mark">앤</span><span>{site.brandName}</span></a>
   <nav class="header-nav" aria-label="주요 메뉴"><a href={toPublicPath("/plans/")}>요금제</a><a href={toPublicPath("/benefits/")}>혜택</a><a href={toPublicPath("/card/")}>제휴카드</a><a href={toPublicPath("/guide/")}>개통안내</a></nav>
-  <a class="header-cta" href={site.activationUrl}>즉시 개통</a>
+  <a class="header-cta" href={activationLink("header")}>즉시 개통</a>
 </div></header>
 <main>
   <slot />
 </main>
+<footer class="site-footer"><div class="wrap">
+  <p><strong>{site.business.name}</strong> · 앤텔레콤 공식파트너 · {site.business.operator} (대표 {site.business.representative})</p>
+  <p>{site.business.address} · 사업자등록번호 {site.business.bizNo} · 통신판매신고 {site.business.mailOrderNo}</p>
+  <p>상담 {site.business.phone} · {site.business.hours}</p>
+  <p><a href={site.business.kakao} rel="noopener">카카오톡 채널 상담</a></p>
+</div></footer>
 <div class="bottom"><div class="bottom-inner">
-  <button class="bottom-save" onclick="localStorage.setItem('savedPage',location.href)">저장</button>
-  <a class="bottom-go" href={site.activationUrl}>바로 개통하기</a>
+  <button class="bottom-save" type="button" data-save-page>저장</button>
+  <a class="bottom-go" href={activationLink("bottom")}>바로 개통하기</a>
 </div></div>
+<script is:inline>
+  document.addEventListener("click",function(e){
+    var el=e.target.closest("[data-save-plan],[data-save-page]");
+    if(!el) return;
+    try{
+      if(el.hasAttribute("data-save-plan")) localStorage.setItem("savedPlan",el.getAttribute("data-save-plan"));
+      else localStorage.setItem("savedPage",location.href);
+    }catch(err){}
+    el.textContent="저장됨";
+  });
+</script>
 </body></html>

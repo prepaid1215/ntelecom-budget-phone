@@ -88,3 +88,15 @@ a{text-decoration:none;color:inherit}button{font:inherit;cursor:pointer}.wrap{ma
 .quick-icon img{width:62px;height:62px;object-fit:contain;display:block}
 @media(min-width:800px){.hero-art{width:min(100%,485px);max-height:410px}.quick-icon,.quick-icon img{height:70px;width:70px}.quick a{min-height:132px}}
 @media(max-width:360px){.quick-icon,.quick-icon img{height:53px;width:53px}}
+
+.hero-copy{min-width:0}
+.hero p,.info-card p{word-break:keep-all}
+.hero-compact h1{font-size:34px;line-height:1.12;letter-spacing:-1.5px}
+@media(min-width:800px){
+ .hero-compact h1{font-size:48px;line-height:1.12}
+ .hero-compact .hero-inner{padding-top:40px;padding-bottom:38px}
+}
+.site-footer{padding:28px 0 96px;background:#f6f6f8;color:#6b6b76;font-size:13px;line-height:1.7}
+.site-footer p{margin:0 0 4px}
+.site-footer a{color:inherit;text-decoration:underline}
+@media(min-width:800px){.site-footer{padding-bottom:36px}}

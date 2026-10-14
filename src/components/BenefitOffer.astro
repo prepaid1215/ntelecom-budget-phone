@@ -1,7 +1,16 @@
 ---
 const { benefit }=Astro.props;
+const blurbs={
+  "benefit-coupang-cash":"쿠팡에서 쓸 수 있는 캐시 혜택이에요.",
+  "benefit-naverpay":"네이버페이 포인트 혜택이에요.",
+  "benefit-daiso":"다이소에서 쓸 수 있는 쇼핑 혜택이에요.",
+  "benefit-millie":"밀리의서재 전자책 구독 혜택이에요.",
+  "benefit-oliveyoung":"올리브영에서 쓸 수 있는 쇼핑 혜택이에요.",
+  "benefit-cu":"CU 편의점에서 쓸 수 있는 혜택이에요."
+};
+const blurb=blurbs[benefit.id] || benefit.value+" 혜택이 포함된 요금제예요.";
 ---
 <div class="benefit-box">
   <h3>{benefit.name}</h3>
-  <p>{benefit.value}. 현재 판매 상품과의 연결은 확인됐으며, 정확한 지급액·지급주기·지급방식·유지조건은 추가 확인이 필요한 데이터입니다.</p>
+  <p>{blurb} 지급액과 조건은 요금제마다 달라서 신청 전에 확인이 필요해요.</p>
 </div>

@@ -61,7 +61,7 @@
     "pageType": "home",
     "template": "T0",
     "indexCandidate": true,
-    "angle": "현재 판매 중인 후불 요금제를 한곳에서 비교"
+    "angle": "판매 중인 후불 요금제를 한곳에서 비교"
   },
   {
     "id": 2,
@@ -125,7 +125,7 @@
     "pageType": "hub",
     "template": "T1",
     "indexCandidate": true,
-    "angle": "데이터·가격·망별로 요금제를 비교"
+    "angle": "데이터·가격·망별 요금제 비교"
   },
   {
     "id": 3,
@@ -187,7 +187,7 @@
     "pageType": "card-hub",
     "template": "T4",
     "indexCandidate": true,
-    "angle": "K망과 L망 제휴카드 할인 조건 비교"
+    "angle": "K망·L망 제휴카드 할인 조건 비교"
   },
   {
     "id": 4,
@@ -244,7 +244,7 @@
     "pageType": "benefit-hub",
     "template": "T4",
     "indexCandidate": true,
-    "angle": "생활혜택별 후불 요금제 비교"
+    "angle": "혜택별로 고르는 후불 요금제"
   },
   {
     "id": 5,
@@ -306,7 +306,7 @@
     "pageType": "guide-hub",
     "template": "T5",
     "indexCandidate": true,
-    "angle": "가입 전에 확인할 조건 정리"
+    "angle": "신청부터 개통까지 한눈에"
   },
   {
     "id": 6,
@@ -368,7 +368,7 @@
     "pageType": "compare-hub",
     "template": "T5",
     "indexCandidate": true,
-    "angle": "가격·데이터·혜택 조건 비교"
+    "angle": "가격·데이터·혜택 한눈에 비교"
   },
   {
     "id": 7,
@@ -425,7 +425,7 @@
     "pageType": "card",
     "template": "T4",
     "indexCandidate": true,
-    "angle": "KT 마이알뜰폰 BC 바로카드 실적별 통신비 할인",
+    "angle": "KT 마이알뜰폰 BC 바로카드 실적별 할인액 비교",
     "cardId": "card-kt-my-alttel-bc-baro"
   },
   {
@@ -446,7 +446,7 @@
     "pageType": "card",
     "template": "T4",
     "indexCandidate": true,
-    "angle": "U+알뜰폰 파트너스 삼성카드 실적별 통신비 할인",
+    "angle": "U+알뜰폰 파트너스 삼성카드 실적별 할인액 비교",
     "cardId": "card-uplus-mvno-partners-samsung"
   },
   {
@@ -469,7 +469,7 @@
     "pageType": "benefit",
     "template": "T4",
     "indexCandidate": true,
-    "angle": "쿠팡캐쉬 혜택 결합 요금제",
+    "angle": "쿠팡캐쉬 혜택이 붙는 요금제",
     "benefitId": "benefit-coupang-cash"
   },
   {
@@ -492,7 +492,7 @@
     "pageType": "benefit",
     "template": "T4",
     "indexCandidate": true,
-    "angle": "네이버페이 혜택 결합 요금제",
+    "angle": "네이버페이 혜택이 붙는 요금제",
     "benefitId": "benefit-naverpay"
   },
   {
@@ -515,7 +515,7 @@
     "pageType": "benefit",
     "template": "T4",
     "indexCandidate": true,
-    "angle": "다이소 혜택 결합 요금제",
+    "angle": "다이소 혜택이 붙는 요금제",
     "benefitId": "benefit-daiso"
   },
   {
@@ -538,7 +538,7 @@
     "pageType": "benefit",
     "template": "T4",
     "indexCandidate": true,
-    "angle": "밀리의서재 혜택 결합 요금제",
+    "angle": "밀리의서재 혜택이 붙는 요금제",
     "benefitId": "benefit-millie"
   },
   {
@@ -561,7 +561,7 @@
     "pageType": "benefit",
     "template": "T4",
     "indexCandidate": true,
-    "angle": "올리브영 혜택 결합 요금제",
+    "angle": "올리브영 혜택이 붙는 요금제",
     "benefitId": "benefit-oliveyoung"
   },
   {
@@ -584,7 +584,7 @@
     "pageType": "benefit",
     "template": "T4",
     "indexCandidate": true,
-    "angle": "CU 혜택 결합 요금제",
+    "angle": "CU 혜택이 붙는 요금제",
     "benefitId": "benefit-cu"
   },
   {
@@ -2104,7 +2104,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "K망 조건으로 실제 판매 상품 비교"
+    "angle": "K망 요금제 모아보기"
   },
   {
     "id": 63,
@@ -2126,7 +2126,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "L망 조건으로 실제 판매 상품 비교"
+    "angle": "L망 요금제 모아보기"
   },
   {
     "id": 64,
@@ -2150,7 +2150,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "7GB 조건으로 실제 판매 상품 비교"
+    "angle": "7GB 요금제 모아보기"
   },
   {
     "id": 65,
@@ -2173,7 +2173,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "10GB 조건으로 실제 판매 상품 비교"
+    "angle": "10GB 요금제 모아보기"
   },
   {
     "id": 66,
@@ -2197,7 +2197,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "11GB+일2GB 조건으로 실제 판매 상품 비교"
+    "angle": "11GB+일2GB 요금제 모아보기"
   },
   {
     "id": 67,
@@ -2234,7 +2234,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "15GB 조건으로 실제 판매 상품 비교"
+    "angle": "15GB 요금제 모아보기"
   },
   {
     "id": 68,
@@ -2257,7 +2257,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "100GB 조건으로 실제 판매 상품 비교"
+    "angle": "100GB 요금제 모아보기"
   },
   {
     "id": 69,
@@ -2275,7 +2275,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": false,
-    "angle": "매일 5GB 조건으로 실제 판매 상품 비교"
+    "angle": "매일 5GB 요금제 모아보기"
   },
   {
     "id": 70,
@@ -2311,7 +2311,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "1Mbps 조건으로 실제 판매 상품 비교"
+    "angle": "1Mbps 요금제 모아보기"
   },
   {
     "id": 71,
@@ -2349,7 +2349,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "3Mbps 조건으로 실제 판매 상품 비교"
+    "angle": "3Mbps 요금제 모아보기"
   },
   {
     "id": 72,
@@ -2373,7 +2373,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "5Mbps 조건으로 실제 판매 상품 비교"
+    "angle": "5Mbps 요금제 모아보기"
   },
   {
     "id": 73,
@@ -2393,7 +2393,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "2만원 이하 조건으로 실제 판매 상품 비교"
+    "angle": "2만원 이하 요금제 모아보기"
   },
   {
     "id": 74,
@@ -2432,7 +2432,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "3만원 이하 조건으로 실제 판매 상품 비교"
+    "angle": "3만원 이하 요금제 모아보기"
   },
   {
     "id": 75,
@@ -2489,7 +2489,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "4만원 이하 조건으로 실제 판매 상품 비교"
+    "angle": "4만원 이하 요금제 모아보기"
   },
   {
     "id": 76,
@@ -2509,7 +2509,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "1만원대 조건으로 실제 판매 상품 비교"
+    "angle": "1만원대 요금제 모아보기"
   },
   {
     "id": 77,
@@ -2545,7 +2545,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "2만원대 조건으로 실제 판매 상품 비교"
+    "angle": "2만원대 요금제 모아보기"
   },
   {
     "id": 78,
@@ -2580,7 +2580,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "3만원대 조건으로 실제 판매 상품 비교"
+    "angle": "3만원대 요금제 모아보기"
   },
   {
     "id": 79,
@@ -2604,7 +2604,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "4만원대 조건으로 실제 판매 상품 비교"
+    "angle": "4만원대 요금제 모아보기"
   },
   {
     "id": 80,
@@ -2663,7 +2663,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "신규가입 조건으로 실제 판매 상품 비교"
+    "angle": "신규가입 요금제 모아보기"
   },
   {
     "id": 81,
@@ -2722,7 +2722,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "번호이동 조건으로 실제 판매 상품 비교"
+    "angle": "번호이동 요금제 모아보기"
   },
   {
     "id": 82,
@@ -2786,7 +2786,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "무약정 조건으로 실제 판매 상품 비교"
+    "angle": "무약정 요금제 모아보기"
   },
   {
     "id": 83,
@@ -2850,7 +2850,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "자급제 조건으로 실제 판매 상품 비교"
+    "angle": "자급제 요금제 모아보기"
   },
   {
     "id": 84,
@@ -2874,7 +2874,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "쿠팡캐쉬 조건으로 실제 판매 상품 비교"
+    "angle": "쿠팡캐쉬 요금제 모아보기"
   },
   {
     "id": 85,
@@ -2898,7 +2898,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "밀리의서재 조건으로 실제 판매 상품 비교"
+    "angle": "밀리의서재 요금제 모아보기"
   },
   {
     "id": 86,
@@ -2962,7 +2962,7 @@
     "pageType": "tag",
     "template": "T2",
     "indexCandidate": true,
-    "angle": "LTE 조건으로 실제 판매 상품 비교"
+    "angle": "LTE 요금제 모아보기"
   },
   {
     "id": 87,
@@ -2986,7 +2986,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "K망와 7GB 조건을 동시에 만족하는 상품 비교"
+    "angle": "K망 · 7GB 요금제 모아보기"
   },
   {
     "id": 88,
@@ -3010,7 +3010,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "K망와 10GB 조건을 동시에 만족하는 상품 비교"
+    "angle": "K망 · 10GB 요금제 모아보기"
   },
   {
     "id": 89,
@@ -3034,7 +3034,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "K망와 11GB+일2GB 조건을 동시에 만족하는 상품 비교"
+    "angle": "K망 · 11GB+일2GB 요금제 모아보기"
   },
   {
     "id": 90,
@@ -3070,7 +3070,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "K망와 15GB 조건을 동시에 만족하는 상품 비교"
+    "angle": "K망 · 15GB 요금제 모아보기"
   },
   {
     "id": 91,
@@ -3094,7 +3094,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "K망와 100GB 조건을 동시에 만족하는 상품 비교"
+    "angle": "K망 · 100GB 요금제 모아보기"
   },
   {
     "id": 92,
@@ -3113,7 +3113,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "L망와 7GB 조건을 동시에 만족하는 상품 비교"
+    "angle": "L망 · 7GB 요금제 모아보기"
   },
   {
     "id": 93,
@@ -3132,7 +3132,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "L망와 11GB+일2GB 조건을 동시에 만족하는 상품 비교"
+    "angle": "L망 · 11GB+일2GB 요금제 모아보기"
   },
   {
     "id": 94,
@@ -3152,7 +3152,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "L망와 15GB 조건을 동시에 만족하는 상품 비교"
+    "angle": "L망 · 15GB 요금제 모아보기"
   },
   {
     "id": 95,
@@ -3171,7 +3171,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "L망와 매일 5GB 조건을 동시에 만족하는 상품 비교"
+    "angle": "L망 · 매일 5GB 요금제 모아보기"
   },
   {
     "id": 96,
@@ -3191,7 +3191,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "K망와 2만원 이하 조건을 동시에 만족하는 상품 비교"
+    "angle": "K망 · 2만원 이하 요금제 모아보기"
   },
   {
     "id": 97,
@@ -3229,7 +3229,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "K망와 3만원 이하 조건을 동시에 만족하는 상품 비교"
+    "angle": "K망 · 3만원 이하 요금제 모아보기"
   },
   {
     "id": 98,
@@ -3283,7 +3283,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "K망와 4만원 이하 조건을 동시에 만족하는 상품 비교"
+    "angle": "K망 · 4만원 이하 요금제 모아보기"
   },
   {
     "id": 99,
@@ -3303,7 +3303,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "K망와 1만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "K망 · 1만원대 요금제 모아보기"
   },
   {
     "id": 100,
@@ -3339,7 +3339,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "K망와 2만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "K망 · 2만원대 요금제 모아보기"
   },
   {
     "id": 101,
@@ -3373,7 +3373,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "K망와 3만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "K망 · 3만원대 요금제 모아보기"
   },
   {
     "id": 102,
@@ -3397,7 +3397,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "K망와 4만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "K망 · 4만원대 요금제 모아보기"
   },
   {
     "id": 103,
@@ -3416,7 +3416,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "L망와 2만원 이하 조건을 동시에 만족하는 상품 비교"
+    "angle": "L망 · 2만원 이하 요금제 모아보기"
   },
   {
     "id": 104,
@@ -3436,7 +3436,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "L망와 3만원 이하 조건을 동시에 만족하는 상품 비교"
+    "angle": "L망 · 3만원 이하 요금제 모아보기"
   },
   {
     "id": 105,
@@ -3458,7 +3458,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "L망와 4만원 이하 조건을 동시에 만족하는 상품 비교"
+    "angle": "L망 · 4만원 이하 요금제 모아보기"
   },
   {
     "id": 106,
@@ -3477,7 +3477,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "L망와 1만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "L망 · 1만원대 요금제 모아보기"
   },
   {
     "id": 107,
@@ -3496,7 +3496,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "L망와 2만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "L망 · 2만원대 요금제 모아보기"
   },
   {
     "id": 108,
@@ -3516,7 +3516,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "L망와 3만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "L망 · 3만원대 요금제 모아보기"
   },
   {
     "id": 109,
@@ -3535,7 +3535,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "L망와 4만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "L망 · 4만원대 요금제 모아보기"
   },
   {
     "id": 110,
@@ -3571,7 +3571,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "K망와 1Mbps 조건을 동시에 만족하는 상품 비교"
+    "angle": "K망 · 1Mbps 요금제 모아보기"
   },
   {
     "id": 111,
@@ -3607,7 +3607,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "K망와 3Mbps 조건을 동시에 만족하는 상품 비교"
+    "angle": "K망 · 3Mbps 요금제 모아보기"
   },
   {
     "id": 112,
@@ -3631,7 +3631,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "K망와 5Mbps 조건을 동시에 만족하는 상품 비교"
+    "angle": "K망 · 5Mbps 요금제 모아보기"
   },
   {
     "id": 113,
@@ -3650,7 +3650,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "L망와 1Mbps 조건을 동시에 만족하는 상품 비교"
+    "angle": "L망 · 1Mbps 요금제 모아보기"
   },
   {
     "id": 114,
@@ -3671,7 +3671,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "L망와 3Mbps 조건을 동시에 만족하는 상품 비교"
+    "angle": "L망 · 3Mbps 요금제 모아보기"
   },
   {
     "id": 115,
@@ -3690,7 +3690,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "L망와 5Mbps 조건을 동시에 만족하는 상품 비교"
+    "angle": "L망 · 5Mbps 요금제 모아보기"
   },
   {
     "id": 116,
@@ -3715,7 +3715,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "7GB와 1Mbps 조건을 동시에 만족하는 상품 비교"
+    "angle": "7GB · 1Mbps 요금제 모아보기"
   },
   {
     "id": 117,
@@ -3739,7 +3739,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "10GB와 1Mbps 조건을 동시에 만족하는 상품 비교"
+    "angle": "10GB · 1Mbps 요금제 모아보기"
   },
   {
     "id": 118,
@@ -3764,7 +3764,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "11GB+일2GB와 3Mbps 조건을 동시에 만족하는 상품 비교"
+    "angle": "11GB+일2GB · 3Mbps 요금제 모아보기"
   },
   {
     "id": 119,
@@ -3788,7 +3788,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "15GB와 1Mbps 조건을 동시에 만족하는 상품 비교"
+    "angle": "15GB · 1Mbps 요금제 모아보기"
   },
   {
     "id": 120,
@@ -3820,7 +3820,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "15GB와 3Mbps 조건을 동시에 만족하는 상품 비교"
+    "angle": "15GB · 3Mbps 요금제 모아보기"
   },
   {
     "id": 121,
@@ -3844,7 +3844,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "100GB와 5Mbps 조건을 동시에 만족하는 상품 비교"
+    "angle": "100GB · 5Mbps 요금제 모아보기"
   },
   {
     "id": 122,
@@ -3863,7 +3863,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "매일 5GB와 5Mbps 조건을 동시에 만족하는 상품 비교"
+    "angle": "매일 5GB · 5Mbps 요금제 모아보기"
   },
   {
     "id": 123,
@@ -3884,7 +3884,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "7GB와 2만원 이하 조건을 동시에 만족하는 상품 비교"
+    "angle": "7GB · 2만원 이하 요금제 모아보기"
   },
   {
     "id": 124,
@@ -3909,7 +3909,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "7GB와 3만원 이하 조건을 동시에 만족하는 상품 비교"
+    "angle": "7GB · 3만원 이하 요금제 모아보기"
   },
   {
     "id": 125,
@@ -3934,7 +3934,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "7GB와 4만원 이하 조건을 동시에 만족하는 상품 비교"
+    "angle": "7GB · 4만원 이하 요금제 모아보기"
   },
   {
     "id": 126,
@@ -3955,7 +3955,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "7GB와 1만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "7GB · 1만원대 요금제 모아보기"
   },
   {
     "id": 127,
@@ -3977,7 +3977,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "7GB와 2만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "7GB · 2만원대 요금제 모아보기"
   },
   {
     "id": 128,
@@ -4001,7 +4001,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "10GB와 3만원 이하 조건을 동시에 만족하는 상품 비교"
+    "angle": "10GB · 3만원 이하 요금제 모아보기"
   },
   {
     "id": 129,
@@ -4025,7 +4025,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "10GB와 4만원 이하 조건을 동시에 만족하는 상품 비교"
+    "angle": "10GB · 4만원 이하 요금제 모아보기"
   },
   {
     "id": 130,
@@ -4049,7 +4049,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "10GB와 2만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "10GB · 2만원대 요금제 모아보기"
   },
   {
     "id": 131,
@@ -4074,7 +4074,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "11GB+일2GB와 4만원 이하 조건을 동시에 만족하는 상품 비교"
+    "angle": "11GB+일2GB · 4만원 이하 요금제 모아보기"
   },
   {
     "id": 132,
@@ -4099,7 +4099,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "11GB+일2GB와 3만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "11GB+일2GB · 3만원대 요금제 모아보기"
   },
   {
     "id": 133,
@@ -4126,7 +4126,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "15GB와 3만원 이하 조건을 동시에 만족하는 상품 비교"
+    "angle": "15GB · 3만원 이하 요금제 모아보기"
   },
   {
     "id": 134,
@@ -4164,7 +4164,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "15GB와 4만원 이하 조건을 동시에 만족하는 상품 비교"
+    "angle": "15GB · 4만원 이하 요금제 모아보기"
   },
   {
     "id": 135,
@@ -4191,7 +4191,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "15GB와 2만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "15GB · 2만원대 요금제 모아보기"
   },
   {
     "id": 136,
@@ -4220,7 +4220,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "15GB와 3만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "15GB · 3만원대 요금제 모아보기"
   },
   {
     "id": 137,
@@ -4244,7 +4244,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "100GB와 4만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "100GB · 4만원대 요금제 모아보기"
   },
   {
     "id": 138,
@@ -4263,7 +4263,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "매일 5GB와 4만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "매일 5GB · 4만원대 요금제 모아보기"
   },
   {
     "id": 139,
@@ -4287,7 +4287,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "7GB와 신규가입 조건을 동시에 만족하는 상품 비교"
+    "angle": "7GB · 신규가입 요금제 모아보기"
   },
   {
     "id": 140,
@@ -4311,7 +4311,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "7GB와 번호이동 조건을 동시에 만족하는 상품 비교"
+    "angle": "7GB · 번호이동 요금제 모아보기"
   },
   {
     "id": 141,
@@ -4335,7 +4335,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "10GB와 신규가입 조건을 동시에 만족하는 상품 비교"
+    "angle": "10GB · 신규가입 요금제 모아보기"
   },
   {
     "id": 142,
@@ -4359,7 +4359,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "10GB와 번호이동 조건을 동시에 만족하는 상품 비교"
+    "angle": "10GB · 번호이동 요금제 모아보기"
   },
   {
     "id": 143,
@@ -4383,7 +4383,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "11GB+일2GB와 신규가입 조건을 동시에 만족하는 상품 비교"
+    "angle": "11GB+일2GB · 신규가입 요금제 모아보기"
   },
   {
     "id": 144,
@@ -4407,7 +4407,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "11GB+일2GB와 번호이동 조건을 동시에 만족하는 상품 비교"
+    "angle": "11GB+일2GB · 번호이동 요금제 모아보기"
   },
   {
     "id": 145,
@@ -4443,7 +4443,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "15GB와 신규가입 조건을 동시에 만족하는 상품 비교"
+    "angle": "15GB · 신규가입 요금제 모아보기"
   },
   {
     "id": 146,
@@ -4479,7 +4479,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "15GB와 번호이동 조건을 동시에 만족하는 상품 비교"
+    "angle": "15GB · 번호이동 요금제 모아보기"
   },
   {
     "id": 147,
@@ -4503,7 +4503,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "100GB와 신규가입 조건을 동시에 만족하는 상품 비교"
+    "angle": "100GB · 신규가입 요금제 모아보기"
   },
   {
     "id": 148,
@@ -4527,7 +4527,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "100GB와 번호이동 조건을 동시에 만족하는 상품 비교"
+    "angle": "100GB · 번호이동 요금제 모아보기"
   },
   {
     "id": 149,
@@ -4546,7 +4546,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "7GB와 쿠팡캐쉬 조건을 동시에 만족하는 상품 비교"
+    "angle": "7GB · 쿠팡캐쉬 요금제 모아보기"
   },
   {
     "id": 150,
@@ -4565,7 +4565,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "7GB와 네이버페이 조건을 동시에 만족하는 상품 비교"
+    "angle": "7GB · 네이버페이 요금제 모아보기"
   },
   {
     "id": 151,
@@ -4584,7 +4584,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "7GB와 다이소 조건을 동시에 만족하는 상품 비교"
+    "angle": "7GB · 다이소 요금제 모아보기"
   },
   {
     "id": 152,
@@ -4603,7 +4603,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "7GB와 밀리의서재 조건을 동시에 만족하는 상품 비교"
+    "angle": "7GB · 밀리의서재 요금제 모아보기"
   },
   {
     "id": 153,
@@ -4622,7 +4622,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "7GB와 올리브영 조건을 동시에 만족하는 상품 비교"
+    "angle": "7GB · 올리브영 요금제 모아보기"
   },
   {
     "id": 154,
@@ -4641,7 +4641,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "7GB와 CU 조건을 동시에 만족하는 상품 비교"
+    "angle": "7GB · CU 요금제 모아보기"
   },
   {
     "id": 155,
@@ -4660,7 +4660,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "10GB와 쿠팡캐쉬 조건을 동시에 만족하는 상품 비교"
+    "angle": "10GB · 쿠팡캐쉬 요금제 모아보기"
   },
   {
     "id": 156,
@@ -4679,7 +4679,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "10GB와 네이버페이 조건을 동시에 만족하는 상품 비교"
+    "angle": "10GB · 네이버페이 요금제 모아보기"
   },
   {
     "id": 157,
@@ -4698,7 +4698,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "10GB와 다이소 조건을 동시에 만족하는 상품 비교"
+    "angle": "10GB · 다이소 요금제 모아보기"
   },
   {
     "id": 158,
@@ -4717,7 +4717,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "10GB와 밀리의서재 조건을 동시에 만족하는 상품 비교"
+    "angle": "10GB · 밀리의서재 요금제 모아보기"
   },
   {
     "id": 159,
@@ -4736,7 +4736,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "10GB와 올리브영 조건을 동시에 만족하는 상품 비교"
+    "angle": "10GB · 올리브영 요금제 모아보기"
   },
   {
     "id": 160,
@@ -4755,7 +4755,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "10GB와 CU 조건을 동시에 만족하는 상품 비교"
+    "angle": "10GB · CU 요금제 모아보기"
   },
   {
     "id": 161,
@@ -4774,7 +4774,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "11GB+일2GB와 쿠팡캐쉬 조건을 동시에 만족하는 상품 비교"
+    "angle": "11GB+일2GB · 쿠팡캐쉬 요금제 모아보기"
   },
   {
     "id": 162,
@@ -4793,7 +4793,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "11GB+일2GB와 네이버페이 조건을 동시에 만족하는 상품 비교"
+    "angle": "11GB+일2GB · 네이버페이 요금제 모아보기"
   },
   {
     "id": 163,
@@ -4812,7 +4812,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "11GB+일2GB와 다이소 조건을 동시에 만족하는 상품 비교"
+    "angle": "11GB+일2GB · 다이소 요금제 모아보기"
   },
   {
     "id": 164,
@@ -4831,7 +4831,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "11GB+일2GB와 밀리의서재 조건을 동시에 만족하는 상품 비교"
+    "angle": "11GB+일2GB · 밀리의서재 요금제 모아보기"
   },
   {
     "id": 165,
@@ -4850,7 +4850,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "11GB+일2GB와 올리브영 조건을 동시에 만족하는 상품 비교"
+    "angle": "11GB+일2GB · 올리브영 요금제 모아보기"
   },
   {
     "id": 166,
@@ -4869,7 +4869,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "11GB+일2GB와 CU 조건을 동시에 만족하는 상품 비교"
+    "angle": "11GB+일2GB · CU 요금제 모아보기"
   },
   {
     "id": 167,
@@ -4890,7 +4890,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "15GB와 쿠팡캐쉬 조건을 동시에 만족하는 상품 비교"
+    "angle": "15GB · 쿠팡캐쉬 요금제 모아보기"
   },
   {
     "id": 168,
@@ -4911,7 +4911,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "15GB와 네이버페이 조건을 동시에 만족하는 상품 비교"
+    "angle": "15GB · 네이버페이 요금제 모아보기"
   },
   {
     "id": 169,
@@ -4932,7 +4932,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "15GB와 다이소 조건을 동시에 만족하는 상품 비교"
+    "angle": "15GB · 다이소 요금제 모아보기"
   },
   {
     "id": 170,
@@ -4953,7 +4953,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "15GB와 밀리의서재 조건을 동시에 만족하는 상품 비교"
+    "angle": "15GB · 밀리의서재 요금제 모아보기"
   },
   {
     "id": 171,
@@ -4974,7 +4974,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "15GB와 올리브영 조건을 동시에 만족하는 상품 비교"
+    "angle": "15GB · 올리브영 요금제 모아보기"
   },
   {
     "id": 172,
@@ -4995,7 +4995,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "15GB와 CU 조건을 동시에 만족하는 상품 비교"
+    "angle": "15GB · CU 요금제 모아보기"
   },
   {
     "id": 173,
@@ -5014,7 +5014,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "100GB와 쿠팡캐쉬 조건을 동시에 만족하는 상품 비교"
+    "angle": "100GB · 쿠팡캐쉬 요금제 모아보기"
   },
   {
     "id": 174,
@@ -5033,7 +5033,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "100GB와 네이버페이 조건을 동시에 만족하는 상품 비교"
+    "angle": "100GB · 네이버페이 요금제 모아보기"
   },
   {
     "id": 175,
@@ -5052,7 +5052,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "100GB와 다이소 조건을 동시에 만족하는 상품 비교"
+    "angle": "100GB · 다이소 요금제 모아보기"
   },
   {
     "id": 176,
@@ -5071,7 +5071,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "100GB와 밀리의서재 조건을 동시에 만족하는 상품 비교"
+    "angle": "100GB · 밀리의서재 요금제 모아보기"
   },
   {
     "id": 177,
@@ -5090,7 +5090,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "100GB와 올리브영 조건을 동시에 만족하는 상품 비교"
+    "angle": "100GB · 올리브영 요금제 모아보기"
   },
   {
     "id": 178,
@@ -5109,7 +5109,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "100GB와 CU 조건을 동시에 만족하는 상품 비교"
+    "angle": "100GB · CU 요금제 모아보기"
   },
   {
     "id": 179,
@@ -5129,7 +5129,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "2만원 이하와 신규가입 조건을 동시에 만족하는 상품 비교"
+    "angle": "2만원 이하 · 신규가입 요금제 모아보기"
   },
   {
     "id": 180,
@@ -5149,7 +5149,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "2만원 이하와 번호이동 조건을 동시에 만족하는 상품 비교"
+    "angle": "2만원 이하 · 번호이동 요금제 모아보기"
   },
   {
     "id": 181,
@@ -5187,7 +5187,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3만원 이하와 신규가입 조건을 동시에 만족하는 상품 비교"
+    "angle": "3만원 이하 · 신규가입 요금제 모아보기"
   },
   {
     "id": 182,
@@ -5225,7 +5225,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3만원 이하와 번호이동 조건을 동시에 만족하는 상품 비교"
+    "angle": "3만원 이하 · 번호이동 요금제 모아보기"
   },
   {
     "id": 183,
@@ -5279,7 +5279,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "4만원 이하와 신규가입 조건을 동시에 만족하는 상품 비교"
+    "angle": "4만원 이하 · 신규가입 요금제 모아보기"
   },
   {
     "id": 184,
@@ -5333,7 +5333,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "4만원 이하와 번호이동 조건을 동시에 만족하는 상품 비교"
+    "angle": "4만원 이하 · 번호이동 요금제 모아보기"
   },
   {
     "id": 185,
@@ -5353,7 +5353,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "1만원대와 신규가입 조건을 동시에 만족하는 상품 비교"
+    "angle": "1만원대 · 신규가입 요금제 모아보기"
   },
   {
     "id": 186,
@@ -5373,7 +5373,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "1만원대와 번호이동 조건을 동시에 만족하는 상품 비교"
+    "angle": "1만원대 · 번호이동 요금제 모아보기"
   },
   {
     "id": 187,
@@ -5409,7 +5409,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "2만원대와 신규가입 조건을 동시에 만족하는 상품 비교"
+    "angle": "2만원대 · 신규가입 요금제 모아보기"
   },
   {
     "id": 188,
@@ -5445,7 +5445,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "2만원대와 번호이동 조건을 동시에 만족하는 상품 비교"
+    "angle": "2만원대 · 번호이동 요금제 모아보기"
   },
   {
     "id": 189,
@@ -5479,7 +5479,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3만원대와 신규가입 조건을 동시에 만족하는 상품 비교"
+    "angle": "3만원대 · 신규가입 요금제 모아보기"
   },
   {
     "id": 190,
@@ -5513,7 +5513,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3만원대와 번호이동 조건을 동시에 만족하는 상품 비교"
+    "angle": "3만원대 · 번호이동 요금제 모아보기"
   },
   {
     "id": 191,
@@ -5537,7 +5537,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "4만원대와 신규가입 조건을 동시에 만족하는 상품 비교"
+    "angle": "4만원대 · 신규가입 요금제 모아보기"
   },
   {
     "id": 192,
@@ -5561,7 +5561,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "4만원대와 번호이동 조건을 동시에 만족하는 상품 비교"
+    "angle": "4만원대 · 번호이동 요금제 모아보기"
   },
   {
     "id": 193,
@@ -5580,7 +5580,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "2만원 이하와 밀리의서재 조건을 동시에 만족하는 상품 비교"
+    "angle": "2만원 이하 · 밀리의서재 요금제 모아보기"
   },
   {
     "id": 194,
@@ -5599,7 +5599,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "2만원 이하와 CU 조건을 동시에 만족하는 상품 비교"
+    "angle": "2만원 이하 · CU 요금제 모아보기"
   },
   {
     "id": 195,
@@ -5620,7 +5620,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3만원 이하와 쿠팡캐쉬 조건을 동시에 만족하는 상품 비교"
+    "angle": "3만원 이하 · 쿠팡캐쉬 요금제 모아보기"
   },
   {
     "id": 196,
@@ -5641,7 +5641,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3만원 이하와 네이버페이 조건을 동시에 만족하는 상품 비교"
+    "angle": "3만원 이하 · 네이버페이 요금제 모아보기"
   },
   {
     "id": 197,
@@ -5662,7 +5662,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3만원 이하와 다이소 조건을 동시에 만족하는 상품 비교"
+    "angle": "3만원 이하 · 다이소 요금제 모아보기"
   },
   {
     "id": 198,
@@ -5684,7 +5684,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3만원 이하와 밀리의서재 조건을 동시에 만족하는 상품 비교"
+    "angle": "3만원 이하 · 밀리의서재 요금제 모아보기"
   },
   {
     "id": 199,
@@ -5705,7 +5705,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3만원 이하와 올리브영 조건을 동시에 만족하는 상품 비교"
+    "angle": "3만원 이하 · 올리브영 요금제 모아보기"
   },
   {
     "id": 200,
@@ -5727,7 +5727,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3만원 이하와 CU 조건을 동시에 만족하는 상품 비교"
+    "angle": "3만원 이하 · CU 요금제 모아보기"
   },
   {
     "id": 201,
@@ -5751,7 +5751,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "4만원 이하와 쿠팡캐쉬 조건을 동시에 만족하는 상품 비교"
+    "angle": "4만원 이하 · 쿠팡캐쉬 요금제 모아보기"
   },
   {
     "id": 202,
@@ -5775,7 +5775,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "4만원 이하와 네이버페이 조건을 동시에 만족하는 상품 비교"
+    "angle": "4만원 이하 · 네이버페이 요금제 모아보기"
   },
   {
     "id": 203,
@@ -5799,7 +5799,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "4만원 이하와 다이소 조건을 동시에 만족하는 상품 비교"
+    "angle": "4만원 이하 · 다이소 요금제 모아보기"
   },
   {
     "id": 204,
@@ -5823,7 +5823,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "4만원 이하와 밀리의서재 조건을 동시에 만족하는 상품 비교"
+    "angle": "4만원 이하 · 밀리의서재 요금제 모아보기"
   },
   {
     "id": 205,
@@ -5847,7 +5847,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "4만원 이하와 올리브영 조건을 동시에 만족하는 상품 비교"
+    "angle": "4만원 이하 · 올리브영 요금제 모아보기"
   },
   {
     "id": 206,
@@ -5871,7 +5871,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "4만원 이하와 CU 조건을 동시에 만족하는 상품 비교"
+    "angle": "4만원 이하 · CU 요금제 모아보기"
   },
   {
     "id": 207,
@@ -5890,7 +5890,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "1만원대와 밀리의서재 조건을 동시에 만족하는 상품 비교"
+    "angle": "1만원대 · 밀리의서재 요금제 모아보기"
   },
   {
     "id": 208,
@@ -5909,7 +5909,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "1만원대와 CU 조건을 동시에 만족하는 상품 비교"
+    "angle": "1만원대 · CU 요금제 모아보기"
   },
   {
     "id": 209,
@@ -5930,7 +5930,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "2만원대와 쿠팡캐쉬 조건을 동시에 만족하는 상품 비교"
+    "angle": "2만원대 · 쿠팡캐쉬 요금제 모아보기"
   },
   {
     "id": 210,
@@ -5951,7 +5951,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "2만원대와 네이버페이 조건을 동시에 만족하는 상품 비교"
+    "angle": "2만원대 · 네이버페이 요금제 모아보기"
   },
   {
     "id": 211,
@@ -5972,7 +5972,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "2만원대와 다이소 조건을 동시에 만족하는 상품 비교"
+    "angle": "2만원대 · 다이소 요금제 모아보기"
   },
   {
     "id": 212,
@@ -5993,7 +5993,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "2만원대와 밀리의서재 조건을 동시에 만족하는 상품 비교"
+    "angle": "2만원대 · 밀리의서재 요금제 모아보기"
   },
   {
     "id": 213,
@@ -6014,7 +6014,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "2만원대와 올리브영 조건을 동시에 만족하는 상품 비교"
+    "angle": "2만원대 · 올리브영 요금제 모아보기"
   },
   {
     "id": 214,
@@ -6035,7 +6035,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "2만원대와 CU 조건을 동시에 만족하는 상품 비교"
+    "angle": "2만원대 · CU 요금제 모아보기"
   },
   {
     "id": 215,
@@ -6056,7 +6056,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3만원대와 쿠팡캐쉬 조건을 동시에 만족하는 상품 비교"
+    "angle": "3만원대 · 쿠팡캐쉬 요금제 모아보기"
   },
   {
     "id": 216,
@@ -6077,7 +6077,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3만원대와 네이버페이 조건을 동시에 만족하는 상품 비교"
+    "angle": "3만원대 · 네이버페이 요금제 모아보기"
   },
   {
     "id": 217,
@@ -6098,7 +6098,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3만원대와 다이소 조건을 동시에 만족하는 상품 비교"
+    "angle": "3만원대 · 다이소 요금제 모아보기"
   },
   {
     "id": 218,
@@ -6118,7 +6118,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3만원대와 밀리의서재 조건을 동시에 만족하는 상품 비교"
+    "angle": "3만원대 · 밀리의서재 요금제 모아보기"
   },
   {
     "id": 219,
@@ -6139,7 +6139,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3만원대와 올리브영 조건을 동시에 만족하는 상품 비교"
+    "angle": "3만원대 · 올리브영 요금제 모아보기"
   },
   {
     "id": 220,
@@ -6159,7 +6159,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3만원대와 CU 조건을 동시에 만족하는 상품 비교"
+    "angle": "3만원대 · CU 요금제 모아보기"
   },
   {
     "id": 221,
@@ -6178,7 +6178,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "4만원대와 쿠팡캐쉬 조건을 동시에 만족하는 상품 비교"
+    "angle": "4만원대 · 쿠팡캐쉬 요금제 모아보기"
   },
   {
     "id": 222,
@@ -6197,7 +6197,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "4만원대와 네이버페이 조건을 동시에 만족하는 상품 비교"
+    "angle": "4만원대 · 네이버페이 요금제 모아보기"
   },
   {
     "id": 223,
@@ -6216,7 +6216,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "4만원대와 다이소 조건을 동시에 만족하는 상품 비교"
+    "angle": "4만원대 · 다이소 요금제 모아보기"
   },
   {
     "id": 224,
@@ -6235,7 +6235,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "4만원대와 밀리의서재 조건을 동시에 만족하는 상품 비교"
+    "angle": "4만원대 · 밀리의서재 요금제 모아보기"
   },
   {
     "id": 225,
@@ -6254,7 +6254,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "4만원대와 올리브영 조건을 동시에 만족하는 상품 비교"
+    "angle": "4만원대 · 올리브영 요금제 모아보기"
   },
   {
     "id": 226,
@@ -6273,7 +6273,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "4만원대와 CU 조건을 동시에 만족하는 상품 비교"
+    "angle": "4만원대 · CU 요금제 모아보기"
   },
   {
     "id": 227,
@@ -6294,7 +6294,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "1Mbps와 쿠팡캐쉬 조건을 동시에 만족하는 상품 비교"
+    "angle": "1Mbps · 쿠팡캐쉬 요금제 모아보기"
   },
   {
     "id": 228,
@@ -6315,7 +6315,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "1Mbps와 네이버페이 조건을 동시에 만족하는 상품 비교"
+    "angle": "1Mbps · 네이버페이 요금제 모아보기"
   },
   {
     "id": 229,
@@ -6336,7 +6336,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "1Mbps와 다이소 조건을 동시에 만족하는 상품 비교"
+    "angle": "1Mbps · 다이소 요금제 모아보기"
   },
   {
     "id": 230,
@@ -6357,7 +6357,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "1Mbps와 밀리의서재 조건을 동시에 만족하는 상품 비교"
+    "angle": "1Mbps · 밀리의서재 요금제 모아보기"
   },
   {
     "id": 231,
@@ -6378,7 +6378,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "1Mbps와 올리브영 조건을 동시에 만족하는 상품 비교"
+    "angle": "1Mbps · 올리브영 요금제 모아보기"
   },
   {
     "id": 232,
@@ -6399,7 +6399,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "1Mbps와 CU 조건을 동시에 만족하는 상품 비교"
+    "angle": "1Mbps · CU 요금제 모아보기"
   },
   {
     "id": 233,
@@ -6420,7 +6420,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3Mbps와 쿠팡캐쉬 조건을 동시에 만족하는 상품 비교"
+    "angle": "3Mbps · 쿠팡캐쉬 요금제 모아보기"
   },
   {
     "id": 234,
@@ -6441,7 +6441,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3Mbps와 네이버페이 조건을 동시에 만족하는 상품 비교"
+    "angle": "3Mbps · 네이버페이 요금제 모아보기"
   },
   {
     "id": 235,
@@ -6462,7 +6462,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3Mbps와 다이소 조건을 동시에 만족하는 상품 비교"
+    "angle": "3Mbps · 다이소 요금제 모아보기"
   },
   {
     "id": 236,
@@ -6483,7 +6483,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3Mbps와 밀리의서재 조건을 동시에 만족하는 상품 비교"
+    "angle": "3Mbps · 밀리의서재 요금제 모아보기"
   },
   {
     "id": 237,
@@ -6504,7 +6504,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3Mbps와 올리브영 조건을 동시에 만족하는 상품 비교"
+    "angle": "3Mbps · 올리브영 요금제 모아보기"
   },
   {
     "id": 238,
@@ -6525,7 +6525,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "3Mbps와 CU 조건을 동시에 만족하는 상품 비교"
+    "angle": "3Mbps · CU 요금제 모아보기"
   },
   {
     "id": 239,
@@ -6544,7 +6544,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "5Mbps와 쿠팡캐쉬 조건을 동시에 만족하는 상품 비교"
+    "angle": "5Mbps · 쿠팡캐쉬 요금제 모아보기"
   },
   {
     "id": 240,
@@ -6563,7 +6563,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "5Mbps와 네이버페이 조건을 동시에 만족하는 상품 비교"
+    "angle": "5Mbps · 네이버페이 요금제 모아보기"
   },
   {
     "id": 241,
@@ -6582,7 +6582,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "5Mbps와 다이소 조건을 동시에 만족하는 상품 비교"
+    "angle": "5Mbps · 다이소 요금제 모아보기"
   },
   {
     "id": 242,
@@ -6601,7 +6601,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "5Mbps와 밀리의서재 조건을 동시에 만족하는 상품 비교"
+    "angle": "5Mbps · 밀리의서재 요금제 모아보기"
   },
   {
     "id": 243,
@@ -6620,7 +6620,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "5Mbps와 올리브영 조건을 동시에 만족하는 상품 비교"
+    "angle": "5Mbps · 올리브영 요금제 모아보기"
   },
   {
     "id": 244,
@@ -6639,7 +6639,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "5Mbps와 CU 조건을 동시에 만족하는 상품 비교"
+    "angle": "5Mbps · CU 요금제 모아보기"
   },
   {
     "id": 245,
@@ -6664,7 +6664,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "신규가입와 쿠팡캐쉬 조건을 동시에 만족하는 상품 비교"
+    "angle": "신규가입 · 쿠팡캐쉬 요금제 모아보기"
   },
   {
     "id": 246,
@@ -6689,7 +6689,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "신규가입와 네이버페이 조건을 동시에 만족하는 상품 비교"
+    "angle": "신규가입 · 네이버페이 요금제 모아보기"
   },
   {
     "id": 247,
@@ -6714,7 +6714,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "신규가입와 다이소 조건을 동시에 만족하는 상품 비교"
+    "angle": "신규가입 · 다이소 요금제 모아보기"
   },
   {
     "id": 248,
@@ -6739,7 +6739,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "신규가입와 밀리의서재 조건을 동시에 만족하는 상품 비교"
+    "angle": "신규가입 · 밀리의서재 요금제 모아보기"
   },
   {
     "id": 249,
@@ -6764,7 +6764,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "신규가입와 올리브영 조건을 동시에 만족하는 상품 비교"
+    "angle": "신규가입 · 올리브영 요금제 모아보기"
   },
   {
     "id": 250,
@@ -6789,7 +6789,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "신규가입와 CU 조건을 동시에 만족하는 상품 비교"
+    "angle": "신규가입 · CU 요금제 모아보기"
   },
   {
     "id": 251,
@@ -6814,7 +6814,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "번호이동와 쿠팡캐쉬 조건을 동시에 만족하는 상품 비교"
+    "angle": "번호이동 · 쿠팡캐쉬 요금제 모아보기"
   },
   {
     "id": 252,
@@ -6839,7 +6839,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "번호이동와 네이버페이 조건을 동시에 만족하는 상품 비교"
+    "angle": "번호이동 · 네이버페이 요금제 모아보기"
   },
   {
     "id": 253,
@@ -6864,7 +6864,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "번호이동와 다이소 조건을 동시에 만족하는 상품 비교"
+    "angle": "번호이동 · 다이소 요금제 모아보기"
   },
   {
     "id": 254,
@@ -6889,7 +6889,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "번호이동와 밀리의서재 조건을 동시에 만족하는 상품 비교"
+    "angle": "번호이동 · 밀리의서재 요금제 모아보기"
   },
   {
     "id": 255,
@@ -6914,7 +6914,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "번호이동와 올리브영 조건을 동시에 만족하는 상품 비교"
+    "angle": "번호이동 · 올리브영 요금제 모아보기"
   },
   {
     "id": 256,
@@ -6939,7 +6939,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "번호이동와 CU 조건을 동시에 만족하는 상품 비교"
+    "angle": "번호이동 · CU 요금제 모아보기"
   },
   {
     "id": 257,
@@ -6964,7 +6964,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "무약정와 7GB 조건을 동시에 만족하는 상품 비교"
+    "angle": "무약정 · 7GB 요금제 모아보기"
   },
   {
     "id": 258,
@@ -6988,7 +6988,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "무약정와 10GB 조건을 동시에 만족하는 상품 비교"
+    "angle": "무약정 · 10GB 요금제 모아보기"
   },
   {
     "id": 259,
@@ -7013,7 +7013,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "무약정와 11GB+일2GB 조건을 동시에 만족하는 상품 비교"
+    "angle": "무약정 · 11GB+일2GB 요금제 모아보기"
   },
   {
     "id": 260,
@@ -7051,7 +7051,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "무약정와 15GB 조건을 동시에 만족하는 상품 비교"
+    "angle": "무약정 · 15GB 요금제 모아보기"
   },
   {
     "id": 261,
@@ -7075,7 +7075,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "무약정와 100GB 조건을 동시에 만족하는 상품 비교"
+    "angle": "무약정 · 100GB 요금제 모아보기"
   },
   {
     "id": 262,
@@ -7094,7 +7094,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "무약정와 매일 5GB 조건을 동시에 만족하는 상품 비교"
+    "angle": "무약정 · 매일 5GB 요금제 모아보기"
   },
   {
     "id": 263,
@@ -7115,7 +7115,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "무약정와 2만원 이하 조건을 동시에 만족하는 상품 비교"
+    "angle": "무약정 · 2만원 이하 요금제 모아보기"
   },
   {
     "id": 264,
@@ -7155,7 +7155,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "무약정와 3만원 이하 조건을 동시에 만족하는 상품 비교"
+    "angle": "무약정 · 3만원 이하 요금제 모아보기"
   },
   {
     "id": 265,
@@ -7213,7 +7213,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "무약정와 4만원 이하 조건을 동시에 만족하는 상품 비교"
+    "angle": "무약정 · 4만원 이하 요금제 모아보기"
   },
   {
     "id": 266,
@@ -7234,7 +7234,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "무약정와 1만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "무약정 · 1만원대 요금제 모아보기"
   },
   {
     "id": 267,
@@ -7271,7 +7271,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "무약정와 2만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "무약정 · 2만원대 요금제 모아보기"
   },
   {
     "id": 268,
@@ -7307,7 +7307,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "무약정와 3만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "무약정 · 3만원대 요금제 모아보기"
   },
   {
     "id": 269,
@@ -7332,7 +7332,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "무약정와 4만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "무약정 · 4만원대 요금제 모아보기"
   },
   {
     "id": 270,
@@ -7357,7 +7357,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "무약정와 쿠팡캐쉬 조건을 동시에 만족하는 상품 비교"
+    "angle": "무약정 · 쿠팡캐쉬 요금제 모아보기"
   },
   {
     "id": 271,
@@ -7382,7 +7382,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "무약정와 네이버페이 조건을 동시에 만족하는 상품 비교"
+    "angle": "무약정 · 네이버페이 요금제 모아보기"
   },
   {
     "id": 272,
@@ -7407,7 +7407,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "무약정와 다이소 조건을 동시에 만족하는 상품 비교"
+    "angle": "무약정 · 다이소 요금제 모아보기"
   },
   {
     "id": 273,
@@ -7432,7 +7432,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "무약정와 밀리의서재 조건을 동시에 만족하는 상품 비교"
+    "angle": "무약정 · 밀리의서재 요금제 모아보기"
   },
   {
     "id": 274,
@@ -7457,7 +7457,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "무약정와 올리브영 조건을 동시에 만족하는 상품 비교"
+    "angle": "무약정 · 올리브영 요금제 모아보기"
   },
   {
     "id": 275,
@@ -7482,7 +7482,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "무약정와 CU 조건을 동시에 만족하는 상품 비교"
+    "angle": "무약정 · CU 요금제 모아보기"
   },
   {
     "id": 276,
@@ -7507,7 +7507,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "자급제와 7GB 조건을 동시에 만족하는 상품 비교"
+    "angle": "자급제 · 7GB 요금제 모아보기"
   },
   {
     "id": 277,
@@ -7531,7 +7531,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "자급제와 10GB 조건을 동시에 만족하는 상품 비교"
+    "angle": "자급제 · 10GB 요금제 모아보기"
   },
   {
     "id": 278,
@@ -7556,7 +7556,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "자급제와 11GB+일2GB 조건을 동시에 만족하는 상품 비교"
+    "angle": "자급제 · 11GB+일2GB 요금제 모아보기"
   },
   {
     "id": 279,
@@ -7594,7 +7594,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "자급제와 15GB 조건을 동시에 만족하는 상품 비교"
+    "angle": "자급제 · 15GB 요금제 모아보기"
   },
   {
     "id": 280,
@@ -7618,7 +7618,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "자급제와 100GB 조건을 동시에 만족하는 상품 비교"
+    "angle": "자급제 · 100GB 요금제 모아보기"
   },
   {
     "id": 281,
@@ -7637,7 +7637,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": false,
-    "angle": "자급제와 매일 5GB 조건을 동시에 만족하는 상품 비교"
+    "angle": "자급제 · 매일 5GB 요금제 모아보기"
   },
   {
     "id": 282,
@@ -7658,7 +7658,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "자급제와 2만원 이하 조건을 동시에 만족하는 상품 비교"
+    "angle": "자급제 · 2만원 이하 요금제 모아보기"
   },
   {
     "id": 283,
@@ -7698,7 +7698,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "자급제와 3만원 이하 조건을 동시에 만족하는 상품 비교"
+    "angle": "자급제 · 3만원 이하 요금제 모아보기"
   },
   {
     "id": 284,
@@ -7756,7 +7756,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "자급제와 4만원 이하 조건을 동시에 만족하는 상품 비교"
+    "angle": "자급제 · 4만원 이하 요금제 모아보기"
   },
   {
     "id": 285,
@@ -7777,7 +7777,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "자급제와 1만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "자급제 · 1만원대 요금제 모아보기"
   },
   {
     "id": 286,
@@ -7814,7 +7814,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "자급제와 2만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "자급제 · 2만원대 요금제 모아보기"
   },
   {
     "id": 287,
@@ -7850,7 +7850,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "자급제와 3만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "자급제 · 3만원대 요금제 모아보기"
   },
   {
     "id": 288,
@@ -7875,7 +7875,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "자급제와 4만원대 조건을 동시에 만족하는 상품 비교"
+    "angle": "자급제 · 4만원대 요금제 모아보기"
   },
   {
     "id": 289,
@@ -7900,7 +7900,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "자급제와 쿠팡캐쉬 조건을 동시에 만족하는 상품 비교"
+    "angle": "자급제 · 쿠팡캐쉬 요금제 모아보기"
   },
   {
     "id": 290,
@@ -7925,7 +7925,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "자급제와 네이버페이 조건을 동시에 만족하는 상품 비교"
+    "angle": "자급제 · 네이버페이 요금제 모아보기"
   },
   {
     "id": 291,
@@ -7950,7 +7950,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "자급제와 다이소 조건을 동시에 만족하는 상품 비교"
+    "angle": "자급제 · 다이소 요금제 모아보기"
   },
   {
     "id": 292,
@@ -7975,7 +7975,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "자급제와 밀리의서재 조건을 동시에 만족하는 상품 비교"
+    "angle": "자급제 · 밀리의서재 요금제 모아보기"
   },
   {
     "id": 293,
@@ -8000,7 +8000,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "자급제와 올리브영 조건을 동시에 만족하는 상품 비교"
+    "angle": "자급제 · 올리브영 요금제 모아보기"
   },
   {
     "id": 294,
@@ -8025,7 +8025,7 @@
     "pageType": "combo",
     "template": "T3",
     "indexCandidate": true,
-    "angle": "자급제와 CU 조건을 동시에 만족하는 상품 비교"
+    "angle": "자급제 · CU 요금제 모아보기"
   },
   {
     "id": 295,
@@ -8084,7 +8084,7 @@
     "pageType": "guide",
     "template": "T5",
     "indexCandidate": true,
-    "angle": "요금 체납·최근 번호이동 제한"
+    "angle": "연체·최근 번호이동 제한 정리"
   },
   {
     "id": 296,
@@ -8148,7 +8148,7 @@
     "pageType": "guide",
     "template": "T5",
     "indexCandidate": true,
-    "angle": "자급제 단말에서 후불 요금제 사용"
+    "angle": "자급제폰으로 후불 요금제 쓰기"
   },
   {
     "id": 297,
@@ -8210,7 +8210,7 @@
     "pageType": "compare",
     "template": "T5",
     "indexCandidate": true,
-    "angle": "두 망 제휴카드의 실적·할인 조건 비교"
+    "angle": "두 카드의 실적·할인액 비교"
   },
   {
     "id": 298,
@@ -8237,11 +8237,11 @@
       "ntelecom-k-7gb-coupang-cash"
     ],
     "path": "/lp/k/7gb-coupang-cash/price/",
-    "keyword": "앤텔레콤 K망 7GB+(쿠팡캐쉬) 월요금 중심",
+    "keyword": "앤텔레콤 K망 7GB+(쿠팡캐쉬) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-7gb-coupang-cash",
     "adAngle": "price"
   },
@@ -8270,11 +8270,11 @@
       "ntelecom-k-10gb-coupang-cash"
     ],
     "path": "/lp/k/10gb-coupang-cash/price/",
-    "keyword": "앤텔레콤 K망 10GB+(쿠팡캐쉬) 월요금 중심",
+    "keyword": "앤텔레콤 K망 10GB+(쿠팡캐쉬) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-10gb-coupang-cash",
     "adAngle": "price"
   },
@@ -8303,11 +8303,11 @@
       "ntelecom-k-15gb-coupang-cash"
     ],
     "path": "/lp/k/15gb-coupang-cash/price/",
-    "keyword": "앤텔레콤 K망 15GB+(쿠팡캐쉬) 월요금 중심",
+    "keyword": "앤텔레콤 K망 15GB+(쿠팡캐쉬) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-15gb-coupang-cash",
     "adAngle": "price"
   },
@@ -8335,11 +8335,11 @@
       "ntelecom-k-100min-15gb-coupang-cash"
     ],
     "path": "/lp/k/100min-15gb-coupang-cash/price/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(쿠팡캐쉬) 월요금 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(쿠팡캐쉬) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-100min-15gb-coupang-cash",
     "adAngle": "price"
   },
@@ -8367,11 +8367,11 @@
       "ntelecom-k-300min-15gb-coupang-cash"
     ],
     "path": "/lp/k/300min-15gb-coupang-cash/price/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(쿠팡캐쉬) 월요금 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(쿠팡캐쉬) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-300min-15gb-coupang-cash",
     "adAngle": "price"
   },
@@ -8399,11 +8399,11 @@
       "ntelecom-k-11gb-daily2gb-coupang-cash"
     ],
     "path": "/lp/k/11gb-daily2gb-coupang-cash/price/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(쿠팡캐쉬) 월요금 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(쿠팡캐쉬) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-11gb-daily2gb-coupang-cash",
     "adAngle": "price"
   },
@@ -8430,11 +8430,11 @@
       "ntelecom-k-100gb-coupang-cash"
     ],
     "path": "/lp/k/100gb-coupang-cash/price/",
-    "keyword": "앤텔레콤 K망 100GB+(쿠팡캐쉬) 월요금 중심",
+    "keyword": "앤텔레콤 K망 100GB+(쿠팡캐쉬) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-100gb-coupang-cash",
     "adAngle": "price"
   },
@@ -8463,11 +8463,11 @@
       "ntelecom-k-7gb-naverpay"
     ],
     "path": "/lp/k/7gb-naverpay/price/",
-    "keyword": "앤텔레콤 K망 7GB+(네이버페이) 월요금 중심",
+    "keyword": "앤텔레콤 K망 7GB+(네이버페이) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-7gb-naverpay",
     "adAngle": "price"
   },
@@ -8496,11 +8496,11 @@
       "ntelecom-k-10gb-naverpay"
     ],
     "path": "/lp/k/10gb-naverpay/price/",
-    "keyword": "앤텔레콤 K망 10GB+(네이버페이) 월요금 중심",
+    "keyword": "앤텔레콤 K망 10GB+(네이버페이) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-10gb-naverpay",
     "adAngle": "price"
   },
@@ -8529,11 +8529,11 @@
       "ntelecom-k-15gb-naverpay"
     ],
     "path": "/lp/k/15gb-naverpay/price/",
-    "keyword": "앤텔레콤 K망 15GB+(네이버페이) 월요금 중심",
+    "keyword": "앤텔레콤 K망 15GB+(네이버페이) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-15gb-naverpay",
     "adAngle": "price"
   },
@@ -8561,11 +8561,11 @@
       "ntelecom-k-100min-15gb-naverpay"
     ],
     "path": "/lp/k/100min-15gb-naverpay/price/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(네이버페이) 월요금 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(네이버페이) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-100min-15gb-naverpay",
     "adAngle": "price"
   },
@@ -8593,11 +8593,11 @@
       "ntelecom-k-300min-15gb-naverpay"
     ],
     "path": "/lp/k/300min-15gb-naverpay/price/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(네이버페이) 월요금 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(네이버페이) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-300min-15gb-naverpay",
     "adAngle": "price"
   },
@@ -8625,11 +8625,11 @@
       "ntelecom-k-11gb-daily2gb-naverpay"
     ],
     "path": "/lp/k/11gb-daily2gb-naverpay/price/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(네이버페이) 월요금 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(네이버페이) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-11gb-daily2gb-naverpay",
     "adAngle": "price"
   },
@@ -8656,11 +8656,11 @@
       "ntelecom-k-100gb-naverpay"
     ],
     "path": "/lp/k/100gb-naverpay/price/",
-    "keyword": "앤텔레콤 K망 100GB+(네이버페이) 월요금 중심",
+    "keyword": "앤텔레콤 K망 100GB+(네이버페이) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-100gb-naverpay",
     "adAngle": "price"
   },
@@ -8689,11 +8689,11 @@
       "ntelecom-k-7gb-daiso"
     ],
     "path": "/lp/k/7gb-daiso/price/",
-    "keyword": "앤텔레콤 K망 7GB+(다이소) 월요금 중심",
+    "keyword": "앤텔레콤 K망 7GB+(다이소) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-7gb-daiso",
     "adAngle": "price"
   },
@@ -8722,11 +8722,11 @@
       "ntelecom-k-10gb-daiso"
     ],
     "path": "/lp/k/10gb-daiso/price/",
-    "keyword": "앤텔레콤 K망 10GB+(다이소) 월요금 중심",
+    "keyword": "앤텔레콤 K망 10GB+(다이소) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-10gb-daiso",
     "adAngle": "price"
   },
@@ -8755,11 +8755,11 @@
       "ntelecom-k-15gb-daiso"
     ],
     "path": "/lp/k/15gb-daiso/price/",
-    "keyword": "앤텔레콤 K망 15GB+(다이소) 월요금 중심",
+    "keyword": "앤텔레콤 K망 15GB+(다이소) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-15gb-daiso",
     "adAngle": "price"
   },
@@ -8787,11 +8787,11 @@
       "ntelecom-k-100min-15gb-daiso"
     ],
     "path": "/lp/k/100min-15gb-daiso/price/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(다이소) 월요금 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(다이소) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-100min-15gb-daiso",
     "adAngle": "price"
   },
@@ -8819,11 +8819,11 @@
       "ntelecom-k-300min-15gb-daiso"
     ],
     "path": "/lp/k/300min-15gb-daiso/price/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(다이소) 월요금 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(다이소) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-300min-15gb-daiso",
     "adAngle": "price"
   },
@@ -8851,11 +8851,11 @@
       "ntelecom-k-11gb-daily2gb-daiso"
     ],
     "path": "/lp/k/11gb-daily2gb-daiso/price/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(다이소) 월요금 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(다이소) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-11gb-daily2gb-daiso",
     "adAngle": "price"
   },
@@ -8882,11 +8882,11 @@
       "ntelecom-k-100gb-daiso"
     ],
     "path": "/lp/k/100gb-daiso/price/",
-    "keyword": "앤텔레콤 K망 100GB+(다이소) 월요금 중심",
+    "keyword": "앤텔레콤 K망 100GB+(다이소) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-100gb-daiso",
     "adAngle": "price"
   },
@@ -8916,11 +8916,11 @@
       "ntelecom-k-7gb-millie"
     ],
     "path": "/lp/k/7gb-millie/price/",
-    "keyword": "앤텔레콤 K망 7GB+(밀리의서재) 월요금 중심",
+    "keyword": "앤텔레콤 K망 7GB+(밀리의서재) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-7gb-millie",
     "adAngle": "price"
   },
@@ -8949,11 +8949,11 @@
       "ntelecom-k-10gb-millie"
     ],
     "path": "/lp/k/10gb-millie/price/",
-    "keyword": "앤텔레콤 K망 10GB+(밀리의서재) 월요금 중심",
+    "keyword": "앤텔레콤 K망 10GB+(밀리의서재) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-10gb-millie",
     "adAngle": "price"
   },
@@ -8982,11 +8982,11 @@
       "ntelecom-k-15gb-millie"
     ],
     "path": "/lp/k/15gb-millie/price/",
-    "keyword": "앤텔레콤 K망 15GB+(밀리의서재) 월요금 중심",
+    "keyword": "앤텔레콤 K망 15GB+(밀리의서재) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-15gb-millie",
     "adAngle": "price"
   },
@@ -9015,11 +9015,11 @@
       "ntelecom-k-100min-15gb-millie"
     ],
     "path": "/lp/k/100min-15gb-millie/price/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(밀리의서재) 월요금 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(밀리의서재) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-100min-15gb-millie",
     "adAngle": "price"
   },
@@ -9047,11 +9047,11 @@
       "ntelecom-k-300min-15gb-millie"
     ],
     "path": "/lp/k/300min-15gb-millie/price/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(밀리의서재) 월요금 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(밀리의서재) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-300min-15gb-millie",
     "adAngle": "price"
   },
@@ -9079,11 +9079,11 @@
       "ntelecom-k-11gb-daily2gb-millie"
     ],
     "path": "/lp/k/11gb-daily2gb-millie/price/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(밀리의서재) 월요금 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(밀리의서재) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-11gb-daily2gb-millie",
     "adAngle": "price"
   },
@@ -9110,11 +9110,11 @@
       "ntelecom-k-100gb-millie"
     ],
     "path": "/lp/k/100gb-millie/price/",
-    "keyword": "앤텔레콤 K망 100GB+(밀리의서재) 월요금 중심",
+    "keyword": "앤텔레콤 K망 100GB+(밀리의서재) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-100gb-millie",
     "adAngle": "price"
   },
@@ -9143,11 +9143,11 @@
       "ntelecom-k-7gb-oliveyoung"
     ],
     "path": "/lp/k/7gb-oliveyoung/price/",
-    "keyword": "앤텔레콤 K망 7GB+(올리브영) 월요금 중심",
+    "keyword": "앤텔레콤 K망 7GB+(올리브영) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-7gb-oliveyoung",
     "adAngle": "price"
   },
@@ -9176,11 +9176,11 @@
       "ntelecom-k-10gb-oliveyoung"
     ],
     "path": "/lp/k/10gb-oliveyoung/price/",
-    "keyword": "앤텔레콤 K망 10GB+(올리브영) 월요금 중심",
+    "keyword": "앤텔레콤 K망 10GB+(올리브영) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-10gb-oliveyoung",
     "adAngle": "price"
   },
@@ -9209,11 +9209,11 @@
       "ntelecom-k-15gb-oliveyoung"
     ],
     "path": "/lp/k/15gb-oliveyoung/price/",
-    "keyword": "앤텔레콤 K망 15GB+(올리브영) 월요금 중심",
+    "keyword": "앤텔레콤 K망 15GB+(올리브영) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-15gb-oliveyoung",
     "adAngle": "price"
   },
@@ -9241,11 +9241,11 @@
       "ntelecom-k-100min-15gb-oliveyoung"
     ],
     "path": "/lp/k/100min-15gb-oliveyoung/price/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(올리브영) 월요금 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(올리브영) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-100min-15gb-oliveyoung",
     "adAngle": "price"
   },
@@ -9273,11 +9273,11 @@
       "ntelecom-k-300min-15gb-oliveyoung"
     ],
     "path": "/lp/k/300min-15gb-oliveyoung/price/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(올리브영) 월요금 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(올리브영) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-300min-15gb-oliveyoung",
     "adAngle": "price"
   },
@@ -9305,11 +9305,11 @@
       "ntelecom-k-11gb-daily2gb-oliveyoung"
     ],
     "path": "/lp/k/11gb-daily2gb-oliveyoung/price/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(올리브영) 월요금 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(올리브영) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-11gb-daily2gb-oliveyoung",
     "adAngle": "price"
   },
@@ -9336,11 +9336,11 @@
       "ntelecom-k-100gb-oliveyoung"
     ],
     "path": "/lp/k/100gb-oliveyoung/price/",
-    "keyword": "앤텔레콤 K망 100GB+(올리브영) 월요금 중심",
+    "keyword": "앤텔레콤 K망 100GB+(올리브영) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-100gb-oliveyoung",
     "adAngle": "price"
   },
@@ -9370,11 +9370,11 @@
       "ntelecom-k-7gb-cu"
     ],
     "path": "/lp/k/7gb-cu/price/",
-    "keyword": "앤텔레콤 K망 7GB+(CU) 월요금 중심",
+    "keyword": "앤텔레콤 K망 7GB+(CU) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-7gb-cu",
     "adAngle": "price"
   },
@@ -9403,11 +9403,11 @@
       "ntelecom-k-10gb-cu"
     ],
     "path": "/lp/k/10gb-cu/price/",
-    "keyword": "앤텔레콤 K망 10GB+(CU) 월요금 중심",
+    "keyword": "앤텔레콤 K망 10GB+(CU) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-10gb-cu",
     "adAngle": "price"
   },
@@ -9436,11 +9436,11 @@
       "ntelecom-k-15gb-cu"
     ],
     "path": "/lp/k/15gb-cu/price/",
-    "keyword": "앤텔레콤 K망 15GB+(CU) 월요금 중심",
+    "keyword": "앤텔레콤 K망 15GB+(CU) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-15gb-cu",
     "adAngle": "price"
   },
@@ -9469,11 +9469,11 @@
       "ntelecom-k-100min-15gb-cu"
     ],
     "path": "/lp/k/100min-15gb-cu/price/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(CU) 월요금 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(CU) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-100min-15gb-cu",
     "adAngle": "price"
   },
@@ -9501,11 +9501,11 @@
       "ntelecom-k-300min-15gb-cu"
     ],
     "path": "/lp/k/300min-15gb-cu/price/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(CU) 월요금 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(CU) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-300min-15gb-cu",
     "adAngle": "price"
   },
@@ -9533,11 +9533,11 @@
       "ntelecom-k-11gb-daily2gb-cu"
     ],
     "path": "/lp/k/11gb-daily2gb-cu/price/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(CU) 월요금 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(CU) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-11gb-daily2gb-cu",
     "adAngle": "price"
   },
@@ -9564,11 +9564,11 @@
       "ntelecom-k-100gb-cu"
     ],
     "path": "/lp/k/100gb-cu/price/",
-    "keyword": "앤텔레콤 K망 100GB+(CU) 월요금 중심",
+    "keyword": "앤텔레콤 K망 100GB+(CU) 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-k-100gb-cu",
     "adAngle": "price"
   },
@@ -9594,11 +9594,11 @@
       "ntelecom-l-100min-15gb"
     ],
     "path": "/lp/l/100min-15gb/price/",
-    "keyword": "L망후불 100분 15GB+ 월요금 중심",
+    "keyword": "L망후불 100분 15GB+ 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-l-100min-15gb",
     "adAngle": "price"
   },
@@ -9623,11 +9623,11 @@
       "ntelecom-l-300min-15gb"
     ],
     "path": "/lp/l/300min-15gb/price/",
-    "keyword": "L망후불 300분 15GB+ 월요금 중심",
+    "keyword": "L망후불 300분 15GB+ 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-l-300min-15gb",
     "adAngle": "price"
   },
@@ -9652,11 +9652,11 @@
       "ntelecom-l-11gb-daily2gb"
     ],
     "path": "/lp/l/11gb-daily2gb/price/",
-    "keyword": "L망후불 11GB+일2GB 월요금 중심",
+    "keyword": "L망후불 11GB+일2GB 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-l-11gb-daily2gb",
     "adAngle": "price"
   },
@@ -9680,11 +9680,11 @@
       "ntelecom-l-daily5gb"
     ],
     "path": "/lp/l/daily5gb/price/",
-    "keyword": "L망후불 매일 5GB+ 월요금 중심",
+    "keyword": "L망후불 매일 5GB+ 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-l-daily5gb",
     "adAngle": "price"
   },
@@ -9711,11 +9711,11 @@
       "ntelecom-l-7gb"
     ],
     "path": "/lp/l/7gb/price/",
-    "keyword": "L망후불 7GB+ 월요금 중심",
+    "keyword": "L망후불 7GB+ 월 요금",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "월요금 중심",
+    "angle": "월 요금부터 확인하세요",
     "planId": "ntelecom-l-7gb",
     "adAngle": "price"
   },
@@ -9744,11 +9744,11 @@
       "ntelecom-k-7gb-coupang-cash"
     ],
     "path": "/lp/k/7gb-coupang-cash/number-transfer/",
-    "keyword": "앤텔레콤 K망 7GB+(쿠팡캐쉬) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 7GB+(쿠팡캐쉬) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-7gb-coupang-cash",
     "adAngle": "number-transfer"
   },
@@ -9777,11 +9777,11 @@
       "ntelecom-k-10gb-coupang-cash"
     ],
     "path": "/lp/k/10gb-coupang-cash/number-transfer/",
-    "keyword": "앤텔레콤 K망 10GB+(쿠팡캐쉬) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 10GB+(쿠팡캐쉬) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-10gb-coupang-cash",
     "adAngle": "number-transfer"
   },
@@ -9810,11 +9810,11 @@
       "ntelecom-k-15gb-coupang-cash"
     ],
     "path": "/lp/k/15gb-coupang-cash/number-transfer/",
-    "keyword": "앤텔레콤 K망 15GB+(쿠팡캐쉬) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 15GB+(쿠팡캐쉬) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-15gb-coupang-cash",
     "adAngle": "number-transfer"
   },
@@ -9842,11 +9842,11 @@
       "ntelecom-k-100min-15gb-coupang-cash"
     ],
     "path": "/lp/k/100min-15gb-coupang-cash/number-transfer/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(쿠팡캐쉬) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(쿠팡캐쉬) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-100min-15gb-coupang-cash",
     "adAngle": "number-transfer"
   },
@@ -9874,11 +9874,11 @@
       "ntelecom-k-300min-15gb-coupang-cash"
     ],
     "path": "/lp/k/300min-15gb-coupang-cash/number-transfer/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(쿠팡캐쉬) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(쿠팡캐쉬) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-300min-15gb-coupang-cash",
     "adAngle": "number-transfer"
   },
@@ -9906,11 +9906,11 @@
       "ntelecom-k-11gb-daily2gb-coupang-cash"
     ],
     "path": "/lp/k/11gb-daily2gb-coupang-cash/number-transfer/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(쿠팡캐쉬) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(쿠팡캐쉬) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-11gb-daily2gb-coupang-cash",
     "adAngle": "number-transfer"
   },
@@ -9937,11 +9937,11 @@
       "ntelecom-k-100gb-coupang-cash"
     ],
     "path": "/lp/k/100gb-coupang-cash/number-transfer/",
-    "keyword": "앤텔레콤 K망 100GB+(쿠팡캐쉬) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 100GB+(쿠팡캐쉬) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-100gb-coupang-cash",
     "adAngle": "number-transfer"
   },
@@ -9970,11 +9970,11 @@
       "ntelecom-k-7gb-naverpay"
     ],
     "path": "/lp/k/7gb-naverpay/number-transfer/",
-    "keyword": "앤텔레콤 K망 7GB+(네이버페이) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 7GB+(네이버페이) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-7gb-naverpay",
     "adAngle": "number-transfer"
   },
@@ -10003,11 +10003,11 @@
       "ntelecom-k-10gb-naverpay"
     ],
     "path": "/lp/k/10gb-naverpay/number-transfer/",
-    "keyword": "앤텔레콤 K망 10GB+(네이버페이) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 10GB+(네이버페이) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-10gb-naverpay",
     "adAngle": "number-transfer"
   },
@@ -10036,11 +10036,11 @@
       "ntelecom-k-15gb-naverpay"
     ],
     "path": "/lp/k/15gb-naverpay/number-transfer/",
-    "keyword": "앤텔레콤 K망 15GB+(네이버페이) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 15GB+(네이버페이) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-15gb-naverpay",
     "adAngle": "number-transfer"
   },
@@ -10068,11 +10068,11 @@
       "ntelecom-k-100min-15gb-naverpay"
     ],
     "path": "/lp/k/100min-15gb-naverpay/number-transfer/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(네이버페이) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(네이버페이) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-100min-15gb-naverpay",
     "adAngle": "number-transfer"
   },
@@ -10100,11 +10100,11 @@
       "ntelecom-k-300min-15gb-naverpay"
     ],
     "path": "/lp/k/300min-15gb-naverpay/number-transfer/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(네이버페이) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(네이버페이) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-300min-15gb-naverpay",
     "adAngle": "number-transfer"
   },
@@ -10132,11 +10132,11 @@
       "ntelecom-k-11gb-daily2gb-naverpay"
     ],
     "path": "/lp/k/11gb-daily2gb-naverpay/number-transfer/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(네이버페이) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(네이버페이) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-11gb-daily2gb-naverpay",
     "adAngle": "number-transfer"
   },
@@ -10163,11 +10163,11 @@
       "ntelecom-k-100gb-naverpay"
     ],
     "path": "/lp/k/100gb-naverpay/number-transfer/",
-    "keyword": "앤텔레콤 K망 100GB+(네이버페이) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 100GB+(네이버페이) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-100gb-naverpay",
     "adAngle": "number-transfer"
   },
@@ -10196,11 +10196,11 @@
       "ntelecom-k-7gb-daiso"
     ],
     "path": "/lp/k/7gb-daiso/number-transfer/",
-    "keyword": "앤텔레콤 K망 7GB+(다이소) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 7GB+(다이소) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-7gb-daiso",
     "adAngle": "number-transfer"
   },
@@ -10229,11 +10229,11 @@
       "ntelecom-k-10gb-daiso"
     ],
     "path": "/lp/k/10gb-daiso/number-transfer/",
-    "keyword": "앤텔레콤 K망 10GB+(다이소) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 10GB+(다이소) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-10gb-daiso",
     "adAngle": "number-transfer"
   },
@@ -10262,11 +10262,11 @@
       "ntelecom-k-15gb-daiso"
     ],
     "path": "/lp/k/15gb-daiso/number-transfer/",
-    "keyword": "앤텔레콤 K망 15GB+(다이소) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 15GB+(다이소) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-15gb-daiso",
     "adAngle": "number-transfer"
   },
@@ -10294,11 +10294,11 @@
       "ntelecom-k-100min-15gb-daiso"
     ],
     "path": "/lp/k/100min-15gb-daiso/number-transfer/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(다이소) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(다이소) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-100min-15gb-daiso",
     "adAngle": "number-transfer"
   },
@@ -10326,11 +10326,11 @@
       "ntelecom-k-300min-15gb-daiso"
     ],
     "path": "/lp/k/300min-15gb-daiso/number-transfer/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(다이소) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(다이소) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-300min-15gb-daiso",
     "adAngle": "number-transfer"
   },
@@ -10358,11 +10358,11 @@
       "ntelecom-k-11gb-daily2gb-daiso"
     ],
     "path": "/lp/k/11gb-daily2gb-daiso/number-transfer/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(다이소) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(다이소) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-11gb-daily2gb-daiso",
     "adAngle": "number-transfer"
   },
@@ -10389,11 +10389,11 @@
       "ntelecom-k-100gb-daiso"
     ],
     "path": "/lp/k/100gb-daiso/number-transfer/",
-    "keyword": "앤텔레콤 K망 100GB+(다이소) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 100GB+(다이소) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-100gb-daiso",
     "adAngle": "number-transfer"
   },
@@ -10423,11 +10423,11 @@
       "ntelecom-k-7gb-millie"
     ],
     "path": "/lp/k/7gb-millie/number-transfer/",
-    "keyword": "앤텔레콤 K망 7GB+(밀리의서재) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 7GB+(밀리의서재) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-7gb-millie",
     "adAngle": "number-transfer"
   },
@@ -10456,11 +10456,11 @@
       "ntelecom-k-10gb-millie"
     ],
     "path": "/lp/k/10gb-millie/number-transfer/",
-    "keyword": "앤텔레콤 K망 10GB+(밀리의서재) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 10GB+(밀리의서재) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-10gb-millie",
     "adAngle": "number-transfer"
   },
@@ -10489,11 +10489,11 @@
       "ntelecom-k-15gb-millie"
     ],
     "path": "/lp/k/15gb-millie/number-transfer/",
-    "keyword": "앤텔레콤 K망 15GB+(밀리의서재) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 15GB+(밀리의서재) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-15gb-millie",
     "adAngle": "number-transfer"
   },
@@ -10522,11 +10522,11 @@
       "ntelecom-k-100min-15gb-millie"
     ],
     "path": "/lp/k/100min-15gb-millie/number-transfer/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(밀리의서재) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(밀리의서재) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-100min-15gb-millie",
     "adAngle": "number-transfer"
   },
@@ -10554,11 +10554,11 @@
       "ntelecom-k-300min-15gb-millie"
     ],
     "path": "/lp/k/300min-15gb-millie/number-transfer/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(밀리의서재) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(밀리의서재) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-300min-15gb-millie",
     "adAngle": "number-transfer"
   },
@@ -10586,11 +10586,11 @@
       "ntelecom-k-11gb-daily2gb-millie"
     ],
     "path": "/lp/k/11gb-daily2gb-millie/number-transfer/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(밀리의서재) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(밀리의서재) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-11gb-daily2gb-millie",
     "adAngle": "number-transfer"
   },
@@ -10617,11 +10617,11 @@
       "ntelecom-k-100gb-millie"
     ],
     "path": "/lp/k/100gb-millie/number-transfer/",
-    "keyword": "앤텔레콤 K망 100GB+(밀리의서재) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 100GB+(밀리의서재) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-100gb-millie",
     "adAngle": "number-transfer"
   },
@@ -10650,11 +10650,11 @@
       "ntelecom-k-7gb-oliveyoung"
     ],
     "path": "/lp/k/7gb-oliveyoung/number-transfer/",
-    "keyword": "앤텔레콤 K망 7GB+(올리브영) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 7GB+(올리브영) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-7gb-oliveyoung",
     "adAngle": "number-transfer"
   },
@@ -10683,11 +10683,11 @@
       "ntelecom-k-10gb-oliveyoung"
     ],
     "path": "/lp/k/10gb-oliveyoung/number-transfer/",
-    "keyword": "앤텔레콤 K망 10GB+(올리브영) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 10GB+(올리브영) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-10gb-oliveyoung",
     "adAngle": "number-transfer"
   },
@@ -10716,11 +10716,11 @@
       "ntelecom-k-15gb-oliveyoung"
     ],
     "path": "/lp/k/15gb-oliveyoung/number-transfer/",
-    "keyword": "앤텔레콤 K망 15GB+(올리브영) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 15GB+(올리브영) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-15gb-oliveyoung",
     "adAngle": "number-transfer"
   },
@@ -10748,11 +10748,11 @@
       "ntelecom-k-100min-15gb-oliveyoung"
     ],
     "path": "/lp/k/100min-15gb-oliveyoung/number-transfer/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(올리브영) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(올리브영) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-100min-15gb-oliveyoung",
     "adAngle": "number-transfer"
   },
@@ -10780,11 +10780,11 @@
       "ntelecom-k-300min-15gb-oliveyoung"
     ],
     "path": "/lp/k/300min-15gb-oliveyoung/number-transfer/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(올리브영) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(올리브영) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-300min-15gb-oliveyoung",
     "adAngle": "number-transfer"
   },
@@ -10812,11 +10812,11 @@
       "ntelecom-k-11gb-daily2gb-oliveyoung"
     ],
     "path": "/lp/k/11gb-daily2gb-oliveyoung/number-transfer/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(올리브영) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(올리브영) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-11gb-daily2gb-oliveyoung",
     "adAngle": "number-transfer"
   },
@@ -10843,11 +10843,11 @@
       "ntelecom-k-100gb-oliveyoung"
     ],
     "path": "/lp/k/100gb-oliveyoung/number-transfer/",
-    "keyword": "앤텔레콤 K망 100GB+(올리브영) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 100GB+(올리브영) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-100gb-oliveyoung",
     "adAngle": "number-transfer"
   },
@@ -10877,11 +10877,11 @@
       "ntelecom-k-7gb-cu"
     ],
     "path": "/lp/k/7gb-cu/number-transfer/",
-    "keyword": "앤텔레콤 K망 7GB+(CU) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 7GB+(CU) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-7gb-cu",
     "adAngle": "number-transfer"
   },
@@ -10910,11 +10910,11 @@
       "ntelecom-k-10gb-cu"
     ],
     "path": "/lp/k/10gb-cu/number-transfer/",
-    "keyword": "앤텔레콤 K망 10GB+(CU) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 10GB+(CU) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-10gb-cu",
     "adAngle": "number-transfer"
   },
@@ -10943,11 +10943,11 @@
       "ntelecom-k-15gb-cu"
     ],
     "path": "/lp/k/15gb-cu/number-transfer/",
-    "keyword": "앤텔레콤 K망 15GB+(CU) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 15GB+(CU) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-15gb-cu",
     "adAngle": "number-transfer"
   },
@@ -10976,11 +10976,11 @@
       "ntelecom-k-100min-15gb-cu"
     ],
     "path": "/lp/k/100min-15gb-cu/number-transfer/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(CU) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(CU) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-100min-15gb-cu",
     "adAngle": "number-transfer"
   },
@@ -11008,11 +11008,11 @@
       "ntelecom-k-300min-15gb-cu"
     ],
     "path": "/lp/k/300min-15gb-cu/number-transfer/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(CU) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(CU) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-300min-15gb-cu",
     "adAngle": "number-transfer"
   },
@@ -11040,11 +11040,11 @@
       "ntelecom-k-11gb-daily2gb-cu"
     ],
     "path": "/lp/k/11gb-daily2gb-cu/number-transfer/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(CU) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(CU) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-11gb-daily2gb-cu",
     "adAngle": "number-transfer"
   },
@@ -11071,11 +11071,11 @@
       "ntelecom-k-100gb-cu"
     ],
     "path": "/lp/k/100gb-cu/number-transfer/",
-    "keyword": "앤텔레콤 K망 100GB+(CU) 번호이동 중심",
+    "keyword": "앤텔레콤 K망 100GB+(CU) 번호이동",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "번호이동 중심",
+    "angle": "번호 그대로 옮겨 쓰세요",
     "planId": "ntelecom-k-100gb-cu",
     "adAngle": "number-transfer"
   },
@@ -11104,11 +11104,11 @@
       "ntelecom-k-7gb-coupang-cash"
     ],
     "path": "/lp/k/7gb-coupang-cash/new-number/",
-    "keyword": "앤텔레콤 K망 7GB+(쿠팡캐쉬) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 7GB+(쿠팡캐쉬) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-7gb-coupang-cash",
     "adAngle": "new-number"
   },
@@ -11137,11 +11137,11 @@
       "ntelecom-k-10gb-coupang-cash"
     ],
     "path": "/lp/k/10gb-coupang-cash/new-number/",
-    "keyword": "앤텔레콤 K망 10GB+(쿠팡캐쉬) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 10GB+(쿠팡캐쉬) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-10gb-coupang-cash",
     "adAngle": "new-number"
   },
@@ -11170,11 +11170,11 @@
       "ntelecom-k-15gb-coupang-cash"
     ],
     "path": "/lp/k/15gb-coupang-cash/new-number/",
-    "keyword": "앤텔레콤 K망 15GB+(쿠팡캐쉬) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 15GB+(쿠팡캐쉬) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-15gb-coupang-cash",
     "adAngle": "new-number"
   },
@@ -11202,11 +11202,11 @@
       "ntelecom-k-100min-15gb-coupang-cash"
     ],
     "path": "/lp/k/100min-15gb-coupang-cash/new-number/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(쿠팡캐쉬) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(쿠팡캐쉬) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-100min-15gb-coupang-cash",
     "adAngle": "new-number"
   },
@@ -11234,11 +11234,11 @@
       "ntelecom-k-300min-15gb-coupang-cash"
     ],
     "path": "/lp/k/300min-15gb-coupang-cash/new-number/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(쿠팡캐쉬) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(쿠팡캐쉬) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-300min-15gb-coupang-cash",
     "adAngle": "new-number"
   },
@@ -11266,11 +11266,11 @@
       "ntelecom-k-11gb-daily2gb-coupang-cash"
     ],
     "path": "/lp/k/11gb-daily2gb-coupang-cash/new-number/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(쿠팡캐쉬) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(쿠팡캐쉬) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-11gb-daily2gb-coupang-cash",
     "adAngle": "new-number"
   },
@@ -11297,11 +11297,11 @@
       "ntelecom-k-100gb-coupang-cash"
     ],
     "path": "/lp/k/100gb-coupang-cash/new-number/",
-    "keyword": "앤텔레콤 K망 100GB+(쿠팡캐쉬) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 100GB+(쿠팡캐쉬) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-100gb-coupang-cash",
     "adAngle": "new-number"
   },
@@ -11330,11 +11330,11 @@
       "ntelecom-k-7gb-naverpay"
     ],
     "path": "/lp/k/7gb-naverpay/new-number/",
-    "keyword": "앤텔레콤 K망 7GB+(네이버페이) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 7GB+(네이버페이) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-7gb-naverpay",
     "adAngle": "new-number"
   },
@@ -11363,11 +11363,11 @@
       "ntelecom-k-10gb-naverpay"
     ],
     "path": "/lp/k/10gb-naverpay/new-number/",
-    "keyword": "앤텔레콤 K망 10GB+(네이버페이) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 10GB+(네이버페이) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-10gb-naverpay",
     "adAngle": "new-number"
   },
@@ -11396,11 +11396,11 @@
       "ntelecom-k-15gb-naverpay"
     ],
     "path": "/lp/k/15gb-naverpay/new-number/",
-    "keyword": "앤텔레콤 K망 15GB+(네이버페이) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 15GB+(네이버페이) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-15gb-naverpay",
     "adAngle": "new-number"
   },
@@ -11428,11 +11428,11 @@
       "ntelecom-k-100min-15gb-naverpay"
     ],
     "path": "/lp/k/100min-15gb-naverpay/new-number/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(네이버페이) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(네이버페이) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-100min-15gb-naverpay",
     "adAngle": "new-number"
   },
@@ -11460,11 +11460,11 @@
       "ntelecom-k-300min-15gb-naverpay"
     ],
     "path": "/lp/k/300min-15gb-naverpay/new-number/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(네이버페이) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(네이버페이) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-300min-15gb-naverpay",
     "adAngle": "new-number"
   },
@@ -11492,11 +11492,11 @@
       "ntelecom-k-11gb-daily2gb-naverpay"
     ],
     "path": "/lp/k/11gb-daily2gb-naverpay/new-number/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(네이버페이) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(네이버페이) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-11gb-daily2gb-naverpay",
     "adAngle": "new-number"
   },
@@ -11523,11 +11523,11 @@
       "ntelecom-k-100gb-naverpay"
     ],
     "path": "/lp/k/100gb-naverpay/new-number/",
-    "keyword": "앤텔레콤 K망 100GB+(네이버페이) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 100GB+(네이버페이) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-100gb-naverpay",
     "adAngle": "new-number"
   },
@@ -11556,11 +11556,11 @@
       "ntelecom-k-7gb-daiso"
     ],
     "path": "/lp/k/7gb-daiso/new-number/",
-    "keyword": "앤텔레콤 K망 7GB+(다이소) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 7GB+(다이소) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-7gb-daiso",
     "adAngle": "new-number"
   },
@@ -11589,11 +11589,11 @@
       "ntelecom-k-10gb-daiso"
     ],
     "path": "/lp/k/10gb-daiso/new-number/",
-    "keyword": "앤텔레콤 K망 10GB+(다이소) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 10GB+(다이소) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-10gb-daiso",
     "adAngle": "new-number"
   },
@@ -11622,11 +11622,11 @@
       "ntelecom-k-15gb-daiso"
     ],
     "path": "/lp/k/15gb-daiso/new-number/",
-    "keyword": "앤텔레콤 K망 15GB+(다이소) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 15GB+(다이소) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-15gb-daiso",
     "adAngle": "new-number"
   },
@@ -11654,11 +11654,11 @@
       "ntelecom-k-100min-15gb-daiso"
     ],
     "path": "/lp/k/100min-15gb-daiso/new-number/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(다이소) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(다이소) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-100min-15gb-daiso",
     "adAngle": "new-number"
   },
@@ -11686,11 +11686,11 @@
       "ntelecom-k-300min-15gb-daiso"
     ],
     "path": "/lp/k/300min-15gb-daiso/new-number/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(다이소) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(다이소) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-300min-15gb-daiso",
     "adAngle": "new-number"
   },
@@ -11718,11 +11718,11 @@
       "ntelecom-k-11gb-daily2gb-daiso"
     ],
     "path": "/lp/k/11gb-daily2gb-daiso/new-number/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(다이소) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(다이소) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-11gb-daily2gb-daiso",
     "adAngle": "new-number"
   },
@@ -11749,11 +11749,11 @@
       "ntelecom-k-100gb-daiso"
     ],
     "path": "/lp/k/100gb-daiso/new-number/",
-    "keyword": "앤텔레콤 K망 100GB+(다이소) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 100GB+(다이소) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-100gb-daiso",
     "adAngle": "new-number"
   },
@@ -11783,11 +11783,11 @@
       "ntelecom-k-7gb-millie"
     ],
     "path": "/lp/k/7gb-millie/new-number/",
-    "keyword": "앤텔레콤 K망 7GB+(밀리의서재) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 7GB+(밀리의서재) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-7gb-millie",
     "adAngle": "new-number"
   },
@@ -11816,11 +11816,11 @@
       "ntelecom-k-10gb-millie"
     ],
     "path": "/lp/k/10gb-millie/new-number/",
-    "keyword": "앤텔레콤 K망 10GB+(밀리의서재) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 10GB+(밀리의서재) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-10gb-millie",
     "adAngle": "new-number"
   },
@@ -11849,11 +11849,11 @@
       "ntelecom-k-15gb-millie"
     ],
     "path": "/lp/k/15gb-millie/new-number/",
-    "keyword": "앤텔레콤 K망 15GB+(밀리의서재) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 15GB+(밀리의서재) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-15gb-millie",
     "adAngle": "new-number"
   },
@@ -11882,11 +11882,11 @@
       "ntelecom-k-100min-15gb-millie"
     ],
     "path": "/lp/k/100min-15gb-millie/new-number/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(밀리의서재) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(밀리의서재) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-100min-15gb-millie",
     "adAngle": "new-number"
   },
@@ -11914,11 +11914,11 @@
       "ntelecom-k-300min-15gb-millie"
     ],
     "path": "/lp/k/300min-15gb-millie/new-number/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(밀리의서재) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(밀리의서재) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-300min-15gb-millie",
     "adAngle": "new-number"
   },
@@ -11946,11 +11946,11 @@
       "ntelecom-k-11gb-daily2gb-millie"
     ],
     "path": "/lp/k/11gb-daily2gb-millie/new-number/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(밀리의서재) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(밀리의서재) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-11gb-daily2gb-millie",
     "adAngle": "new-number"
   },
@@ -11977,11 +11977,11 @@
       "ntelecom-k-100gb-millie"
     ],
     "path": "/lp/k/100gb-millie/new-number/",
-    "keyword": "앤텔레콤 K망 100GB+(밀리의서재) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 100GB+(밀리의서재) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-100gb-millie",
     "adAngle": "new-number"
   },
@@ -12010,11 +12010,11 @@
       "ntelecom-k-7gb-oliveyoung"
     ],
     "path": "/lp/k/7gb-oliveyoung/new-number/",
-    "keyword": "앤텔레콤 K망 7GB+(올리브영) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 7GB+(올리브영) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-7gb-oliveyoung",
     "adAngle": "new-number"
   },
@@ -12043,11 +12043,11 @@
       "ntelecom-k-10gb-oliveyoung"
     ],
     "path": "/lp/k/10gb-oliveyoung/new-number/",
-    "keyword": "앤텔레콤 K망 10GB+(올리브영) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 10GB+(올리브영) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-10gb-oliveyoung",
     "adAngle": "new-number"
   },
@@ -12076,11 +12076,11 @@
       "ntelecom-k-15gb-oliveyoung"
     ],
     "path": "/lp/k/15gb-oliveyoung/new-number/",
-    "keyword": "앤텔레콤 K망 15GB+(올리브영) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 15GB+(올리브영) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-15gb-oliveyoung",
     "adAngle": "new-number"
   },
@@ -12108,11 +12108,11 @@
       "ntelecom-k-100min-15gb-oliveyoung"
     ],
     "path": "/lp/k/100min-15gb-oliveyoung/new-number/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(올리브영) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(올리브영) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-100min-15gb-oliveyoung",
     "adAngle": "new-number"
   },
@@ -12140,11 +12140,11 @@
       "ntelecom-k-300min-15gb-oliveyoung"
     ],
     "path": "/lp/k/300min-15gb-oliveyoung/new-number/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(올리브영) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(올리브영) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-300min-15gb-oliveyoung",
     "adAngle": "new-number"
   },
@@ -12172,11 +12172,11 @@
       "ntelecom-k-11gb-daily2gb-oliveyoung"
     ],
     "path": "/lp/k/11gb-daily2gb-oliveyoung/new-number/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(올리브영) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(올리브영) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-11gb-daily2gb-oliveyoung",
     "adAngle": "new-number"
   },
@@ -12203,11 +12203,11 @@
       "ntelecom-k-100gb-oliveyoung"
     ],
     "path": "/lp/k/100gb-oliveyoung/new-number/",
-    "keyword": "앤텔레콤 K망 100GB+(올리브영) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 100GB+(올리브영) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-100gb-oliveyoung",
     "adAngle": "new-number"
   },
@@ -12237,11 +12237,11 @@
       "ntelecom-k-7gb-cu"
     ],
     "path": "/lp/k/7gb-cu/new-number/",
-    "keyword": "앤텔레콤 K망 7GB+(CU) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 7GB+(CU) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-7gb-cu",
     "adAngle": "new-number"
   },
@@ -12270,11 +12270,11 @@
       "ntelecom-k-10gb-cu"
     ],
     "path": "/lp/k/10gb-cu/new-number/",
-    "keyword": "앤텔레콤 K망 10GB+(CU) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 10GB+(CU) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-10gb-cu",
     "adAngle": "new-number"
   },
@@ -12303,11 +12303,11 @@
       "ntelecom-k-15gb-cu"
     ],
     "path": "/lp/k/15gb-cu/new-number/",
-    "keyword": "앤텔레콤 K망 15GB+(CU) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 15GB+(CU) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-15gb-cu",
     "adAngle": "new-number"
   },
@@ -12336,11 +12336,11 @@
       "ntelecom-k-100min-15gb-cu"
     ],
     "path": "/lp/k/100min-15gb-cu/new-number/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(CU) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(CU) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-100min-15gb-cu",
     "adAngle": "new-number"
   },
@@ -12368,11 +12368,11 @@
       "ntelecom-k-300min-15gb-cu"
     ],
     "path": "/lp/k/300min-15gb-cu/new-number/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(CU) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(CU) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-300min-15gb-cu",
     "adAngle": "new-number"
   },
@@ -12400,11 +12400,11 @@
       "ntelecom-k-11gb-daily2gb-cu"
     ],
     "path": "/lp/k/11gb-daily2gb-cu/new-number/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(CU) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(CU) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-11gb-daily2gb-cu",
     "adAngle": "new-number"
   },
@@ -12431,11 +12431,11 @@
       "ntelecom-k-100gb-cu"
     ],
     "path": "/lp/k/100gb-cu/new-number/",
-    "keyword": "앤텔레콤 K망 100GB+(CU) 신규가입 중심",
+    "keyword": "앤텔레콤 K망 100GB+(CU) 신규가입",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "신규가입 중심",
+    "angle": "새 번호로 가볍게 시작하세요",
     "planId": "ntelecom-k-100gb-cu",
     "adAngle": "new-number"
   },
@@ -12464,11 +12464,11 @@
       "ntelecom-k-7gb-coupang-cash"
     ],
     "path": "/lp/k/7gb-coupang-cash/benefit/",
-    "keyword": "앤텔레콤 K망 7GB+(쿠팡캐쉬) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 7GB+(쿠팡캐쉬) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-7gb-coupang-cash",
     "adAngle": "benefit"
   },
@@ -12497,11 +12497,11 @@
       "ntelecom-k-10gb-coupang-cash"
     ],
     "path": "/lp/k/10gb-coupang-cash/benefit/",
-    "keyword": "앤텔레콤 K망 10GB+(쿠팡캐쉬) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 10GB+(쿠팡캐쉬) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-10gb-coupang-cash",
     "adAngle": "benefit"
   },
@@ -12530,11 +12530,11 @@
       "ntelecom-k-15gb-coupang-cash"
     ],
     "path": "/lp/k/15gb-coupang-cash/benefit/",
-    "keyword": "앤텔레콤 K망 15GB+(쿠팡캐쉬) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 15GB+(쿠팡캐쉬) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-15gb-coupang-cash",
     "adAngle": "benefit"
   },
@@ -12562,11 +12562,11 @@
       "ntelecom-k-100min-15gb-coupang-cash"
     ],
     "path": "/lp/k/100min-15gb-coupang-cash/benefit/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(쿠팡캐쉬) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(쿠팡캐쉬) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-100min-15gb-coupang-cash",
     "adAngle": "benefit"
   },
@@ -12594,11 +12594,11 @@
       "ntelecom-k-300min-15gb-coupang-cash"
     ],
     "path": "/lp/k/300min-15gb-coupang-cash/benefit/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(쿠팡캐쉬) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(쿠팡캐쉬) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-300min-15gb-coupang-cash",
     "adAngle": "benefit"
   },
@@ -12626,11 +12626,11 @@
       "ntelecom-k-11gb-daily2gb-coupang-cash"
     ],
     "path": "/lp/k/11gb-daily2gb-coupang-cash/benefit/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(쿠팡캐쉬) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(쿠팡캐쉬) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-11gb-daily2gb-coupang-cash",
     "adAngle": "benefit"
   },
@@ -12657,11 +12657,11 @@
       "ntelecom-k-100gb-coupang-cash"
     ],
     "path": "/lp/k/100gb-coupang-cash/benefit/",
-    "keyword": "앤텔레콤 K망 100GB+(쿠팡캐쉬) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 100GB+(쿠팡캐쉬) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-100gb-coupang-cash",
     "adAngle": "benefit"
   },
@@ -12690,11 +12690,11 @@
       "ntelecom-k-7gb-naverpay"
     ],
     "path": "/lp/k/7gb-naverpay/benefit/",
-    "keyword": "앤텔레콤 K망 7GB+(네이버페이) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 7GB+(네이버페이) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-7gb-naverpay",
     "adAngle": "benefit"
   },
@@ -12723,11 +12723,11 @@
       "ntelecom-k-10gb-naverpay"
     ],
     "path": "/lp/k/10gb-naverpay/benefit/",
-    "keyword": "앤텔레콤 K망 10GB+(네이버페이) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 10GB+(네이버페이) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-10gb-naverpay",
     "adAngle": "benefit"
   },
@@ -12756,11 +12756,11 @@
       "ntelecom-k-15gb-naverpay"
     ],
     "path": "/lp/k/15gb-naverpay/benefit/",
-    "keyword": "앤텔레콤 K망 15GB+(네이버페이) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 15GB+(네이버페이) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-15gb-naverpay",
     "adAngle": "benefit"
   },
@@ -12788,11 +12788,11 @@
       "ntelecom-k-100min-15gb-naverpay"
     ],
     "path": "/lp/k/100min-15gb-naverpay/benefit/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(네이버페이) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(네이버페이) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-100min-15gb-naverpay",
     "adAngle": "benefit"
   },
@@ -12820,11 +12820,11 @@
       "ntelecom-k-300min-15gb-naverpay"
     ],
     "path": "/lp/k/300min-15gb-naverpay/benefit/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(네이버페이) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(네이버페이) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-300min-15gb-naverpay",
     "adAngle": "benefit"
   },
@@ -12852,11 +12852,11 @@
       "ntelecom-k-11gb-daily2gb-naverpay"
     ],
     "path": "/lp/k/11gb-daily2gb-naverpay/benefit/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(네이버페이) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(네이버페이) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-11gb-daily2gb-naverpay",
     "adAngle": "benefit"
   },
@@ -12883,11 +12883,11 @@
       "ntelecom-k-100gb-naverpay"
     ],
     "path": "/lp/k/100gb-naverpay/benefit/",
-    "keyword": "앤텔레콤 K망 100GB+(네이버페이) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 100GB+(네이버페이) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-100gb-naverpay",
     "adAngle": "benefit"
   },
@@ -12916,11 +12916,11 @@
       "ntelecom-k-7gb-daiso"
     ],
     "path": "/lp/k/7gb-daiso/benefit/",
-    "keyword": "앤텔레콤 K망 7GB+(다이소) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 7GB+(다이소) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-7gb-daiso",
     "adAngle": "benefit"
   },
@@ -12949,11 +12949,11 @@
       "ntelecom-k-10gb-daiso"
     ],
     "path": "/lp/k/10gb-daiso/benefit/",
-    "keyword": "앤텔레콤 K망 10GB+(다이소) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 10GB+(다이소) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-10gb-daiso",
     "adAngle": "benefit"
   },
@@ -12982,11 +12982,11 @@
       "ntelecom-k-15gb-daiso"
     ],
     "path": "/lp/k/15gb-daiso/benefit/",
-    "keyword": "앤텔레콤 K망 15GB+(다이소) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 15GB+(다이소) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-15gb-daiso",
     "adAngle": "benefit"
   },
@@ -13014,11 +13014,11 @@
       "ntelecom-k-100min-15gb-daiso"
     ],
     "path": "/lp/k/100min-15gb-daiso/benefit/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(다이소) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(다이소) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-100min-15gb-daiso",
     "adAngle": "benefit"
   },
@@ -13046,11 +13046,11 @@
       "ntelecom-k-300min-15gb-daiso"
     ],
     "path": "/lp/k/300min-15gb-daiso/benefit/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(다이소) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(다이소) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-300min-15gb-daiso",
     "adAngle": "benefit"
   },
@@ -13078,11 +13078,11 @@
       "ntelecom-k-11gb-daily2gb-daiso"
     ],
     "path": "/lp/k/11gb-daily2gb-daiso/benefit/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(다이소) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(다이소) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-11gb-daily2gb-daiso",
     "adAngle": "benefit"
   },
@@ -13109,11 +13109,11 @@
       "ntelecom-k-100gb-daiso"
     ],
     "path": "/lp/k/100gb-daiso/benefit/",
-    "keyword": "앤텔레콤 K망 100GB+(다이소) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 100GB+(다이소) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-100gb-daiso",
     "adAngle": "benefit"
   },
@@ -13143,11 +13143,11 @@
       "ntelecom-k-7gb-millie"
     ],
     "path": "/lp/k/7gb-millie/benefit/",
-    "keyword": "앤텔레콤 K망 7GB+(밀리의서재) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 7GB+(밀리의서재) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-7gb-millie",
     "adAngle": "benefit"
   },
@@ -13176,11 +13176,11 @@
       "ntelecom-k-10gb-millie"
     ],
     "path": "/lp/k/10gb-millie/benefit/",
-    "keyword": "앤텔레콤 K망 10GB+(밀리의서재) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 10GB+(밀리의서재) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-10gb-millie",
     "adAngle": "benefit"
   },
@@ -13209,11 +13209,11 @@
       "ntelecom-k-15gb-millie"
     ],
     "path": "/lp/k/15gb-millie/benefit/",
-    "keyword": "앤텔레콤 K망 15GB+(밀리의서재) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 15GB+(밀리의서재) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-15gb-millie",
     "adAngle": "benefit"
   },
@@ -13242,11 +13242,11 @@
       "ntelecom-k-100min-15gb-millie"
     ],
     "path": "/lp/k/100min-15gb-millie/benefit/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(밀리의서재) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(밀리의서재) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-100min-15gb-millie",
     "adAngle": "benefit"
   },
@@ -13274,11 +13274,11 @@
       "ntelecom-k-300min-15gb-millie"
     ],
     "path": "/lp/k/300min-15gb-millie/benefit/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(밀리의서재) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(밀리의서재) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-300min-15gb-millie",
     "adAngle": "benefit"
   },
@@ -13306,11 +13306,11 @@
       "ntelecom-k-11gb-daily2gb-millie"
     ],
     "path": "/lp/k/11gb-daily2gb-millie/benefit/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(밀리의서재) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(밀리의서재) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-11gb-daily2gb-millie",
     "adAngle": "benefit"
   },
@@ -13337,11 +13337,11 @@
       "ntelecom-k-100gb-millie"
     ],
     "path": "/lp/k/100gb-millie/benefit/",
-    "keyword": "앤텔레콤 K망 100GB+(밀리의서재) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 100GB+(밀리의서재) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-100gb-millie",
     "adAngle": "benefit"
   },
@@ -13370,11 +13370,11 @@
       "ntelecom-k-7gb-oliveyoung"
     ],
     "path": "/lp/k/7gb-oliveyoung/benefit/",
-    "keyword": "앤텔레콤 K망 7GB+(올리브영) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 7GB+(올리브영) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-7gb-oliveyoung",
     "adAngle": "benefit"
   },
@@ -13403,11 +13403,11 @@
       "ntelecom-k-10gb-oliveyoung"
     ],
     "path": "/lp/k/10gb-oliveyoung/benefit/",
-    "keyword": "앤텔레콤 K망 10GB+(올리브영) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 10GB+(올리브영) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-10gb-oliveyoung",
     "adAngle": "benefit"
   },
@@ -13436,11 +13436,11 @@
       "ntelecom-k-15gb-oliveyoung"
     ],
     "path": "/lp/k/15gb-oliveyoung/benefit/",
-    "keyword": "앤텔레콤 K망 15GB+(올리브영) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 15GB+(올리브영) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-15gb-oliveyoung",
     "adAngle": "benefit"
   },
@@ -13468,11 +13468,11 @@
       "ntelecom-k-100min-15gb-oliveyoung"
     ],
     "path": "/lp/k/100min-15gb-oliveyoung/benefit/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(올리브영) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(올리브영) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-100min-15gb-oliveyoung",
     "adAngle": "benefit"
   },
@@ -13500,11 +13500,11 @@
       "ntelecom-k-300min-15gb-oliveyoung"
     ],
     "path": "/lp/k/300min-15gb-oliveyoung/benefit/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(올리브영) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(올리브영) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-300min-15gb-oliveyoung",
     "adAngle": "benefit"
   },
@@ -13532,11 +13532,11 @@
       "ntelecom-k-11gb-daily2gb-oliveyoung"
     ],
     "path": "/lp/k/11gb-daily2gb-oliveyoung/benefit/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(올리브영) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(올리브영) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-11gb-daily2gb-oliveyoung",
     "adAngle": "benefit"
   },
@@ -13563,11 +13563,11 @@
       "ntelecom-k-100gb-oliveyoung"
     ],
     "path": "/lp/k/100gb-oliveyoung/benefit/",
-    "keyword": "앤텔레콤 K망 100GB+(올리브영) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 100GB+(올리브영) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-100gb-oliveyoung",
     "adAngle": "benefit"
   },
@@ -13597,11 +13597,11 @@
       "ntelecom-k-7gb-cu"
     ],
     "path": "/lp/k/7gb-cu/benefit/",
-    "keyword": "앤텔레콤 K망 7GB+(CU) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 7GB+(CU) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-7gb-cu",
     "adAngle": "benefit"
   },
@@ -13630,11 +13630,11 @@
       "ntelecom-k-10gb-cu"
     ],
     "path": "/lp/k/10gb-cu/benefit/",
-    "keyword": "앤텔레콤 K망 10GB+(CU) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 10GB+(CU) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-10gb-cu",
     "adAngle": "benefit"
   },
@@ -13663,11 +13663,11 @@
       "ntelecom-k-15gb-cu"
     ],
     "path": "/lp/k/15gb-cu/benefit/",
-    "keyword": "앤텔레콤 K망 15GB+(CU) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 15GB+(CU) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-15gb-cu",
     "adAngle": "benefit"
   },
@@ -13696,11 +13696,11 @@
       "ntelecom-k-100min-15gb-cu"
     ],
     "path": "/lp/k/100min-15gb-cu/benefit/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(CU) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(CU) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-100min-15gb-cu",
     "adAngle": "benefit"
   },
@@ -13728,11 +13728,11 @@
       "ntelecom-k-300min-15gb-cu"
     ],
     "path": "/lp/k/300min-15gb-cu/benefit/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(CU) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(CU) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-300min-15gb-cu",
     "adAngle": "benefit"
   },
@@ -13760,11 +13760,11 @@
       "ntelecom-k-11gb-daily2gb-cu"
     ],
     "path": "/lp/k/11gb-daily2gb-cu/benefit/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(CU) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(CU) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-11gb-daily2gb-cu",
     "adAngle": "benefit"
   },
@@ -13791,11 +13791,11 @@
       "ntelecom-k-100gb-cu"
     ],
     "path": "/lp/k/100gb-cu/benefit/",
-    "keyword": "앤텔레콤 K망 100GB+(CU) 생활혜택 중심",
+    "keyword": "앤텔레콤 K망 100GB+(CU) 혜택",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "생활혜택 중심",
+    "angle": "혜택까지 챙겨 가입하세요",
     "planId": "ntelecom-k-100gb-cu",
     "adAngle": "benefit"
   },
@@ -13824,11 +13824,11 @@
       "ntelecom-k-7gb-coupang-cash"
     ],
     "path": "/lp/k/7gb-coupang-cash/card/",
-    "keyword": "앤텔레콤 K망 7GB+(쿠팡캐쉬) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 7GB+(쿠팡캐쉬) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-7gb-coupang-cash",
     "adAngle": "card"
   },
@@ -13857,11 +13857,11 @@
       "ntelecom-k-10gb-coupang-cash"
     ],
     "path": "/lp/k/10gb-coupang-cash/card/",
-    "keyword": "앤텔레콤 K망 10GB+(쿠팡캐쉬) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 10GB+(쿠팡캐쉬) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-10gb-coupang-cash",
     "adAngle": "card"
   },
@@ -13890,11 +13890,11 @@
       "ntelecom-k-15gb-coupang-cash"
     ],
     "path": "/lp/k/15gb-coupang-cash/card/",
-    "keyword": "앤텔레콤 K망 15GB+(쿠팡캐쉬) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 15GB+(쿠팡캐쉬) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-15gb-coupang-cash",
     "adAngle": "card"
   },
@@ -13922,11 +13922,11 @@
       "ntelecom-k-100min-15gb-coupang-cash"
     ],
     "path": "/lp/k/100min-15gb-coupang-cash/card/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(쿠팡캐쉬) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(쿠팡캐쉬) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-100min-15gb-coupang-cash",
     "adAngle": "card"
   },
@@ -13954,11 +13954,11 @@
       "ntelecom-k-300min-15gb-coupang-cash"
     ],
     "path": "/lp/k/300min-15gb-coupang-cash/card/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(쿠팡캐쉬) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(쿠팡캐쉬) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-300min-15gb-coupang-cash",
     "adAngle": "card"
   },
@@ -13986,11 +13986,11 @@
       "ntelecom-k-11gb-daily2gb-coupang-cash"
     ],
     "path": "/lp/k/11gb-daily2gb-coupang-cash/card/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(쿠팡캐쉬) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(쿠팡캐쉬) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-11gb-daily2gb-coupang-cash",
     "adAngle": "card"
   },
@@ -14017,11 +14017,11 @@
       "ntelecom-k-100gb-coupang-cash"
     ],
     "path": "/lp/k/100gb-coupang-cash/card/",
-    "keyword": "앤텔레콤 K망 100GB+(쿠팡캐쉬) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 100GB+(쿠팡캐쉬) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-100gb-coupang-cash",
     "adAngle": "card"
   },
@@ -14050,11 +14050,11 @@
       "ntelecom-k-7gb-naverpay"
     ],
     "path": "/lp/k/7gb-naverpay/card/",
-    "keyword": "앤텔레콤 K망 7GB+(네이버페이) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 7GB+(네이버페이) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-7gb-naverpay",
     "adAngle": "card"
   },
@@ -14083,11 +14083,11 @@
       "ntelecom-k-10gb-naverpay"
     ],
     "path": "/lp/k/10gb-naverpay/card/",
-    "keyword": "앤텔레콤 K망 10GB+(네이버페이) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 10GB+(네이버페이) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-10gb-naverpay",
     "adAngle": "card"
   },
@@ -14116,11 +14116,11 @@
       "ntelecom-k-15gb-naverpay"
     ],
     "path": "/lp/k/15gb-naverpay/card/",
-    "keyword": "앤텔레콤 K망 15GB+(네이버페이) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 15GB+(네이버페이) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-15gb-naverpay",
     "adAngle": "card"
   },
@@ -14148,11 +14148,11 @@
       "ntelecom-k-100min-15gb-naverpay"
     ],
     "path": "/lp/k/100min-15gb-naverpay/card/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(네이버페이) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(네이버페이) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-100min-15gb-naverpay",
     "adAngle": "card"
   },
@@ -14180,11 +14180,11 @@
       "ntelecom-k-300min-15gb-naverpay"
     ],
     "path": "/lp/k/300min-15gb-naverpay/card/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(네이버페이) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(네이버페이) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-300min-15gb-naverpay",
     "adAngle": "card"
   },
@@ -14212,11 +14212,11 @@
       "ntelecom-k-11gb-daily2gb-naverpay"
     ],
     "path": "/lp/k/11gb-daily2gb-naverpay/card/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(네이버페이) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(네이버페이) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-11gb-daily2gb-naverpay",
     "adAngle": "card"
   },
@@ -14243,11 +14243,11 @@
       "ntelecom-k-100gb-naverpay"
     ],
     "path": "/lp/k/100gb-naverpay/card/",
-    "keyword": "앤텔레콤 K망 100GB+(네이버페이) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 100GB+(네이버페이) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-100gb-naverpay",
     "adAngle": "card"
   },
@@ -14276,11 +14276,11 @@
       "ntelecom-k-7gb-daiso"
     ],
     "path": "/lp/k/7gb-daiso/card/",
-    "keyword": "앤텔레콤 K망 7GB+(다이소) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 7GB+(다이소) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-7gb-daiso",
     "adAngle": "card"
   },
@@ -14309,11 +14309,11 @@
       "ntelecom-k-10gb-daiso"
     ],
     "path": "/lp/k/10gb-daiso/card/",
-    "keyword": "앤텔레콤 K망 10GB+(다이소) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 10GB+(다이소) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-10gb-daiso",
     "adAngle": "card"
   },
@@ -14342,11 +14342,11 @@
       "ntelecom-k-15gb-daiso"
     ],
     "path": "/lp/k/15gb-daiso/card/",
-    "keyword": "앤텔레콤 K망 15GB+(다이소) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 15GB+(다이소) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-15gb-daiso",
     "adAngle": "card"
   },
@@ -14374,11 +14374,11 @@
       "ntelecom-k-100min-15gb-daiso"
     ],
     "path": "/lp/k/100min-15gb-daiso/card/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(다이소) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(다이소) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-100min-15gb-daiso",
     "adAngle": "card"
   },
@@ -14406,11 +14406,11 @@
       "ntelecom-k-300min-15gb-daiso"
     ],
     "path": "/lp/k/300min-15gb-daiso/card/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(다이소) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(다이소) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-300min-15gb-daiso",
     "adAngle": "card"
   },
@@ -14438,11 +14438,11 @@
       "ntelecom-k-11gb-daily2gb-daiso"
     ],
     "path": "/lp/k/11gb-daily2gb-daiso/card/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(다이소) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(다이소) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-11gb-daily2gb-daiso",
     "adAngle": "card"
   },
@@ -14469,11 +14469,11 @@
       "ntelecom-k-100gb-daiso"
     ],
     "path": "/lp/k/100gb-daiso/card/",
-    "keyword": "앤텔레콤 K망 100GB+(다이소) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 100GB+(다이소) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-100gb-daiso",
     "adAngle": "card"
   },
@@ -14503,11 +14503,11 @@
       "ntelecom-k-7gb-millie"
     ],
     "path": "/lp/k/7gb-millie/card/",
-    "keyword": "앤텔레콤 K망 7GB+(밀리의서재) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 7GB+(밀리의서재) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-7gb-millie",
     "adAngle": "card"
   },
@@ -14536,11 +14536,11 @@
       "ntelecom-k-10gb-millie"
     ],
     "path": "/lp/k/10gb-millie/card/",
-    "keyword": "앤텔레콤 K망 10GB+(밀리의서재) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 10GB+(밀리의서재) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-10gb-millie",
     "adAngle": "card"
   },
@@ -14569,11 +14569,11 @@
       "ntelecom-k-15gb-millie"
     ],
     "path": "/lp/k/15gb-millie/card/",
-    "keyword": "앤텔레콤 K망 15GB+(밀리의서재) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 15GB+(밀리의서재) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-15gb-millie",
     "adAngle": "card"
   },
@@ -14602,11 +14602,11 @@
       "ntelecom-k-100min-15gb-millie"
     ],
     "path": "/lp/k/100min-15gb-millie/card/",
-    "keyword": "앤텔레콤 K망 100분/15GB+(밀리의서재) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 100분/15GB+(밀리의서재) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-100min-15gb-millie",
     "adAngle": "card"
   },
@@ -14634,11 +14634,11 @@
       "ntelecom-k-300min-15gb-millie"
     ],
     "path": "/lp/k/300min-15gb-millie/card/",
-    "keyword": "앤텔레콤 K망 300분/15GB+(밀리의서재) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 300분/15GB+(밀리의서재) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-300min-15gb-millie",
     "adAngle": "card"
   },
@@ -14666,11 +14666,11 @@
       "ntelecom-k-11gb-daily2gb-millie"
     ],
     "path": "/lp/k/11gb-daily2gb-millie/card/",
-    "keyword": "앤텔레콤 K망 11GB+일2GB(밀리의서재) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 11GB+일2GB(밀리의서재) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-11gb-daily2gb-millie",
     "adAngle": "card"
   },
@@ -14697,11 +14697,11 @@
       "ntelecom-k-100gb-millie"
     ],
     "path": "/lp/k/100gb-millie/card/",
-    "keyword": "앤텔레콤 K망 100GB+(밀리의서재) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 100GB+(밀리의서재) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-100gb-millie",
     "adAngle": "card"
   },
@@ -14730,11 +14730,11 @@
       "ntelecom-k-7gb-oliveyoung"
     ],
     "path": "/lp/k/7gb-oliveyoung/card/",
-    "keyword": "앤텔레콤 K망 7GB+(올리브영) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 7GB+(올리브영) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-7gb-oliveyoung",
     "adAngle": "card"
   },
@@ -14763,11 +14763,11 @@
       "ntelecom-k-10gb-oliveyoung"
     ],
     "path": "/lp/k/10gb-oliveyoung/card/",
-    "keyword": "앤텔레콤 K망 10GB+(올리브영) 제휴카드 할인 중심",
+    "keyword": "앤텔레콤 K망 10GB+(올리브영) 카드 할인",
     "pageType": "ad",
     "template": "T6",
     "indexCandidate": false,
-    "angle": "제휴카드 할인 중심",
+    "angle": "카드 할인까지 반영한 실제 납부액",
     "planId": "ntelecom-k-10gb-oliveyoung",
     "adAngle": "card"
   }
