@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageFactory from "../components/PageFactory.astro";
+import pages from "../data/generated-pages.json";
+import { buildModel } from "../lib/page-model.js";
+const page=pages.find(p=>p.path==="/");
+const model=buildModel(page);
+---
+<BaseLayout title={model.seoTitle} description={model.meta} index="index" faqs={model.faqs} pagePath="/">
+  <PageFactory model={model}/>
+</BaseLayout>

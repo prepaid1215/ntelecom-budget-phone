@@ -1,0 +1,380 @@
+[
+  {
+    "keyword": "앤텔레콤 후불",
+    "intent": "상품 탐색",
+    "required_tags": [
+      "ntelecom"
+    ],
+    "recommended_template": "plan-list",
+    "index_candidate": true,
+    "supporting_plan_ids": [
+      "ntelecom-k-7gb-coupang-cash",
+      "ntelecom-k-10gb-coupang-cash",
+      "ntelecom-k-15gb-coupang-cash",
+      "ntelecom-k-100min-15gb-coupang-cash",
+      "ntelecom-k-300min-15gb-coupang-cash",
+      "ntelecom-k-11gb-daily2gb-coupang-cash",
+      "ntelecom-k-100gb-coupang-cash",
+      "ntelecom-k-7gb-naverpay",
+      "ntelecom-k-10gb-naverpay",
+      "ntelecom-k-15gb-naverpay",
+      "ntelecom-k-100min-15gb-naverpay",
+      "ntelecom-k-300min-15gb-naverpay",
+      "ntelecom-k-11gb-daily2gb-naverpay",
+      "ntelecom-k-100gb-naverpay",
+      "ntelecom-k-7gb-daiso",
+      "ntelecom-k-10gb-daiso",
+      "ntelecom-k-15gb-daiso",
+      "ntelecom-k-100min-15gb-daiso",
+      "ntelecom-k-300min-15gb-daiso",
+      "ntelecom-k-11gb-daily2gb-daiso",
+      "ntelecom-k-100gb-daiso",
+      "ntelecom-k-7gb-millie",
+      "ntelecom-k-10gb-millie",
+      "ntelecom-k-15gb-millie",
+      "ntelecom-k-100min-15gb-millie",
+      "ntelecom-k-300min-15gb-millie",
+      "ntelecom-k-11gb-daily2gb-millie",
+      "ntelecom-k-100gb-millie",
+      "ntelecom-k-7gb-oliveyoung",
+      "ntelecom-k-10gb-oliveyoung",
+      "ntelecom-k-15gb-oliveyoung",
+      "ntelecom-k-100min-15gb-oliveyoung",
+      "ntelecom-k-300min-15gb-oliveyoung",
+      "ntelecom-k-11gb-daily2gb-oliveyoung",
+      "ntelecom-k-100gb-oliveyoung",
+      "ntelecom-k-7gb-cu",
+      "ntelecom-k-10gb-cu",
+      "ntelecom-k-15gb-cu",
+      "ntelecom-k-100min-15gb-cu",
+      "ntelecom-k-300min-15gb-cu",
+      "ntelecom-k-11gb-daily2gb-cu",
+      "ntelecom-k-100gb-cu",
+      "ntelecom-l-100min-15gb",
+      "ntelecom-l-300min-15gb",
+      "ntelecom-l-11gb-daily2gb",
+      "ntelecom-l-daily5gb",
+      "ntelecom-l-7gb"
+    ],
+    "reason": "현재 판매 중인 후불 47개 상품을 지원"
+  },
+  {
+    "keyword": "앤텔레콤 K망 후불",
+    "intent": "망별 비교",
+    "required_tags": [
+      "ntelecom",
+      "k-network"
+    ],
+    "recommended_template": "network-list",
+    "index_candidate": true,
+    "supporting_plan_ids": [
+      "ntelecom-k-7gb-coupang-cash",
+      "ntelecom-k-10gb-coupang-cash",
+      "ntelecom-k-15gb-coupang-cash",
+      "ntelecom-k-100min-15gb-coupang-cash",
+      "ntelecom-k-300min-15gb-coupang-cash",
+      "ntelecom-k-11gb-daily2gb-coupang-cash",
+      "ntelecom-k-100gb-coupang-cash",
+      "ntelecom-k-7gb-naverpay",
+      "ntelecom-k-10gb-naverpay",
+      "ntelecom-k-15gb-naverpay",
+      "ntelecom-k-100min-15gb-naverpay",
+      "ntelecom-k-300min-15gb-naverpay",
+      "ntelecom-k-11gb-daily2gb-naverpay",
+      "ntelecom-k-100gb-naverpay",
+      "ntelecom-k-7gb-daiso",
+      "ntelecom-k-10gb-daiso",
+      "ntelecom-k-15gb-daiso",
+      "ntelecom-k-100min-15gb-daiso",
+      "ntelecom-k-300min-15gb-daiso",
+      "ntelecom-k-11gb-daily2gb-daiso",
+      "ntelecom-k-100gb-daiso",
+      "ntelecom-k-7gb-millie",
+      "ntelecom-k-10gb-millie",
+      "ntelecom-k-15gb-millie",
+      "ntelecom-k-100min-15gb-millie",
+      "ntelecom-k-300min-15gb-millie",
+      "ntelecom-k-11gb-daily2gb-millie",
+      "ntelecom-k-100gb-millie",
+      "ntelecom-k-7gb-oliveyoung",
+      "ntelecom-k-10gb-oliveyoung",
+      "ntelecom-k-15gb-oliveyoung",
+      "ntelecom-k-100min-15gb-oliveyoung",
+      "ntelecom-k-300min-15gb-oliveyoung",
+      "ntelecom-k-11gb-daily2gb-oliveyoung",
+      "ntelecom-k-100gb-oliveyoung",
+      "ntelecom-k-7gb-cu",
+      "ntelecom-k-10gb-cu",
+      "ntelecom-k-15gb-cu",
+      "ntelecom-k-100min-15gb-cu",
+      "ntelecom-k-300min-15gb-cu",
+      "ntelecom-k-11gb-daily2gb-cu",
+      "ntelecom-k-100gb-cu"
+    ],
+    "reason": "K망 후불 42개"
+  },
+  {
+    "keyword": "앤텔레콤 L망 후불",
+    "intent": "망별 비교",
+    "required_tags": [
+      "ntelecom",
+      "l-network"
+    ],
+    "recommended_template": "network-list",
+    "index_candidate": true,
+    "supporting_plan_ids": [
+      "ntelecom-l-100min-15gb",
+      "ntelecom-l-300min-15gb",
+      "ntelecom-l-11gb-daily2gb",
+      "ntelecom-l-daily5gb",
+      "ntelecom-l-7gb"
+    ],
+    "reason": "L망 후불 5개"
+  },
+  {
+    "keyword": "앤텔레콤 7GB",
+    "intent": "조건별 상품 탐색",
+    "required_tags": [
+      "ntelecom",
+      "7gb"
+    ],
+    "recommended_template": "filtered-plan-list",
+    "index_candidate": true,
+    "supporting_plan_ids": [
+      "ntelecom-k-7gb-coupang-cash",
+      "ntelecom-k-7gb-naverpay",
+      "ntelecom-k-7gb-daiso",
+      "ntelecom-k-7gb-millie",
+      "ntelecom-k-7gb-oliveyoung",
+      "ntelecom-k-7gb-cu",
+      "ntelecom-l-7gb"
+    ],
+    "reason": "해당 태그의 활성 후불 상품 7개"
+  },
+  {
+    "keyword": "앤텔레콤 10GB",
+    "intent": "조건별 상품 탐색",
+    "required_tags": [
+      "ntelecom",
+      "10gb"
+    ],
+    "recommended_template": "filtered-plan-list",
+    "index_candidate": true,
+    "supporting_plan_ids": [
+      "ntelecom-k-10gb-coupang-cash",
+      "ntelecom-k-10gb-naverpay",
+      "ntelecom-k-10gb-daiso",
+      "ntelecom-k-10gb-millie",
+      "ntelecom-k-10gb-oliveyoung",
+      "ntelecom-k-10gb-cu"
+    ],
+    "reason": "해당 태그의 활성 후불 상품 6개"
+  },
+  {
+    "keyword": "앤텔레콤 15GB",
+    "intent": "조건별 상품 탐색",
+    "required_tags": [
+      "ntelecom",
+      "15gb"
+    ],
+    "recommended_template": "filtered-plan-list",
+    "index_candidate": true,
+    "supporting_plan_ids": [
+      "ntelecom-k-15gb-coupang-cash",
+      "ntelecom-k-100min-15gb-coupang-cash",
+      "ntelecom-k-300min-15gb-coupang-cash",
+      "ntelecom-k-15gb-naverpay",
+      "ntelecom-k-100min-15gb-naverpay",
+      "ntelecom-k-300min-15gb-naverpay",
+      "ntelecom-k-15gb-daiso",
+      "ntelecom-k-100min-15gb-daiso",
+      "ntelecom-k-300min-15gb-daiso",
+      "ntelecom-k-15gb-millie",
+      "ntelecom-k-100min-15gb-millie",
+      "ntelecom-k-300min-15gb-millie",
+      "ntelecom-k-15gb-oliveyoung",
+      "ntelecom-k-100min-15gb-oliveyoung",
+      "ntelecom-k-300min-15gb-oliveyoung",
+      "ntelecom-k-15gb-cu",
+      "ntelecom-k-100min-15gb-cu",
+      "ntelecom-k-300min-15gb-cu",
+      "ntelecom-l-100min-15gb",
+      "ntelecom-l-300min-15gb"
+    ],
+    "reason": "해당 태그의 활성 후불 상품 20개"
+  },
+  {
+    "keyword": "앤텔레콤 100GB",
+    "intent": "조건별 상품 탐색",
+    "required_tags": [
+      "ntelecom",
+      "100gb"
+    ],
+    "recommended_template": "filtered-plan-list",
+    "index_candidate": true,
+    "supporting_plan_ids": [
+      "ntelecom-k-100gb-coupang-cash",
+      "ntelecom-k-100gb-naverpay",
+      "ntelecom-k-100gb-daiso",
+      "ntelecom-k-100gb-millie",
+      "ntelecom-k-100gb-oliveyoung",
+      "ntelecom-k-100gb-cu"
+    ],
+    "reason": "해당 태그의 활성 후불 상품 6개"
+  },
+  {
+    "keyword": "앤텔레콤 3만원 이하",
+    "intent": "조건별 상품 탐색",
+    "required_tags": [
+      "ntelecom",
+      "under-30000"
+    ],
+    "recommended_template": "filtered-plan-list",
+    "index_candidate": true,
+    "supporting_plan_ids": [
+      "ntelecom-k-7gb-coupang-cash",
+      "ntelecom-k-10gb-coupang-cash",
+      "ntelecom-k-15gb-coupang-cash",
+      "ntelecom-k-7gb-naverpay",
+      "ntelecom-k-10gb-naverpay",
+      "ntelecom-k-15gb-naverpay",
+      "ntelecom-k-7gb-daiso",
+      "ntelecom-k-10gb-daiso",
+      "ntelecom-k-15gb-daiso",
+      "ntelecom-k-7gb-millie",
+      "ntelecom-k-10gb-millie",
+      "ntelecom-k-15gb-millie",
+      "ntelecom-k-100min-15gb-millie",
+      "ntelecom-k-7gb-oliveyoung",
+      "ntelecom-k-10gb-oliveyoung",
+      "ntelecom-k-15gb-oliveyoung",
+      "ntelecom-k-7gb-cu",
+      "ntelecom-k-10gb-cu",
+      "ntelecom-k-15gb-cu",
+      "ntelecom-k-100min-15gb-cu",
+      "ntelecom-l-100min-15gb",
+      "ntelecom-l-7gb"
+    ],
+    "reason": "해당 태그의 활성 후불 상품 22개"
+  },
+  {
+    "keyword": "앤텔레콤 네이버페이",
+    "intent": "조건별 상품 탐색",
+    "required_tags": [
+      "ntelecom",
+      "naverpay"
+    ],
+    "recommended_template": "filtered-plan-list",
+    "index_candidate": true,
+    "supporting_plan_ids": [
+      "ntelecom-k-7gb-naverpay",
+      "ntelecom-k-10gb-naverpay",
+      "ntelecom-k-15gb-naverpay",
+      "ntelecom-k-100min-15gb-naverpay",
+      "ntelecom-k-300min-15gb-naverpay",
+      "ntelecom-k-11gb-daily2gb-naverpay",
+      "ntelecom-k-100gb-naverpay"
+    ],
+    "reason": "해당 태그의 활성 후불 상품 7개"
+  },
+  {
+    "keyword": "앤텔레콤 다이소",
+    "intent": "조건별 상품 탐색",
+    "required_tags": [
+      "ntelecom",
+      "daiso"
+    ],
+    "recommended_template": "filtered-plan-list",
+    "index_candidate": true,
+    "supporting_plan_ids": [
+      "ntelecom-k-7gb-daiso",
+      "ntelecom-k-10gb-daiso",
+      "ntelecom-k-15gb-daiso",
+      "ntelecom-k-100min-15gb-daiso",
+      "ntelecom-k-300min-15gb-daiso",
+      "ntelecom-k-11gb-daily2gb-daiso",
+      "ntelecom-k-100gb-daiso"
+    ],
+    "reason": "해당 태그의 활성 후불 상품 7개"
+  },
+  {
+    "keyword": "앤텔레콤 올리브영",
+    "intent": "조건별 상품 탐색",
+    "required_tags": [
+      "ntelecom",
+      "oliveyoung"
+    ],
+    "recommended_template": "filtered-plan-list",
+    "index_candidate": true,
+    "supporting_plan_ids": [
+      "ntelecom-k-7gb-oliveyoung",
+      "ntelecom-k-10gb-oliveyoung",
+      "ntelecom-k-15gb-oliveyoung",
+      "ntelecom-k-100min-15gb-oliveyoung",
+      "ntelecom-k-300min-15gb-oliveyoung",
+      "ntelecom-k-11gb-daily2gb-oliveyoung",
+      "ntelecom-k-100gb-oliveyoung"
+    ],
+    "reason": "해당 태그의 활성 후불 상품 7개"
+  },
+  {
+    "keyword": "앤텔레콤 CU",
+    "intent": "조건별 상품 탐색",
+    "required_tags": [
+      "ntelecom",
+      "cu"
+    ],
+    "recommended_template": "filtered-plan-list",
+    "index_candidate": true,
+    "supporting_plan_ids": [
+      "ntelecom-k-7gb-cu",
+      "ntelecom-k-10gb-cu",
+      "ntelecom-k-15gb-cu",
+      "ntelecom-k-100min-15gb-cu",
+      "ntelecom-k-300min-15gb-cu",
+      "ntelecom-k-11gb-daily2gb-cu",
+      "ntelecom-k-100gb-cu"
+    ],
+    "reason": "해당 태그의 활성 후불 상품 7개"
+  },
+  {
+    "keyword": "앤텔레콤 쿠팡캐쉬",
+    "intent": "조건별 상품 탐색",
+    "required_tags": [
+      "ntelecom",
+      "coupang"
+    ],
+    "recommended_template": "filtered-plan-list",
+    "index_candidate": true,
+    "supporting_plan_ids": [
+      "ntelecom-k-7gb-coupang-cash",
+      "ntelecom-k-10gb-coupang-cash",
+      "ntelecom-k-15gb-coupang-cash",
+      "ntelecom-k-100min-15gb-coupang-cash",
+      "ntelecom-k-300min-15gb-coupang-cash",
+      "ntelecom-k-11gb-daily2gb-coupang-cash",
+      "ntelecom-k-100gb-coupang-cash"
+    ],
+    "reason": "해당 태그의 활성 후불 상품 7개"
+  },
+  {
+    "keyword": "앤텔레콤 밀리의서재",
+    "intent": "조건별 상품 탐색",
+    "required_tags": [
+      "ntelecom",
+      "content-benefit"
+    ],
+    "recommended_template": "filtered-plan-list",
+    "index_candidate": true,
+    "supporting_plan_ids": [
+      "ntelecom-k-7gb-millie",
+      "ntelecom-k-10gb-millie",
+      "ntelecom-k-15gb-millie",
+      "ntelecom-k-100min-15gb-millie",
+      "ntelecom-k-300min-15gb-millie",
+      "ntelecom-k-11gb-daily2gb-millie",
+      "ntelecom-k-100gb-millie"
+    ],
+    "reason": "해당 태그의 활성 후불 상품 7개"
+  }
+]

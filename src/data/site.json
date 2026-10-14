@@ -1,0 +1,13 @@
+{
+  "brandName": "앤텔레콤 알뜰폰",
+  "providerName": "앤텔레콤",
+  "productionReady": false,
+  "siteUrl": "https://example.com",
+  "activationUrl": "https://example.com/activation",
+  "defaultTitleSuffix": " | 앤텔레콤 알뜰폰",
+  "defaultDescription": "앤텔레콤 알뜰폰 요금제를 데이터, 가격, 망, 혜택 조건에 맞춰 비교하고 온라인으로 개통하세요.",
+  "primaryColor": "#FF438B",
+  "secondaryColor": "#7258E9",
+  "dataCheckedAt": "2026-09-28",
+  "note": "TODO: 실제 도메인과 미러링 개통 URL을 입력한 뒤 productionReady를 true로 변경"
+}

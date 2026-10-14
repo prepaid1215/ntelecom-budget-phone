@@ -1,0 +1,8 @@
+---
+import Hero from "./Hero.astro";
+import HomePage from "./HomePage.astro";
+import ContentBlocks from "./ContentBlocks.astro";
+const { model }=Astro.props;
+---
+<Hero model={model}/>
+{model.page.pageType==="home" ? <HomePage model={model}/> : <ContentBlocks model={model}/>}

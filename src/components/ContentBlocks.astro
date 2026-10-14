@@ -1,0 +1,30 @@
+---
+import site from "../data/site.json";
+import PlanCard from "./PlanCard.astro";
+import CardOffer from "./CardOffer.astro";
+import BenefitOffer from "./BenefitOffer.astro";
+const { model }=Astro.props;
+const showPlans=model.matched.slice(0,9);
+---
+<section class="section"><div class="wrap"><h2>먼저 답부터</h2><div class="answer">{model.directAnswer}</div><p class="section-lead" style="margin-top:14px">{model.lead}</p></div></section>
+
+{model.one && <section class="section soft"><div class="wrap"><h2>요금제 상세</h2><div class="grid cols-2">
+  <div class="card"><div class="plan-kicker">{model.one.network}망 · {model.one.network_type}</div><div class="plan-name">{model.one.name}</div><div class="plan-desc">{model.one.data_text}<br/>통화 {model.one.calls}<br/>문자 {model.one.sms}<br/>월 기본료 {model.one.monthly_price.toLocaleString("ko-KR")}원</div></div>
+  <div class="card"><div class="plan-name">가입 정보</div><div class="plan-desc">신규가입 {model.one.new_available===true?"확인됨":"확인 필요"}<br/>번호이동 {model.one.port_available===true?"확인됨":"확인 필요"}<br/>유심 {model.one.physical_sim_available===true?"사용":"확인 필요"}<br/>eSIM {model.one.esim_available===true?"지원":model.one.esim_available===false?"미지원":"확인 필요"}</div></div>
+</div></div></section>}
+
+<section class="section soft"><div class="wrap"><h2>이 페이지에서 바로 볼 것</h2><div class="info-grid">{model.checks.map(([t,d])=><article class="info-card"><strong>{t}</strong><p>{d}</p></article>)}</div></div></section>
+
+<section class="section"><div class="wrap"><h2>조건에 맞는 실제 요금제</h2><p class="section-lead">{model.matched.length}개 활성 상품이 연결되어 있습니다.</p><div class="grid cols-3">{showPlans.map(p=><PlanCard plan={p}/>)}</div></div></section>
+
+{model.cards.length>0 && <section class="section soft"><div class="wrap"><h2>적용 가능한 제휴카드</h2><div class="grid cols-2">{model.cards.map(c=><CardOffer card={c} plan={model.one || model.matched.filter(p=>(c.eligible_networks||[]).includes(p.network)).sort((a,b)=>a.monthly_price-b.monthly_price)[0]}/>)}</div></div></section>}
+
+{model.benefits.length>0 && <section class="section"><div class="wrap"><h2>연결된 생활혜택</h2><div class="grid cols-3">{model.benefits.map(b=><BenefitOffer benefit={b}/>)}</div></div></section>}
+
+<section class="section soft"><div class="wrap"><h2>진행 순서</h2><div class="steps">{model.steps.map(([n,t,d])=><article class="step"><span>{n}</span><div><strong>{t}</strong><p>{d}</p></div></article>)}</div></div></section>
+
+<section class="section"><div class="wrap"><h2>자주 묻는 질문</h2><div class="faq-list">{model.faqs.map(f=><details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>)}</div></div></section>
+
+<section class="section soft"><div class="wrap"><h2>같이 보면 좋은 페이지</h2><div class="link-list">{model.related.map(p=><a href={p.path}><span>{p.keyword}</span><span>›</span></a>)}</div><div class="data-note">상품 정보 기준일 {site.dataCheckedAt}. 프로모션·생활혜택·카드 조건은 가입 시점의 최종 안내를 확인하세요.</div></div></section>
+
+<section class="section"><div class="wrap final-box"><h2>조건이 정해졌다면 바로 개통</h2><p>추가 설문 없이 지정된 개통 페이지로 이동합니다.</p><a class="final-button" href={site.activationUrl}>바로 개통하기</a></div></section>

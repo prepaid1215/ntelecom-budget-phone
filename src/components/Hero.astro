@@ -1,0 +1,23 @@
+---
+import site from "../data/site.json";
+const { model }=Astro.props;
+const { page, one, matched }=model;
+const price=one?.monthly_price ?? (matched.length ? Math.min(...matched.map(p=>p.monthly_price)) : null);
+const lines = page.pageType==="home"
+ ? ["약정 없이,","번호는 그대로.","통신비만 가볍게."]
+ : [page.keyword,page.angle,"현재 판매 상품으로 비교하세요."];
+---
+<section class="hero"><div class="wrap hero-inner">
+  <div>
+    <span class="eyebrow">{page.pageType==="ad" ? "광고 전용 랜딩" : "앤텔레콤 알뜰폰"}</span>
+    <h1>{lines[0]}<br />{lines[1]}<br /><em>{lines[2]}</em></h1>
+    <p>{page.pageType==="home" ? "데이터 사용량과 생활혜택, 제휴카드 조건까지 한곳에서 비교합니다." : model.directAnswer}</p>
+    {price && <div class="hero-price"><strong>{price.toLocaleString("ko-KR")}원~</strong><span>현재 연결 상품 기준</span></div>}
+    <div class="hero-actions"><a class="btn-primary" href={site.activationUrl}>바로 개통하기</a><a class="btn-secondary" href="/plans/">요금제 보기</a></div>
+  </div>
+  <div class="hero-visual">
+
+    <img class="hero-art" src="/images/hero-mobile.webp" width="1000" height="750" alt="스마트폰, 유심, 요금제와 혜택을 표현한 일러스트" decoding="async" fetchpriority={page.pageType==="home" ? "high" : "auto"} />
+
+  </div>
+</div></section>

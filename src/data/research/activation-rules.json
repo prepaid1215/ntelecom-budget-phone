@@ -1,0 +1,84 @@
+{
+  "provider": "ntelecom",
+  "checked_at": "2026-09-28",
+  "source_urls": [
+    "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
+    "https://www.n-telecom.co.kr/59man/view/plan/phone_plan.aspx",
+    "https://www.n-telecom.co.kr/59man/view/open/selfopen_explain.aspx",
+    "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
+  ],
+  "new_subscription": {
+    "hours": null,
+    "days": null,
+    "saturday": null,
+    "sunday": null,
+    "holidays": null
+  },
+  "number_transfer": {
+    "hours": null,
+    "days": null,
+    "saturday": null,
+    "sunday": null,
+    "holidays": null,
+    "restrictions": [
+      {
+        "condition": "요금 체납",
+        "allowed": false,
+        "source_url": "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
+      },
+      {
+        "condition": "번호이동 후 3개월 미경과",
+        "allowed": false,
+        "exception": "번호이동관리센터 직접 신청 시 예외",
+        "source_url": "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
+      }
+    ]
+  },
+  "identity_verification": {
+    "methods": [
+      "본인 명의 휴대폰 간편인증"
+    ],
+    "id_card": null,
+    "credit_card": null,
+    "joint_certificate": null
+  },
+  "devices": {
+    "self_phone": true,
+    "used_phone": null,
+    "iphone": null,
+    "galaxy": null,
+    "lte_phone": true,
+    "five_g_phone": "LTE 후불 요금제는 5G 자급단말 가입 가능(약관)"
+  },
+  "usim": {
+    "K": {
+      "sim": "USIM",
+      "purchase_locations": null,
+      "price": null,
+      "input_method": null
+    },
+    "L": {
+      "sim": "USIM",
+      "purchase_locations": null,
+      "price": null,
+      "input_method": null
+    }
+  },
+  "esim": {
+    "K": {
+      "available": null
+    },
+    "L": {
+      "available": null
+    }
+  },
+  "after_activation": {
+    "insert_sim_after_completion": true,
+    "reboot": null,
+    "naming": null,
+    "apn": null,
+    "network_setting": null,
+    "error_handling": "고객센터 문의"
+  },
+  "notes": "판매점 메인에 '365일 개통 가능' 문구가 있으나 신규/번호이동별 정확한 시간과 공휴일 조건은 공개 정책 원문에서 확인하지 못해 null 처리."
+}

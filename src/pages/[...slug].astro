@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageFactory from "../components/PageFactory.astro";
+import pages from "../data/generated-pages.json";
+import { buildModel } from "../lib/page-model.js";
+
+export function getStaticPaths(){
+  return pages.filter(p=>p.path!=="/").map(page=>({params:{slug:page.path.replace(/^\/|\/$/g,"")},props:{page}}));
+}
+const { page }=Astro.props;
+const model=buildModel(page);
+---
+<BaseLayout title={model.seoTitle} description={model.meta} index={page.effectiveIndex} faqs={model.faqs} pagePath={page.path}>
+  <PageFactory model={model}/>
+</BaseLayout>

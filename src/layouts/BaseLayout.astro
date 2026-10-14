@@ -1,0 +1,33 @@
+---
+import "../styles/global.css";
+import site from "../data/site.json";
+const { title, description=site.defaultDescription, index="index", faqs=[], pagePath=Astro.url.pathname } = Astro.props;
+const fullTitle = title === site.brandName ? title : `${title}${site.defaultTitleSuffix}`;
+const canonical = new URL(pagePath, site.siteUrl).toString();
+const robots = site.productionReady && index==="index" ? "index,follow" : "noindex,follow";
+const schemas=[{"@context":"https://schema.org","@type":"WebPage","name":title,"description":description,"url":canonical}];
+if(faqs.length) schemas.push({"@context":"https://schema.org","@type":"FAQPage","mainEntity":faqs.map(f=>({"@type":"Question","name":f.q,"acceptedAnswer":{"@type":"Answer","text":f.a}}))});
+---
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<meta name="robots" content={robots} />
+<link rel="canonical" href={canonical} />
+<script type="application/ld+json" set:html={JSON.stringify(schemas)}></script>
+</head>
+<body>
+<header class="header"><div class="wrap header-inner">
+  <a class="logo" href="/"><span class="logo-mark">M</span><span>{site.brandName}</span></a>
+  <nav class="header-nav"><a href="/plans/">요금제</a><a href="/benefits/">혜택</a><a href="/card/">제휴카드</a><a href="/guide/">개통안내</a></nav>
+  <a class="header-cta" href={site.activationUrl}>즉시 개통</a>
+</div></header>
+<slot />
+<div class="bottom"><div class="bottom-inner">
+  <button class="bottom-save" onclick="localStorage.setItem('savedPage',location.href)">저장</button>
+  <a class="bottom-go" href={site.activationUrl}>바로 개통하기</a>
+</div></div>
+</body></html>

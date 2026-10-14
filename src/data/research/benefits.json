@@ -1,0 +1,218 @@
+[
+  {
+    "id": "benefit-coupang-cash",
+    "provider": "ntelecom",
+    "name": "쿠팡캐쉬",
+    "type": "생활형 제휴혜택",
+    "value": "쿠팡캐쉬",
+    "eligible_plan_ids": [
+      "ntelecom-k-7gb-coupang-cash",
+      "ntelecom-k-10gb-coupang-cash",
+      "ntelecom-k-15gb-coupang-cash",
+      "ntelecom-k-100min-15gb-coupang-cash",
+      "ntelecom-k-300min-15gb-coupang-cash",
+      "ntelecom-k-11gb-daily2gb-coupang-cash",
+      "ntelecom-k-100gb-coupang-cash"
+    ],
+    "eligible_networks": [
+      "K"
+    ],
+    "join_types": [],
+    "conditions": "혜택 브랜드가 결합된 해당 후불 요금제 가입. 지급액·주기·방식·유지조건은 공개 목록에서 확인 불가.",
+    "delivery_method": null,
+    "delivery_timing": null,
+    "promotion": {
+      "active": false,
+      "start_date": null,
+      "end_date": null
+    },
+    "active": true,
+    "source_urls": [
+      "https://www.n-telecom.co.kr/59man/view/plan/phone_plan.aspx",
+      "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
+      "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
+    ],
+    "checked_at": "2026-09-28",
+    "notes": "현재 실제 가입 목록의 요금제명과 홍보문구로 연결은 확인되나 정확한 제공가치/지급조건은 추가 확인 필요."
+  },
+  {
+    "id": "benefit-naverpay",
+    "provider": "ntelecom",
+    "name": "네이버페이",
+    "type": "생활형 제휴혜택",
+    "value": "네이버페이",
+    "eligible_plan_ids": [
+      "ntelecom-k-7gb-naverpay",
+      "ntelecom-k-10gb-naverpay",
+      "ntelecom-k-15gb-naverpay",
+      "ntelecom-k-100min-15gb-naverpay",
+      "ntelecom-k-300min-15gb-naverpay",
+      "ntelecom-k-11gb-daily2gb-naverpay",
+      "ntelecom-k-100gb-naverpay"
+    ],
+    "eligible_networks": [
+      "K"
+    ],
+    "join_types": [],
+    "conditions": "혜택 브랜드가 결합된 해당 후불 요금제 가입. 지급액·주기·방식·유지조건은 공개 목록에서 확인 불가.",
+    "delivery_method": null,
+    "delivery_timing": null,
+    "promotion": {
+      "active": false,
+      "start_date": null,
+      "end_date": null
+    },
+    "active": true,
+    "source_urls": [
+      "https://www.n-telecom.co.kr/59man/view/plan/phone_plan.aspx",
+      "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
+      "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
+    ],
+    "checked_at": "2026-09-28",
+    "notes": "현재 실제 가입 목록의 요금제명과 홍보문구로 연결은 확인되나 정확한 제공가치/지급조건은 추가 확인 필요."
+  },
+  {
+    "id": "benefit-daiso",
+    "provider": "ntelecom",
+    "name": "다이소",
+    "type": "생활형 제휴혜택",
+    "value": "다이소 쇼핑 혜택",
+    "eligible_plan_ids": [
+      "ntelecom-k-7gb-daiso",
+      "ntelecom-k-10gb-daiso",
+      "ntelecom-k-15gb-daiso",
+      "ntelecom-k-100min-15gb-daiso",
+      "ntelecom-k-300min-15gb-daiso",
+      "ntelecom-k-11gb-daily2gb-daiso",
+      "ntelecom-k-100gb-daiso"
+    ],
+    "eligible_networks": [
+      "K"
+    ],
+    "join_types": [],
+    "conditions": "혜택 브랜드가 결합된 해당 후불 요금제 가입. 지급액·주기·방식·유지조건은 공개 목록에서 확인 불가.",
+    "delivery_method": null,
+    "delivery_timing": null,
+    "promotion": {
+      "active": false,
+      "start_date": null,
+      "end_date": null
+    },
+    "active": true,
+    "source_urls": [
+      "https://www.n-telecom.co.kr/59man/view/plan/phone_plan.aspx",
+      "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
+      "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
+    ],
+    "checked_at": "2026-09-28",
+    "notes": "현재 실제 가입 목록의 요금제명과 홍보문구로 연결은 확인되나 정확한 제공가치/지급조건은 추가 확인 필요."
+  },
+  {
+    "id": "benefit-millie",
+    "provider": "ntelecom",
+    "name": "밀리의서재",
+    "type": "콘텐츠 구독",
+    "value": "밀리의 서재 구독권",
+    "eligible_plan_ids": [
+      "ntelecom-k-7gb-millie",
+      "ntelecom-k-10gb-millie",
+      "ntelecom-k-15gb-millie",
+      "ntelecom-k-100min-15gb-millie",
+      "ntelecom-k-300min-15gb-millie",
+      "ntelecom-k-11gb-daily2gb-millie",
+      "ntelecom-k-100gb-millie"
+    ],
+    "eligible_networks": [
+      "K"
+    ],
+    "join_types": [],
+    "conditions": "혜택 브랜드가 결합된 해당 후불 요금제 가입. 지급액·주기·방식·유지조건은 공개 목록에서 확인 불가.",
+    "delivery_method": null,
+    "delivery_timing": null,
+    "promotion": {
+      "active": false,
+      "start_date": null,
+      "end_date": null
+    },
+    "active": true,
+    "source_urls": [
+      "https://www.n-telecom.co.kr/59man/view/plan/phone_plan.aspx",
+      "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
+      "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
+    ],
+    "checked_at": "2026-09-28",
+    "notes": "현재 실제 가입 목록의 요금제명과 홍보문구로 연결은 확인되나 정확한 제공가치/지급조건은 추가 확인 필요."
+  },
+  {
+    "id": "benefit-oliveyoung",
+    "provider": "ntelecom",
+    "name": "올리브영",
+    "type": "생활형 제휴혜택",
+    "value": "올리브영 쇼핑 혜택",
+    "eligible_plan_ids": [
+      "ntelecom-k-7gb-oliveyoung",
+      "ntelecom-k-10gb-oliveyoung",
+      "ntelecom-k-15gb-oliveyoung",
+      "ntelecom-k-100min-15gb-oliveyoung",
+      "ntelecom-k-300min-15gb-oliveyoung",
+      "ntelecom-k-11gb-daily2gb-oliveyoung",
+      "ntelecom-k-100gb-oliveyoung"
+    ],
+    "eligible_networks": [
+      "K"
+    ],
+    "join_types": [],
+    "conditions": "혜택 브랜드가 결합된 해당 후불 요금제 가입. 지급액·주기·방식·유지조건은 공개 목록에서 확인 불가.",
+    "delivery_method": null,
+    "delivery_timing": null,
+    "promotion": {
+      "active": false,
+      "start_date": null,
+      "end_date": null
+    },
+    "active": true,
+    "source_urls": [
+      "https://www.n-telecom.co.kr/59man/view/plan/phone_plan.aspx",
+      "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
+      "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
+    ],
+    "checked_at": "2026-09-28",
+    "notes": "현재 실제 가입 목록의 요금제명과 홍보문구로 연결은 확인되나 정확한 제공가치/지급조건은 추가 확인 필요."
+  },
+  {
+    "id": "benefit-cu",
+    "provider": "ntelecom",
+    "name": "CU",
+    "type": "생활형 제휴혜택",
+    "value": "CU 편의점 쇼핑 혜택",
+    "eligible_plan_ids": [
+      "ntelecom-k-7gb-cu",
+      "ntelecom-k-10gb-cu",
+      "ntelecom-k-15gb-cu",
+      "ntelecom-k-100min-15gb-cu",
+      "ntelecom-k-300min-15gb-cu",
+      "ntelecom-k-11gb-daily2gb-cu",
+      "ntelecom-k-100gb-cu"
+    ],
+    "eligible_networks": [
+      "K"
+    ],
+    "join_types": [],
+    "conditions": "혜택 브랜드가 결합된 해당 후불 요금제 가입. 지급액·주기·방식·유지조건은 공개 목록에서 확인 불가.",
+    "delivery_method": null,
+    "delivery_timing": null,
+    "promotion": {
+      "active": false,
+      "start_date": null,
+      "end_date": null
+    },
+    "active": true,
+    "source_urls": [
+      "https://www.n-telecom.co.kr/59man/view/plan/phone_plan.aspx",
+      "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
+      "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
+    ],
+    "checked_at": "2026-09-28",
+    "notes": "현재 실제 가입 목록의 요금제명과 홍보문구로 연결은 확인되나 정확한 제공가치/지급조건은 추가 확인 필요."
+  }
+]

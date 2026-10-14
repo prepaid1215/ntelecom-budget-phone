@@ -1,0 +1,14 @@
+---
+import site from "../data/site.json";
+const { plan }=Astro.props;
+const benefit = (plan.benefit_ids||[])[0];
+const bLabel = benefit ? benefit.replace("benefit-","").replace("coupang-cash","쿠팡캐쉬").replace("naverpay","네이버페이").replace("daiso","다이소").replace("millie","밀리의서재").replace("oliveyoung","올리브영").replace("cu","CU") : null;
+---
+<article class="card">
+  <div class="plan-kicker">앤텔레콤 {plan.network}망 · {plan.network_type || "LTE"}</div>
+  <div class="plan-name">{plan.name}</div>
+  <div class="plan-row"><div class="plan-data">{plan.data_gb ? `${plan.data_gb}GB` : (plan.daily_data_gb ? `매일 ${plan.daily_data_gb}GB` : "DATA")}</div><div class="plan-price"><small>월 기본료</small><strong>{plan.monthly_price.toLocaleString("ko-KR")}원</strong></div></div>
+  <div class="plan-desc">{plan.data_text}<br />통화 {plan.calls} · 문자 {plan.sms}</div>
+  <div class="plan-badges">{plan.contract && <span class="badge">{plan.contract}</span>}{bLabel && <span class="badge">{bLabel}</span>}{plan.promotion?.active && <span class="badge">프로모션</span>}</div>
+  <div class="card-actions"><button class="muted-btn" onclick={`localStorage.setItem('savedPlan','${plan.id}')`}>저장</button><a class="cta-btn" href={site.activationUrl}>개통하기</a></div>
+</article>

@@ -1,0 +1,19 @@
+{
+  "name": "ntelecom-postpaid-page-factory",
+  "version": "3.0.0",
+  "private": true,
+  "packageManager": "pnpm@11.19.0",
+  "type": "module",
+  "scripts": {
+    "generate": "node scripts/generate-pages.mjs",
+    "validate": "node scripts/validate-data.mjs",
+    "report": "node scripts/content-report.mjs",
+    "qa:mobile": "node scripts/mobile-qa.mjs",
+    "dev": "pnpm run generate && astro dev",
+    "build": "pnpm run generate && pnpm run validate && astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.0.0"
+  }
+}
