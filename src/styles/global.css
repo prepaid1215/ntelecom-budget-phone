@@ -306,3 +306,10 @@ p,dd,li,summary,strong,small,span,td,th{word-break:keep-all;overflow-wrap:break-
 .ph-pick span{color:#52545c;font-size:14px}
 .ph-pick em{margin-top:6px;font-style:normal;font-size:16px;font-weight:800}
 @media(min-width:800px){.ph-picks{grid-template-columns:repeat(3,1fr)}}
+
+/* 신청 순서: 세로 한 줄 + 유심 번호 위치 이미지 */
+.steps.steps-flow{grid-template-columns:1fr}
+.steps-flow .step{grid-template-columns:34px minmax(0,1fr)}
+.usim-guide{margin:14px 0 2px;max-width:560px}
+.usim-guide img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--line);background:#fff}
+.usim-guide figcaption{margin-top:6px;color:#52545c;font-size:13px;font-weight:700}
