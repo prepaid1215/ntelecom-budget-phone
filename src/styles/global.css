@@ -371,3 +371,6 @@ p,dd,li,summary,strong,small,span,td,th{word-break:keep-all;overflow-wrap:break-
 
 .calc-total[hidden],.calc-step>strong[hidden]{display:none}
 .calc-step.is-extra>span{font-weight:800}
+
+.calc-step.is-extra>strong{margin-top:6px;font-size:30px;letter-spacing:-1px}
+.calc-step.is-extra>span{margin-top:8px;font-size:15px}
