@@ -286,3 +286,14 @@ p,dd,li,summary,strong,small,span,td,th{word-break:keep-all;overflow-wrap:break-
 
 /* 홀수 개 단계일 때 마지막 카드는 가로 전체 */
 @media(min-width:800px){.steps .step:last-child:nth-child(odd){grid-column:1 / -1}}
+
+/* 번호이동 */
+.nt-check{display:grid;gap:12px;grid-template-columns:1fr}
+.nt-check article{padding:18px;border-radius:18px;border:1px solid var(--line);background:#fff}
+.nt-check b{display:block;margin-bottom:8px;font-size:17px}
+.nt-check ul{margin:0;padding-left:20px;display:grid;gap:8px;font-size:15px;line-height:1.6}
+.nt-check small{display:block;margin-top:2px;color:#5c5e66;font-size:13px}
+.nt-check .is-ok{background:#f1fbf5;border-color:#bfe8cf}.nt-check .is-ok b{color:#0f7a43}
+.nt-check .is-no{background:#fff5f5;border-color:#f2c9c9}.nt-check .is-no b{color:#c0392b}
+.nt-go{color:var(--brand-deep);font-weight:800;font-size:14px}
+@media(min-width:800px){.nt-check{grid-template-columns:repeat(2,1fr)}}

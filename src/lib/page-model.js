@@ -219,6 +219,24 @@ function guideFaqs(){
   ];
 }
 
+function transferFaqs(){
+  return [
+    {q:"요금을 연체 중인데 번호이동할 수 있나요?",a:"아니요, 요금을 연체 중이면 번호이동이 제한돼요. 연체 요금을 먼저 납부한 뒤 신청하세요."},
+    {q:"최근에 번호이동했는데 또 옮길 수 있나요?",a:"번호이동 후 3개월이 지나지 않으면 제한돼요. 번호이동관리센터에 직접 신청하는 예외가 있으니, 막히면 문의해 주세요."},
+    {q:"번호이동하면 기존 통신사는 어떻게 되나요?",a:"번호이동이 완료되면 기존 통신사 회선은 해지돼요. 약정이나 할부금이 남아 있다면 위약금과 잔여 할부금이 청구될 수 있으니 기존 통신사에서 먼저 확인하세요."},
+    {q:"L망 요금제로도 번호이동이 되나요?",a:"번호이동 가능 여부가 확인된 요금제는 K망(KT망) 요금제예요. L망으로 번호이동을 원하면 신청 전에 카카오톡 채널이나 전화(010-7305-8253)로 문의해 주세요."},
+    {q:"번호이동하면 바로 쓸 수 있나요?",a:"네, 신청이 끝나면 개통이 완료돼요. 유심을 꽂으면 바로 쓸 수 있어요. 다만 사용 중에 1899-7700으로 본사 확인 전화(해피콜)가 오면 꼭 받아야 해요. 받지 않으면 회선이 해지될 수 있어요."},
+    {q:"번호이동이 어려우면 어떻게 하나요?",a:"새 번호로 시작하는 신규가입을 선택할 수 있어요. 쓰던 번호는 그대로 두고 두 번째 번호로 쓰는 분도 많아요."}
+  ];
+}
+
+const pageTitleOverrides={
+  "/number-transfer/":"앤텔레콤 번호이동 방법과 조건"
+};
+const pageMetaOverrides={
+  "/number-transfer/":"쓰던 번호 그대로 앤텔레콤으로 옮기는 방법이에요. 연체·3개월 제한 확인부터 K망 요금제 가격, 신청 순서와 막혔을 때 해결법까지 정리했어요."
+};
+
 function metaFor(page,matched){
   const low=matched.length ? Math.min(...matched.map(p=>p.monthly_price)) : null;
   let text;
@@ -256,10 +274,10 @@ export function buildModel(page){
     directAnswer:directAnswer(page,matched),
     checks:checks(page),
     steps:steps(page),
-    faqs:one ? planFaqs(one,pageCards,pageBenefits) : page.path==="/benefits/" ? benefitHubFaqs() : page.path==="/card/" ? cardHubFaqs() : page.path==="/guide/" ? guideFaqs() : pageFaqs(page),
+    faqs:one ? planFaqs(one,pageCards,pageBenefits) : page.path==="/benefits/" ? benefitHubFaqs() : page.path==="/card/" ? cardHubFaqs() : page.path==="/guide/" ? guideFaqs() : page.path==="/number-transfer/" ? transferFaqs() : pageFaqs(page),
     related:related(page),
-    seoTitle:page.pageType==="home" ? "앤텔레콤 알뜰폰" : seoTitle,
-    meta:metaFor(page,matched),
+    seoTitle:page.pageType==="home" ? "앤텔레콤 알뜰폰" : (pageTitleOverrides[page.path]||seoTitle),
+    meta:pageMetaOverrides[page.path]||metaFor(page,matched),
     activation,
     promoActive
   };
