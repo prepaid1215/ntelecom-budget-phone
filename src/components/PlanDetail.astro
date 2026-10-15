@@ -1,6 +1,6 @@
 ---
 import { siteConfig as site, activationLink, toPublicPath } from "../lib/site-config.js";
-import { plans, benefitById, cardsForPlan, benefitsForPlan, promoActive } from "../lib/catalog.js";
+import { plans, benefitById, cardsForPlan, benefitsForPlan, promoActive, stripPromoText } from "../lib/catalog.js";
 import CardOffer from "./CardOffer.astro";
 import UsimThumb from "./UsimThumb.astro";
 import UsimNumberGuide from "./UsimNumberGuide.astro";
@@ -80,7 +80,7 @@ const adLabel={price:"월 요금",card:"카드 할인","number-transfer":"번호
     <span class="eyebrow">{operator}망 · {plan.network_type||"LTE"} · 요금제</span>
     <h1>{displayName(plan)}</h1>
     <div class="plan-badges">{plan.contract && <span class="badge">{plan.contract}</span>}{benefits.map(b=><span class="badge">{b.name}</span>)}{promoOn && <span class="badge">프로모션 진행 중</span>}</div>
-    {page.pageType==="ad" && adLabel && <p class="pd-adline">{page.angle}</p>}
+    {page.pageType==="ad" && adLabel && <p class="pd-adline">{promoOn ? page.angle : stripPromoText(page.angle)}</p>}
   </div>
   <div class="pd-price">
     <small>월 기본료</small>

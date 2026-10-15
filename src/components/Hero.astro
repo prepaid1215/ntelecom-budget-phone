@@ -1,5 +1,6 @@
 ---
 import { activationLink, toPublicPath } from "../lib/site-config.js";
+import { stripPromoText, planById } from "../lib/catalog.js";
 const { model }=Astro.props;
 const { page, one, matched }=model;
 const isHome=page.pageType==="home";
@@ -23,7 +24,7 @@ const lines = isHome
      ? ["통신비, 카드로","월 최대 "+Math.max(...(model.cards||[]).map(c=>c.max_monthly_discount||0)).toLocaleString("ko-KR")+"원 할인"]
      : isBenefitHub
      ? ["앤텔레콤 혜택","쿠팡·네이버페이·CU까지 6가지"]
-     : [page.keyword,page.angle];
+     : [page.keyword,page.planId && !planById(page.planId)?.promo_on ? stripPromoText(page.angle) : page.angle];
 const description=isHome
  ? "쓰는 데이터에 맞는 요금제를 고르고, 제휴카드 할인까지 반영한 실제 월 요금을 확인해 보세요."
  : isTransfer
