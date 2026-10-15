@@ -84,7 +84,7 @@ function directAnswer(page, matched){
   if(page.path==="/plans/") return "한 달에 쓰는 데이터와 예산을 먼저 정하고, K망·L망 상품을 비교하면 금방 고를 수 있어요.";
   if(page.pageType==="plan" && matched[0]){
     const p=matched[0];
-    return `${topic(p.name)} 월 기본료 ${won(p.monthly_price)}에 ${p.data_text}가 제공되는 후불 요금제예요.`;
+    return `${topic(p.name)} 월 기본료 ${won(p.monthly_price)}에 ${p.data_text}가 제공되는 요금제예요.`;
   }
   if(page.pageType==="card"){
     const c=cardById(page.cardId);
@@ -213,7 +213,7 @@ function guideFaqs(){
     {q:"유심번호는 어떻게 입력하나요?",a:"K망은 유심 일련번호 숫자 19자리를 입력하고, 마지막 알파벳 F는 빼요. L망은 모델명(알파벳 1개+숫자 4개)과 유심번호(숫자 8개)를 입력하고, 예를 들면 U8680 + 00123456처럼 써요."},
     {q:"해피콜은 어떤 번호로 오나요?",a:"1899-7700으로 걸려 와요. 앤텔레콤 고객센터 번호예요. 사용 중에 이 번호로 전화가 오면 꼭 받아 주세요."},
     {q:"해피콜은 꼭 받아야 하나요?",a:"네. 사용 중에 본사 확인 전화(해피콜, 1899-7700)가 와요. 받지 않으면 회선이 해지될 수 있으니 모르는 번호라도 꼭 받아 주세요."},
-    {q:"자급제폰으로도 개통할 수 있나요?",a:"네, 자급제폰에 유심을 꽂아 쓸 수 있어요. LTE 후불 요금제는 5G 자급 단말로도 가입할 수 있어요."},
+    {q:"자급제폰으로도 개통할 수 있나요?",a:"네, 자급제폰에 유심을 꽂아 쓸 수 있어요. LTE 요금제는 5G 자급 단말로도 가입할 수 있어요."},
     {q:"개통하다 막히면 어디로 문의하나요?",a:"카카오톡 채널 채팅으로 바로 문의하세요. 운영시간은 평일 09:00~18:00이고 점심(12:00~13:00), 주말·공휴일은 쉬어요."}
   ];
 }
@@ -230,11 +230,11 @@ function transferFaqs(){
 }
 
 const pageTitleOverrides={
-  "/plans/":"앤텔레콤 후불 요금제 전체 비교",
+  "/plans/":"앤텔레콤 요금제 전체 비교",
   "/number-transfer/":"앤텔레콤 번호이동 방법과 조건"
 };
 const pageMetaOverrides={
-  "/plans/":"앤텔레콤 후불 요금제 47개를 데이터·가격·망·혜택별로 걸러 보고 비교하세요. 약정 없이 월 17,900원부터, 제휴카드 할인 적용가까지 한 번에 볼 수 있어요.",
+  "/plans/":"앤텔레콤 요금제 47개를 데이터·가격·망·혜택별로 걸러 보고 비교하세요. 약정 없이 월 17,900원부터, 제휴카드 할인 적용가까지 한 번에 볼 수 있어요.",
   "/number-transfer/":"쓰던 번호 그대로 앤텔레콤으로 옮기는 방법이에요. 연체·3개월 제한 확인부터 K망 요금제 가격, 신청 순서와 막혔을 때 해결법까지 정리했어요."
 };
 
@@ -253,7 +253,7 @@ function metaFor(page,matched){
   const low=matched.length ? Math.min(...matched.map(p=>p.monthly_price)) : null;
   let text;
   if(page.planId && matched[0]) text=`${matched[0].name}: 월 ${won(matched[0].monthly_price)}, ${matched[0].data_text}. 제휴카드 할인을 반영한 실제 납부액까지 확인해 보세요.`;
-  else if(page.pageType==="home") text="앤텔레콤 후불 알뜰폰 요금제를 월 요금·데이터·제휴카드 할인까지 한 번에 비교하세요. 약정 없이 "+(low ? won(low)+"부터." : "가입할 수 있어요.");
+  else if(page.pageType==="home") text="앤텔레콤 알뜰폰 요금제를 월 요금·데이터·제휴카드 할인까지 한 번에 비교하세요. 약정 없이 "+(low ? won(low)+"부터." : "가입할 수 있어요.");
   else text=`${page.keyword}, ${page.angle}.${matched.length>1 ? " 판매 중인 요금제 "+matched.length+"개를 월 요금과 데이터 기준으로 비교해 보세요." : ""}${low ? " "+won(low)+"부터 시작해요." : ""}`;
   if(text.length<70) text+=" 가입 전에 현재 판매 여부와 망, 통화·문자 조건, 혜택 적용 기준을 함께 확인하세요.";
   return text;

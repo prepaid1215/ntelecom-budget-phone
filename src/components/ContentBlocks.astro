@@ -13,7 +13,7 @@ const showPlans=[...model.matched].sort((a,b)=>a.monthly_price-b.monthly_price |
 const introHeading=isPlanHub ? "요금제 선택 가이드" : "핵심 안내";
 const checksHeading=isPlanHub ? "요금제 고르는 기준" : "선택 전에 확인하세요";
 const allPlans=model.matched.length>=47;
-const plansHeading=isPlanHub ? "전체 후불 요금제" : allPlans ? "판매 중인 요금제" : "조건에 맞는 요금제";
+const plansHeading=isPlanHub ? "전체 요금제" : allPlans ? "판매 중인 요금제" : "조건에 맞는 요금제";
 const plansLead=isPlanHub
   ? "판매 중인 "+model.matched.length+"개 요금제를 월 기본료와 데이터 기준으로 비교해 보세요."
   : allPlans ? "지금 가입할 수 있는 "+model.matched.length+"개 요금제예요."

@@ -77,7 +77,7 @@ const adLabel={price:"월 요금",card:"카드 할인","number-transfer":"번호
 ---
 <section class="pd-hero"><div class="wrap pd-hero-inner">
   <div class="pd-title">
-    <span class="eyebrow">{operator}망 · {plan.network_type||"LTE"} · 후불 요금제</span>
+    <span class="eyebrow">{operator}망 · {plan.network_type||"LTE"} · 요금제</span>
     <h1>{displayName(plan)}</h1>
     <div class="plan-badges">{plan.contract && <span class="badge">{plan.contract}</span>}{benefits.map(b=><span class="badge">{b.name}</span>)}{promoOn && <span class="badge">프로모션 진행 중</span>}</div>
     {page.pageType==="ad" && adLabel && <p class="pd-adline">{page.angle}</p>}

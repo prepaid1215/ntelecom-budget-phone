@@ -14,15 +14,15 @@ const price=isGuide ? null : one?.monthly_price ?? (isCardHub && matched.length 
 const lines = isHome
  ? ["약정 없이,","번호는 그대로","월 "+(price ?? 0).toLocaleString("ko-KR")+"원부터"]
  : isPlanHub
-   ? ["앤텔레콤 후불 요금제","데이터·가격·망별 비교"]
+   ? ["앤텔레콤 요금제","데이터·가격·망별 비교"]
    : isTransfer
      ? ["번호는 그대로,","통신사만 바꾸세요"]
      : isGuide
-     ? ["앤텔레콤 후불 개통","준비물 2개면 끝"]
+     ? ["앤텔레콤 개통","준비물 2개면 끝"]
      : isCardHub
      ? ["통신비, 카드로","월 최대 "+Math.max(...(model.cards||[]).map(c=>c.max_monthly_discount||0)).toLocaleString("ko-KR")+"원 할인"]
      : isBenefitHub
-     ? ["앤텔레콤 후불 혜택","쿠팡·네이버페이·CU까지 6가지"]
+     ? ["앤텔레콤 혜택","쿠팡·네이버페이·CU까지 6가지"]
      : [page.keyword,page.angle];
 const description=isHome
  ? "쓰는 데이터에 맞는 요금제를 고르고, 제휴카드 할인까지 반영한 실제 월 요금을 확인해 보세요."

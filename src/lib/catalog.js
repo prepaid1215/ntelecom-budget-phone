@@ -4,11 +4,12 @@ import benefits from "../data/research/benefits.json";
 import activation from "../data/research/activation-rules.json";
 import overrides from "../data/owner-overrides.json";
 
+const cleanName=n=>String(n||"").replace(/후불\s*/g," ").replace(/\s+/g," ").trim();
 export const plans = rawPlans.filter(p=>p.active).map(p=>{
   const tags = new Set(p.tags || []);
   if(overrides.contract?.apply_to_all_active_plans) tags.add(overrides.contract.tag);
   if(activation.devices?.self_phone === true) tags.add("self-phone");
-  return {...p, contract:p.contract || overrides.contract?.value || null, tags:[...tags].sort()};
+  return {...p, name:cleanName(p.name), official_name:cleanName(p.official_name), contract:p.contract || overrides.contract?.value || null, tags:[...tags].sort()};
 });
 export { cards, benefits, activation };
 

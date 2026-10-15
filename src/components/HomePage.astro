@@ -31,10 +31,10 @@ const featured=[cheapest("7gb"),cheapest("15gb"),cheapest("100gb")].filter(Boole
 <section class="section"><div class="wrap"><h2>요금제에 붙는 혜택</h2><p class="section-lead">쿠팡캐시·네이버페이·다이소·올리브영은 월 5,000원, 밀리의서재는 월 11,900원 구독권, CU는 결제금액 20% 할인(월 최대 5,000원) 혜택이에요.</p><div class="grid cols-3">{model.benefits.map(b=><BenefitOffer benefit={b}/>)}</div></div></section>
 
 <section class="section soft"><div class="wrap"><h2>원하는 조건으로 찾기</h2><div class="link-list">
-<a href={toPublicPath("/plans/k/")}><span>K망(KT) 후불 요금제</span><span>›</span></a>
-<a href={toPublicPath("/plans/l/")}><span>L망(LG U+) 후불 요금제</span><span>›</span></a>
+<a href={toPublicPath("/plans/k/")}><span>K망(KT) 요금제</span><span>›</span></a>
+<a href={toPublicPath("/plans/l/")}><span>L망(LG U+) 요금제</span><span>›</span></a>
 <a href={toPublicPath("/plans/15gb/")}><span>15GB 요금제</span><span>›</span></a>
 <a href={toPublicPath("/plans/price/under-30000/")}><span>3만원 이하 요금제</span><span>›</span></a>
-<a href={toPublicPath("/no-contract/")}><span>무약정 후불 요금제</span><span>›</span></a>
+<a href={toPublicPath("/no-contract/")}><span>무약정 요금제</span><span>›</span></a>
 <a href={toPublicPath("/self-phone/")}><span>자급제폰으로 가입하기</span><span>›</span></a>
 </div><div class="data-note">요금 정보는 {dataDate} 기준이며, 프로모션과 혜택 조건은 가입 시점에 달라질 수 있어요.</div></div></section>
