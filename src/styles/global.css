@@ -386,3 +386,8 @@ p,dd,li,summary,strong,small,span,td,th{word-break:keep-all;overflow-wrap:break-
 /* 마지막 신청 박스: 문구 가운데 정렬 */
 .final-box>p{max-width:none;margin-left:auto;margin-right:auto;text-align:center}
 .final-box>h2{text-align:center}
+
+/* 404 */
+.nf{text-align:center}.nf-code{margin:0;color:var(--brand-deep);font-size:15px;font-weight:900;letter-spacing:.1em}
+.nf h1{margin:6px 0 10px;font-size:34px;letter-spacing:-1px}.nf-lead{margin:0 auto 22px;color:#52545c;font-size:16px}
+.nf .link-list{text-align:left;max-width:520px;margin:0 auto}
