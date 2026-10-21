@@ -144,6 +144,6 @@ const adLabel={price:"월 요금",card:"카드 할인","number-transfer":"번호
 
 <section class="section"><div class="wrap"><h2>자주 묻는 질문</h2><div class="faq-list">{model.faqs.map(f=><details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>)}</div></div></section>
 
-<section class="section soft"><div class="wrap"><h2>함께 보면 좋은 페이지</h2><div class="link-list">{model.related.map(p=><a href={toPublicPath(p.path)}><span>{p.keyword}</span><span>›</span></a>)}</div><div class="data-note">요금 정보는 {dateKo(site.dataCheckedAt)} 기준이에요. 프로모션·혜택·카드 조건은 가입 시점에 달라질 수 있어요.</div></div></section>
+<section class="section soft"><div class="wrap"><h2>함께 보면 좋은 페이지</h2><div class="link-list">{model.related.map(p=><a href={toPublicPath(p.path)}><span>{p.keyword}</span><span>›</span></a>)}</div><div class="data-note">프로모션·혜택·카드 조건은 가입 시점에 달라질 수 있어요.</div></div></section>
 
 <section class="section"><div class="wrap final-box"><h2>{displayName(plan)}, 신청해 볼까요?</h2><p>신청하면 개통돼서 바로 쓸 수 있어요. 해피콜은 꼭 받아 주세요.</p><a class="final-button" href={activationLink("final")}>바로 신청하기</a></div></section>

@@ -8,10 +8,6 @@ const { model }=Astro.props;
 
 const won=n=>n.toLocaleString("ko-KR")+"원";
 const man=n=>Math.round(n/10000)+"만원";
-const checked=cards.map(c=>c.checked_at).filter(Boolean).sort().pop() || site.dataCheckedAt;
-const [yy,mm,dd]=checked.split("-").map(Number);
-const dataDate=`${yy}년 ${mm}월 ${dd}일`;
-
 const cardByNetwork={K:cards.find(c=>c.eligible_networks.includes("K")),L:cards.find(c=>c.eligible_networks.includes("L"))};
 const baseMax=c=>Math.max(...c.discount_tiers.map(t=>t.monthly_discount));
 const cardPath={"card-kt-my-alttel-bc-baro":"/card/kt-my-alttle-bc-baro/","card-uplus-mvno-partners-samsung":"/card/uplus-partners-samsung/"};
@@ -107,7 +103,7 @@ const offAt=(c,spend)=>{ const t=[...c.discount_tiers].reverse().find(x=>spend>=
     <article><strong>실적 구간별 할인이에요</strong><p>전월 {man(firstTier(cardByNetwork.K).monthly_spend)}을 채우지 못하면 할인이 없어요. 평소 카드 사용액이 어느 구간인지 먼저 확인하세요.</p></article>
     <article><strong>삼성카드는 생활요금도 챙겨요</strong><p>아파트관리비·보험·렌탈 같은 생활요금을 정기결제하면 1건당 1,000원, 최대 3,000원이 더 할인돼요.</p></article>
   </div>
-  <p class="pd-note">카드 조건은 {dataDate} 기준이에요. 혜택은 카드사 사정에 따라 바뀔 수 있으니 발급 전에 카드사 안내를 다시 확인하세요.</p>
+  <p class="pd-note">혜택은 카드사 사정에 따라 바뀔 수 있으니 발급 전에 카드사 안내를 다시 확인하세요.</p>
 </div></section>
 
 <section class="section"><div class="wrap">
