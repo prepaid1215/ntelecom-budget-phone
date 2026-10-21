@@ -7,10 +7,6 @@ import UsimNumberGuide from "./UsimNumberGuide.astro";
 const { model }=Astro.props;
 
 const won=n=>n.toLocaleString("ko-KR")+"원";
-const checked=benefits.map(b=>b.checked_at).filter(Boolean).sort().pop() || site.dataCheckedAt;
-const [yy,mm,dd]=checked.split("-").map(Number);
-const dataDate=`${yy}년 ${mm}월 ${dd}일`;
-
 import { benefitBrand } from "../lib/benefit-brand.js";
 const icons={"benefit-coupang-cash":"coupang-cash.svg","benefit-naverpay":"naverpay.svg","benefit-daiso":"daiso.svg","benefit-millie":"millie.svg","benefit-oliveyoung":"oliveyoung.svg","benefit-cu":"cu.svg"};
 const kinds={"benefit-coupang-cash":"상품권","benefit-naverpay":"포인트","benefit-daiso":"상품권","benefit-oliveyoung":"상품권","benefit-millie":"구독","benefit-cu":"결제 할인"};
@@ -69,7 +65,7 @@ const cheapNames=t7 ? t7.list.filter(x=>x.p.monthly_price===t7.min).map(x=>x.b.n
     <article><strong>밀리의서재</strong><p>월 11,900원 구독권이 요금제를 유지하는 동안 제공돼요. 앱에서 제휴 구독을 직접 활성화해야 하고, 이미 쓰는 구독과는 중복이 제한될 수 있어요.</p></article>
     <article><strong>CU</strong><p>포켓CU에서 제휴 인증을 하면 QR 결제 때 20%가 할인돼요. 월 한도는 5,000원이고 이월되지 않아요. 한도를 다 채우려면 매월 25,000원 이상 결제해야 해요.</p></article>
   </div>
-  <p class="pd-note">혜택 조건은 {dataDate} 기준이에요. 요금제를 바꾸면 혜택이 중단되거나 기준일이 다시 시작될 수 있어요.</p>
+  <p class="pd-note">혜택 조건은 가입 요금제와 이용 조건에 따라 달라질 수 있어요.</p>
 </div></section>
 
 <section class="section soft"><div class="wrap">

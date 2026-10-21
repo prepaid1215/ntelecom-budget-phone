@@ -5,8 +5,6 @@ import CardOffer from "./CardOffer.astro";
 import BenefitOffer from "./BenefitOffer.astro";
 import BenefitGuide from "./BenefitGuide.astro";
 const { model }=Astro.props;
-const [yy,mm,dd]=site.dataCheckedAt.split("-").map(Number);
-const dataDate=`${yy}년 ${mm}월 ${dd}일`;
 const isPlanHub=model.page.path==="/plans/";
 const isBenefitDetail=model.page.pageType==="benefit" && !!model.page.benefitId;
 const showPlans=[...model.matched].sort((a,b)=>a.monthly_price-b.monthly_price || a.name.localeCompare(b.name,"ko"));
@@ -59,6 +57,6 @@ const recommendedPlans=[
 
 <section class="section"><div class="wrap"><h2>자주 묻는 질문</h2><div class="faq-list">{model.faqs.map(f=><details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>)}</div></div></section>
 
-<section class="section soft"><div class="wrap"><h2>함께 보면 좋은 페이지</h2><div class="link-list">{model.related.map(p=><a href={toPublicPath(p.path)}><span>{p.keyword}</span><span>›</span></a>)}</div><div class="data-note">요금 정보는 {dataDate} 기준이에요. 프로모션·혜택·카드 조건은 가입 시점에 달라질 수 있어요.</div></div></section>
+<section class="section soft"><div class="wrap"><h2>함께 보면 좋은 페이지</h2><div class="link-list">{model.related.map(p=><a href={toPublicPath(p.path)}><span>{p.keyword}</span><span>›</span></a>)}</div><div class="data-note">프로모션·혜택·카드 조건은 가입 시점에 달라질 수 있어요.</div></div></section>
 
 <section class="section"><div class="wrap final-box"><h2>요금제를 골랐다면 바로 신청하세요</h2><p>신청하면 개통돼서 바로 쓸 수 있어요. 해피콜은 꼭 받아 주세요.</p><a class="final-button" href={activationLink("final")}>바로 개통하기</a></div></section>

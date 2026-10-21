@@ -94,17 +94,15 @@ for(const file of htmlFiles){
 if(htmlFiles.length!==pages.length+1 || !builtRoutes.has("/404/")) errors.push("HTML 수 "+htmlFiles.length+", 페이지 맵 "+pages.length+" + 404");
 const robotsText=fs.readFileSync(path.join(root,"robots.txt"),"utf8");
 const sitemapText=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
-const childSitemaps=[...sitemapText.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>path.basename(new URL(m[1].replace(/&amp;/g,"&")).pathname)).filter(()=>sitemapText.includes("<sitemapindex"));
-let sitemapUrls=(sitemapText.match(/<url>/g)||[]).length;
-for(const name of childSitemaps){
-  const childText=fs.readFileSync(path.join(root,name),"utf8");
-  const count=(childText.match(/<url>/g)||[]).length;
-  if(count>1500) errors.push("sitemap 파일 URL 초과: "+name+" "+count);
-  if((childText.match(/<priority>/g)||[]).length!==count) errors.push("sitemap priority 누락: "+name);
-  sitemapUrls+=count;
-}
+const sitemapUrls=(sitemapText.match(/<url>/g)||[]).length;
 const expectedSitemapUrls=productionReady ? pages.filter(page=>page.effectiveIndex==="index").length : 0;
+if(!sitemapText.includes("<urlset") || sitemapText.includes("<sitemapindex") || sitemapText.includes("<sitemap>")) errors.push("sitemap.xml은 URL을 직접 담는 단일 urlset이어야 합니다");
+if(sitemapText.includes("<lastmod>")) errors.push("확인 기준일을 lastmod로 사용하지 마세요");
 if(sitemapUrls!==expectedSitemapUrls) errors.push("sitemap URL 수 "+sitemapUrls+", 기대값 "+expectedSitemapUrls);
+const sitemapLocations=[...sitemapText.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match=>match[1]);
+const expectedLocations=productionReady ? pages.filter(page=>page.effectiveIndex==="index").map(page=>new URL(withBase(page.path),expectedOrigin).toString()) : [];
+if(new Set(sitemapLocations).size!==sitemapLocations.length) errors.push("sitemap URL 중복");
+if(sitemapLocations.length!==expectedLocations.length || expectedLocations.some(location=>!sitemapLocations.includes(location))) errors.push("sitemap URL이 색인 대상 페이지와 일치하지 않습니다");
 if(productionReady){
   if(!robotsText.includes("Allow: /") || !robotsText.includes("Sitemap:")) errors.push("운영 robots.txt 오류");
   if(robotsText.includes("Disallow: /lp/")) errors.push("noindex 확인을 막는 /lp/ 차단");

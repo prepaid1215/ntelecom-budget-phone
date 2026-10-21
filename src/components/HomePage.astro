@@ -5,8 +5,6 @@ import CardOffer from "./CardOffer.astro";
 import BenefitOffer from "./BenefitOffer.astro";
 import HomePlanFinder from "./HomePlanFinder.astro";
 const { model }=Astro.props;
-const [yy,mm,dd]=site.dataCheckedAt.split("-").map(Number);
-const dataDate=`${yy}년 ${mm}월 ${dd}일`;
 const plans=model.matched;
 const cheapest=(tag)=>plans.filter(p=>p.tags.includes(tag)).sort((a,b)=>a.monthly_price-b.monthly_price)[0];
 const featured=[cheapest("7gb"),cheapest("15gb"),cheapest("100gb")].filter(Boolean);
@@ -37,4 +35,4 @@ const featured=[cheapest("7gb"),cheapest("15gb"),cheapest("100gb")].filter(Boole
 <a href={toPublicPath("/plans/price/under-30000/")}><span>3만원 이하 요금제</span><span>›</span></a>
 <a href={toPublicPath("/no-contract/")}><span>무약정 요금제</span><span>›</span></a>
 <a href={toPublicPath("/self-phone/")}><span>자급제폰으로 가입하기</span><span>›</span></a>
-</div><div class="data-note">요금 정보는 {dataDate} 기준이며, 프로모션과 혜택 조건은 가입 시점에 달라질 수 있어요.</div></div></section>
+</div><div class="data-note">프로모션과 혜택 조건은 가입 시점에 달라질 수 있어요.</div></div></section>

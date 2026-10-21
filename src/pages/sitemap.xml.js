@@ -1,5 +1,5 @@
-import { indexXml } from "../lib/sitemap.js";
+import { sitemapXml } from "../lib/sitemap.js";
 
 export async function GET(){
-  return new Response(indexXml(),{headers:{"Content-Type":"application/xml; charset=utf-8"}});
+  return new Response(sitemapXml(),{headers:{"Content-Type":"application/xml; charset=utf-8"}});
 }
