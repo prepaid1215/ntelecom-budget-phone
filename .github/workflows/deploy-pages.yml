@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    # 매일 00:10 (KST) 재빌드: 프로모션 종료일 등 날짜 기준 표시를 자동 갱신
+    - cron: "10 15 * * *"
 
 permissions:
   contents: read
@@ -25,7 +28,7 @@ jobs:
         env:
           SITE_URL: https://prepaid1215.github.io
           BASE_PATH: /ntelecom-budget-phone
-          PRODUCTION_READY: "false"
+          PRODUCTION_READY: "true"
 
   deploy:
     needs: build

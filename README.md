@@ -17,8 +17,8 @@
 ## 페이지 공장
 
 - 자동 생성 페이지: 500개
-- index 후보: 243개
-- noindex: 257개
+- index 후보: 141개
+- noindex: 359개
 - 광고 LP는 항상 `/lp/` + noindex
 - 실제 상품 근거가 있는 태그 조합만 SEO index 후보
 
@@ -110,7 +110,7 @@ Vercel에서는 저장소의 `pnpm-lock.yaml`과 `packageManager`를 사용해 �
 
 로컬에서는 `.env.example`을 복사해 사용할 수 있습니다. 환경변수가 없으면 `src/data/site.json`의 값이 대체값으로 쓰입니다.
 
-`PRODUCTION_READY=false`에서는 모든 HTML이 `noindex,follow`이고, `robots.txt`는 전체 크롤링을 차단하며 sitemap은 비어 있습니다. `true`로 전환하면 기존 `effectiveIndex` 판정에 따라 243개 후보만 index 대상으로 바뀌고 sitemap에 포함됩니다. 257개 noindex와 광고 LP 203개는 계속 제외됩니다.
+`PRODUCTION_READY=false`에서는 모든 HTML이 `noindex,follow`이고, `robots.txt`는 전체 크롤링을 차단하며 sitemap은 비어 있습니다. `true`로 전환하면 `effectiveIndex`가 index인 141개 페이지만 검색 대상과 sitemap에 포함됩니다. 나머지 페이지와 광고 LP는 계속 제외됩니다.
 
 배포 전 검증:
 

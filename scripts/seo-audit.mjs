@@ -21,6 +21,7 @@ const htmlFiles=walk(root).filter(file=>file.endsWith(".html"));
 const routeFor=file=>{
   const relative=path.relative(root,file).split(path.sep).join("/");
   if(relative==="index.html") return "/";
+  if(relative==="404.html") return "/404/";
   return "/"+relative.replace(/index\.html$/,"");
 };
 const pageByPath=new Map(pages.map(page=>[page.path,page]));
@@ -39,7 +40,7 @@ for(const file of htmlFiles){
   const html=fs.readFileSync(file,"utf8");
   const route=routeFor(file);
   const source=pageByPath.get(route);
-  if(!source) errors.push("페이지 맵에 없는 HTML: "+route);
+  if(!source && route!=="/404/") errors.push("페이지 맵에 없는 HTML: "+route);
 
   const title=attr(html,/<title>([\s\S]*?)<\/title>/i);
   const description=attr(html,/<meta name="description" content="([^"]+)"/i);
@@ -52,8 +53,8 @@ for(const file of htmlFiles){
 
   if(!title) errors.push("title 없음: "+route);
   if(!description) errors.push("description 없음: "+route);
-  if(title.length>60) errors.push("title 60자 초과: "+route+" ("+title.length+")");
-  if(description.length<70 || description.length>160) errors.push("description 길이 오류: "+route+" ("+description.length+")");
+  if([...title].length>40) errors.push("네이버 권장 title 40자 초과: "+route+" ("+[...title].length+")");
+  if([...description].length>80) errors.push("네이버 권장 description 80자 초과: "+route+" ("+[...description].length+")");
   if(canonical!==expectedCanonical) errors.push("canonical 오류: "+route+" -> "+canonical);
   if(hreflang!==canonical) errors.push("hreflang 오류: "+route);
   if(robots!==expectedRobots) errors.push("robots 오류: "+route+" -> "+robots);
@@ -90,7 +91,7 @@ for(const file of htmlFiles){
   recordDuplicate(canonicals,canonical,route,"canonical");
 }
 
-if(htmlFiles.length!==pages.length) errors.push("HTML 수 "+htmlFiles.length+", 페이지 맵 "+pages.length);
+if(htmlFiles.length!==pages.length+1 || !builtRoutes.has("/404/")) errors.push("HTML 수 "+htmlFiles.length+", 페이지 맵 "+pages.length+" + 404");
 const robotsText=fs.readFileSync(path.join(root,"robots.txt"),"utf8");
 const sitemapText=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
 const childSitemaps=[...sitemapText.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>path.basename(new URL(m[1].replace(/&amp;/g,"&")).pathname)).filter(()=>sitemapText.includes("<sitemapindex"));

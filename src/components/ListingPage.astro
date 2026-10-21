@@ -54,7 +54,7 @@ if(cardOff[cheapestCard.network] && cardPrice(cheapestCard)<cheapestCard.monthly
     <div class="lp-main">
       <strong>{displayName(p)}</strong>
       <span>{dataLabel(p)}{p.after_speed ? ` · 소진 후 ${p.after_speed}` : ""} · {p.calls.startsWith("기본제공") ? "통화·문자 기본제공" : `통화 ${p.calls.split(" ")[0]}·문자 ${p.sms}`}</span>
-      <div class="lp-tags"><em>{p.network==="K" ? "KT망" : "LG U+망"}</em>{b && <em class="is-benefit">{b.name}</em>}{p.promotion?.active && <em class="is-promo">프로모션</em>}</div>
+      <div class="lp-tags"><em>{p.network==="K" ? "KT망" : "LG U+망"}</em>{b && <em class="is-benefit">{b.name}</em>}{p.promo_on && <em class="is-promo">프로모션</em>}</div>
     </div>
     <div class="lp-price"><b>월 {won(p.monthly_price)}</b>{p.monthly_price>cardPrice(p) && <small>카드 최대 할인 시 {won(cardPrice(p))}</small>}</div>
     <i aria-hidden="true">›</i>
