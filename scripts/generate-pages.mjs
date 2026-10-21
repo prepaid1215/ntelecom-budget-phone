@@ -76,10 +76,10 @@ const tagPath=t=>{
 };
 const tagKeyword=t=>{
   const m=tagMeta[t];
-  if(m.group==="join") return `앤텔레콤 ${m.label}`;
-  if(m.group==="contract") return "앤텔레콤 무약정";
-  if(m.group==="device") return "앤텔레콤 자급제";
-  return `앤텔레콤 ${m.label} 요금제`;
+  if(m.group==="join") return `알뜰폰 ${m.label}`;
+  if(m.group==="contract") return "알뜰폰 무약정 요금제";
+  if(m.group==="device") return "자급제폰 알뜰폰 요금제";
+  return `알뜰폰 ${m.label} 요금제`;
 };
 
 for(const [t,m] of Object.entries(tagMeta)){
@@ -123,7 +123,7 @@ for(const [ga,gb] of pairRules){
     if(!ids.length) continue;
     const path=comboPath(ga,gb,a,b);
     if(!path) continue;
-    add({path,keyword:`앤텔레콤 ${tagMeta[a].label} ${tagMeta[b].label} 요금제`,pageType:"combo",template:"T3",requiredTags:[a,b],supportingPlanIds:ids,indexCandidate:ids.length>=2,angle:`${tagMeta[a].label} · ${tagMeta[b].label} 요금제 모아보기`});
+    add({path,keyword:`알뜰폰 ${tagMeta[a].label} ${tagMeta[b].label} 요금제`,pageType:"combo",template:"T3",requiredTags:[a,b],supportingPlanIds:ids,indexCandidate:ids.length>=2,angle:`${tagMeta[a].label} · ${tagMeta[b].label} 요금제 모아보기`});
   }
 }
 add({path:"/number-transfer/restrictions/",keyword:"앤텔레콤 번호이동 제한",pageType:"guide",template:"T5",requiredTags:["number-transfer"],supportingPlanIds:support(["number-transfer"]),indexCandidate:true,priority:"P0",angle:"연체·최근 번호이동 제한 정리"});
@@ -155,5 +155,28 @@ while(pages.length<500&&v<=20){
   v++;
 }
 if(pages.length!==500) throw new Error(`500 pages expected, got ${pages.length}`);
+
+// Keep one indexable listing per identical product set. Product details and
+// editorial hubs have their own intent and remain eligible independently.
+const distinctListingTypes=new Set(["tag","combo"]);
+const byProductSet=new Map();
+for(const page of pages){
+  if(!page.indexCandidate || !distinctListingTypes.has(page.pageType) || page.supportingPlanIds.length<3) continue;
+  const key=[...page.supportingPlanIds].sort().join("|");
+  const group=byProductSet.get(key)||[];
+  group.push(page);
+  byProductSet.set(key,group);
+}
+for(const group of byProductSet.values()){
+  group.sort((a,b)=>
+    (a.priority==="P0"?0:1)-(b.priority==="P0"?0:1) ||
+    (a.pageType==="tag"?0:1)-(b.pageType==="tag"?0:1) ||
+    a.path.localeCompare(b.path,"en")
+  );
+  for(const duplicate of group.slice(1)) duplicate.indexCandidate=false;
+}
+for(const page of pages){
+  page.effectiveIndex=page.indexCandidate&&page.supportingPlanIds.length ? "index":"noindex";
+}
 fs.writeFileSync("src/data/generated-pages.json",JSON.stringify(pages,null,2),"utf8");
 console.log(`generated ${pages.length} pages / index ${pages.filter(p=>p.effectiveIndex==="index").length} / noindex ${pages.filter(p=>p.effectiveIndex==="noindex").length}`);

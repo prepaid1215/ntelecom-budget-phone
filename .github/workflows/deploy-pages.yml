@@ -28,7 +28,7 @@ jobs:
         env:
           SITE_URL: https://prepaid1215.github.io
           BASE_PATH: /ntelecom-budget-phone
-          PRODUCTION_READY: "false"
+          PRODUCTION_READY: "true"
 
   deploy:
     needs: build

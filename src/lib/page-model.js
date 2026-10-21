@@ -230,12 +230,22 @@ function transferFaqs(){
 }
 
 const pageTitleOverrides={
-  "/plans/":"앤텔레콤 요금제 전체 비교",
+  "/":"앤텔레콤 알뜰폰 요금제 비교",
+  "/plans/":"알뜰폰 요금제 비교 | 앤텔레콤",
+  "/card/":"알뜰폰 제휴카드 할인 비교 | 앤텔레콤",
+  "/benefits/":"알뜰폰 생활혜택 요금제 | 앤텔레콤",
+  "/guide/":"알뜰폰 개통 방법 | 앤텔레콤",
+  "/compare/":"알뜰폰 요금제 가격 비교 | 앤텔레콤",
   "/number-transfer/":"앤텔레콤 번호이동 방법과 조건"
 };
 const pageMetaOverrides={
-  "/plans/":"앤텔레콤 요금제 47개를 데이터·가격·망·혜택별로 걸러 보고 비교하세요. 약정 없이 월 17,900원부터, 제휴카드 할인 적용가까지 한 번에 볼 수 있어요.",
-  "/number-transfer/":"쓰던 번호 그대로 앤텔레콤으로 옮기는 방법이에요. 연체·3개월 제한 확인부터 K망 요금제 가격, 신청 순서와 막혔을 때 해결법까지 정리했어요."
+  "/":"앤텔레콤 알뜰폰 요금제 47개를 월 요금, 데이터, 통신망, 제휴혜택별로 비교하고 내게 맞는 상품을 찾아보세요.",
+  "/plans/":"알뜰폰 요금제 47개를 데이터·가격·통신망별로 비교하세요. 월 17,900원부터, 제휴카드 할인 조건도 확인할 수 있어요.",
+  "/card/":"알뜰폰 제휴카드의 전월 실적과 통신비 할인액을 비교하고, 요금제별 예상 납부액을 확인하세요.",
+  "/benefits/":"쿠팡캐시, 네이버페이, 다이소 등 알뜰폰 요금제 혜택과 적용 상품을 비교해 보세요.",
+  "/guide/":"알뜰폰 개통 방법을 유심 준비부터 신청, 본인확인, 개통 후 사용까지 순서대로 안내합니다.",
+  "/compare/":"알뜰폰 요금제를 월 기본료, 데이터, 통신망과 제휴카드 할인 조건으로 비교해 보세요.",
+  "/number-transfer/":"쓰던 번호 그대로 알뜰폰으로 옮기는 방법과 연체·최근 이동 제한, 신청 순서를 확인하세요."
 };
 
 function plansHubFaqs(){
@@ -276,7 +286,10 @@ export function buildModel(page){
   ];
   const selectedTitle=pick(page.path+"title",titleVariants);
   const compactQualifier=page.pageType==="benefit" ? "혜택 안내" : "요금 비교";
-  const seoTitle=selectedTitle.length<=48 ? selectedTitle : page.keyword+" | "+compactQualifier;
+  const seoTitle=selectedTitle.length<=40 ? selectedTitle : page.keyword+" "+compactQualifier;
+  const conciseTitle=value=>[...value].slice(0,40).join("").trim();
+  const conciseMeta=value=>[...value].slice(0,80).join("").trim().replace(/[ ,·|/]+$/g,"");
+  const resolvedTitle=pageTitleOverrides[page.path]||seoTitle;
   return {
     page,
     matched,
@@ -288,8 +301,8 @@ export function buildModel(page){
     steps:steps(page),
     faqs:one ? planFaqs(one,pageCards,pageBenefits) : page.path==="/benefits/" ? benefitHubFaqs() : page.path==="/card/" ? cardHubFaqs() : page.path==="/guide/" ? guideFaqs() : page.path==="/number-transfer/" ? transferFaqs() : page.path==="/plans/" ? plansHubFaqs() : pageFaqs(page),
     related:related(page),
-    seoTitle:page.pageType==="home" ? "앤텔레콤 알뜰폰" : (pageTitleOverrides[page.path]||seoTitle),
-    meta:pageMetaOverrides[page.path]||metaFor(page,matched),
+    seoTitle:conciseTitle(page.path==="/" ? pageTitleOverrides["/"] : resolvedTitle),
+    meta:conciseMeta(pageMetaOverrides[page.path]||metaFor(page,matched)),
     activation,
     promoActive
   };

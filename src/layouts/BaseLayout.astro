@@ -10,7 +10,7 @@ const {
   pagePath=Astro.url.pathname,
   image="/images/hero-mobile.webp"
 } = Astro.props;
-const fullTitle = title === site.brandName ? title : `${title}${site.defaultTitleSuffix}`;
+const fullTitle = title;
 const canonical = toSiteUrl(pagePath);
 const socialImage = toSiteUrl(image);
 const robots = site.productionReady && index==="index" ? "index,follow" : "noindex,follow";
