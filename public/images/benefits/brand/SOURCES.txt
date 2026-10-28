@@ -1,7 +1,0 @@
-Brand marks used as benefit identifiers (nominative use). Trademarks belong to their owners.
-coupang-cash.svg  - Wikimedia Commons "Coupang logo.svg"
-cu.svg            - Wikimedia Commons "CU BI (2017).svg"
-oliveyoung.svg    - Wikimedia Commons "Olive Young Logo.svg"
-daiso-kr.png      - 한국다이소 logo from https://cdn.daisomall.co.kr/file/CM/daisologo_1.91-1.png (daisomall.co.kr)
-naverpay.svg      - Naver "N" mark path from simple-icons (CC0) on Naver green tile
-millie.png        - app icon from https://www.millie.co.kr/favicon/ios-icon.png

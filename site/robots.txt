@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://prepaid1215.github.io/test-post/sitemap.xml
