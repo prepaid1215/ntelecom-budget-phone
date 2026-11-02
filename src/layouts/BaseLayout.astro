@@ -106,7 +106,7 @@ if(faqs.length) schemas["@graph"].push({
 <header class="header"><div class="wrap header-inner">
   <a class="logo" href={toPublicPath("/")}><span class="logo-mark">N</span><span>{site.brandName}</span></a>
   <nav class="header-nav" aria-label="주요 메뉴"><a href={toPublicPath("/선불폰/")}>선불폰</a><a href={toPublicPath("/알뜰폰/")}>알뜰폰</a><a href={toPublicPath("/plans/")}>요금제</a><a href={toPublicPath("/guide/")}>개통방법</a></nav>
-  <a class="header-cta" href={activationLink("header")}>즉시 개통</a>
+  <a class="header-cta" href={activationLink("header")}>{site.activationUrl ? "즉시 개통" : "개통방법 보기"}</a>
 </div></header>
 <main>
   <slot />
@@ -118,7 +118,7 @@ if(faqs.length) schemas["@graph"].push({
 </div></footer>
 <div class="bottom"><div class="bottom-inner">
   <button class="bottom-save" type="button" data-save-page>저장</button>
-  <a class="bottom-go" href={activationLink("bottom")}>바로 개통하기</a>
+  <a class="bottom-go" href={activationLink("bottom")}>{site.activationUrl ? "바로 개통하기" : "개통방법 보기"}</a>
 </div></div>
 <script is:inline>
   document.addEventListener("click",function(e){
