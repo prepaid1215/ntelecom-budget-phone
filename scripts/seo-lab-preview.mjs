@@ -76,7 +76,7 @@ for (const item of input.keywords) {
     throw new Error("Keyword lacks unique information: " + item.path);
   const body = "<p>" + escapeHtml(item.intro) + "</p><h2>진행 순서</h2><ol>" +
     item.steps.map(step => "<li>" + escapeHtml(step) + "</li>").join("") +
-    "</ol><p><a href=\"https://preplan.site/\">59만모바일 개통 안내</a></p>";
+    "</ol><p class=\"note\">개통 신청 연결은 N플랫폼 전용 미러링 주소 설정 후 활성화합니다.</p>";
   page(item.path, item.title, item.description, body, "A", true);
 }
 
