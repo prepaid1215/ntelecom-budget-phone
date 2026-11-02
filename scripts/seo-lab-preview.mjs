@@ -13,9 +13,15 @@ const report = [];
 const escapeHtml = value => String(value).replace(/[&<>"']/g, char =>
   ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char])
 );
-const requireRoute = route => {
+const requireRoute = (route, experiment) => {
   if (!/^\/[가-힣a-z0-9-]+\/$/.test(route) || routes.has(route))
     throw new Error("Missing, invalid, or duplicate route: " + route);
+  // Search experiment landing pages must carry all three words:
+  // 앤텔레콤 + 개통 + 방법. /blog/ is intentionally not a landing page.
+  const slug = decodeURIComponent(route);
+  if ((experiment === "A" || experiment === "B") &&
+      (!slug.includes("앤텔레콤") || !slug.includes("개통방법")))
+    throw new Error("Slug violates 앤텔레콤 + 개통방법 policy: " + route);
   routes.add(route);
 };
 const requireTitle = title => {
@@ -23,7 +29,7 @@ const requireTitle = title => {
   titles.add(title);
 };
 const page = (route, title, description, inner, experiment, eligible = false) => {
-  requireRoute(route);
+  requireRoute(route, experiment);
   requireTitle(title);
   const folder = path.join(output, ...route.split("/").filter(Boolean));
   fs.mkdirSync(folder, {recursive:true});
@@ -67,8 +73,8 @@ for (const region of input.regions) {
   const body = "<p>" + escapeHtml(location) + "을 검색한 분을 위한 온라인 선불폰 가입 안내 초안입니다.</p>" +
     "<p class=\"note\">이 지역만의 검증된 개통 정보가 확보되지 않았으므로 색인 후보에서 제외합니다.</p>" +
     (eligible ? "<p>" + escapeHtml(region.uniqueEvidence) + "</p>" : "") +
-    "<p><a href=\"/선불폰-개통방법/\">공통 선불폰 개통 순서 보기</a></p>";
-  page("/" + name + "-선불폰-개통방법/",
+    "<p><a href=\"/앤텔레콤-선불폰-개통방법/\">공통 선불폰 개통 순서 보기</a></p>";
+  page("/" + name + "-앤텔레콤-개통방법/",
     name + " 선불폰 개통방법 | 온라인 신규가입 안내",
     location + " 선불폰 유심 준비와 신규가입 절차 안내.",
     body, "B", eligible);
