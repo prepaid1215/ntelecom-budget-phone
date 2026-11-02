@@ -33,7 +33,7 @@ export const toSiteUrl=value=>new URL(toPublicPath(value),siteOrigin).toString()
 const withSlot=(base,slot)=>{
   try{
     const url=new URL(base);
-    if(slot && !url.searchParams.has("from")) url.searchParams.set("from","59man_budget_"+slot);
+    if(slot && !url.searchParams.has("from")) url.searchParams.set("from","mvno_site_"+slot);
     return url.toString();
   }catch{ return base; }
 };
@@ -47,4 +47,4 @@ export const siteConfig={
   productionReady:envBoolean(process.env.PRODUCTION_READY,rawSite.productionReady)
 };
 
-export const activationLink=slot=>withSlot(siteConfig.activationUrl,slot);
+export const activationLink=slot=>siteConfig.activationUrl ? withSlot(siteConfig.activationUrl,slot) : toPublicPath("/guide/");
