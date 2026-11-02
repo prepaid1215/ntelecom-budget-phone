@@ -1,6 +1,6 @@
 {
-  "domain": "앤텔레콤개통방법.shop",
-  "siteUrl": "https://xn--h49a29twjdmms77a5sofgdjwa.shop",
+  "domain": "example.com",
+  "siteUrl": "https://example.com",
   "keywords": [
     {
       "path": "/앤텔레콤-선불폰-개통방법/",
@@ -115,12 +115,7 @@
       "uniqueEvidence": null
     }
   ],
-  "blogs": [
-    {
-      "url": "https://m.blog.naver.com/ntelecom59/224462343217",
-      "source": "네이버 블로그 원문"
-    }
-  ],
+  "blogs": [],
   "slugPolicy": {
     "patterns": [
       {
@@ -153,5 +148,6 @@
       "한 검색의도를 A/B 두 개의 거의 동일한 페이지로 복제하지 않음",
       "배포 전 noindex 유지"
     ]
-  }
+  },
+  "templateNote": "독립 재사용용 샘플. 실제 사이트 URL 및 블로그 원문은 운영자가 등록할 것."
 }
