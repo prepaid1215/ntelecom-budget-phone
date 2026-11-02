@@ -47,4 +47,4 @@ export const siteConfig={
   productionReady:envBoolean(process.env.PRODUCTION_READY,rawSite.productionReady)
 };
 
-export const activationLink=slot=>withSlot(siteConfig.activationUrl,slot);
+export const activationLink=slot=>siteConfig.activationUrl ? withSlot(siteConfig.activationUrl,slot) : toPublicPath("/guide/");
