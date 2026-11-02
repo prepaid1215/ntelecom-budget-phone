@@ -1,0 +1,103 @@
+---
+import { toPublicPath } from "../lib/site-config.js";
+const plans=[
+ {name:"KT LTE 선불 396",price:"39,600원",data:"10.3GB + 3Mbps",detail:"통화·문자 중심에 카카오톡·검색·SNS도 쓰는 기본형",badge:"KT망"},
+ {name:"KT LTE 선불 459",price:"45,900원",data:"20.3GB + 3Mbps",detail:"지도·업무 앱·영상 이용량이 비교적 많은 경우",badge:"KT망"},
+ {name:"LG LTE 선불 396",price:"39,600원",data:"10.3GB + 3Mbps",detail:"LG망으로 통화와 일상 데이터를 이용할 때",badge:"LG망"},
+ {name:"LG 5G 선불 464",price:"46,400원",data:"20GB + 3Mbps",detail:"LG망에서 데이터를 넉넉하게 쓰는 요금제",badge:"LG망"}
+];
+const steps=[
+ {n:"01",title:"휴대폰과 유심 준비",desc:"사용할 휴대폰을 정하고 KT 바로유심 또는 LG 모두의 원칩을 구매합니다."},
+ {n:"02",title:"통신망과 신규가입 선택",desc:"선택한 망의 웹 신청 화면에서 본인명의 신규가입을 진행합니다."},
+ {n:"03",title:"안면인증과 간편인증",desc:"안면확인 절차에 이어 카카오·토스·PASS 등 제공되는 인증수단으로 본인확인을 합니다."},
+ {n:"04",title:"유심정보 입력",desc:"KT는 유심번호 19자리, LG는 모델코드 5자리와 일련번호 8자리를 입력합니다."},
+ {n:"05",title:"요금제·번호 선택 후 충전",desc:"요금제를 고르고 신청서를 제출합니다. 승인과 첫 요금 충전이 끝난 다음 유심을 장착합니다."}
+];
+const faqs=[
+ {q:"통신요금이 미납된 상태에서도 선불폰 신규가입을 신청하나요?",a:"선불폰은 요금을 미리 충전하는 방식으로, 기존 통신요금 미납 상황에서도 본인명의 신규가입을 알아볼 수 있습니다. 기존 단말기의 망 사용 제한 등은 개별 상황에 따라 달라집니다."},
+ {q:"유심을 구매하자마자 휴대폰에 꽂아도 되나요?",a:"먼저 신규가입 신청과 승인, 요금 충전을 마친 뒤 유심을 장착하는 순서로 진행합니다."},
+ {q:"웹개통과 멤버십 앱 개통은 같은가요?",a:"둘 다 온라인 신청 방식이지만 시작 경로가 다릅니다. 웹개통은 브라우저에서 진행하고, 앱개통은 앤텔레콤 멤버십 앱에서 신청하며 태블릿 소유자 회원번호를 입력하는 단계가 있습니다."},
+ {q:"선불폰 신규가입은 몇 시까지 진행하나요?",a:"일반적인 신규가입 접수시간은 매일 08:00~21:50입니다. 실제 접수 화면의 당일 운영 공지에 따라 달라질 수 있습니다."}
+];
+---
+<section class="hero"><div class="wrap hero-inner">
+  <div class="hero-copy">
+    <span class="eyebrow">앤텔레콤 선불폰</span>
+    <h1>유심 준비부터<br /><em>선불폰 신규가입까지</em></h1>
+    <p>KT 바로유심과 LG 모두의 원칩을 준비해 웹에서 본인명의로 가입하는 순서를 알아보세요. 유심 선택, 요금제, 승인 후 충전까지 한 페이지에 정리했습니다.</p>
+    <div class="hero-actions">
+      <a href="#steps" class="btn-primary">셀프개통 순서 보기</a>
+      <a href="#plans" class="btn-secondary">선불 요금제 보기</a>
+    </div>
+  </div>
+  <div class="hero-visual"><img class="hero-art" src={toPublicPath("/images/hero-mobile.webp")} width="1000" height="750" alt="선불폰에 사용할 휴대폰과 유심 안내 이미지" /></div>
+</div></section>
+<div class="quick"><div class="wrap quick-inner">
+  <a href="#usim"><span class="quick-icon">USIM</span><b>유심 준비</b><small>바로유심·원칩</small></a>
+  <a href="#plans"><span class="quick-icon">요금</span><b>요금제 비교</b><small>KT·LG 선불</small></a>
+  <a href="#steps"><span class="quick-icon">5단계</span><b>개통 순서</b><small>신규가입 안내</small></a>
+  <a href="#faq"><span class="quick-icon">Q&A</span><b>자주 묻는 질문</b><small>개통 전 확인</small></a>
+</div></div>
+<section class="section" id="usim"><div class="wrap">
+  <h2>어떤 유심을 준비해야 하나요?</h2>
+  <p class="section-lead">통신망에 맞는 유심부터 준비합니다. KT망과 LG망의 입력번호는 다릅니다.</p>
+  <div class="sim-grid">
+    <article class="card">
+      <span class="plan-kicker">KT망</span>
+      <h3>KT 바로유심</h3>
+      <p class="sim-price">8,800원</p>
+      <p>CU·GS25·세븐일레븐·이마트24에서 판매하는 KT용 유심입니다.</p>
+      <div class="sim-detail"><strong>입력할 내용</strong><span>유심번호 19자리 (F 제외)</span></div>
+      <a href="#steps" class="sim-link">KT망 개통 순서 확인 →</a>
+    </article>
+    <article class="card">
+      <span class="plan-kicker">LG망</span>
+      <h3>LG 모두의 원칩</h3>
+      <p class="sim-price">8,800원</p>
+      <p>이마트24·스토리웨이 등에서 구매하는 LG망용 유심입니다.</p>
+      <div class="sim-detail"><strong>입력할 내용</strong><span>모델코드 5자리 + 일련번호 8자리</span></div>
+      <a href="#steps" class="sim-link">LG망 개통 순서 확인 →</a>
+    </article>
+  </div>
+  <p class="pre-note">LG망에는 다이소 고고비 유심(5,000원)도 있습니다. 구매처별 재고는 점포마다 다릅니다.</p>
+</div></section>
+<section class="section soft" id="plans"><div class="wrap">
+  <h2>앤텔레콤 선불폰 요금제</h2>
+  <p class="section-lead">통화 위주인지, 데이터를 많이 쓰는지에 따라 선택하세요. 아래는 대표 요금제 4가지입니다.</p>
+  <div class="pre-plan-grid">
+    {plans.map(p=><article class="card">
+      <span class="plan-kicker">{p.badge}</span>
+      <div class="plan-name">{p.name}</div>
+      <div class="plan-row"><strong class="plan-data">{p.data}</strong><div class="plan-price"><small>30일 기준</small><strong>{p.price}</strong></div></div>
+      <p class="plan-desc">{p.detail}</p>
+    </article>)}
+  </div>
+  <p class="pre-note">실제 상품 제공량과 가입 조건은 개통 신청 시점의 상품 안내를 기준으로 합니다.</p>
+</div></section>
+<section class="section" id="steps"><div class="wrap">
+  <h2>선불폰 셀프개통 5단계</h2>
+  <p class="section-lead">유심을 준비한 뒤 웹에서 신규가입 신청을 진행합니다. 충전까지 끝나야 사용할 수 있습니다.</p>
+  <div class="steps">
+    {steps.map(s=><div class="step"><span>{s.n}</span><div><strong>{s.title}</strong><p>{s.desc}</p></div></div>)}
+  </div>
+  <aside class="pre-note accent"><strong>접수시간</strong> · 신규가입 매일 08:00~21:50. 개통 담당자 연결 및 전용 웹 신청 주소는 별도로 설정합니다.</aside>
+</div></section>
+<section class="section soft" id="faq"><div class="wrap">
+  <h2>자주 묻는 질문</h2>
+  <div class="faq-list">{faqs.map(f=><details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>)}</div>
+  <p class="pre-note">현재는 안내 콘텐츠 검수 단계입니다. 실제 신청 버튼은 전용 개통 페이지 연결 후 제공합니다.</p>
+  <a class="pre-back" href={toPublicPath("/알뜰폰/")}>알뜰폰 신규가입·번호이동 알아보기 →</a>
+</div></section>
+<style>
+.sim-grid,.pre-plan-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.sim-grid .card{padding:22px}.sim-grid h3{font-size:24px;letter-spacing:-.6px;margin:8px 0}
+.sim-grid .sim-price{font-size:26px;font-weight:900;margin:2px 0 14px;color:var(--brand-deep)}
+.sim-grid .card p:not(.sim-price){line-height:1.7;color:#555963}
+.sim-detail{border-top:1px solid #eee;padding-top:13px;margin-top:15px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px}
+.sim-detail strong{color:#444}.sim-link{font-weight:850;color:var(--brand-deep);display:inline-block;margin-top:20px}
+.pre-plan-grid .plan-data{font-size:17px;line-height:1.4}.pre-plan-grid .plan-price strong{font-size:24px}
+.pre-note{color:#61636b;font-size:13px;line-height:1.6;margin:16px 0 0}
+.pre-note.accent{padding:15px 18px;border-radius:15px;background:#fff3f8;border:1px solid #f9d5e4;color:#4d4650}
+.pre-back{display:inline-block;margin-top:23px;color:var(--brand-deep);font-weight:850}
+@media(max-width:680px){.sim-grid,.pre-plan-grid{grid-template-columns:1fr}.pre-plan-grid .plan-data{font-size:20px}}
+</style>
