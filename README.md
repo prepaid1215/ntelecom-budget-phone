@@ -17,8 +17,8 @@
 ## 페이지 공장
 
 - 자동 생성 페이지: 500개
-- index 후보: 141개
-- noindex: 359개
+- index 후보: 138개 (최근 생성 산출물 기준)
+- noindex: 362개 (최근 생성 산출물 기준)
 - 광고 LP는 항상 `/lp/` + noindex
 - 실제 상품 근거가 있는 태그 조합만 SEO index 후보
 
@@ -96,6 +96,19 @@ pnpm run dev
 pnpm run build
 ```
 
+## 전국 지역페이지 생성 검수
+
+전국 행정동 원본을 기반으로 선불폰·알뜰폰 지역 URL 후보와 시도·시군구·행정동 허브를 별도 검수 폴더에 생성합니다. 현재 데이터 기준 유형별 3,832개, 합계 7,664개의 정적 HTML 후보가 만들어집니다. 이 수는 생성 파일 수이며 검색 노출·색인 수가 아닙니다.
+
+```bash
+pnpm run regions:generate
+pnpm run regions:audit
+```
+
+산출물은 `seo-lab-regions-preview/`에만 작성되며 Astro 경로, 공개 sitemap, robots, DNS 또는 배포 설정에 연결되지 않습니다. 페이지에는 `noindex,follow`와 자체 canonical이 있고, 지역별 근거가 없는 현재 상태에서는 색인 후보가 0개입니다. `url-discovery.json`은 허브를 통한 내부 발견 경로를, `index-flow.json`은 제출·크롤링·Google 색인·노출 상태를 각각 별도 필드로 기록합니다. 관측 전 상태는 `unobserved`/`null`로 유지합니다.
+
+행정구역 데이터 출처, URL 잠금 정책, 근거 등록 형식은 [`seo-lab/regions/README.md`](seo-lab/regions/README.md)를 참고하세요.
+
 Vercel에서는 저장소의 `pnpm-lock.yaml`과 `packageManager`를 사용해 정적 Astro 빌드를 그대로 실행할 수 있습니다. 별도 서버나 `vercel.json`은 필요하지 않습니다.
 
 ## 운영 전에 반드시 설정
@@ -110,7 +123,7 @@ Vercel에서는 저장소의 `pnpm-lock.yaml`과 `packageManager`를 사용해 �
 
 로컬에서는 `.env.example`을 복사해 사용할 수 있습니다. 환경변수가 없으면 `src/data/site.json`의 값이 대체값으로 쓰입니다.
 
-`PRODUCTION_READY=false`에서는 모든 HTML이 `noindex,follow`이고, `robots.txt`는 전체 크롤링을 차단하며 sitemap은 비어 있습니다. `true`로 전환하면 `effectiveIndex`가 index인 141개 페이지만 검색 대상과 sitemap에 포함됩니다. 나머지 페이지와 광고 LP는 계속 제외됩니다.
+`PRODUCTION_READY=false`에서는 모든 HTML이 `noindex,follow`이고, `robots.txt`는 전체 크롤링을 차단하며 sitemap은 비어 있습니다. 현재 생성 결과에서 `effectiveIndex`가 index인 138개 페이지만 조건상 검색 대상과 sitemap에 포함됩니다. 실제 공개 또는 색인 상태를 뜻하지 않으며, 나머지 페이지와 광고 LP는 계속 제외됩니다.
 
 배포 전 검증:
 

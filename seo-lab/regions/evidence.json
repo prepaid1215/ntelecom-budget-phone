@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "policy": {
+    "localEvidenceMaxAgeDays": 180,
+    "productEvidenceMaxAgeDays": 90,
+    "minimumApprovedCopyCharacters": 260,
+    "ownerApprovalRequired": true
+  },
+  "regions": {}
+}

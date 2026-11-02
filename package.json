@@ -12,7 +12,11 @@
     "dev": "pnpm run generate && astro dev",
     "build": "pnpm run generate && pnpm run validate && astro build",
     "preview": "astro preview",
-    "audit:seo": "node scripts/seo-audit.mjs"
+    "audit:seo": "node scripts/seo-audit.mjs",
+    "regions:import": "node scripts/import-regional-source.mjs",
+    "regions:sync-url-lock": "node scripts/import-regional-source.mjs --sync-url-lock",
+    "regions:generate": "node scripts/generate-regional-pages.mjs",
+    "regions:audit": "node scripts/audit-regional-pages.mjs"
   },
   "dependencies": {
     "astro": "^5.0.0"

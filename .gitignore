@@ -1,5 +1,6 @@
 node_modules/
 dist/
+seo-lab-regions-preview/
 .astro/
 .DS_Store
 .env
