@@ -8,6 +8,8 @@ const input = JSON.parse(fs.readFileSync(path.join(root, "seo-lab/seed.json"), "
 const output = path.join(root, "seo-lab-preview");
 const routes = new Set();
 const titles = new Set();
+const headings = new Set();
+const canonicals = new Set();
 const report = [];
 
 const escapeHtml = value => String(value).replace(/[&<>"']/g, char =>
@@ -31,6 +33,15 @@ const requireTitle = title => {
 const page = (route, title, description, inner, experiment, eligible = false) => {
   requireRoute(route, experiment);
   requireTitle(title);
+  const h1 = title.split(" | ")[0].trim();
+  if (!h1 || headings.has(h1)) throw new Error("Missing or duplicate H1: " + h1);
+  if ((experiment === "A" || experiment === "B") &&
+      (!h1.includes("앤텔레콤") || !h1.includes("개통방법")))
+    throw new Error("H1 violates keyword rule: " + h1);
+  headings.add(h1);
+  const canonical = new URL(route, input.siteUrl).href;
+  if (canonicals.has(canonical)) throw new Error("Duplicate canonical: " + canonical);
+  canonicals.add(canonical);
   const folder = path.join(output, ...route.split("/").filter(Boolean));
   fs.mkdirSync(folder, {recursive:true});
   // All prototypes stay noindex: eligibility is only an editorial review state.
@@ -40,15 +51,17 @@ const page = (route, title, description, inner, experiment, eligible = false) =>
     "<meta name=\"robots\" content=\"noindex,follow\">",
     "<title>" + escapeHtml(title) + "</title>",
     "<meta name=\"description\" content=\"" + escapeHtml(description) + "\">",
+    "<link rel=\"canonical\" href=\"" + escapeHtml(canonical) + "\">",
+    "<meta property=\"og:url\" content=\"" + escapeHtml(canonical) + "\">",
     "<style>body{font-family:system-ui,sans-serif;line-height:1.75;max-width:760px;margin:36px auto;padding:0 22px;color:#17243b}h1{font-size:2rem}a{color:#315bca}li{margin-bottom:8px}.note{background:#f3f5f9;padding:16px;border-radius:12px}</style>",
     "</head><body><header><a href=\"/\">SEO 실험 미리보기</a></header>",
-    "<main><h1>" + escapeHtml(title) + "</h1>" + inner + "</main>",
+    "<main><h1>" + escapeHtml(h1) + "</h1>" + inner + "</main>",
     "<footer><p class=\"note\">검수용 초안입니다. 검색 색인 대상이 아니며 상업적 정보의 최신성을 검증해야 합니다.</p></footer>",
     "</body></html>"
   ].join("");
   fs.writeFileSync(path.join(folder, "index.html"), html, "utf8");
   report.push({
-    experiment, path:route, preview_generated:true,
+    experiment, path:route, title, h1, canonical, preview_generated:true,
     editorial_index_candidate:eligible,
     submitted:false, crawled:null, indexed:null, impressions:null, clicks:null
   });
@@ -75,7 +88,7 @@ for (const region of input.regions) {
     (eligible ? "<p>" + escapeHtml(region.uniqueEvidence) + "</p>" : "") +
     "<p><a href=\"/앤텔레콤-선불폰-개통방법/\">공통 선불폰 개통 순서 보기</a></p>";
   page("/" + name + "-앤텔레콤-개통방법/",
-    name + " 선불폰 개통방법 | 온라인 신규가입 안내",
+    name + " 앤텔레콤 개통방법 | 선불폰 신규가입 안내",
     location + " 선불폰 유심 준비와 신규가입 절차 안내.",
     body, "B", eligible);
 }
@@ -107,6 +120,8 @@ const summary = {
   regionEditorialCandidates:report.filter(x=>x.experiment==="B" && x.editorial_index_candidate).length,
   blogOriginalLinks:blogLinks.length,
   livePagesModified:0,
-  previewRobots:"noindex + Disallow /"
+  previewRobots:"noindex + Disallow /",
+  headingCount:headings.size,
+  canonicalCount:canonicals.size
 };
 console.log(JSON.stringify(summary,null,2));
