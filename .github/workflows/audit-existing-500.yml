@@ -20,6 +20,11 @@ jobs:
           SITE_URL: https://xn--h49a29twjdmms77a5sofgdjwa.shop
           BASE_PATH: /
           PRODUCTION_READY: "true"
+      - name: Verify full sitemap, canonical and SEO metadata
+        run: node scripts/seo-audit.mjs
+        env:
+          SITE_URL: https://xn--h49a29twjdmms77a5sofgdjwa.shop
+          PRODUCTION_READY: "true"
       - name: Audit 500 existing HTML pages
         run: node scripts/audit-existing-500.mjs
         env:
