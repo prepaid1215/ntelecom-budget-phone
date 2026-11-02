@@ -18,12 +18,13 @@ const escapeHtml = value => String(value).replace(/[&<>"']/g, char =>
 const requireRoute = (route, experiment) => {
   if (!/^\/[가-힣a-z0-9-]+\/$/.test(route) || routes.has(route))
     throw new Error("Missing, invalid, or duplicate route: " + route);
-  // Search experiment landing pages must carry all three words:
-  // 앤텔레콤 + 개통 + 방법. /blog/ is intentionally not a landing page.
-  const slug = decodeURIComponent(route);
-  if ((experiment === "A" || experiment === "B") &&
-      (!slug.includes("앤텔레콤") || !slug.includes("개통방법")))
-    throw new Error("Slug violates 앤텔레콤 + 개통방법 policy: " + route);
+  // Allowed slugs: 앤텔레콤-키워드-개통방법 OR 앤텔레콤-키워드-개통-서브키워드-방법.
+  // The /blog/ experiment is not a search landing page.
+  const slug = decodeURIComponent(route).replace(/^\/+|\/+$/g, "");
+  const allowedA = /^앤텔레콤(?:-[가-힣a-z0-9]+)*-개통방법$/.test(slug);
+  const allowedB = /^앤텔레콤(?:-[가-힣a-z0-9]+)+-개통(?:-[가-힣a-z0-9]+)+-방법$/.test(slug);
+  if ((experiment === "A" || experiment === "B") && !(allowedA || allowedB))
+    throw new Error("Slug violates allowed SEO patterns: " + route);
   routes.add(route);
 };
 const requireTitle = title => {
@@ -35,9 +36,10 @@ const page = (route, title, description, inner, experiment, eligible = false) =>
   requireTitle(title);
   const h1 = title.split(" | ")[0].trim();
   if (!h1 || headings.has(h1)) throw new Error("Missing or duplicate H1: " + h1);
-  if ((experiment === "A" || experiment === "B") &&
-      (!h1.includes("앤텔레콤") || !h1.includes("개통방법")))
-    throw new Error("H1 violates keyword rule: " + h1);
+  const h1A = /^앤텔레콤(?: .+)? 개통방법$/.test(h1);
+  const h1B = /^앤텔레콤 .+ 개통 .+ 방법$/.test(h1);
+  if ((experiment === "A" || experiment === "B") && !(h1A || h1B))
+    throw new Error("H1 violates allowed SEO patterns: " + h1);
   headings.add(h1);
   const canonical = new URL(route, input.siteUrl).href;
   if (canonicals.has(canonical)) throw new Error("Duplicate canonical: " + canonical);
@@ -87,8 +89,8 @@ for (const region of input.regions) {
     "<p class=\"note\">이 지역만의 검증된 개통 정보가 확보되지 않았으므로 색인 후보에서 제외합니다.</p>" +
     (eligible ? "<p>" + escapeHtml(region.uniqueEvidence) + "</p>" : "") +
     "<p><a href=\"/앤텔레콤-선불폰-개통방법/\">공통 선불폰 개통 순서 보기</a></p>";
-  page("/" + name + "-앤텔레콤-개통방법/",
-    name + " 앤텔레콤 개통방법 | 선불폰 신규가입 안내",
+  page("/앤텔레콤-" + name + "-개통방법/",
+    "앤텔레콤 " + name + " 개통방법 | 선불폰 신규가입 안내",
     location + " 선불폰 유심 준비와 신규가입 절차 안내.",
     body, "B", eligible);
 }
