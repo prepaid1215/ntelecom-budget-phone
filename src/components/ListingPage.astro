@@ -72,6 +72,19 @@ if(cardOff[cheapestCard.network] && cardPrice(cheapestCard)<cheapestCard.monthly
   </ul>
 </div></section>
 
+
+{page.path==="/new-number/" && <section class="section soft"><div class="wrap">
+  <h2>신규가입 요금제를 예산과 혜택으로 찾기</h2>
+  <p class="section-lead">신규가입은 기존 번호를 유지하면서 별도의 번호로 가입할 때 선택하는 방식입니다.</p>
+  <div class="link-list">
+    {[
+      ["/new-number/price/under-40000/","신규가입 월 4만원 미만"],
+      ["/new-number/price/20000-range/","신규가입 월 2만원대"],
+      ["/new-number/benefits/cu/","신규가입 CU 혜택 요금제"]
+    ].map(([href,label])=><a href={toPublicPath(href)}><span>{label}</span><span>›</span></a>)}
+  </div>
+</div></section>}
+
 <section class="section soft"><div class="wrap">
   <h2>다른 조건도 살펴보세요</h2>
   <div class="link-list">{model.related.map(p=><a href={toPublicPath(p.path)}><span>{p.keyword}</span><span>›</span></a>)}
