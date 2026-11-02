@@ -82,9 +82,19 @@ for(const p of listing){
 }
 for(const g of group.values()){
  if(g.length<2)continue;
- const count=g.filter(p=>p.effectiveIndex==="index").length;
- if(count>1)record("warning","same-plan-set-indexable",g[0].path,
-   count+" index candidates share a product set: "+g.filter(p=>p.effectiveIndex==="index").map(p=>p.path).join(" "));
+ // Different join intents may validly feature identical plan sets.
+ // Flag only duplicates *within* the same user journey (general / new-number / transfer).
+ const intents=new Map();
+ for(const item of g.filter(p=>p.effectiveIndex==="index")){
+   const intent=item.path.startsWith("/new-number/")?"new-number":
+     item.path.startsWith("/number-transfer/")?"number-transfer":"general";
+   intents.set(intent,[...(intents.get(intent)||[]),item]);
+ }
+ for(const sameIntent of intents.values()){
+ const count=sameIntent.length;
+ if(count>1)record("warning","same-plan-set-indexable",sameIntent[0].path,
+   count+" same-intent index candidates share a product set: "+sameIntent.map(p=>p.path).join(" "));
+ }
 }
 for(const r of results){
  r.inbound=inbound.get(r.path)||0;
