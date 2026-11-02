@@ -8,7 +8,13 @@ export const escapeXml=value=>String(value).replace(/[<>&'"]/g,char=>({"<":"&lt;
 // Publish one flat sitemap: every indexable page is listed directly in sitemap.xml.
 // lastmod is omitted because the data-check date is not the page's modification date.
 export const sitemapXml=()=>{
-  const indexablePages=site.productionReady ? pages.filter(page=>page.effectiveIndex==="index") : [];
+  const indexablePages=site.productionReady
+    ? [
+        ...pages.filter(page=>page.effectiveIndex==="index"),
+        {path:"/선불폰/",pageType:"hub",priority:"P0"},
+        {path:"/알뜰폰/",pageType:"hub",priority:"P0"}
+      ]
+    : [];
   return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
     +indexablePages.map(page=>"<url><loc>"+escapeXml(toSiteUrl(page.path))+"</loc><priority>"+priorityOf(page)+"</priority></url>").join("")
     +"</urlset>\n";
