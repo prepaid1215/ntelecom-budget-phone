@@ -1,11 +1,22 @@
 ---
 import { toPublicPath } from "../lib/site-config.js";
-const plans=[
- {name:"KT LTE 선불 396",price:"39,600원",data:"10.3GB + 3Mbps",detail:"통화·문자 중심에 카카오톡·검색·SNS도 쓰는 기본형",badge:"KT망"},
- {name:"KT LTE 선불 459",price:"45,900원",data:"20.3GB + 3Mbps",detail:"지도·업무 앱·영상 이용량이 비교적 많은 경우",badge:"KT망"},
- {name:"LG LTE 선불 396",price:"39,600원",data:"10.3GB + 3Mbps",detail:"LG망으로 통화와 일상 데이터를 이용할 때",badge:"LG망"},
- {name:"LG 5G 선불 464",price:"46,400원",data:"20GB + 3Mbps",detail:"LG망에서 데이터를 넉넉하게 쓰는 요금제",badge:"LG망"}
+import prepaidCatalog from "../data/research/prepaid-plans.json";
+const displayed=[
+  ["PL23BT241","통화·문자 중심에 카카오톡·검색·SNS도 쓰는 기본형"],
+  ["PL23BT240","지도·업무 앱·영상 이용량이 비교적 많은 경우"],
+  ["LPZ0002741","LG망에서 통화와 일상 데이터를 이용할 때"],
+  ["LPZ1007556","LG망 5G 데이터 20GB 요금제"]
 ];
+const plans=displayed.map(([code,detail])=>{
+  const p=prepaidCatalog.find(x=>x.official_product_code===code);
+  if(!p)throw Error("대표 선불 요금제 데이터 누락: "+code);
+  return {name:p.name,price:p.price.toLocaleString("ko-KR")+"원",data:p.data,detail,badge:p.network==="K"?"KT망":"LG망",code};
+});
+const phonePlans=prepaidCatalog.filter(p=>p.category==="휴대폰 선불")
+  .sort((a,b)=>a.network.localeCompare(b.network)||a.price-b.price);
+const tabletPlans=prepaidCatalog.filter(p=>p.category==="태블릿 데이터")
+  .sort((a,b)=>a.price-b.price);
+const priceLabel=p=>p.price.toLocaleString("ko-KR")+"원";
 const steps=[
  {n:"01",title:"휴대폰과 유심 준비",desc:"사용할 휴대폰을 정하고 KT 바로유심 또는 LG 모두의 원칩을 구매합니다."},
  {n:"02",title:"통신망과 신규가입 선택",desc:"선택한 망의 웹 신청 화면에서 본인명의 신규가입을 진행합니다."},
@@ -72,7 +83,29 @@ const faqs=[
       <p class="plan-desc">{p.detail}</p>
     </article>)}
   </div>
-  <p class="pre-note">실제 상품 제공량과 가입 조건은 개통 신청 시점의 상품 안내를 기준으로 합니다.</p>
+
+  <details class="pre-catalog">
+    <summary>선불폰 전체 요금제 {phonePlans.length}개 비교 <span>자세히 보기</span></summary>
+    <p class="pre-note">운영자가 제공한 앤텔레콤 상품 목록 기준입니다. 요금제별 가입 유형과 충전 방식은 실제 신청 화면의 안내를 적용합니다.</p>
+    <div class="pre-list">
+      {phonePlans.map(p=><article class="pre-list-row">
+        <div><span class="plan-kicker">{p.network==="K"?"KT망":"LG망"} · {p.official_product_code}</span><strong>{p.name}</strong>
+          <p>{p.data} · 통화 {p.calls} · 문자 {p.sms}{p.voice_note ? " · "+p.voice_note : ""}</p>
+        </div>
+        <div class="pre-list-price">{priceLabel(p)}</div>
+      </article>)}
+    </div>
+  </details>
+  {tabletPlans.length>0 && <details class="pre-catalog">
+    <summary>선불 태블릿 데이터 요금제 {tabletPlans.length}개 <span>자세히 보기</span></summary>
+    <div class="pre-list">
+      {tabletPlans.map(p=><article class="pre-list-row">
+        <div><span class="plan-kicker">KT망 · {p.official_product_code}</span><strong>{p.name}</strong><p>{p.data} · 통화·문자 {p.calls}</p></div>
+        <div class="pre-list-price">{priceLabel(p)}</div>
+      </article>)}
+    </div>
+  </details>}
+  <p class="pre-note">요금제 조회 결과 수령일: 2026년 11월 2일 · 실제 상품 제공량과 가입 조건은 개통 신청 시점의 상품 안내를 기준으로 합니다.</p>
 </div></section>
 <section class="section" id="steps"><div class="wrap">
   <h2>선불폰 셀프개통 5단계</h2>
@@ -99,5 +132,13 @@ const faqs=[
 .pre-note{color:#61636b;font-size:13px;line-height:1.6;margin:16px 0 0}
 .pre-note.accent{padding:15px 18px;border-radius:15px;background:#fff3f8;border:1px solid #f9d5e4;color:#4d4650}
 .pre-back{display:inline-block;margin-top:23px;color:var(--brand-deep);font-weight:850}
-@media(max-width:680px){.sim-grid,.pre-plan-grid{grid-template-columns:1fr}.pre-plan-grid .plan-data{font-size:20px}}
+.pre-catalog{margin-top:16px;border:1px solid #e2e2e6;border-radius:17px;background:#fff;overflow:hidden}
+.pre-catalog summary{cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:17px 18px;font-weight:900;font-size:16px}
+.pre-catalog summary span{font-size:12px;color:var(--brand-deep)}
+.pre-catalog>.pre-note{margin:0;padding:0 17px 12px}
+.pre-list-row{padding:16px 18px;border-top:1px solid #ededf0;display:flex;gap:12px;align-items:center;justify-content:space-between}
+.pre-list-row strong{display:block;font-size:15px;margin-top:3px}
+.pre-list-row p{font-size:12px;color:#5e6068;line-height:1.6;margin:6px 0 0}
+.pre-list-price{flex:none;font-size:17px;font-weight:900;color:#26212a}
+@media(max-width:680px){.sim-grid,.pre-plan-grid{grid-template-columns:1fr}.pre-plan-grid .plan-data{font-size:20px}.pre-list-row{align-items:flex-start;flex-direction:column;padding:15px}.pre-list-price{align-self:flex-end}}
 </style>
