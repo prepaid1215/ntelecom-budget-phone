@@ -8,6 +8,7 @@ const sourceArg = process.argv.find((arg, index) => index > 1 && !arg.startsWith
 const sourcePath = sourceArg ? path.resolve(sourceArg) : "";
 const initializeLock = process.argv.includes("--initialize-url-lock");
 const syncLock = process.argv.includes("--sync-url-lock");
+const explicitVersion = process.argv.find(arg => /^--version=\d{8}$/.test(arg))?.slice("--version=".length);
 const dataPath = path.join(root, "seo-lab/regions/administrative-areas.json");
 const lockPath = path.join(root, "seo-lab/regions/url-lock.json");
 
@@ -21,6 +22,9 @@ const sourceBytes = fs.readFileSync(sourcePath);
 const sourceHash = crypto.createHash("sha256").update(sourceBytes).digest("hex");
 const sourceDoc = JSON.parse(sourceBytes.toString("utf8"));
 if (!Array.isArray(sourceDoc.features)) throw new Error("Source is not a GeoJSON FeatureCollection.");
+const pathVersion = sourcePath.match(/(?:ver|[-_])(20\d{6})(?:\D|$)/i)?.[1];
+const dataVersion = explicitVersion || pathVersion;
+if (!dataVersion) throw new Error("Could not infer an 8-digit source version. Pass --version=YYYYMMDD after reviewing the source.");
 
 const areas = sourceDoc.features.map(feature => normalizeArea(feature.properties));
 areas.sort((a, b) => a.code.localeCompare(b.code));
@@ -32,8 +36,8 @@ for (const area of areas) {
 
 const data = {
   schemaVersion: 1,
-  dataVersion: "20261001",
-  importedFrom: "https://github.com/vuski/admdongkor/blob/master/ver20261001/HangJeongDong_ver20261001.geojson",
+  dataVersion,
+  importedFrom: "https://github.com/vuski/admdongkor/blob/master/ver" + dataVersion + "/HangJeongDong_ver" + dataVersion + ".geojson",
   importedAt: new Date().toISOString().slice(0, 10),
   sourceSha256: sourceHash,
   sourceRecordCount: areas.length,

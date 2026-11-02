@@ -16,7 +16,9 @@
     "regions:import": "node scripts/import-regional-source.mjs",
     "regions:sync-url-lock": "node scripts/import-regional-source.mjs --sync-url-lock",
     "regions:generate": "node scripts/generate-regional-pages.mjs",
-    "regions:audit": "node scripts/audit-regional-pages.mjs"
+    "regions:audit": "node scripts/audit-regional-pages.mjs",
+    "regions:quality-test": "node scripts/test-regional-quality.mjs",
+    "regions:pipeline-test": "node scripts/test-regional-pipeline.mjs"
   },
   "dependencies": {
     "astro": "^5.0.0"

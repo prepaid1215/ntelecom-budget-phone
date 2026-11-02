@@ -4,6 +4,7 @@
     "localEvidenceMaxAgeDays": 180,
     "productEvidenceMaxAgeDays": 90,
     "minimumApprovedCopyCharacters": 260,
+    "minimumApprovedCopyWords": 40,
     "ownerApprovalRequired": true
   },
   "regions": {}
