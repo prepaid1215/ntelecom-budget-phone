@@ -115,5 +115,15 @@
     "regionStyle": "/{동이름}-앤텔레콤-개통방법/",
     "blogExperimentException": "/blog/",
     "notes": "모든 A/B SEO 랜딩 URL에 앤텔레콤 및 개통방법 포함; 기존 500개 후불 경로는 변경하지 않음"
+  },
+  "metaPolicy": {
+    "rules": [
+      "각 검색 대상별 URL·title·H1·canonical 일치",
+      "H1은 각 페이지 검색 주제를 고유하게 표현",
+      "canonical은 동일 도메인의 해당 페이지 자기참조 전체 URL",
+      "검색 실험 A/B URL과 H1에는 앤텔레콤, 개통방법 포함",
+      "중복 글은 자기참조 canonical만으로 색인이 보장되지 않으므로 콘텐츠 차별성 검증",
+      "배포 전 noindex 유지"
+    ]
   }
 }
