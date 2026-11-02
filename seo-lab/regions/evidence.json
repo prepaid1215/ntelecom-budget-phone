@@ -3,9 +3,11 @@
   "policy": {
     "localEvidenceMaxAgeDays": 180,
     "productEvidenceMaxAgeDays": 90,
-    "minimumApprovedCopyCharacters": 260,
-    "minimumApprovedCopyWords": 40,
-    "ownerApprovalRequired": true
+    "ownerApprovalRequired": true,
+    "exactPinnedSourceClaimRequired": true,
+    "consumerUsefulLocalFactRequired": true,
+    "maxSharedContentRatio": 0.3,
+    "searchIntentTemplates": ["prepaid-plan-choice", "mvno-monthly-plan-choice"]
   },
   "regions": {}
 }

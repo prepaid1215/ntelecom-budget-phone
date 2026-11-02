@@ -12,6 +12,8 @@ pnpm run regions:generate
 pnpm run regions:audit
 pnpm run regions:quality-test
 pnpm run regions:pipeline-test
+pnpm run regions:sources-test
+pnpm run regions:content-preview
 ```
 
 Review a source update before changing paths. `regions:import` only refreshes the normalized source; the version is read from the filename or can be provided using `--version=YYYYMMDD`. After comparing the new coverage against official code/name sources, update `coverage-manifest.json`; after reviewing names, codes, and proposed URL changes, explicitly run:
@@ -24,11 +26,33 @@ The URL lock keeps a code-derived suffix in each slug to prevent same-name colli
 
 ## Evidence gate
 
-Put checked source-backed facts in `evidence.json` keyed by `<type>:<10-digit-administrative-code>`, where type is `prepaid` or `mvno`. A page becomes an editorial index candidate only if it has owner approval, at least one current regional fact (180 days), at least one current product fact (90 days), and approved copy with at least 260 characters and 40 wordlike units. Each fact needs a source URL, source label, check date, and at least 40 characters. A local fact must carry `scopeCode` matching the page's exact 10-digit area code. A product fact must carry a `productId` present in the current prepaid or postpaid-MVNO source catalog. This prevents a district-level fact from being presented as unique dong-level evidence and prevents product claims without a matching source record.
+`status: "verified"` and a plausible URL do not authenticate a claim. Each evidence item must identify a source snapshot, a JSON pointer into that pinned file, the exact extracted value, the review date, and (for local information) a second pointer proving that the source row belongs to the exact 10-digit area code. `regional-source-verifier.mjs` checks the source file SHA-256 against `source-snapshots.json`, checks the exact URL and host allowlist, resolves the pointers, compares the claim value, and rejects a changed or stale snapshot. Arbitrary `fact` prose is never rendered as evidence; the page renderer uses only recognized fact types and values resolved from the source file.
 
-The renderer places the checked regional facts, checked product facts, source links, and approved regional copy into separate sections. Exact repeated facts and near-duplicate regional copy are rejected across pages after region names and service terms are normalized. Near-duplicate copy uses character-trigram Jaccard similarity at a threshold of `0.82`; the quality audit re-runs the same detector against the evidence registry. The regional audit derives generated and candidate counts from the current source and evidence; it does not require 7,664 files or zero candidates. `regions:pipeline-test` temporarily uses synthetic fixture data, proves one content candidate passes and renamed near-duplicate copy is held, then restores the original empty evidence file and regenerates the review output. The default evidence registry is empty, so no local case, store, stock, coverage, price, or activation promise is invented.
+Administrative name/code facts are verified for URL accuracy, but they are explicitly not considered useful local information and cannot make a page index eligible. A local source snapshot must declare a consumer-useful fact type before a regional page can pass. The current source manifest contains no such local records, so the current regional candidate count is correctly zero. Product examples are built from the operator-supplied catalogs and linked to their source URLs; the examples are separate nationwide intent demonstrations, not region pages and not publishable content.
 
-Candidate status does not publish or index a page. All output is generated under the ignored `seo-lab-regions-preview/` directory, carries `noindex,follow`, and is disconnected from Astro routes, the public sitemap, robots, DNS, and deployment settings. `preview-candidate-sitemap.xml` is for offline QA only and must not be submitted. `editorial-index-candidates-sitemap.xml` lists evidence-qualified editorial candidates only. Search submission, crawl, Google index state, impressions, and clicks remain separately unobserved until connected to real Search Console or crawl data.
+`regional-content-engine.mjs` has separate generated structures for prepaid plan/advance-payment comparison and MVNO monthly fee/data comparison. Its review output is written to `seo-lab-regional-content-preview/`. `regions:pipeline-test` checks the two data-backed examples, checks that no region is approved on administrative identity alone, and imports one temporary IndexFlow observation to prove a rebuild preserves it. The temporary event is restored away after the test.
+
+Content overlap is checked after region names and service type words are normalized. The detector retrieves likely pairs with SimHash locality-sensitive hashing, then calculates exact character-trigram shared-content ratio relative to the shorter body; pairs above `0.30` are held. This is a measurable duplication screen, not a semantic quality score or a guarantee that search intent has been served. The auditor reports the pair count; human review still checks whether the page answers a distinct question and whether each local fact helps a person in that area.
+
+## Collecting and pinning regional sources
+
+Capture only a source host already reviewed in `source-snapshots.json`:
+
+Run `pnpm run regions:fetch-source -- --id=<stable-source-id> --url=<actual-HTTPS-official-JSON-CSV-or-PDF-URL>` with a reviewed URL from an allowlisted host.
+
+The importer records the response and SHA-256 under `source-cache/`, but prints `captured_not_verified`. Inspect the snapshot, add its exact hash, source URL, check date, and supported fact types to `source-snapshots.json`, then point evidence to exact fields in the snapshot. Capturing a page does not by itself verify a store, opening hours, inventory, coverage, or service promise. PDF sources need a reviewed structured extraction before a claim can use a JSON pointer.
+
+## Durable IndexFlow observations
+
+`index-flow-observations.json` is the durable event ledger. Generated `index-flow.json` starts with unobserved states, then overlays the latest dated event for each URL and event type. Rebuilding preview HTML never clears the ledger. To import a Search Console or crawl export, create an input JSON with an `events` array and run:
+
+```bash
+pnpm run regions:record-observation -- --input=/path/to/index-flow-events.json
+```
+
+The importer checks each URL against the generated registry, requires an observation timestamp and HTTPS source, validates status values and performance ranges, and deduplicates identical events. Keep Search Console submissions, crawler observations, Google index checks, and performance values as separate event types. Before measurement exists, indexed counts and impressions remain `null`, not zero.
+
+Candidate status does not publish or index a page. All regional output is generated under the ignored `seo-lab-regions-preview/` directory, carries `noindex,follow`, and is disconnected from Astro routes, the public sitemap, robots, DNS, and deployment settings. National product examples are in a separate ignored preview directory and are also `noindex`. `preview-candidate-sitemap.xml` is for offline QA only and must not be submitted. `editorial-index-candidates-sitemap.xml` lists evidence-qualified editorial candidates only. Search submission, crawl, Google index state, impressions, and clicks remain separately unobserved until real records are imported.
 
 ## Source attribution
 

@@ -46,10 +46,11 @@ export const buildUrlLock = (areas, dataVersion) => {
   return { schemaVersion: 1, dataVersion, segments };
 };
 
-const validEvidenceItem = (item, now, maxAgeDays) => {
+const validEvidenceItem = (item, now, maxAgeDays, verifySource) => {
   if (!item || item.status !== "verified" || item.ownerApproved !== true) return false;
-  if (!/^https?:\/\//i.test(String(item.sourceUrl || ""))) return false;
-  if (String(item.sourceLabel || "").trim().length < 4 || String(item.fact || "").trim().length < 40) return false;
+  if (typeof verifySource !== "function" || !verifySource(item).verified) return false;
+  if (!/^https:\/\//i.test(String(item.sourceUrl || ""))) return false;
+  if (String(item.sourceLabel || "").trim().length < 4) return false;
   if (!/^\d{4}-\d{2}-\d{2}$/.test(String(item.checkedAt || ""))) return false;
   const checkedAt = new Date(`${item.checkedAt}T00:00:00Z`).getTime();
   if (!Number.isFinite(checkedAt) || new Date(checkedAt).toISOString().slice(0, 10) !== item.checkedAt) return false;
@@ -60,25 +61,25 @@ const validEvidenceItem = (item, now, maxAgeDays) => {
 export const evidenceEligibility = (record, now = Date.now(), options = {}) => {
   const local = Array.isArray(record?.localEvidence) ? record.localEvidence : [];
   const product = Array.isArray(record?.productEvidence) ? record.productEvidence : [];
-  const currentLocal = local.filter(item => validEvidenceItem(item, now, 180));
+  const verifySource = (item, settings) => options.verifySource?.(item, settings) || { verified: false };
+  const currentLocal = local.filter(item => validEvidenceItem(item, now, 180, verifySource));
   const validLocal = options.regionCode
     ? currentLocal.filter(item => String(item.scopeCode) === String(options.regionCode))
     : currentLocal;
-  const validProduct = product.filter(item => validEvidenceItem(item, now, 90)
+  const validProduct = product.filter(item => validEvidenceItem(item, now, 90, verifySource)
     && /^[a-z0-9][a-z0-9-]+$/i.test(String(item.productId || ""))
+    && String(verifySource(item).sourceValue) === String(item.productId)
     && (!options.productIds || options.productIds.has(String(item.productId))));
-  const editorialText = String(record?.approvedCopy || "").trim();
-  const editorialWordCount = (editorialText.match(/[\p{L}\p{N}]+/gu) || []).length;
+  const editorialLocal = validLocal.filter(item => verifySource(item, { editorial: true }).verified);
   const reasons = [];
   if (record?.ownerApproved !== true) reasons.push("owner_approval_missing");
   if (!validLocal.length) reasons.push("verified_region_evidence_missing");
   if (options.regionCode && currentLocal.length && !validLocal.length) reasons.push("regional_fact_scope_mismatch");
+  if (validLocal.length && !editorialLocal.length) reasons.push("region_evidence_has_no_consumer_useful_local_fact");
   if (!validProduct.length) reasons.push("verified_product_evidence_missing");
-  if (product.length && validProduct.length < product.filter(item => validEvidenceItem(item, now, 90)).length) reasons.push("product_id_unverified_or_unknown");
-  if (editorialText.length < 260) reasons.push("approved_unique_copy_missing");
-  if (editorialWordCount < 40) reasons.push("approved_copy_substance_below_40_words");
+  if (product.length && validProduct.length < product.filter(item => validEvidenceItem(item, now, 90, verifySource)).length) reasons.push("product_id_unverified_or_unknown");
   const evidenceFingerprints = [...validLocal, ...validProduct].map(item =>
-    String(item.fact).normalize("NFC").toLocaleLowerCase("ko-KR").replace(/\s+/g, " ").trim()
+    JSON.stringify([item.sourceSnapshotId, item.sourcePointer, item.sourceValue]).normalize("NFC").toLocaleLowerCase("ko-KR").replace(/\s+/g, " ").trim()
   );
   if (new Set(evidenceFingerprints).size !== evidenceFingerprints.length) reasons.push("duplicate_evidence_item");
   return {
@@ -86,9 +87,9 @@ export const evidenceEligibility = (record, now = Date.now(), options = {}) => {
     reasons,
     localEvidenceCount: validLocal.length,
     productEvidenceCount: validProduct.length,
-    localEvidence: validLocal,
+    localEvidence: editorialLocal,
     productEvidence: validProduct,
-    approvedCopy: reasons.length === 0 ? editorialText : ""
+    generatedBodyRequired: true
   };
 };
 
@@ -139,11 +140,12 @@ const simHash64 = shingles => {
   });
 };
 
-// LSH narrows comparisons; Jaccard on character trigrams is the final decision.
-// Region names and the service keyword are normalized so changing only those
-// tokens cannot make an otherwise duplicated page look unique.
-export const REGIONAL_CONTENT_SIMILARITY_THRESHOLD = 0.82;
-export const findNearDuplicatePairs = (records, threshold = REGIONAL_CONTENT_SIMILARITY_THRESHOLD) => {
+// SimHash LSH narrows candidate pairs; exact trigram overlap relative to the
+// shorter body is the final decision for each retrieved pair. This is a
+// near-duplicate screen, not a semantic or search-intent quality score.
+// Normalize region/service terms so replacing only those labels changes nothing.
+export const REGIONAL_DUPLICATE_OVERLAP_LIMIT = 0.30;
+export const findNearDuplicatePairs = (records, threshold = REGIONAL_DUPLICATE_OVERLAP_LIMIT) => {
   const buckets = new Map();
   const prepared = [];
   const pairs = [];
@@ -160,8 +162,12 @@ export const findNearDuplicatePairs = (records, threshold = REGIONAL_CONTENT_SIM
     for (const previousIndex of candidates) {
       const previous = prepared[previousIndex];
       const similarity = jaccard(shingles, previous.shingles);
-      if (similarity >= threshold) {
-        pairs.push({ left: previous.id, right: record.id, similarity: Number(similarity.toFixed(4)) });
+      const overlapRatio = Math.min(shingles.size, previous.shingles.size)
+        ? [...(shingles.size < previous.shingles.size ? shingles : previous.shingles)].filter(gram => (shingles.size < previous.shingles.size ? previous.shingles : shingles).has(gram)).length
+          / Math.min(shingles.size, previous.shingles.size)
+        : 0;
+      if (overlapRatio > threshold) {
+        pairs.push({ left: previous.id, right: record.id, jaccard: Number(similarity.toFixed(4)), sharedContentRatio: Number(overlapRatio.toFixed(4)) });
         duplicateIds.add(previous.id);
         duplicateIds.add(record.id);
         break;

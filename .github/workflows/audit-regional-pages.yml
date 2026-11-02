@@ -26,5 +26,7 @@ jobs:
         run: node scripts/audit-regional-pages.mjs
       - name: Test evidence and near-duplicate gates
         run: node scripts/test-regional-quality.mjs
-      - name: Test nonzero candidate acceptance and duplicate rejection end to end
+      - name: Verify pinned source claims and scope
+        run: node scripts/test-regional-sources.mjs
+      - name: Generate source-backed intent examples and audit candidate gating
         run: node scripts/test-regional-pipeline.mjs

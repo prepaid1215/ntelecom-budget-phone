@@ -105,9 +105,10 @@ pnpm run regions:generate
 pnpm run regions:audit
 pnpm run regions:quality-test
 pnpm run regions:pipeline-test
+pnpm run regions:sources-test
 ```
 
-산출물은 `seo-lab-regions-preview/`에만 작성되며 Astro 경로, 공개 sitemap, robots, DNS 또는 배포 설정에 연결되지 않습니다. 페이지에는 `noindex,follow`와 자체 canonical이 있고, 지역별 근거가 없는 현재 상태에서는 색인 후보가 0개입니다. `url-discovery.json`은 허브를 통한 내부 발견 경로를, `index-flow.json`은 제출·크롤링·Google 색인·노출 상태를 각각 별도 필드로 기록합니다. 관측 전 상태는 `unobserved`/`null`로 유지합니다.
+지역 HTML은 `seo-lab-regions-preview/`, 선불폰·알뜰폰 검색 의도별 상품 비교 예시는 `seo-lab-regional-content-preview/`에만 생성됩니다. 두 폴더 모두 Astro 경로·공개 sitemap·robots·DNS·배포 설정과 분리되어 있습니다. 지역 사례·매장 주소·재고 정보가 원본 자료에서 검증되지 않았으므로 지역 색인 후보는 0개입니다. 출처 신뢰는 `seo-lab/regions/source-snapshots.json`의 SHA-256 고정 자료와 JSON 포인터 값 대조로 검사합니다. IndexFlow 상태 원장은 `seo-lab/regions/index-flow-observations.json`에 보존되므로 미리보기 재생성 후에도 관측 기록을 유지합니다. 관측 전 색인 수와 노출값은 0이 아닌 `null`로 둡니다.
 
 행정구역 데이터 출처, URL 잠금 정책, 근거 등록 형식은 [`seo-lab/regions/README.md`](seo-lab/regions/README.md)를 참고하세요.
 

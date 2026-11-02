@@ -1,6 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
-import { evidenceEligibility, findNearDuplicatePairs, REGIONAL_CONTENT_SIMILARITY_THRESHOLD, regionSegment } from "./regional-pages-lib.mjs";
+import { evidenceEligibility, findNearDuplicatePairs, REGIONAL_DUPLICATE_OVERLAP_LIMIT, regionSegment } from "./regional-pages-lib.mjs";
+import { createSourceVerifier, renderVerifiedLocalFact } from "./regional-source-verifier.mjs";
+import { buildCatalogIntentExamples, renderCatalogExampleHtml } from "./regional-content-engine.mjs";
 
 const root = process.cwd();
 const json = name => JSON.parse(fs.readFileSync(path.join(root, name), "utf8"));
@@ -8,12 +10,20 @@ const source = json("seo-lab/regions/administrative-areas.json");
 const lock = json("seo-lab/regions/url-lock.json");
 const evidence = json("seo-lab/regions/evidence.json");
 const coverage = json("seo-lab/regions/coverage-manifest.json");
+const sourceSnapshots = json("seo-lab/regions/source-snapshots.json");
+const durableFlow = json("seo-lab/regions/index-flow-observations.json");
 const site = json("seo-lab/seed.json");
+const prepaidPlans = json("src/data/research/prepaid-plans.json");
+const mvnoPlans = json("src/data/research/plans.json");
+const sourceVerifier = createSourceVerifier(root, sourceSnapshots);
+const verifyEvidenceSource = (item, settings) => sourceVerifier.verify(item, settings);
+const catalogExamples = buildCatalogIntentExamples({ prepaidPlans, mvnoPlans });
 const productIds = {
-  prepaid: new Set(json("src/data/research/prepaid-plans.json").map(item => item.id)),
-  mvno: new Set(json("src/data/research/plans.json").map(item => item.id))
+  prepaid: new Set(prepaidPlans.map(item => item.id)),
+  mvno: new Set(mvnoPlans.map(item => item.id))
 };
 const out = path.join(root, "seo-lab-regions-preview");
+const contentOut = path.join(root, "seo-lab-regional-content-preview");
 const generatedAt = new Date().toISOString();
 const types = [{ key: "prepaid", name: "선불폰", color: "#ff438b" }, { key: "mvno", name: "알뜰폰", color: "#7258e9" }];
 const esc = value => String(value ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -25,7 +35,7 @@ const segment = (level, code, name) => {
   if (!item || item.name !== name || item.segment !== regionSegment(name, code)) throw new Error("URL lock mismatch: " + key(level, code));
   return item.segment;
 };
-if (source.schemaVersion !== 1 || lock.schemaVersion !== 1 || evidence.schemaVersion !== 1 || coverage.schemaVersion !== 1) throw new Error("Unsupported regional data schema.");
+if (source.schemaVersion !== 1 || lock.schemaVersion !== 1 || evidence.schemaVersion !== 1 || coverage.schemaVersion !== 1 || sourceSnapshots.schemaVersion !== 1 || durableFlow.schemaVersion !== 1) throw new Error("Unsupported regional data schema.");
 if (source.sourceRecordCount !== source.areas.length) throw new Error("Administrative source count mismatch.");
 if (source.dataVersion !== coverage.dataVersion || source.areas.length !== coverage.expectedAreaRecords) throw new Error("Source version or administrative record count differs from the reviewed coverage manifest.");
 
@@ -75,7 +85,20 @@ for (const type of types) {
     const d = districts.get(a.districtCode);
     const parentPath = base + segment("sido", p.code, p.name) + "/" + segment("sgg", d.code, d.name) + "/";
     const aPath = parentPath + segment("emd", a.code, a.locality) + "/";
-    const gate = evidenceEligibility(evidence.regions?.[type.key + ":" + a.code], Date.now(), { regionCode: a.code, productIds: productIds[type.key] });
+    const verifyForArea = (item, settings) => verifyEvidenceSource(item, { ...settings, expectedScopeCode: a.code });
+    const gate = evidenceEligibility(evidence.regions?.[type.key + ":" + a.code], Date.now(), { regionCode: a.code, productIds: productIds[type.key], verifySource: verifyForArea });
+    gate.localEvidence = gate.localEvidence.map(item => ({ ...item, sourceValue: verifyEvidenceSource(item, { editorial: true }).sourceValue }));
+    gate.productEvidence = gate.productEvidence.map(item => ({ ...item, sourceValue: verifyEvidenceSource(item).sourceValue }));
+    const catalog = catalogExamples.find(item => item.pageType === type.key);
+    const attachedProductIds = new Set(gate.productEvidence.map(item => item.productId));
+    if (gate.eligible && catalog && !catalog.products.every(id => attachedProductIds.has(id))) {
+      gate.eligible = false;
+      gate.reasons.push("intent_template_product_evidence_incomplete");
+    }
+    const localFacts = gate.localEvidence.map(renderVerifiedLocalFact).filter(Boolean);
+    gate.generatedContent = gate.eligible && catalog
+      ? [catalog.body, ...localFacts].join("\n\n")
+      : "";
     add({ type, level: "emd", code: a.code, name: a.fullName, province: p, district: d, area: a, path: aPath, parentPath, gate });
     child(parentPath, aPath);
   }
@@ -83,13 +106,13 @@ for (const type of types) {
 const eligibleContentPages = pages.filter(item => item.level === "emd" && item.gate.eligible);
 const similar = findNearDuplicatePairs(eligibleContentPages.map(page => ({
   id: page.type.key + ":" + page.code,
-  text: page.gate.approvedCopy,
+  text: page.gate.generatedContent,
   regionTerms: [page.name, page.province.name, page.district.name, page.area.locality]
 })));
 for (const page of eligibleContentPages) {
   if (similar.duplicateIds.has(page.type.key + ":" + page.code)) {
     page.gate.eligible = false;
-    page.gate.approvedCopy = "";
+    page.gate.generatedContent = "";
     page.gate.reasons.push("near_duplicate_regional_copy");
   }
 }
@@ -102,6 +125,12 @@ const href = (from, to) => {
 };
 const metadata = [], discoveries = [], flows = [], previewUrls = [];
 fs.rmSync(out, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
+fs.rmSync(contentOut, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
+fs.mkdirSync(contentOut, { recursive: true });
+for (const example of catalogExamples) {
+  fs.writeFileSync(path.join(contentOut, example.id + ".html"), renderCatalogExampleHtml(example), "utf8");
+}
+fs.writeFileSync(path.join(contentOut, "catalog-examples.json"), JSON.stringify({ schemaVersion: 1, generatedAt, publishable: false, examples: catalogExamples }, null, 2) + "\n");
 for (const p of pages) {
   const parent = p.parentPath ? byPath.get(p.parentPath) : null;
   const label = p.level === "root" ? "전국 " + p.type.name + " 지역 안내" : p.name + " " + p.type.name + " 지역 안내";
@@ -121,13 +150,15 @@ for (const p of pages) {
     ? "확인된 지역 정보와 최신 상품 근거가 등록되지 않았습니다. 지역 사례나 매장·재고·개통 조건을 만들지 않았습니다."
     : "행정구역 탐색을 위한 검수용 허브입니다. 지역 서비스 정보는 근거 확인 뒤 작성합니다.";
   const unique = p.level === "emd" && p.gate.eligible;
-  const renderEvidence = (heading, items) => "<section><h2>" + esc(heading) + "</h2><ul>" + items.map(item =>
-    '<li><p>' + esc(item.fact) + '</p><small>확인일 ' + esc(item.checkedAt) + ' · <a href="' + esc(item.sourceUrl) + '" rel="noopener noreferrer">' + esc(item.sourceLabel) + "</a></small></li>"
+  const renderEvidence = (heading, items, type) => "<section><h2>" + esc(heading) + "</h2><ul>" + items.map(item => {
+    const display = type === "local" ? renderVerifiedLocalFact(item) : item.sourceValue;
+    return '<li><p>' + esc(display) + '</p><small>확인일 ' + esc(item.checkedAt) + ' · <a href="' + esc(item.sourceUrl) + '" rel="noopener noreferrer">' + esc(item.sourceLabel) + "</a></small></li>";
+  }
   ).join("") + "</ul></section>";
   const facts = unique
-    ? renderEvidence(p.type.key === "prepaid" ? "지역에서 확인된 선불폰 정보" : "지역에서 확인된 알뜰폰 정보", p.gate.localEvidence)
-      + renderEvidence(p.type.key === "prepaid" ? "선불 상품 근거" : "알뜰폰 상품 근거", p.gate.productEvidence)
-      + '<section class="editorial-copy"><h2>' + esc(p.type.key === "prepaid" ? "지역 선불폰 안내" : "지역 알뜰폰 안내") + "</h2><p>" + esc(p.gate.approvedCopy) + "</p></section>"
+    ? renderEvidence(p.type.key === "prepaid" ? "지역에서 검증된 선불폰 이용 정보" : "지역에서 검증된 알뜰폰 이용 정보", p.gate.localEvidence, "local")
+      + renderEvidence(p.type.key === "prepaid" ? "선불 상품 출처 연결" : "알뜰폰 상품 출처 연결", p.gate.productEvidence, "product")
+      + '<section class="editorial-copy"><h2>' + esc(p.type.key === "prepaid" ? "선불 요금 선택" : "알뜰폰 월 요금 비교") + "</h2>" + p.gate.generatedContent.split("\n\n").map(paragraph => "<p>" + esc(paragraph) + "</p>").join("") + "</section>"
     : '<section class="pending"><h2>' + (p.level === "emd" ? "지역별 사실 검수 대기" : "허브 검수 상태") + "</h2><p>" + pending + "</p></section>";
   const evidenceStatus = unique
     ? "지역 정보와 상품 조건을 출처에 연결했고 검수 승인된 안내를 제공합니다."
@@ -141,10 +172,11 @@ for (const p of pages) {
   fs.writeFileSync(file, html, "utf8");
   const candidate = p.level === "emd" && unique;
   const reasons = p.level === "emd" ? p.gate.reasons : ["hub_editorial_review_required"];
-  metadata.push({ path: p.path, url: canonical, type: p.type.key, level: p.level, administrativeCode: p.code, title, canonical, previewGenerated: true, editorialIndexCandidate: candidate, publishable: false, contentWordCount: words(candidate ? p.gate.approvedCopy : ""), editorialCopy: candidate ? p.gate.approvedCopy : "", localEvidenceCount: candidate ? p.gate.localEvidence.length : 0, productEvidenceCount: candidate ? p.gate.productEvidence.length : 0, gateReasons: reasons });
+  metadata.push({ path: p.path, url: canonical, type: p.type.key, level: p.level, administrativeCode: p.code, title, canonical, previewGenerated: true, editorialIndexCandidate: candidate, publishable: false, contentWordCount: words(candidate ? p.gate.generatedContent : ""), editorialCopy: candidate ? p.gate.generatedContent : "", localEvidenceCount: candidate ? p.gate.localEvidence.length : 0, productEvidenceCount: candidate ? p.gate.productEvidence.length : 0, gateReasons: reasons });
   previewUrls.push(canonical);
   discoveries.push({ url: canonical, path: p.path, type: p.type.key, level: p.level, administrativeCode: p.code, discoveredVia: p.level === "root" ? "regional-type-root" : p.level === "sido" ? "type-root-hub" : p.level === "sgg" ? "sido-hub" : "sgg-hub", parentPath: parent?.path || null, previewGenerated: true, submittedToSearchEngine: false });
-  flows.push({ url: canonical, path: p.path, type: p.type.key, level: p.level, editorialIndexCandidate: candidate, publishable: false, gateReasons: reasons, submission: { status: "not_submitted", timestamp: null, source: null }, crawl: { status: "unobserved", firstSeenAt: null, lastSeenAt: null, source: null }, googleIndex: { status: "unobserved", checkedAt: null, canonicalSelected: null, source: null }, searchPerformance: { impressions: null, clicks: null, rangeStart: null, rangeEnd: null, source: null } });
+  const observationEvents = durableFlow.events.filter(event => event.url === canonical);
+  flows.push({ url: canonical, path: p.path, type: p.type.key, level: p.level, editorialIndexCandidate: candidate, publishable: false, gateReasons: reasons, submission: latestObservation(observationEvents, "submission", { status: "not_submitted", timestamp: null, source: null }), crawl: latestObservation(observationEvents, "crawl", { status: "unobserved", firstSeenAt: null, lastSeenAt: null, source: null }), googleIndex: latestObservation(observationEvents, "googleIndex", { status: "unobserved", checkedAt: null, canonicalSelected: null, source: null }), searchPerformance: latestObservation(observationEvents, "searchPerformance", { impressions: null, clicks: null, rangeStart: null, rangeEnd: null, source: null }), observationEventCount: observationEvents.length });
 }
 for (const p of pages) for (const target of [...(children.get(p.path) || []), ...(p.parentPath ? [p.parentPath] : [])]) {
   if (!byPath.has(target) || !fs.existsSync(path.join(out, target.slice(1), "index.html"))) throw new Error("Broken link " + p.path + " -> " + target);
@@ -156,11 +188,19 @@ const countsByType = Object.fromEntries(types.map(t => {
 }));
 const editorialUrls = metadata.filter(page => page.editorialIndexCandidate).map(page => page.url);
 if (editorialUrls.length !== metadata.filter(page => page.editorialIndexCandidate).length) throw new Error("Editorial sitemap URLs differ from candidate registry count.");
-const summary = { schemaVersion: 1, generatedAt, output: "seo-lab-regions-preview/ review-only; not connected to Astro, public/, or deployment", sourceDataVersion: source.dataVersion, sourceRecords: source.areas.length, sourceDistricts: districts.size, sourceProvinces: provinces.size, countsByType, contentQuality: { similarityMetric: "character-trigram-jaccard", threshold: REGIONAL_CONTENT_SIMILARITY_THRESHOLD, normalizedRegionAndServiceTerms: true }, totalStaticPages: pages.length, previewSitemapUrls: previewUrls.length, editorialSitemapUrls: editorialUrls.length, searchSubmission: { submittedUrlCount: 0, state: "not_submitted" }, searchObservations: { crawlState: "unobserved", indexedUrlCount: null, checkedAt: null, source: null, impressions: null, clicks: null }, productionRoutesChanged: 0, robotsOrDeploymentSettingsChanged: 0, sourceAttribution: source.sourceAttribution };
+const observedEvents = durableFlow.events.length;
+const hasIndexObservations = flows.some(item => item.googleIndex.status !== "unobserved");
+const summary = { schemaVersion: 1, generatedAt, output: "seo-lab-regions-preview/ review-only; not connected to Astro, public/, or deployment", sourceDataVersion: source.dataVersion, sourceRecords: source.areas.length, sourceDistricts: districts.size, sourceProvinces: provinces.size, countsByType, contentQuality: { similarityMetric: "character-trigram overlap relative to the shorter body", maximumSharedContentRatio: REGIONAL_DUPLICATE_OVERLAP_LIMIT, normalizedRegionAndServiceTerms: true, verifiedSourceSnapshots: Object.keys(sourceSnapshots.snapshots).length }, contentExamples: { generated: catalogExamples.length, regionalPagesWithVerifiedLocalUtilityFacts: eligibleContentPages.length, output: "seo-lab-regional-content-preview/ (review-only catalog examples)" }, totalStaticPages: pages.length, previewSitemapUrls: previewUrls.length, editorialSitemapUrls: editorialUrls.length, indexFlow: { durableObservationEvents: observedEvents, observationLedger: "seo-lab/regions/index-flow-observations.json" }, searchSubmission: { submittedUrlCount: flows.filter(item => item.submission.status !== "not_submitted").length, state: flows.some(item => item.submission.status !== "not_submitted") ? "observations_present" : "not_submitted" }, searchObservations: { crawlState: flows.some(item => item.crawl.status !== "unobserved") ? "observed" : "unobserved", indexedUrlCount: hasIndexObservations ? flows.filter(item => item.googleIndex.status === "indexed").length : null, checkedAt: hasIndexObservations ? flows.filter(item => item.googleIndex.status !== "unobserved").map(item => item.googleIndex.observedAt).sort().at(-1) : null, source: observedEvents ? "durable index-flow observation ledger" : null, impressions: null, clicks: null }, productionRoutesChanged: 0, robotsOrDeploymentSettingsChanged: 0, sourceAttribution: source.sourceAttribution };
 fs.writeFileSync(path.join(out, "build-summary.json"), JSON.stringify(summary, null, 2) + "\n");
 fs.writeFileSync(path.join(out, "url-registry.json"), JSON.stringify({ schemaVersion: 1, generatedAt, pages: metadata }, null, 2) + "\n");
 fs.writeFileSync(path.join(out, "url-discovery.json"), JSON.stringify({ schemaVersion: 1, generatedAt, records: discoveries }, null, 2) + "\n");
-fs.writeFileSync(path.join(out, "index-flow.json"), JSON.stringify({ schemaVersion: 1, generatedAt, observationState: "unobserved_until_connected_to_search-console_or-crawl-logs", records: flows }, null, 2) + "\n");
+fs.writeFileSync(path.join(out, "index-flow.json"), JSON.stringify({ schemaVersion: 1, generatedAt, observationState: observedEvents ? "durable_observations_imported" : "unobserved_until_connected_to_search-console_or-crawl-logs", records: flows }, null, 2) + "\n");
+fs.writeFileSync(path.join(out, "index-flow-observations.json"), JSON.stringify(durableFlow, null, 2) + "\n");
 fs.writeFileSync(path.join(out, "preview-candidate-sitemap.xml"), sitemap(previewUrls));
 fs.writeFileSync(path.join(out, "editorial-index-candidates-sitemap.xml"), sitemap(editorialUrls));
 console.log(JSON.stringify(summary, null, 2));
+
+function latestObservation(events, type, fallback) {
+  const found = events.filter(item => item.type === type).sort((a, b) => String(a.observedAt).localeCompare(String(b.observedAt))).at(-1);
+  return found ? { ...found.data, observedAt: found.observedAt, source: found.source } : fallback;
+}

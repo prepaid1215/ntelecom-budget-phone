@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "allowedHosts": ["sgis.kostat.go.kr", "github.com", "n-telecom.co.kr", "www.n-telecom.co.kr"],
+  "snapshots": {
+    "sgis-admin-areas-20261001": {
+      "path": "seo-lab/regions/administrative-areas.json",
+      "sha256": "6ad7a10fb52616656bacd1d0198e49194d08bad3ecd960b83cffe03d841737bb",
+      "sourceUrl": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-02",
+      "editorialFactTypes": []
+    },
+    "ntelecom-prepaid-catalog-20261102": {
+      "path": "src/data/research/prepaid-plans.json",
+      "sha256": "a3fad3cbbdc1d6b088248e3bcebbfa11e231213567b2f5eefecc65a2b8cedcac",
+      "sourceUrl": "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf",
+      "checkedAt": "2026-11-02",
+      "editorialFactTypes": []
+    },
+    "ntelecom-mvno-catalog-20261102": {
+      "path": "src/data/research/plans.json",
+      "sha256": "b67e01dc5e50b1f36f8794150f413c9d9d1d972de9b3ee5b8504fbf46cd96a09",
+      "sourceUrl": "https://www.n-telecom.co.kr/59man/view/plan/phone_plan.aspx",
+      "checkedAt": "2026-11-02",
+      "editorialFactTypes": []
+    }
+  },
+  "policy": "A verified label alone is never trusted. The claim must point into a pinned source snapshot, the current file hash must match, and the referenced value must match exactly. Administrative identity facts are verified for URL accuracy but are not editorial regional evidence."
+}

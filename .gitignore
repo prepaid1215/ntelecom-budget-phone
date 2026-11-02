@@ -1,6 +1,7 @@
 node_modules/
 dist/
 seo-lab-regions-preview/
+seo-lab-regional-content-preview/
 .astro/
 .DS_Store
 .env

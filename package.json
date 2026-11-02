@@ -18,7 +18,11 @@
     "regions:generate": "node scripts/generate-regional-pages.mjs",
     "regions:audit": "node scripts/audit-regional-pages.mjs",
     "regions:quality-test": "node scripts/test-regional-quality.mjs",
-    "regions:pipeline-test": "node scripts/test-regional-pipeline.mjs"
+    "regions:pipeline-test": "node scripts/test-regional-pipeline.mjs",
+    "regions:sources-test": "node scripts/test-regional-sources.mjs",
+    "regions:fetch-source": "node scripts/fetch-regional-source.mjs",
+    "regions:content-preview": "node scripts/generate-regional-pages.mjs",
+    "regions:record-observation": "node scripts/record-regional-observation.mjs"
   },
   "dependencies": {
     "astro": "^5.0.0"

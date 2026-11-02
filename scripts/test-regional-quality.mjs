@@ -7,6 +7,11 @@ const validItem = (fact, sourceLabel = "공식 지역 자료", scopeCode = "1111
   ownerApproved: true,
   sourceUrl: "https://example.gov.kr/source",
   sourceLabel,
+  sourceSnapshotId: "isolated-unit-test",
+  sourcePointer: "/records/0/value",
+  sourceValue: sourceLabel === "공식 상품 자료" ? productId : fact,
+  scopePointer: "/records/0/code",
+  factType: sourceLabel === "공식 지역 자료" ? "official_store_address" : "product_claim",
   checkedAt: "2026-11-02",
   scopeCode,
   productId,
@@ -20,8 +25,16 @@ const record = (scopeCode = "1111051500", productId = "ntelecom-k-7gb-coupang-ca
   approvedCopy: baseCopy
 });
 const options = { regionCode: "1111051500", productIds: new Set(["ntelecom-k-7gb-coupang-cash"]) };
+options.verifySource = (item, settings = {}) => ({
+  verified: item.sourceSnapshotId === "isolated-unit-test"
+    && (item.sourceValue === item.fact || item.sourceValue === item.productId)
+    && item.sourcePointer.startsWith("/")
+    && (!item.scopeCode || item.scopePointer === "/records/0/code")
+    && (!settings.editorial || item.factType === "official_store_address"),
+  sourceValue: item.sourceValue
+});
 const accepted = evidenceEligibility(record(), now, options);
-assert.equal(accepted.eligible, true, "Fresh approved local/product evidence and substantive copy should pass.");
+assert.equal(accepted.eligible, true, "A test-only source resolver can verify protocol behavior; it does not establish real-world evidence.");
 assert.equal(evidenceEligibility(undefined, now).eligible, false, "Missing evidence must fail closed.");
 assert.ok(evidenceEligibility(record("1111053000"), now, options).reasons.includes("regional_fact_scope_mismatch"), "A local fact scoped to a different area must fail.");
 assert.ok(evidenceEligibility(record("1111051500", "unknown-product-id"), now, options).reasons.includes("product_id_unverified_or_unknown"), "An unlisted product must fail.");
@@ -35,4 +48,5 @@ const near = findNearDuplicatePairs([
 assert.equal(near.duplicateIds.has("first"), true, "The first page in a duplicated group must be held.");
 assert.equal(near.duplicateIds.has("second"), true, "Changing only a locality name must not make copy unique.");
 assert.equal(near.duplicateIds.has("distinct"), false, "Substantively different content should not be held.");
-console.log(JSON.stringify({ passed: true, evidenceGate: "pass/fail verified", nearDuplicatePairs: near.pairs, unrelatedCopyPassed: true }, null, 2));
+assert.ok(near.pairs.every(pair => pair.sharedContentRatio > 0.3 || pair.jaccard >= 0.82), "Near-duplicate pair report must expose both overlap metrics.");
+console.log(JSON.stringify({ passed: true, evidenceGate: "protocol behavior verified with isolated test resolver", nearDuplicatePairs: near.pairs, unrelatedCopyPassed: true }, null, 2));

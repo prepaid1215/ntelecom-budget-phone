@@ -2,7 +2,9 @@ import fs from "node:fs";
 import path from "node:path";
 import postpaidPages from "../src/data/generated-pages.json" with { type: "json" };
 import seed from "../seo-lab/seed.json" with { type: "json" };
-import { evidenceEligibility, findNearDuplicatePairs, REGIONAL_CONTENT_SIMILARITY_THRESHOLD } from "./regional-pages-lib.mjs";
+import { evidenceEligibility, findNearDuplicatePairs, REGIONAL_DUPLICATE_OVERLAP_LIMIT } from "./regional-pages-lib.mjs";
+import { createSourceVerifier, renderVerifiedLocalFact } from "./regional-source-verifier.mjs";
+import { buildCatalogIntentExamples } from "./regional-content-engine.mjs";
 
 const root = process.cwd();
 const out = path.resolve("seo-lab-regions-preview");
@@ -10,10 +12,15 @@ const read = file => JSON.parse(fs.readFileSync(path.join(root, file), "utf8"));
 const source = read("seo-lab/regions/administrative-areas.json");
 const coverage = read("seo-lab/regions/coverage-manifest.json");
 const evidence = read("seo-lab/regions/evidence.json");
+const sourceSnapshots = read("seo-lab/regions/source-snapshots.json");
+const durableFlow = read("seo-lab/regions/index-flow-observations.json");
+const sourceVerifier = createSourceVerifier(root, sourceSnapshots);
+const verifyEvidenceSource = (item, settings) => sourceVerifier.verify(item, settings);
 const productIds = {
   prepaid: new Set(read("src/data/research/prepaid-plans.json").map(item => item.id)),
   mvno: new Set(read("src/data/research/plans.json").map(item => item.id))
 };
+const intentExamples = buildCatalogIntentExamples({ prepaidPlans: read("src/data/research/prepaid-plans.json"), mvnoPlans: read("src/data/research/plans.json") });
 const summary = JSON.parse(fs.readFileSync(path.join(out, "build-summary.json"), "utf8"));
 const registry = JSON.parse(fs.readFileSync(path.join(out, "url-registry.json"), "utf8"));
 const discovery = JSON.parse(fs.readFileSync(path.join(out, "url-discovery.json"), "utf8"));
@@ -39,7 +46,7 @@ require(provinces.size === expectedProvinceMap.size && [...expectedProvinceMap].
 require(expectedProvinceMap.has("36") && expectedProvinceMap.get("36") === "세종특별자치시", "Sejong is missing from the reviewed province set.");
 require(summary.totalStaticPages === expectedTotal, "Generated count does not match counts derived from source data.");
 require(summary.sourceRecords === source.areas.length, "Generator summary source count mismatch.");
-require(summary.contentQuality?.threshold === REGIONAL_CONTENT_SIMILARITY_THRESHOLD, "Regional similarity threshold is missing or differs from the audit implementation.");
+require(summary.contentQuality?.maximumSharedContentRatio === REGIONAL_DUPLICATE_OVERLAP_LIMIT, "Regional duplicate-overlap limit is missing or differs from the audit implementation.");
 require(summary.previewSitemapUrls === registry.pages.length, "Preview sitemap count differs from generated registry.");
 require(summary.editorialSitemapUrls === registry.pages.filter(p => p.editorialIndexCandidate).length, "Editorial sitemap count differs from dynamic candidate count.");
 require(registry.pages.length === expectedTotal, "URL registry count differs from source-derived page count.");
@@ -56,8 +63,15 @@ for (const type of ["prepaid", "mvno"]) {
 const eligibleSourceRecords = [];
 const areaByCode = new Map(source.areas.map(area => [area.code, area]));
 for (const type of ["prepaid", "mvno"]) for (const area of source.areas) {
-  const gate = evidenceEligibility(evidence.regions?.[type + ":" + area.code], Date.now(), { regionCode: area.code, productIds: productIds[type] });
-  if (gate.eligible) eligibleSourceRecords.push({ id: type + ":" + area.code, text: gate.approvedCopy, regionTerms: [area.fullName, area.province, area.district, area.locality] });
+  const verifyForArea = (item, settings) => verifyEvidenceSource(item, { ...settings, expectedScopeCode: area.code });
+  const gate = evidenceEligibility(evidence.regions?.[type + ":" + area.code], Date.now(), { regionCode: area.code, productIds: productIds[type], verifySource: verifyForArea });
+  const requiredProducts = intentExamples.find(example => example.pageType === type)?.products || [];
+  if (gate.eligible && !requiredProducts.every(id => gate.productEvidence.some(item => item.productId === id))) {
+    gate.eligible = false;
+    gate.reasons.push("intent_template_product_evidence_incomplete");
+  }
+  const page = registry.pages.find(item => item.type === type && item.level === "emd" && item.administrativeCode === area.code);
+  if (gate.eligible && page?.editorialCopy) eligibleSourceRecords.push({ id: type + ":" + area.code, text: page.editorialCopy, regionTerms: [area.fullName, area.province, area.district, area.locality] });
 }
 const similarity = findNearDuplicatePairs(eligibleSourceRecords);
 const duplicateIds = similarity.duplicateIds;
@@ -82,18 +96,25 @@ for (const p of registry.pages) {
   require(html.includes("운영 사이트 경로에 연결되지 않음"), "Review-only status missing: " + p.path);
   if (p.level === "emd") {
     const area = areaByCode.get(p.administrativeCode);
-    const gate = evidenceEligibility(evidence.regions?.[p.type + ":" + p.administrativeCode], Date.now(), { regionCode: p.administrativeCode, productIds: productIds[p.type] });
+    const verifyForArea = (item, settings) => verifyEvidenceSource(item, { ...settings, expectedScopeCode: p.administrativeCode });
+    const gate = evidenceEligibility(evidence.regions?.[p.type + ":" + p.administrativeCode], Date.now(), { regionCode: p.administrativeCode, productIds: productIds[p.type], verifySource: verifyForArea });
     const evidenceKey = p.type + ":" + p.administrativeCode;
     const expectedCandidate = gate.eligible && !duplicateIds.has(evidenceKey);
     require(p.editorialIndexCandidate === expectedCandidate, "Candidate state differs from evidence/uniqueness checks: " + p.path);
     require(p.editorialIndexCandidate === !p.gateReasons.length, "Candidate flag and gate reasons disagree: " + p.path);
     if (p.editorialIndexCandidate) {
       require(p.publishable === false, "Review candidate became publishable without the release gate: " + p.path);
-      require(p.editorialCopy === gate.approvedCopy, "Candidate copy differs from approved evidence record: " + p.path);
-      require(p.contentWordCount >= 40 && p.editorialCopy.length >= 260, "Candidate content is too thin: " + p.path);
+      const catalog = intentExamples.find(example => example.pageType === p.type);
+      const localBody = gate.localEvidence.map(item => renderVerifiedLocalFact({ ...item, sourceValue: verifyForArea(item, { editorial: true }).sourceValue })).filter(Boolean);
+      require(p.editorialCopy === [catalog?.body || "", ...localBody].join("\n\n"), "Candidate body differs from the verified intent template and source facts: " + p.path);
+      require(p.editorialCopy.length >= 260 && p.contentWordCount >= 40, "Candidate content is too thin: " + p.path);
       require((html.match(/class=\"editorial-copy\"/g) || []).length === 1, "Candidate copy section missing: " + p.path);
-      for (const item of [...gate.localEvidence, ...gate.productEvidence]) {
-        require(html.includes(item.sourceUrl) && html.includes(escHtml(item.fact)), "Evidence not rendered in candidate HTML: " + p.path);
+      for (const item of gate.localEvidence) {
+        const proof = verifyForArea(item, { editorial: true });
+        require(html.includes(item.sourceUrl) && html.includes(escHtml(renderVerifiedLocalFact({ ...item, sourceValue: proof.sourceValue }))), "Verified local evidence not rendered in candidate HTML: " + p.path);
+      }
+      for (const item of gate.productEvidence) {
+        require(html.includes(item.sourceUrl), "Verified product source not rendered in candidate HTML: " + p.path);
       }
     }
     if (duplicateIds.has(evidenceKey)) {
@@ -109,14 +130,21 @@ for (const p of registry.pages) {
   }
 }
 const flowByPath = new Map(flow.records.map(record => [record.path, record]));
+require(JSON.stringify(flow.records.length) === JSON.stringify(registry.pages.length), "Index-flow record count mismatch.");
+require(JSON.stringify(read("seo-lab-regions-preview/index-flow-observations.json")) === JSON.stringify(durableFlow), "Build output did not preserve the durable observation ledger.");
 for (const page of registry.pages) {
   const record = flowByPath.get(page.path);
   require(!!record, "Index-flow record missing: " + page.path);
   if (!record) continue;
   require(record.editorialIndexCandidate === page.editorialIndexCandidate, "Index-flow candidate mismatch: " + page.path);
-  require(record.submission.status === "not_submitted", "Unexpected submission state: " + page.path);
-  require(record.crawl.status === "unobserved" && record.googleIndex.status === "unobserved", "Unobserved search state was reported as observed: " + page.path);
-  require(record.searchPerformance.impressions === null && record.searchPerformance.clicks === null, "Unobserved performance values must stay null: " + page.path);
+  const events = durableFlow.events.filter(event => event.url === page.url);
+  require(record.observationEventCount === events.length, "Index-flow observation history count mismatch: " + page.path);
+  for (const [type, field, defaultStatus] of [["submission", "submission", "not_submitted"], ["crawl", "crawl", "unobserved"], ["googleIndex", "googleIndex", "unobserved"], ["searchPerformance", "searchPerformance", null]]) {
+    const latest = events.filter(event => event.type === type).sort((a, b) => String(a.observedAt).localeCompare(String(b.observedAt))).at(-1);
+    if (latest) require(JSON.stringify(record[field]) === JSON.stringify({ ...latest.data, observedAt: latest.observedAt, source: latest.source }), "Index-flow state differs from its latest durable event: " + page.path + " " + type);
+    else if (defaultStatus) require(record[field].status === defaultStatus, "Missing observations must remain unobserved: " + page.path + " " + type);
+    else require(record[field].impressions === null && record[field].clicks === null, "Missing performance data must remain null: " + page.path);
+  }
 }
 const labSeed = read("seo-lab/seed.json");
 require(labSeed.keywords.length === 6 && labSeed.regions.length === 5 && labSeed.blogs.length === 1, "SEO A/B/C experiment seeds changed.");
@@ -135,8 +163,8 @@ const result = {
   regionalGeneratedPages: registry.pages.length,
   editorialIndexCandidates: candidateCount,
   nearDuplicateCopyPairs: similarity.pairs.length,
-  submittedUrls: 0,
-  crawlAndIndexState: "unobserved",
+  submittedUrls: flow.records.filter(record => record.submission.status !== "not_submitted").length,
+  crawlAndIndexState: flow.records.some(record => record.googleIndex.status !== "unobserved") ? "observed" : "unobserved",
   errors: errors.length,
   errorSample: errors.slice(0, 30)
 };
