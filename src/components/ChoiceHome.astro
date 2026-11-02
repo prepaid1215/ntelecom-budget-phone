@@ -1,0 +1,54 @@
+---
+import { toPublicPath } from "../lib/site-config.js";
+const cards = [
+ {kind:"선불폰",tag:"요금을 먼저 충전하는 방식",desc:"미납·정지 상황에서 본인명의 신규가입을 준비하거나 업무용 번호를 따로 만들 때",checks:["KT 바로유심 · LG 모두의 원칩","요금제 선택과 충전","본인명의 신규가입"],href:"/선불폰/",label:"선불폰 알아보기"},
+ {kind:"알뜰폰",tag:"월 이용료를 납부하는 방식",desc:"기존 번호로 통신비를 줄이거나 새 번호를 월 요금제로 이용할 때",checks:["신규가입 또는 번호이동","데이터별 요금제 비교","제휴혜택과 가입 방법"],href:"/알뜰폰/",label:"알뜰폰 알아보기"}
+];
+---
+<section class="hero"><div class="wrap hero-inner">
+  <div class="hero-copy">
+    <span class="eyebrow">앤텔레콤 개통방법</span>
+    <h1>선불폰부터<br /> <em>알뜰폰까지</em></h1>
+    <p>지금 필요한 방식부터 선택하세요. 앤텔레콤 선불폰 신규가입과 알뜰폰 신규가입·번호이동 방법을 각각 안내합니다.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href={toPublicPath("/선불폰/")}>선불폰 개통방법</a>
+      <a class="btn-secondary" href={toPublicPath("/알뜰폰/")}>알뜰폰 개통방법</a>
+    </div>
+  </div>
+  <div class="hero-visual"><img class="hero-art" src={toPublicPath("/images/hero-mobile.webp")} width="1000" height="750" alt="휴대폰, 유심과 모바일 요금제를 표현한 그림" fetchpriority="high" /></div>
+</div></section>
+<section class="section"><div class="wrap">
+  <h2>어떤 개통을 찾으세요?</h2>
+  <p class="section-lead">선불폰과 알뜰폰의 가입 목적이 달라 상세 안내도 구분했습니다.</p>
+  <div class="choice-grid">
+    {cards.map(c=><article class="card choice-card">
+      <span class="plan-kicker">{c.tag}</span>
+      <h3>{c.kind}</h3>
+      <p>{c.desc}</p>
+      <ul>{c.checks.map(x=><li>{x}</li>)}</ul>
+      <a class="cta-btn choice-action" href={toPublicPath(c.href)}>{c.label} →</a>
+    </article>)}
+  </div>
+</div></section>
+<section class="section soft"><div class="wrap">
+  <h2>찾는 내용으로 바로 이동하세요</h2>
+  <div class="choice-links">
+    <a href={toPublicPath("/선불폰/#usim")}>KT·LG 유심 준비 <span>›</span></a>
+    <a href={toPublicPath("/선불폰/#plans")}>선불 요금제 비교 <span>›</span></a>
+    <a href={toPublicPath("/선불폰/#steps")}>선불폰 셀프개통 순서 <span>›</span></a>
+    <a href={toPublicPath("/알뜰폰/")}>알뜰폰 요금제·혜택 <span>›</span></a>
+    <a href={toPublicPath("/number-transfer/")}>알뜰폰 번호이동 안내 <span>›</span></a>
+  </div>
+</div></section>
+<style>
+.choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.choice-card{padding:24px;display:flex;flex-direction:column;align-items:flex-start}
+.choice-card h3{font-size:28px;margin:5px 0 8px;letter-spacing:-.8px}
+.choice-card p{margin:0;color:#565863;line-height:1.65;min-height:55px}
+.choice-card ul{padding-left:20px;margin:14px 0 24px;line-height:1.9}
+.choice-action{margin-top:auto;text-align:center;display:block;padding:13px 22px;width:100%;border-radius:12px}
+.choice-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.choice-links a{background:#fff;border:1px solid #e1e1e5;padding:17px;border-radius:14px;font-weight:800;display:flex;justify-content:space-between}
+.choice-links span{color:#ff438b}
+@media(max-width:660px){.choice-grid,.choice-links{grid-template-columns:1fr}.choice-card p{min-height:0}}
+</style>
