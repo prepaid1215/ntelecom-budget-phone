@@ -37,3 +37,29 @@ node scripts/seo-lab-preview.mjs
 7. 검수와 승인 후 `PRODUCTION_READY` 전환
 
 기존 GitHub Pages 주소와 Cloudflare 운영 도메인은 이 브랜치의 변경만으로 수정되지 않습니다.
+
+
+## SEO 메타 규칙 (실험 A/B)
+
+- 각 URL: `앤텔레콤` 및 `개통방법` 포함. 주제·상품·지역별로 다르게 생성
+- `<title>`: 주제별 고유 제목, 핵심 키워드와 함께 구체적 차이점 표기
+- `<h1>`: title의 ` | ` 앞부분을 사용해 페이지당 정확히 1개로 생성
+- `<link rel="canonical">`: `siteUrl + 각 페이지 자체 경로`로 절대 URL 생성. **모든 페이지를 홈 canonical로 통일하지 않음**
+- `og:url`: canonical과 같은 URL
+- H1·title·canonical 중복은 생성기에 오류로 처리
+- 네이버 블로그 URL 실험 `/blog/`는 A/B 슬러그 규칙 예외
+- `PRODUCTION_READY=false`와 별도로 이 미리보기는 `noindex`를 유지
+
+예시:
+
+```text
+slug:      /앤텔레콤-네이버7gb-요금제-개통방법/
+title:     앤텔레콤 네이버페이 7GB 요금제 개통방법 | K망 가입안내
+H1:        앤텔레콤 네이버페이 7GB 요금제 개통방법
+canonical: https://앤텔레콤개통방법.shop/앤텔레콤-네이버7gb-요금제-개통방법/
+```
+
+표시된 canonical의 실제 HTML URL은 국제화 도메인 및 한글 경로를 ASCII/퍼센트 인코딩한 값으로 정규화됩니다.
+
+Google 검색 노출은 보장되지 않습니다. 고유한 title/H1과 자체 참조 canonical이 있어도 내용이 실질적으로 중복이면 검색엔진이 다른 표준 URL을 선택할 수 있습니다.
+
