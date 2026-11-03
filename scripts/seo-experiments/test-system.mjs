@@ -87,8 +87,8 @@ test("4. observe + report: engine/stage ledger and 7/14/28-day comparison by arm
   const events = [
     { unit: tA, engine: "google", stage: "discovered", result: "unobservable", observedAt: "2026-11-08T01:00:00Z", method: "exact_url_search", source: "manual check sheet row 1" },
     { unit: tA, engine: "google", stage: "indexed", result: "yes", observedAt: "2026-11-15T01:00:00Z", method: "exact_url_search", source: "manual check sheet row 2" },
-    { unit: tB, engine: "google", stage: "indexed", result: "no", observedAt: "2026-11-15T01:00:00Z", method: "site_operator", source: "manual check sheet row 3" },
-    { unit: c, engine: "google", stage: "indexed", result: "no", observedAt: "2026-11-15T01:00:00Z", method: "exact_url_search", source: "manual check sheet row 4" },
+    { unit: tB, engine: "google", stage: "indexed", result: "unobservable", observedAt: "2026-11-15T01:00:00Z", method: "site_operator", source: "manual check sheet row 3", note: "No result found; cannot infer non-indexing of third-party URL" },
+    { unit: c, engine: "google", stage: "indexed", result: "unobservable", observedAt: "2026-11-15T01:00:00Z", method: "exact_url_search", source: "manual check sheet row 4", note: "No result found; cannot infer non-indexing of third-party URL" },
     { unit: c, engine: "naver", stage: "indexed", result: "yes", observedAt: "2026-11-06T01:00:00Z", method: "manual_serp", source: "naver serp capture 1", note: "query: 앤텔레콤 개통" },
     { unit: carrier, engine: "google", stage: "crawled", result: "yes", observedAt: "2026-11-07T01:00:00Z", method: "server_log", source: "access.log googlebot line" }
   ];
@@ -114,7 +114,7 @@ test("4. observe + report: engine/stage ledger and 7/14/28-day comparison by arm
   assert.equal(row("treatment:index-carrier", "google", 14).indexedUnobserved, 4, "unchecked units stay unobserved, not 'no'");
   assert.equal(row("treatment:index-carrier", "google", 7).discoveredUnobservable, 1);
   assert.equal(row("treatment:index-carrier", "google", 7).discoveredYesRateAmongObserved, null);
-  assert.equal(row("treatment:noindex-carrier", "google", 14).indexedNo, 1);
+  assert.equal(row("treatment:noindex-carrier", "google", 14).indexedUnobservable, 1);
   assert.equal(row("control", "naver", 7).indexedYes, 1);
   assert.equal(row("control", "google", 28).units, 10);
   assert.equal(summary.find(s => s.arm === "carrier:index" && s.engine === "google" && s.windowDays === 7 && s.crawledYes === 1)?.crawledYes, 1);
