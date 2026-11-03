@@ -8,3 +8,8 @@ seo-lab-regional-content-preview/
 .env.*
 !.env.example
 /pnpm
+audit-results/
+reports/
+dist-fixture/
+dist-noready/
+dist-pages/

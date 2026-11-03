@@ -1,0 +1,9 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import IndexKitPage from "../../components/experiments/IndexKitPage.astro";
+import { buildExperimentRegistry } from "../../lib/seo-experiments/registry.js";
+const page=buildExperimentRegistry().indexkit.pages.find(item=>item.role==="hub");
+---
+<BaseLayout title={page.title} description={page.description} index={page.effectiveIndex} pagePath={page.path} breadcrumbs={[{name:page.h1,path:page.path}]}>
+  <IndexKitPage page={page}/>
+</BaseLayout>

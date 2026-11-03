@@ -1,0 +1,58 @@
+---
+// Experiment A template. All copy comes from src/data/seo-experiments/a-landings.json via landings.js.
+import { toPublicPath, siteConfig as site } from "../../lib/site-config.js";
+const { page } = Astro.props;
+---
+<section class="section xp-hero" data-experiment="A" data-intent={page.id}><div class="wrap">
+  <p class="eyebrow">{page.template === "plan-guide" ? "요금제 개통 안내" : page.template === "troubleshoot" ? "입력·확인 안내" : "개통 준비 안내"}</p>
+  <h1>{page.h1}</h1>
+  <p class="section-lead">{page.lead}</p>
+  {page.intentOwner && <p class="xp-owner">이 주제의 대표 안내는 <a href={toPublicPath(page.intentOwner)}>여기</a>에 있습니다.</p>}
+</div></section>
+
+{page.sections.map((section, index) => (
+  <section class={index % 2 ? "section soft" : "section"}><div class="wrap">
+    <h2>{section.heading}</h2>
+    {section.paragraphs.map(text => <p class="xp-p">{text}</p>)}
+  </div></section>
+))}
+
+{page.planRows.length > 0 && (
+  <section class="section"><div class="wrap">
+    <h2>함께 비교할 요금제</h2>
+    <div class="ch-table-wrap"><table class="ch-table xp-table">
+      <thead><tr><th scope="col">요금제</th><th scope="col">망</th><th scope="col">요금</th><th scope="col">데이터</th></tr></thead>
+      <tbody>{page.planRows.map(row => (
+        <tr><td><a href={toPublicPath(row.path)}>{row.name}</a></td><td>{row.network}</td><td>{row.priceLabel}</td><td>{row.data}</td></tr>
+      ))}</tbody>
+    </table></div>
+    <p class="pd-note">상품 카탈로그 기준({site.ratesReceivedAt} 수령). 실제 제공량과 가입 조건은 신청 시점의 상품 안내를 따릅니다.</p>
+  </div></section>
+)}
+
+<section class="section soft"><div class="wrap">
+  <h2>진행 순서</h2>
+  <ol class="xp-steps">{page.steps.map(step => <li>{step}</li>)}</ol>
+</div></section>
+
+{page.faq.length > 0 && (
+  <section class="section"><div class="wrap">
+    <h2>자주 묻는 질문</h2>
+    <div class="faq-list">{page.faq.map(item => <details class="faq"><summary>{item.q}</summary><p class="answer">{item.a}</p></details>)}</div>
+  </div></section>
+)}
+
+<section class="section soft"><div class="wrap">
+  <h2>관련 안내</h2>
+  <div class="link-list">
+    {[...page.links, ...page.related].map(link => <a href={toPublicPath(link.path)}><span>{link.label}</span><span>›</span></a>)}
+  </div>
+</div></section>
+
+<style>
+  .xp-hero h1{font-size:clamp(26px,5vw,38px);line-height:1.3;letter-spacing:-.8px;margin:6px 0 12px}
+  .xp-p{line-height:1.8;color:#3d3f46;margin:0 0 12px}
+  .xp-steps{padding-left:22px;line-height:1.9}
+  .xp-owner{margin-top:12px;font-size:14px;color:#61636b}
+  .xp-table td,.xp-table th{text-align:left}
+</style>

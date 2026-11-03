@@ -71,3 +71,32 @@ Google 검색 노출은 보장되지 않습니다. 고유한 title/H1과 자체 
 - 지역 형식 A 예: `/앤텔레콤-부전동-개통방법/`
 - 두 패턴을 모두 쓸 수 있지만 **동일 검색 의도를 같은 글 두 개로 복제하지 않음**
 - SEO 실험용 미리보기는 실제 N플랫폼 연결 전까지 개통 버튼 대신 안내 문구로 처리
+
+## 통합 구현 (v1, Astro 라우트)
+
+위 미리보기 생성기는 검수 도구로 그대로 둡니다. 실제 사이트 라우트는 `src/lib/seo-experiments/registry.js` 한 곳에서 관리합니다.
+
+| 실험 | 라우트 | 데이터 | 템플릿 | 현재 수치 |
+|---|---|---|---|---|
+| A 검색의도 랜딩 | `/앤텔레콤-…/` (`src/pages/[landing].astro`) | `src/data/seo-experiments/a-landings.json` | `components/experiments/LandingPage.astro` | 생성 9, 색인 후보 6 |
+| B 지역 | `/regions/{prepaid\|mvno}/…` (`src/pages/regions/[...region].astro`) | `seo-lab/regions/*` (URL 잠금·근거 게이트 동일) | `components/experiments/RegionPage.astro` | 생성 7,664, 색인 후보 0 |
+| C IndexKit | `/indexkit/`, `/indexkit/{batch}/` | `src/data/seo-experiments/indexkit.json` | `components/experiments/IndexKitPage.astro` | 대상 1, 링크 0(등록 중) |
+
+**A 게이트.** 다음 기준은 모두 **이 프로젝트 내부 감사 기준**이며 검색엔진의 공식 색인 요건이 아닙니다.
+
+- 슬러그와 H1 규칙
+- title 40자 이하, description 30~80자
+- 본문 600자 이상, 내부링크 3개 이상
+- 근거 파일 명시, 참조 상품의 활성·프로모션 유효
+- 기존 페이지와의 검색의도 충돌 없음(`config.json`의 `intentOwners`)
+- 렌더링 본문 전수 중복률 0.30 이하
+
+렌더링 중복은 빌드 후 `pnpm run seo:a-review --write-demotions`로 `a-rendered-overlap.json`에 고정합니다. 기록이 낡으면 `test-dist`가 실패합니다. 판정 근거는 `reports/seo-experiments/a-landing-review.{json,md}`에 남습니다.
+
+**B 출력 범위.** `SEO_REGIONS_EMIT=all`(개발 기본값)은 7,664개를 모두 만듭니다. `candidates`(운영 `deploy-pages.yml`)는 색인 후보와 상위 허브만 만들며, 현재는 0개입니다. 근거 없는 지역은 noindex이고 sitemap에 넣지 않습니다.
+
+**C와 관측.** [`indexkit/README.md`](indexkit/README.md), [`observations/README.md`](observations/README.md)를 참고하세요.
+
+**기존 사이트 보존.** `seo-lab/baseline/`에 실험 전 503개 HTML의 SHA-256, 감사 결과, sitemap·robots를 기록해 두었습니다. `pnpm run seo:baseline`은 이 기록과, `pnpm run seo:baseline -- --base-ref=876d8c8`은 같은 날 재빌드한 기준 커밋과 비교합니다.
+
+**전체 검증.** `pnpm run seo:test`는 빌드 4종과 테스트, 감사를 모두 실행하고 `reports/seo-experiments/test-summary.json`을 남깁니다. 배포는 하지 않습니다.

@@ -8,7 +8,8 @@ const {
   index="index",
   faqs=[],
   pagePath=Astro.url.pathname,
-  image="/images/hero-mobile.webp"
+  image="/images/hero-mobile.webp",
+  breadcrumbs=null
 } = Astro.props;
 const fullTitle = title;
 const canonical = toSiteUrl(pagePath);
@@ -25,7 +26,8 @@ for(let i=1;i<=segments.length;i++){
   const hit=pageByPath.get(path);
   if(hit) trail.push({name:hit.keyword,path});
 }
-const crumbs=[{name:site.brandName,path:"/"},...trail.filter(c=>c.path!=="/")];
+// Experiment pages (A/B/C) pass their own hierarchy; existing pages keep the generated-page trail.
+const crumbs=[{name:site.brandName,path:"/"},...(breadcrumbs || trail).filter(c=>c.path!=="/")];
 const schemas={
   "@context":"https://schema.org",
   "@graph":[

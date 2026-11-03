@@ -114,6 +114,17 @@ pnpm run regions:sources-test
 
 Vercel에서는 저장소의 `pnpm-lock.yaml`과 `packageManager`를 사용해 정적 Astro 빌드를 그대로 실행할 수 있습니다. 별도 서버나 `vercel.json`은 필요하지 않습니다.
 
+## SEO 실험 A·B·C
+
+A 검색의도 랜딩, B 지역페이지, C 네이버 블로그 원문 링크 실험이 Astro 라우트로 통합되어 있습니다. 구조와 현재 수치는 [`seo-lab/README.md`](seo-lab/README.md#통합-구현-v1-astro-라우트)를 참고하세요.
+
+```bash
+pnpm run seo:test            # 전체 검증 (빌드 4종 + 단위·산출물·HTTP·렌더링·시스템 테스트 + 기존 감사)
+pnpm run seo:indexkit status # C 대상·배정 상태
+pnpm run seo:observe --input=events.json   # Google·네이버 관측 기록
+pnpm run seo:report          # 7·14·28일 비교 JSON/CSV
+```
+
 ## 운영 전에 반드시 설정
 
 실제 도메인과 미러링 개통 URL을 연결할 때 배포 환경변수에 아래 값을 입력합니다. 저장소 기본값은 의도적으로 `example.com`과 `productionReady=false`를 유지합니다.

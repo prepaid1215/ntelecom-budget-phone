@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import IndexKitPage from "../../components/experiments/IndexKitPage.astro";
+import { buildExperimentRegistry } from "../../lib/seo-experiments/registry.js";
+
+export function getStaticPaths(){
+  return buildExperimentRegistry().indexkit.pages.filter(page=>page.role==="batch")
+    .map(page=>({params:{batch:page.batch.id},props:{page}}));
+}
+const { page }=Astro.props;
+---
+<BaseLayout title={page.title} description={page.description} index={page.effectiveIndex} pagePath={page.path} breadcrumbs={[{name:"네이버 블로그 원문 링크 모음",path:"/indexkit/"},{name:page.h1,path:page.path}]}>
+  <IndexKitPage page={page}/>
+</BaseLayout>
