@@ -6,7 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { experimentConfig, readJson, routeProblems, siteState, toSiteUrlFor } from "../../src/lib/seo-experiments/common.js";
 import { buildExperimentRegistry, experimentSitemapEntries } from "../../src/lib/seo-experiments/registry.js";
-import { anchors, distRoot, htmlRoutes, localRoute, mainText, meta, RENDERED_OVERLAP_LIMIT, sharedTrigramRatio, sitemapLocs, trigramSet } from "./dist-lib.mjs";
+import { anchors, distRoot, htmlRoutes, localRoute, mainText, meta, overlapText, RENDERED_OVERLAP_LIMIT, sharedTrigramRatio, sitemapLocs, trigramSet } from "./dist-lib.mjs";
 import { buildLinkManifest } from "./link-manifest.mjs";
 
 const root = distRoot();
@@ -97,7 +97,7 @@ test("titles are unique across the whole site", () => {
 test("A: exhaustive rendered overlap — every index candidate stays under the limit, pinned demotions are current", () => {
   const candidates = registry.landings.pages.filter(p => p.indexCandidate);
   const existingIndexable = [...generated.filter(p => p.effectiveIndex === "index" && p.path !== "/").map(p => p.path), "/", "/선불폰/", "/알뜰폰/"];
-  const grams = new Map([...existingIndexable, ...registry.landings.pages.map(p => p.path)].map(p => [p, trigramSet(mainText(read(p)))]));
+  const grams = new Map([...existingIndexable, ...registry.landings.pages.map(p => p.path)].map(p => [p, trigramSet(overlapText(read(p)))]));
   const over = [];
   for (const page of candidates) for (const other of [...existingIndexable, ...candidates.map(c => c.path).filter(p => p !== page.path)]) {
     const ratio = sharedTrigramRatio(grams.get(page.path), grams.get(other));

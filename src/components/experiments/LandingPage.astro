@@ -9,6 +9,8 @@ const heroImages = {
   "daiso-usim": "lg", "kt-barousim-number-entry": "numbers"
 };
 const heroImage = heroImages[page.id];
+// Unified closing steps repeated on every landing (kept identical on purpose); marked so overlap checks judge page-specific copy only.
+const commonSteps = new Set(["본인명의 신규가입을 마치고 홈페이지에서 요금 직접 충전", "유심을 장착하고 휴대폰 다시 켜기", "본사 해피콜(1899-7700)은 별도로 오니 꼭 받기"]);
 const showNumberGuide = ["kt-barousim-prepaid", "lg-onechip-prepaid", "naverpay-7gb-mvno"].includes(page.id);
 ---
 <section class="section xp-hero" data-experiment="A" data-intent={page.id}><div class:list={["wrap", {"xp-hero-grid": heroImage}]}><div>
@@ -43,7 +45,12 @@ const showNumberGuide = ["kt-barousim-prepaid", "lg-onechip-prepaid", "naverpay-
 
 <section class="section soft"><div class="wrap">
   <h2>진행 순서</h2>
-  <ol class="xp-steps">{page.steps.map(step => <li>{step}</li>)}</ol>
+  <ol class="xp-steps">{page.steps.map(step => <li data-shared-step={commonSteps.has(step) ? "common" : undefined}>{step}</li>)}</ol>
+</div></section>
+
+<section class="section" data-shared-block="happy-call"><div class="wrap" data-notice="happy-call">
+  <h2>본사 해피콜 안내</h2>
+  <p class="xp-p">담당자 승인 없이 본인이 직접 개통합니다. 본사 해피콜(1899-7700)은 별도 본인확인 전화이니 꼭 받아 주세요. 문의는 <a href={site.business.kakao} rel="noopener">카카오톡</a> 또는 {site.business.phone}.</p>
 </div></section>
 
 {page.faq.length > 0 && (

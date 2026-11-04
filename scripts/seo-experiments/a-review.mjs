@@ -4,7 +4,7 @@
 import fs from "node:fs";
 import { readJson, visibleLength } from "../../src/lib/seo-experiments/common.js";
 import { buildExperimentRegistry } from "../../src/lib/seo-experiments/registry.js";
-import { distRoot, htmlRoutes, mainText, RENDERED_OVERLAP_LIMIT, sharedTrigramRatio, trigramSet } from "./dist-lib.mjs";
+import { distRoot, htmlRoutes, overlapText, RENDERED_OVERLAP_LIMIT, sharedTrigramRatio, trigramSet } from "./dist-lib.mjs";
 
 const routes = htmlRoutes(distRoot());
 const read = r => fs.readFileSync(routes.get(r), "utf8");
@@ -13,7 +13,7 @@ const grams = trigramSet, overlap = sharedTrigramRatio;
 const generated = readJson("src/data/generated-pages.json");
 const pool = [...generated.filter(p => p.effectiveIndex === "index" && p.path !== "/").map(p => p.path), "/", "/선불폰/", "/알뜰폰/"];
 const { landings } = buildExperimentRegistry();
-const shingles = new Map([...pool, ...landings.pages.map(p => p.path)].map(p => [p, grams(mainText(read(p)))]));
+const shingles = new Map([...pool, ...landings.pages.map(p => p.path)].map(p => [p, grams(overlapText(read(p)))]));
 const passesOtherGates = o => !o.gateReasons.some(r => !r.startsWith("rendered_overlap_with:"));
 const rows = landings.pages.map((p, index) => {
   // Compare with every existing indexable page, and with A pages EARLIER in data order that pass the other

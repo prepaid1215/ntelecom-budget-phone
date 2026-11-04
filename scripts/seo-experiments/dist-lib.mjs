@@ -25,6 +25,8 @@ export const meta = html => ({
 });
 export const mainText = html => decodeEntities((attr(html, /<main\b[^>]*>([\s\S]*?)<\/main>/i) || "")
   .replace(/<script\b[\s\S]*?<\/script>/gi, " ").replace(/<style\b[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
+// Overlap is judged on page-specific copy: blocks marked data-shared-block (identical notices repeated on every landing) are excluded.
+export const overlapText = html => mainText(html.replace(/<section[^>]*data-shared-block=[^>]*>[\s\S]*?<\/section>/gi, " ").replace(/<li[^>]*data-shared-step=[^>]*>[\s\S]*?<\/li>/gi, " "));
 export const anchors = html => [...html.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)].map(m => {
   const a = m[1];
   const get = name => decodeEntities((a.match(new RegExp(`\\s${name}="([^"]*)"`, "i")) || [])[1] ?? "") || null;

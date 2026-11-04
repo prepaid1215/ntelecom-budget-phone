@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "metric": "character-trigram share of the shorter <main> text, exhaustive against every indexable page (scripts/seo-experiments/a-review.mjs)",
   "threshold": 0.3,
-  "reviewedAt": "2026-11-03",
+  "reviewedAt": "2026-11-04",
   "demoted": [
     {
       "path": "/앤텔레콤-선불396-요금제-개통방법/",
       "with": "/앤텔레콤-원칩-선불폰-개통방법/",
-      "ratio": 0.304
+      "ratio": 0.34
     }
   ]
 }

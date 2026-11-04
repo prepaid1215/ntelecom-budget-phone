@@ -59,7 +59,9 @@ for(const p of pages){
  if(ogurl!==canonical)record("error","ogurl-mismatch",route,ogurl);
  if(!text||text.length<180)record("warning","thin-body",route,"visible chars: "+text.length);
  if(html.includes("https://preplan.site/"))record("warning","old-activation-link",route,"preplan.site");
- if(html.includes("59만모바일"))record("warning","old-brand-in-html",route,"59만모바일 text/schema");
+ // Operator identity (footer and JSON-LD) is intentional business disclosure, not a leftover brand.
+ const brandScan=html.replace(/<footer\b[\s\S]*?<\/footer>/gi,"").replace(/<script\s+type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/gi,"");
+ if(brandScan.includes("59만모바일"))record("warning","old-brand-in-html",route,"59만모바일 outside operator disclosure");
  if(!html.includes("<main"))record("error","main-missing",route,"");
  for(const hit of html.matchAll(/href="(\/[^"#?]*)/g)){
    const link=hit[1],key=link.endsWith("/")?link:link+"/";
