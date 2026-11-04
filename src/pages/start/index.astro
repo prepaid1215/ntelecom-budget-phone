@@ -61,7 +61,6 @@ const gaId = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID?.trim() || "";
       </div>
     </section>
   </div>
-</BaseLayout>
 {gaId && <script async is:inline src={"https://www.googletagmanager.com/gtag/js?id="+encodeURIComponent(gaId)}></script>}
 <script define:vars={{gaId}}>
   if(gaId){
@@ -140,3 +139,4 @@ const gaId = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID?.trim() || "";
 .st-help{padding-bottom:65px}
 @media(max-width:650px){.st-hero{padding:37px 16px 33px}.st-grid,.st-checks,.st-alt-grid{grid-template-columns:1fr}.st-card{min-height:190px}.st-section,.st-alt{padding:29px 16px}}
 </style>
+</BaseLayout>
