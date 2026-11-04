@@ -33,7 +33,7 @@ export const toSiteUrl=value=>new URL(toPublicPath(value),siteOrigin).toString()
 const withSlot=(base,slot)=>{
   try{
     const url=new URL(base);
-    if(slot && !url.searchParams.has("from")) url.searchParams.set("from","59man_budget_"+slot);
+    if(slot && !url.searchParams.has("from")) url.searchParams.set("from",/^exp_[abc]_[a-z0-9_]+$/.test(slot) ? slot : "59man_budget_"+slot);
     return url.toString();
   }catch{ return base; }
 };

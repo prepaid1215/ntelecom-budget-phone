@@ -11,6 +11,6 @@ export function getStaticPaths(){
 }
 const { page }=Astro.props;
 ---
-<BaseLayout title={page.title} description={page.description} index={page.effectiveIndex} faqs={page.faq} pagePath={page.path} breadcrumbs={[{name:page.h1,path:page.path}]}>
+<BaseLayout title={page.title} description={page.description} index={page.effectiveIndex} faqs={page.faq} pagePath={page.path} ctaSource={"exp_a_" + page.id.replaceAll("-", "_")} breadcrumbs={[{name:page.h1,path:page.path}]}>
   <LandingPage page={page}/>
 </BaseLayout>
