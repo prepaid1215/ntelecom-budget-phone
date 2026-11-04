@@ -44,6 +44,7 @@ const benefitInfo=Object.fromEntries((model.benefits||[]).map(b=>[b.id,b]));
 const finderPlans=plans.map(p=>{
   const b=benefitInfo[(p.benefit_ids||[])[0]];
   return {
+    id:p.id,
     name:p.name.replace("앤텔레콤 ","").replace(/^([KL])망\s*/,"$1망 "),
     net:p.network,
     price:p.monthly_price,
@@ -146,7 +147,7 @@ const applyUrl=activationLink("home");
       if(p.benefitValue) art.append(el("p","pf-benefit",p.benefitValue));
       const actions=el("div","pf-actions");
       const detail=el("a","pf-btn","자세히 보기");detail.href=p.path;
-      const apply=el("a","pf-btn is-primary","신청하기");apply.href=applyUrl;
+      const apply=el("a","pf-btn is-primary","신청하기");const next=new URL(applyUrl,location.origin);next.searchParams.set("net",p.net==="K"?"kt":"lg");next.searchParams.set("plan",p.id);next.searchParams.set("plan_name",p.name);apply.href=next.toString();
       actions.append(detail,apply);
       art.append(actions);
       return art;
