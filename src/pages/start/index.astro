@@ -9,6 +9,7 @@ const home=pages.find(p=>p.path==="/");
 const model=buildModel(home);
 const base=site.activationUrl||"https://preplan.site/";
 const targets={K:process.env.START_KT_URL?.trim()||base,L:process.env.START_LG_URL?.trim()||base};
+const prepaidTargets={K:process.env.START_PREPAID_KT_URL?.trim()||base,L:process.env.START_PREPAID_LG_URL?.trim()||base};
 const usingFallback=!(process.env.START_KT_URL?.trim()&&process.env.START_LG_URL?.trim());
 const ga4Id=process.env.PUBLIC_GA4_MEASUREMENT_ID?.trim()||"";
 ---
@@ -18,7 +19,7 @@ const ga4Id=process.env.PUBLIC_GA4_MEASUREMENT_ID?.trim()||"";
   index="noindex"
   pagePath="/start/"
 >
-  <StartHome model={model} targets={targets} usingFallback={usingFallback}/>
+  <StartHome model={model} targets={targets} prepaidTargets={prepaidTargets} usingFallback={usingFallback}/>
   {ga4Id && <script async is:inline src={"https://www.googletagmanager.com/gtag/js?id="+encodeURIComponent(ga4Id)}></script>}
   <script define:vars={{ga4Id}}>
     if(ga4Id){
