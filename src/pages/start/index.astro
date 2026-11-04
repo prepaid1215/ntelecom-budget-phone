@@ -1,0 +1,142 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { siteConfig as site, toPublicPath } from "../../lib/site-config.js";
+const target = site.activationUrl || "https://preplan.site/";
+const ktTarget = import.meta.env.START_KT_URL?.trim() || target;
+const lgTarget = import.meta.env.START_LG_URL?.trim() || target;
+const directReady = Boolean(import.meta.env.START_KT_URL?.trim() && import.meta.env.START_LG_URL?.trim());
+const gaId = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID?.trim() || "";
+---
+<BaseLayout title="앤텔레콤 후불 알뜰폰 개통 시작 | KT·LG" description="KT망·LG망 후불 알뜰폰을 선택해 셀프개통을 시작하세요. 후불 가입이 어려운 경우 선불폰으로 신규가입하는 대안도 안내합니다." index="noindex" pagePath="/start/">
+  <div class="st-page" data-start>
+    <section class="st-hero">
+      <div class="wrap st-wrap">
+        <p class="st-eyebrow">앤텔레콤 알뜰폰 · 온라인 셀프개통</p>
+        <h1>원하는 통신망을 선택하고<br/><em>후불 알뜰폰 개통을 시작하세요</em></h1>
+        <p>후불 알뜰폰 가입이 기본입니다. KT망과 LG U+망 중 이용할 통신망을 선택하세요.</p>
+        <p class="st-selected" data-selected hidden>선택한 요금제: <strong data-selected-name></strong></p>
+      </div>
+    </section>
+    <section class="st-section" id="start-choices">
+      <div class="wrap st-wrap">
+        <h2>후불 알뜰폰 통신망 선택</h2>
+        <p class="st-sub">새 번호를 만드는 신규가입과 기존 번호를 유지하는 번호이동은 개통 화면에서 선택합니다.</p>
+        <div class="st-grid">
+          <a class="st-card st-kt" href={ktTarget} data-outbound data-network="kt" data-billing="postpaid">
+            <span class="st-chip">KT망</span><strong>KT망 후불 개통하기</strong><small>KT 바로유심 · K망 요금제</small><span class="st-card-action">KT망 선택 <b aria-hidden="true">→</b></span>
+          </a>
+          <a class="st-card st-lg" href={lgTarget} data-outbound data-network="lg" data-billing="postpaid">
+            <span class="st-chip">LG U+망</span><strong>LG망 후불 개통하기</strong><small>모두의 원칩 · L망 요금제</small><span class="st-card-action">LG망 선택 <b aria-hidden="true">→</b></span>
+          </a>
+        </div>
+        {!directReady && <p class="st-note">현재는 개통 홈페이지로 연결됩니다. 이동한 화면에서 해당 통신망의 ‘개통하기’를 한 번 더 선택해 주세요.</p>}
+        <div class="st-flow"><span>유심 준비</span><span>통신망 선택</span><span>본인확인</span><span>요금제 선택</span><span>신청 완료</span></div>
+      </div>
+    </section>
+    <section class="st-alt">
+      <div class="wrap st-wrap">
+        <details data-prepaid-details>
+          <summary><span><strong>후불 알뜰폰 가입이 어려우신가요?</strong><small>통신요금 미납 등으로 후불 가입이 제한된다면 선불폰 대안을 확인하세요.</small></span><span aria-hidden="true">⌄</span></summary>
+          <div class="st-alt-body">
+            <p>선불폰은 사용할 요금을 먼저 충전하는 방식입니다. 후불 가입이 어려운 분은 본인명의 선불폰 신규가입을 진행할 수 있습니다.</p>
+            <div class="st-alt-grid">
+              <a href={ktTarget} data-outbound data-network="kt" data-billing="prepaid">KT망 선불폰 신규가입 <span aria-hidden="true">→</span></a>
+              <a href={lgTarget} data-outbound data-network="lg" data-billing="prepaid">LG망 선불폰 신규가입 <span aria-hidden="true">→</span></a>
+            </div>
+            <p class="st-note">웹 셀프개통은 담당자 승인 없이 본인명의 신규가입과 요금 충전까지 직접 진행합니다. 본사 해피콜은 별도로 수신해 주세요.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+    <section class="st-section st-help">
+      <div class="wrap st-wrap">
+        <h2>개통 전 준비할 것</h2>
+        <div class="st-checks">
+          <div><strong>KT 바로유심</strong><p>KT망은 유심번호 숫자 19자리(F 제외)를 입력합니다.</p></div>
+          <div><strong>LG 모두의 원칩</strong><p>LG망은 모델코드 5자리와 일련번호 8자리를 입력합니다.</p></div>
+          <div><strong>본인확인</strong><p>안면인증과 간편인증으로 본인확인 절차를 진행합니다.</p></div>
+          <div><strong>본사 해피콜</strong><p>개통 후 본사 확인 전화를 받아 주세요. 담당자 승인과는 다른 절차입니다.</p></div>
+        </div>
+        <a href={toPublicPath("/guide/")} class="st-guide">자세한 개통방법 보기 →</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+{gaId && <script async is:inline src={"https://www.googletagmanager.com/gtag/js?id="+encodeURIComponent(gaId)}></script>}
+<script define:vars={{gaId}}>
+  if(gaId){
+    window.dataLayer=window.dataLayer||[];
+    window.gtag=window.gtag||function(){window.dataLayer.push(arguments)};
+    window.gtag("js",new Date());
+    window.gtag("config",gaId);
+  }
+</script>
+<script is:inline>
+  (function(){
+    const root=document.querySelector("[data-start]");if(!root)return;
+    const q=new URLSearchParams(location.search);
+    const clean=(v,n)=>String(v||"").replace(/[^a-zA-Z0-9_-]/g,"").slice(0,n);
+    const source=clean(q.get("from"),72)||"direct";
+    const plan=clean(q.get("plan"),90);
+    const planName=String(q.get("plan_name")||"").slice(0,80);
+    const hint=clean(q.get("net"),8).toLowerCase();
+    const send=(event,p)=>{if(typeof window.gtag==="function")window.gtag("event",event,p)};
+    const selected=root.querySelector("[data-selected]");
+    if(plan&&selected){selected.hidden=false;selected.querySelector("[data-selected-name]").textContent=planName||plan}
+    send("start_view",{traffic_source:source,plan_id:plan||"none",network_hint:hint||"none"});
+    root.querySelectorAll("[data-outbound]").forEach(function(a){
+      const network=a.dataset.network,billing=a.dataset.billing;
+      const dest=new URL(a.href,location.href);
+      dest.searchParams.set("from","start_"+billing+"_"+network+"_"+source);
+      a.href=dest.toString();
+      a.addEventListener("click",()=>send("activation_outbound",{traffic_source:source,plan_id:plan||"none",network:network,billing_type:billing}));
+    });
+    if(["kt","lg"].includes(hint)){
+      root.querySelectorAll(".st-card").forEach(a=>{if(a.dataset.network===hint)a.classList.add("st-selected-card")});
+    }
+    const details=root.querySelector("[data-prepaid-details]");
+    if(details)details.addEventListener("toggle",()=>{if(details.open)send("prepaid_alternative_open",{traffic_source:source})});
+  })();
+</script>
+<style>
+.st-page{background:#fff;color:#1a1b22}
+.st-wrap{max-width:860px}
+.st-hero{background:linear-gradient(135deg,#f9f6ff,#edf2ff);padding:52px 16px 46px;text-align:center}
+.st-eyebrow{font-size:13px;font-weight:900;color:#6855bb;margin:0}
+.st-hero h1{font-size:clamp(28px,4.8vw,44px);line-height:1.28;letter-spacing:-1.4px;margin:15px 0;word-break:keep-all}
+.st-hero h1 em{color:#634ad5;font-style:normal}
+.st-hero p:not(.st-eyebrow){font-size:15px;line-height:1.7;color:#5b5c68}
+.st-selected{margin:15px auto 0!important;border:1px solid #ddd5f0;background:white;border-radius:12px;padding:12px;max-width:550px}
+.st-selected[hidden]{display:none}
+.st-section,.st-alt{padding:36px 16px}
+.st-section h2{font-size:26px;letter-spacing:-.8px;margin:0 0 8px}
+.st-sub{font-size:14px;color:#666975;margin:0 0 22px;line-height:1.7}
+.st-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.st-card{border:2px solid #e7e6ef;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:10px;min-height:215px;box-shadow:0 6px 18px rgba(0,0,0,.04)}
+.st-card:is(:hover,:focus-visible,.st-selected-card){border-color:#765ce8;box-shadow:0 7px 24px rgba(92,72,161,.12)}
+.st-chip{color:#6752b6;font-size:13px;font-weight:900}
+.st-card strong{font-size:21px;line-height:1.4}
+.st-card small{font-size:13px;color:#676875}
+.st-card-action{margin-top:auto;padding:12px 14px;border-radius:12px;background:#383950;color:#fff;font-size:14px;font-weight:850;display:flex;justify-content:space-between}
+.st-lg .st-card-action{background:#7052c8}
+.st-note{color:#666a74;font-size:13px;line-height:1.7;margin:16px 0 0}
+.st-flow{margin-top:24px;display:flex;gap:8px;flex-wrap:wrap}
+.st-flow span{padding:8px 11px;border-radius:999px;background:#f3f2f8;font-size:12px;color:#515462;font-weight:750}
+.st-alt{background:#f6f6f9}
+.st-alt details{background:#fff;border:1px solid #e3e3ea;border-radius:18px;overflow:hidden}
+.st-alt summary{cursor:pointer;padding:22px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.st-alt summary strong,.st-alt summary small{display:block}
+.st-alt summary strong{font-size:17px}
+.st-alt summary small{font-size:13px;color:#686976;margin-top:6px;line-height:1.5}
+.st-alt summary::-webkit-details-marker{display:none}
+.st-alt-body{border-top:1px solid #eee;padding:20px 22px}
+.st-alt-body>p:first-child{margin:0 0 15px;font-size:14px;color:#4b4b57;line-height:1.8}
+.st-alt-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.st-alt-grid a{border:1px solid #dcd7e7;border-radius:12px;padding:14px;background:#faf8ff;font-size:14px;font-weight:850;display:flex;justify-content:space-between;gap:8px}
+.st-checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+.st-checks>div{border:1px solid #e7e7ef;border-radius:14px;padding:16px}
+.st-checks strong{font-size:14px}.st-checks p{color:#646573;font-size:13px;line-height:1.65;margin:7px 0 0}
+.st-guide{display:inline-block;margin-top:20px;font-size:14px;color:#6550bb;font-weight:900}
+.st-help{padding-bottom:65px}
+@media(max-width:650px){.st-hero{padding:37px 16px 33px}.st-grid,.st-checks,.st-alt-grid{grid-template-columns:1fr}.st-card{min-height:190px}.st-section,.st-alt{padding:29px 16px}}
+</style>
