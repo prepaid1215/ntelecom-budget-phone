@@ -1,0 +1,125 @@
+---
+import HomePlanFinder from "./HomePlanFinder.astro";
+import BenefitOffer from "./BenefitOffer.astro";
+import CardOffer from "./CardOffer.astro";
+import { toPublicPath } from "../lib/site-config.js";
+const {model,targets,usingFallback}=Astro.props;
+const plans=model.matched;
+const chosen=(net,gb)=>plans.filter(p=>p.network===net&&p.data_gb===gb).sort((a,b)=>a.monthly_price-b.monthly_price)[0];
+const featured=[chosen("L",7),chosen("K",7),chosen("K",15),chosen("L",15)].filter(Boolean);
+const won=n=>n.toLocaleString("ko-KR")+"원";
+const menu=[
+  ["01","개통하기","#start-choices"],["02","요금제","#postpaid-plans"],["03","유심구매","#start-usim"],
+  ["04","번호이동","#start-steps"],["05","제휴혜택","#start-benefits"],["06","자주묻는질문","#start-faq"]
+];
+---
+<div class="sh" data-start-home>
+  <div class="sh-main">
+    <section class="sh-hero" id="start-choices">
+      <div class="sh-hero-inner">
+        <span class="sh-pill">앤텔레콤 개통방법 · 후불 알뜰폰</span>
+        <h1>지금 바로 <em>셀프개통</em>을<br/>시작해보세요</h1>
+        <p>KT망·LG U+망 후불 알뜰폰을 직접 선택해 신청하세요.</p>
+        <div class="sh-main-buttons">
+          <a class="sh-btn sh-kt" href={targets.K} data-outbound data-billing="postpaid" data-network="kt" data-location="hero">KT 개통하기</a>
+          <a class="sh-btn sh-lg" href={targets.L} data-outbound data-billing="postpaid" data-network="lg" data-location="hero">LG 개통하기</a>
+        </div>
+        <div class="sh-selected" data-selected-plan hidden>선택한 후불 요금제: <strong data-selected-name></strong></div>
+        <a class="sh-usim-cta" href="#start-usim"><span>USIM</span><strong>유심이 없으신가요? 구매처 확인</strong><b aria-hidden="true">›</b></a>
+        <p class="sh-small-intro">셀프개통이 처음이신가요?</p>
+        <a class="sh-guide" href="#start-steps">개통 가이드 보기 ›</a>
+        {usingFallback && <p class="sh-hint">현재 KT·LG 버튼은 기존 신청 홈페이지로 연결됩니다. 전용 개통 직행 주소 설정 후 해당 화면으로 바로 이동합니다.</p>}
+      </div>
+    </section>
+    <nav class="sh-menu" aria-label="후불 알뜰폰 빠른 안내">
+      {menu.map(([n,label,href],i)=><a href={href}><span class={"sh-menu-art sh-color-"+i}><b>{n}</b></span><strong>{label}</strong></a>)}
+    </nav>
+
+    <section class="sh-section" id="start-recommended">
+      <div class="sh-wrap">
+        <div class="sh-head"><div><small>POSTPAID PLANS</small><h2>앤텔레콤 추천 후불 요금제</h2><p>매월 요금을 납부하는 후불 상품만 안내합니다.</p></div><a href="#postpaid-plans">전체 요금제 보기 ›</a></div>
+        <div class="sh-plans">
+          {featured.map(p=><article class="sh-plan">
+            <span>{p.network==="K"?"KT망":"LG U+망"} · 후불</span>
+            <h3>{p.name.replace(/^앤텔레콤\s*/,"")}</h3>
+            <p>{p.data_text}</p>
+            <div class="sh-price"><small>월 기본료</small><strong>{won(p.monthly_price)}</strong></div>
+            <p>통화 {p.calls} · 문자 {p.sms}</p>
+            <a href={targets[p.network]} data-outbound data-billing="postpaid" data-network={p.network==="K"?"kt":"lg"} data-plan={p.id} data-location="recommended">이 요금제로 개통하기 ›</a>
+          </article>)}
+        </div>
+      </div>
+    </section>
+    <div id="postpaid-plans" class="sh-catalog">
+      <HomePlanFinder model={model} mode="start" outboundLinks={targets}/>
+    </div>
+    <section class="sh-section sh-soft" id="start-usim">
+      <div class="sh-wrap">
+        <div class="sh-head"><div><small>USIM</small><h2>후불 알뜰폰 유심 준비하기</h2><p>사용할 망에 맞는 유심을 준비하면 온라인에서 신청할 수 있습니다.</p></div></div>
+        <div class="sh-two">
+          <article class="sh-usim"><span>KT망</span><h3>KT 바로유심</h3><strong>8,800원</strong><p>CU·GS25·세븐일레븐·이마트24 등에서 구매할 수 있습니다.</p><small>유심번호 숫자 19자리(F 제외)</small></article>
+          <article class="sh-usim"><span>LG U+망</span><h3>LG 모두의 원칩</h3><strong>8,800원</strong><p>이마트24·스토리웨이 등에서 구매할 수 있습니다.</p><small>모델코드 5자리 + 일련번호 8자리</small></article>
+        </div>
+      </div>
+    </section>
+    <section class="sh-section" id="start-steps">
+      <div class="sh-wrap">
+        <div class="sh-head"><div><small>HOW TO START</small><h2>후불 알뜰폰 셀프개통 순서</h2><p>신규가입은 새 번호를 만들고, 번호이동은 기존 번호를 유지합니다.</p></div></div>
+        <div class="sh-steps">
+          <div><b>01</b><strong>유심 준비</strong><p>KT 바로유심 또는 LG 모두의 원칩 준비</p></div>
+          <div><b>02</b><strong>개통하기</strong><p>KT·LG 통신망과 신규가입·번호이동 선택</p></div>
+          <div><b>03</b><strong>본인확인</strong><p>안면인증·간편인증과 유심정보 입력</p></div>
+          <div><b>04</b><strong>후불 상품 신청</strong><p>후불 요금제와 매월 요금 납부정보 선택</p></div>
+          <div><b>05</b><strong>개통 확인</strong><p>가입 완료 안내와 본사 해피콜 확인</p></div>
+        </div>
+        <div class="sh-step-buttons">
+          <a href={targets.K} data-outbound data-billing="postpaid" data-network="kt" data-location="guide">KT 후불 개통하기</a>
+          <a href={targets.L} data-outbound data-billing="postpaid" data-network="lg" data-location="guide">LG 후불 개통하기</a>
+        </div>
+      </div>
+    </section>
+    <section class="sh-section sh-soft" id="start-benefits">
+      <div class="sh-wrap">
+        <div class="sh-head"><div><small>POSTPAID BENEFITS</small><h2>후불 알뜰폰 제휴 혜택</h2><p>제휴 혜택은 해당 후불 요금제의 이용 조건에 따라 제공됩니다.</p></div><a href={toPublicPath("/benefits/")}>혜택 자세히 보기 ›</a></div>
+        <div class="grid cols-3">{model.benefits.map(b=><BenefitOffer benefit={b}/>)}</div>
+      </div>
+    </section>
+    <section class="sh-section" id="start-cards">
+      <div class="sh-wrap">
+        <div class="sh-head"><div><small>CARD DISCOUNTS</small><h2>후불 통신요금 제휴카드 할인</h2><p>카드 할인은 전월 실적·자동납부 등 조건 충족 시 적용됩니다.</p></div><a href={toPublicPath("/card/")}>할인 조건 보기 ›</a></div>
+        <div class="grid cols-2">{model.cards.map(c=><CardOffer card={c} plan={plans.filter(p=>(c.eligible_networks||[]).includes(p.network)).sort((a,b)=>a.monthly_price-b.monthly_price)[0]}/>)}</div>
+      </div>
+    </section>
+    <section class="sh-section sh-soft" id="start-faq">
+      <div class="sh-wrap">
+        <div class="sh-head"><div><small>FAQ</small><h2>후불 알뜰폰 자주 묻는 질문</h2></div></div>
+        <div class="sh-faq">
+          <details><summary>후불 가입에도 요금 충전이 필요한가요?</summary><p>후불은 선불 충전 없이 매월 요금을 납부하는 상품입니다. 가입 시 납부 정보를 등록합니다.</p></details>
+          <details><summary>쓰던 번호로 번호이동할 수 있나요?</summary><p>번호이동을 선택하면 기존 번호를 유지할 수 있습니다. 미납 등 제한 조건이 있으면 신청이 제한됩니다.</p></details>
+          <details><summary>후불 가입 후 본사 해피콜을 받아야 하나요?</summary><p>본사 확인 전화는 별도로 받아 주세요. 담당자 승인과는 다른 절차입니다.</p></details>
+        </div>
+      </div>
+    </section>
+    <section class="sh-fallback"><div class="sh-wrap"><details data-prepaid-details>
+      <summary><span><strong>후불 알뜰폰 가입이 어려우신가요?</strong><small>통신요금 미납 등으로 후불 가입이 제한된다면 선불폰을 안내합니다.</small></span><span aria-hidden="true">⌄</span></summary>
+      <div class="sh-fallback-body"><p>선불폰은 사용할 요금을 먼저 충전하는 방식입니다. 본인명의 신규가입과 충전은 웹에서 직접 진행할 수 있으며, 본사 해피콜은 별도입니다.</p>
+        <div class="sh-fallback-links">
+          <a href={targets.K} data-outbound data-billing="prepaid" data-network="kt" data-location="fallback">KT망 선불 신규가입 ›</a>
+          <a href={targets.L} data-outbound data-billing="prepaid" data-network="lg" data-location="fallback">LG망 선불 신규가입 ›</a>
+        </div>
+      </div>
+    </details></div></section>
+  </div>
+  <aside class="sh-aside" aria-label="추천 후불 요금제">
+    <div class="sh-aside-inner">
+      <h2>추천 후불 요금제</h2>
+      {featured.slice(0,3).map(p=><article>
+        <small>{p.network==="K"?"KT망":"LG망"} · 후불</small>
+        <strong>{p.name.replace(/^앤텔레콤\s*/,"")}</strong>
+        <p>{p.data_text}</p><b>{won(p.monthly_price)}/월</b>
+        <a href={targets[p.network]} data-outbound data-billing="postpaid" data-network={p.network==="K"?"kt":"lg"} data-plan={p.id} data-location="sidebar">개통하기 ›</a>
+      </article>)}
+      <a class="sh-aside-more" href="#postpaid-plans">전체 후불 요금제 보기 ›</a>
+    </div>
+  </aside>
+</div>
