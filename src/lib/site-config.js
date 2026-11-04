@@ -50,7 +50,7 @@ export const siteConfig={
 // On-site conversion funnel; provider URLs are selected on /start/.
 export const activationLink=(slot,context={})=>{
   const query=new URLSearchParams();
-  if(slot)query.set("from",/^exp_[abc]_[a-z0-9_]+$/.test(slot)?slot:"59man_budget_"+slot);
+  if(slot)query.set("from",/^exp_[abc]_[a-z0-9_]+$/.test(slot)?slot:"antelcom_"+slot);
   const net=String(context.network||"").toLowerCase();
   if(["k","kt","l","lg"].includes(net))query.set("net",net==="k"?"kt":net==="l"?"lg":net);
   const plan=String(context.plan||"");
