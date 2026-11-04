@@ -1,19 +1,30 @@
 ---
 // Experiment A template. All copy comes from src/data/seo-experiments/a-landings.json via landings.js.
 import { toPublicPath, siteConfig as site } from "../../lib/site-config.js";
+import ExperimentImage from "./ExperimentImage.astro";
 const { page } = Astro.props;
+const heroImages = {
+  "kt-barousim-prepaid": "kt", "lg-onechip-prepaid": "lg",
+  "onechip-modelcode-entry": "numbers", "naverpay-7gb-mvno": "kt",
+  "daiso-usim": "lg", "happycall-check": "lifestyle"
+};
+const heroImage = heroImages[page.id];
+const showNumberGuide = ["kt-barousim-prepaid", "lg-onechip-prepaid", "naverpay-7gb-mvno"].includes(page.id);
 ---
-<section class="section xp-hero" data-experiment="A" data-intent={page.id}><div class="wrap">
+<section class="section xp-hero" data-experiment="A" data-intent={page.id}><div class:list={["wrap", {"xp-hero-grid": heroImage}]}><div>
   <p class="eyebrow">{page.template === "plan-guide" ? "요금제 개통 안내" : page.template === "troubleshoot" ? "입력·확인 안내" : "개통 준비 안내"}</p>
   <h1>{page.h1}</h1>
   <p class="section-lead">{page.lead}</p>
   {page.intentOwner && <p class="xp-owner">이 주제의 대표 안내는 <a href={toPublicPath(page.intentOwner)}>여기</a>에 있습니다.</p>}
+</div>
+  {heroImage && <div class="xp-hero-visual"><ExperimentImage kind={heroImage} eager /><p class="xp-visual-note">{page.id === "daiso-usim" ? "사진은 LG 모두의 원칩입니다. 다이소 고고비 제품 사진과 구분해 주세요." : ""}</p></div>}
 </div></section>
 
 {page.sections.map((section, index) => (
   <section class={index % 2 ? "section soft" : "section"}><div class="wrap">
     <h2>{section.heading}</h2>
     {section.paragraphs.map(text => <p class="xp-p">{text}</p>)}
+    {showNumberGuide && index === 1 && <ExperimentImage kind="numbers" />}
   </div></section>
 ))}
 
@@ -55,4 +66,8 @@ const { page } = Astro.props;
   .xp-steps{padding-left:22px;line-height:1.9}
   .xp-owner{margin-top:12px;font-size:14px;color:#61636b}
   .xp-table td,.xp-table th{text-align:left}
+  .xp-hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:40px;align-items:center}
+  .xp-hero-grid>div{min-width:0}
+  .xp-visual-note{font-size:13px;color:#61636b;text-align:center}
+  @media(max-width:760px){.xp-hero-grid{grid-template-columns:1fr;gap:4px}}
 </style>

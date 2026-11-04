@@ -2,6 +2,7 @@
 // Experiment B template. Region data and the evidence gate live in src/lib/seo-experiments/regions.js.
 // Pages without verified local facts say so plainly and stay noindex; no local claims are invented.
 import { toPublicPath } from "../../lib/site-config.js";
+import ExperimentImage from "./ExperimentImage.astro";
 import { renderVerifiedLocalFact } from "../../../scripts/regional-source-verifier.mjs";
 const { page, byPath, emitted, attribution } = Astro.props;
 const children = page.children.filter(path => emitted.has(path)).map(path => byPath.get(path));
@@ -44,6 +45,7 @@ const verified = page.indexCandidate;
 
 <section class="section"><div class="wrap">
   <h2>전국 공통 {page.typeName} 개통 안내</h2>
+  <ExperimentImage kind={page.type === "prepaid" ? "products" : "lifestyle"} />
   <div class="link-list">
     {page.guides.map(guide => <a href={toPublicPath(guide.path)}><span>{guide.label}</span><span>›</span></a>)}
     {emitted.has(otherType.path) && <a href={toPublicPath(otherType.path)}><span>{otherType.label}</span><span>›</span></a>}
