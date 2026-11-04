@@ -23,8 +23,9 @@ test("route hygiene rejects malformed paths", () => {
 });
 
 test("A slug patterns follow the two documented formats", () => {
-  assert.equal(slugPattern("/앤텔레콤-다이소유심-개통방법/"), "A");
+  assert.equal(slugPattern("/앤텔레콤-다이소-선불유심-개통방법/"), "A");
   assert.equal(slugPattern("/앤텔레콤-원칩-개통-모델코드-입력-방법/"), "B");
+  assert.equal(slugPattern("/앤텔레콤-kt-바로유심-개통-유심정보-입력-방법/"), "B");
   assert.equal(slugPattern("/다이소유심-개통방법/"), null);
   assert.equal(slugPattern("/앤텔레콤/개통방법/"), null);
 });
@@ -32,8 +33,10 @@ test("A slug patterns follow the two documented formats", () => {
 test("A landings: 9 generated, 6 index candidates, 2 intent collisions, 1 pinned rendered-overlap demotion", () => {
   const { pages, duplicatePairs } = buildLandingModel();
   assert.equal(pages.length, 9);
+  assert.equal(pages.some(p => p.id === "happycall-check"), false);
+  assert.equal(pages.find(p => p.id === "daiso-usim").h1, "앤텔레콤 다이소 선불유심 개통방법");
   const candidates = pages.filter(p => p.indexCandidate).map(p => p.id).sort();
-  assert.deepEqual(candidates, ["daiso-usim", "happycall-check", "kt-barousim-prepaid", "lg-onechip-prepaid", "naverpay-7gb-mvno", "onechip-modelcode-entry"]);
+  assert.deepEqual(candidates, ["daiso-usim", "kt-barousim-number-entry", "kt-barousim-prepaid", "lg-onechip-prepaid", "naverpay-7gb-mvno", "onechip-modelcode-entry"]);
   assert.deepEqual(pages.find(p => p.id === "prepaid-396-plan").gateReasons, ["rendered_overlap_with:/앤텔레콤-원칩-선불폰-개통방법/"]);
   assert.equal(pages.find(p => p.id === "brand-choice").intentOwner, "/");
   assert.equal(pages.find(p => p.id === "prepaid-overall").intentOwner, "/선불폰/");

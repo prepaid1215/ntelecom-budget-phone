@@ -11,11 +11,11 @@ PR #3 remains a draft. This change does not merge or deploy it.
 | onechip-modelcode-entry | Existing number-position illustration | — |
 | naverpay-7gb-mvno | Existing KT 바로유심 product photo | Existing number-position illustration |
 | daiso-usim | Existing LG 모두의 원칩 product photo, explicitly labelled as 원칩 | — |
-| happycall-check | Generated phone-at-home lifestyle photo | — |
+| kt-barousim-number-entry | Existing number-position illustration | — |
 
-These are nine image placements across six A candidates, using three existing assets and one new asset. No fictional packaging or activation screen was generated. The existing number guide is labelled as an illustration; readers use the numbers on their own SIM.
+These are nine image placements across six A candidates, using three existing product/number assets. The generated lifestyle image remains available for B common guidance. No fictional packaging or activation screen was generated. The existing number guide is labelled as an illustration; readers use the numbers on their own SIM.
 
-The shared B template adds the two existing product photos to prepaid common guidance, and the lifestyle photo to MVNO common guidance. This is national guidance, not evidence of a local shop or customer. Region evidence/index gates are unchanged.
+The shared B template adds the two existing product photos to prepaid common guidance, and the AI lifestyle photo to MVNO common guidance. This is national guidance, not evidence of a local shop or customer. Region evidence/index gates are unchanged.
 
 ## Rendering and loading
 
@@ -32,7 +32,7 @@ Prompt: “Use case: photorealistic-natural. Asset type: wide editorial lifestyl
 - Local production build, SEO audit, existing-page/link audits, baseline warning diff, unit/dist/HTTP tests pass.
 - Existing 503 HTML files match the SHA-256 baseline; no new SEO audit findings.
 - A candidate count stays six; B candidate count stays zero.
-- All nine A image placements resolve to built assets and declare width/height.
+- All A image placements resolve to built assets and declare width/height.
 - Local no-ready and GitHub Pages subpath builds and their dist tests pass.
 - Local interactive preview is unavailable: preview daemon cannot find `pnpm`. No visual browser review is claimed.
 - Local Chromium regression is unavailable: Python `playwright` is missing. The existing GitHub Actions workflow installs Playwright/Chromium and checks 390px/1280px rendering; its result must be checked for the pushed commit.
