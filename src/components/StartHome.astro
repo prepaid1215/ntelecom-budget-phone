@@ -3,21 +3,21 @@ import HomePlanFinder from "./HomePlanFinder.astro";
 import BenefitOffer from "./BenefitOffer.astro";
 import CardOffer from "./CardOffer.astro";
 import { toPublicPath } from "../lib/site-config.js";
-const {model,targets,prepaidTargets,usingFallback}=Astro.props;
+const {model,targets,prepaidTargets}=Astro.props;
 const plans=model.matched;
 const chosen=(net,gb)=>plans.filter(p=>p.network===net&&p.data_gb===gb).sort((a,b)=>a.monthly_price-b.monthly_price)[0];
 const featured=[chosen("L",7),chosen("K",7),chosen("K",15),chosen("L",15)].filter(Boolean);
 const won=n=>n.toLocaleString("ko-KR")+"원";
 const menu=[
-  ["01","개통하기","#start-choices"],["02","요금제","#postpaid-plans"],["03","유심구매","#start-usim"],
-  ["04","번호이동","#start-steps"],["05","제휴혜택","#start-benefits"],["06","자주묻는질문","#start-faq"]
+  ["icon2.png","개통하기","#start-choices"],["icon1.png","맞춤요금제","#postpaid-plans"],["icon3.png","유심구매","#start-usim"],
+  ["icon6.png","제휴혜택","#start-benefits"],["icon8.png","개통안내","#start-steps"],["icon5.png","자주묻는질문","#start-faq"]
 ];
 ---
 <div class="sh" data-start-home>
   <div class="sh-main">
     <section class="sh-hero" id="start-choices">
       <div class="sh-hero-inner">
-        <span class="sh-pill">앤텔레콤 개통방법 · 후불 알뜰폰</span>
+        <span class="sh-pill">앤텔레콤 N플랫폼 · 후불 알뜰폰</span>
         <h1>지금 바로 <em>셀프개통</em>을<br/>시작해보세요</h1>
         <p>KT망·LG U+망 후불 알뜰폰을 직접 선택해 신청하세요.</p>
         <div class="sh-main-buttons">
@@ -27,12 +27,12 @@ const menu=[
         <div class="sh-selected" data-selected-plan hidden>선택한 후불 요금제: <strong data-selected-name></strong></div>
         <a class="sh-usim-cta" href="#start-usim"><span>USIM</span><strong>유심이 없으신가요? 구매처 확인</strong><b aria-hidden="true">›</b></a>
         <p class="sh-small-intro">셀프개통이 처음이신가요?</p>
-        <a class="sh-guide" href="#start-steps">개통 가이드 보기 ›</a>
-        {usingFallback && <p class="sh-hint">현재 KT·LG 버튼은 기존 신청 홈페이지로 연결됩니다. 전용 개통 직행 주소 설정 후 해당 화면으로 바로 이동합니다.</p>}
+        <a class="sh-guide" href="#start-steps">개통 가이드 보기 <span aria-hidden="true">›</span></a>
+
       </div>
     </section>
     <nav class="sh-menu" aria-label="후불 알뜰폰 빠른 안내">
-      {menu.map(([n,label,href],i)=><a href={href}><span class={"sh-menu-art sh-color-"+i}><b>{n}</b></span><strong>{label}</strong></a>)}
+      {menu.map(([image,label,href],i)=><a href={href}><span class={"sh-menu-art sh-color-"+i}><img src={toPublicPath("/images/start/"+image)} alt="" width="146" height="149" loading="lazy" /></span><strong>{label}</strong></a>)}
     </nav>
 
     <section class="sh-section" id="start-recommended">
