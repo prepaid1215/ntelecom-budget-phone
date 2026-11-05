@@ -13,7 +13,7 @@ for(const page of pages){
 }
 assert.match(start,/지금 바로/);
 assert.match(start,/셀프개통/);
-assert.match(start,/후불 요금제/);
+assert.match(start,/앤텔레콤 추천 요금제/);
 assert.match(start,/name="robots" content="noindex,follow"/);
 assert.match(start,/rel="canonical" href="https:\/\/xn--h49a29twjdmms77a5sofgdjwa\.shop\/start\/"/);
 for(const network of ["kt","lg"]){

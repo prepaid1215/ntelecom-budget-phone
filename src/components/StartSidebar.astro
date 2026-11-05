@@ -5,7 +5,7 @@ const won=n=>n.toLocaleString("ko-KR")+"원";
 ---
 <nav class="sh-side-mobile" aria-label="모바일 빠른 메뉴"><a href="#start-choices">개통하기</a><a href="#postpaid-plans">맞춤요금제</a><button type="button" data-side-open aria-controls="start-sidebar" aria-expanded="false">추천<br/>요금제</button><a href="#start-faq">자주묻는질문</a><a href={site.business.kakao} target="_blank" rel="noopener noreferrer">KAKAO<br/>TALK</a></nav>
 <button class="sh-side-backdrop" type="button" data-side-backdrop aria-label="사이드바 닫기" hidden></button>
-<aside class="sh-aside" id="start-sidebar" aria-label="추천 후불 요금제">
+<aside class="sh-aside" id="start-sidebar" aria-label="추천 요금제">
   <button class="sh-side-toggle" type="button" data-side-toggle data-close-icon={toPublicPath("/images/start/side_close.svg")} data-open-icon={toPublicPath("/images/start/side_open.svg")} aria-controls="start-sidebar" aria-expanded="true" aria-label="사이드바 접기"><img src={toPublicPath("/images/start/side_close.svg")} alt="" width="36" height="110"/></button>
   <div class="sh-side-frame">
     <div class="sh-side-title"><strong>앤텔레콤 개통방법</strong><img class="sh-side-title-icon" src="https://www.n-telecom.co.kr/common/img/masterpage/side_icon.svg" alt=""/><button type="button" data-side-close aria-label="사이드바 닫기">×</button></div>
@@ -19,12 +19,12 @@ const won=n=>n.toLocaleString("ko-KR")+"원";
           <li><p>데이터</p><p>{p.data_gb?p.data_gb+"GB+":p.data_text}{p.after_speed&&<><br/>{p.after_speed}</>}</p></li>
         </ul>
       </a>)}
-      <a class="sh-aside-more" href="#postpaid-plans">전체 후불 요금제 보기 ›</a>
+      <a class="sh-aside-more" href="#postpaid-plans">전체 요금제 보기 ›</a>
     </div>
     <div class="sh-side-contact">
       <a class="sh-side-kakao" href={site.business.kakao} target="_blank" rel="noopener noreferrer"><img src="https://www.n-telecom.co.kr/common/img/masterpage/side_kakao.svg" alt="KakaoTalk 채널"/><strong>카카오톡 상담</strong></a>
       <a class="sh-side-phone" href={"tel:"+site.business.phone}><img src="https://www.n-telecom.co.kr/common/img/masterpage/side_call.svg" alt="" width="41" height="41"/><span><small>판매점 연락처</small><strong>{site.business.phone}</strong></span></a>
-      <a class="sh-side-action" href="#start-choices">후불 개통하기</a>
+      <a class="sh-side-action" href="#start-choices">개통하기</a>
     </div>
   </div>
 </aside>
