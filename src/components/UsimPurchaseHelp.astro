@@ -1,0 +1,17 @@
+---
+import {activationLink} from '../lib/site-config.js';
+const {network,source}=Astro.props;
+const choices=[
+ {net:'K',name:'KT 바로유심',shops:'CU · GS25 · 세븐일레븐 · 이마트24',url:'https://www.ktmyr.com/fe/service/svc/usimGuide.do?menuNo=F0604'},
+ {net:'L',name:'모두의 유심 원칩',shops:'이마트24 · 스토리웨이',url:'https://www.uplusmvno.com/benefit/event/detail?mvnopEvetId=EV0000002114'}
+].filter(x=>!network||x.net===network);
+---
+<details class="buy-help" id="buy-usim">
+ <summary>아직 유심이 없어요</summary>
+ <p>위 제품 사진을 매장에서 보여주세요. <strong>KT·LG 표시만 보지 말고 제품명까지</strong> 맞춰 구매하면 됩니다.</p>
+ <div class="buy-options">{choices.map(x=><section><h3>{x.name}</h3><p>{x.shops}</p><a href={x.url} target="_blank" rel="noopener noreferrer">공식 구매처 안내 보기 ↗</a><a class="buy-resume" href={activationLink(source,{network:x.net})}>유심 준비 완료 · {x.net==='K'?'KT':'LG'}망 신청하기 →</a></section>)}</div>
+ <p class="buy-note">방문 전 매장에 제품명으로 재고를 문의하세요. 이 페이지를 즐겨찾기에 저장해 두면 구매 후 돌아오기 편해요. 유심 카드는 입력을 마칠 때까지 보관해 주세요.</p>
+</details>
+<style>
+.buy-help{margin:22px 0;padding:20px;border:1px solid #e9d6e2;border-radius:12px;background:#fff8fb;scroll-margin-top:110px}.buy-help summary{font-size:17px;font-weight:700;color:#a32258;cursor:pointer;line-height:1.6}.buy-help p{font-size:15px;line-height:1.85;color:#574b59;margin:16px 0}.buy-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}.buy-options section{background:white;padding:18px;border:1px solid #eee2eb;border-radius:10px;min-width:0}.buy-options h3{font-size:17px;margin:0;line-height:1.6}.buy-options a{display:block;color:#963360;font-size:14px;line-height:1.8;text-decoration:underline;text-underline-offset:4px}.buy-options .buy-resume{margin-top:16px;padding-top:14px;border-top:1px solid #eee2eb;font-weight:700}.buy-help .buy-note{font-size:13px;margin-bottom:0}.buy-help a:focus-visible,.buy-help summary:focus-visible{outline:3px solid #7750b7;outline-offset:4px}
+</style>

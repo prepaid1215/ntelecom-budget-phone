@@ -1,5 +1,6 @@
 ---
 import {activationLink,toPublicPath} from '../lib/site-config.js';
+import UsimPurchaseHelp from './UsimPurchaseHelp.astro';
 import {plans} from '../lib/catalog.js';
 const {page}=Astro.props;
 const source='exp_a_'+page.id.replaceAll('-','_');
@@ -25,13 +26,14 @@ const money=n=>n.toLocaleString('ko-KR')+'원';
     <h1>{page.id==='signup'?'앤텔레콤 알뜰폰 신규가입,\n이 순서로 진행하세요':page.title}</h1>
     <p>{network?(network==='K'?'KT 바로유심':'LG 모두의 원칩')+'과 본인 명의 인증수단을 준비했다면 온라인으로 신청할 수 있어요.':'유심과 본인 명의 인증수단을 준비했다면 온라인으로 신청할 수 있어요.'}<br/>신청 화면에서는 <strong>신규가입 · 후불</strong>을 선택합니다.</p>
     <a class="walk-primary" href={open()}>신청 화면 열기 <span aria-hidden="true">↗</span></a>
-    <a class="walk-text-link" href="#prepare">먼저 준비물 보기 ↓</a>
+    <a class="walk-text-link" href="#prepare">준비물·유심 구매 안내 ↓</a>
    </header>
    <nav class="walk-jumps" aria-label="신규가입 단계 바로가기"><a href="#prepare"><b>1</b>준비물</a><a href="#choose"><b>2</b>신청·인증</a><a href="#usim-entry"><b>3</b>유심정보</a><a href="#plan-select"><b>4</b>요금제·완료</a></nav>
    <section class="walk-section" id="prepare">
     <div class="walk-section-title"><span>01</span><h2>유심과 인증수단을 준비해 주세요</h2></div>
     <p>신청할 때는 <strong>유심 카드, 본인 명의 간편인증 수단, 요금 납부정보</strong>가 필요해요. 사용할 휴대폰도 옆에 두면 개통 후 바로 장착하기 편합니다.</p>
     <div class="walk-usims">{usims.map(x=><figure><img src={toPublicPath(x.src)} alt={x.name+' 실제 포장'} width={x.w} height={x.h} loading="lazy"/><figcaption><strong>{x.name}</strong><span>{x.net==='K'?'KT망':'LG망'}으로 신청</span></figcaption></figure>)}</div>
+    <UsimPurchaseHelp network={network} source={source}/>
     <p class="walk-note">유심은 카드와 함께 준비해 두세요. 카드에 적힌 정보를 신청 중에 입력합니다.</p>
    </section>
    <section class="walk-section" id="choose">
