@@ -151,12 +151,9 @@ body:has([data-start-home]) .bottom{display:none}
 .source-side-plan li p{font-size:12px;font-weight:900;line-height:1.1;margin:0;min-height:26px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap}
 .source-side-plan li p:first-child{color:#6f6f6f;font-weight:800;margin-bottom:5px;min-height:16px}
 .sh-aside-more{font-size:12px;color:#6484dd}
-.sh-side-contact{flex-shrink:0;padding-bottom:10px}
-.sh-side-kakao{display:block;position:relative;height:65px;background:#eecf02;color:#3e2a2e}
-.sh-side-kakao img{display:block;width:100%;height:65px;object-fit:fill}
-.sh-side-kakao strong{position:absolute;left:53px;right:25px;bottom:12px;background:transparent;font-size:12px;font-weight:700;line-height:22px;padding:0;white-space:nowrap;text-align:center}
-.sh-side-phone{display:flex;align-items:center;justify-content:space-around;gap:8px;height:65px;padding:0 14px;background:#ecf1fd}.sh-side-phone img{width:34px;height:41px;object-fit:contain}
-.sh-side-phone small,.sh-side-phone strong{display:block}.sh-side-phone small{font-size:12px;color:#6484dd;font-weight:800}.sh-side-phone strong{font-size:16px;color:#484848;font-weight:800;margin-top:3px;white-space:nowrap}
+.sh-side-help{flex-shrink:0;padding:0 0 10px;border-top:1px solid #e4e4e4;background:#fff}
+.sh-side-help-link{display:flex;align-items:center;justify-content:space-between;min-height:50px;padding:12px 16px;color:#4f4f4f;font-size:14px;border-bottom:1px solid #eee}
+.sh-side-help-link:hover{background:#eef1fb;color:#6484dd}
 .sh-side-action{display:block;text-align:center;height:50px;line-height:50px;margin:10px 10px 0;border-radius:15px;background:#6484dd;color:#fff;font-weight:600;font-size:14px}
 .sh-side-toggle{position:absolute;right:209px;top:50%;transform:translateY(-50%);width:36px;height:110px;padding:0;background:#fff;border:0;border-radius:16px 0 0 16px;cursor:pointer}
 .sh-side-toggle img{width:36px;height:110px;display:block}
@@ -173,7 +170,7 @@ body:has([data-start-home]) .bottom{display:none}
  .sh-side-mobile>button{flex-shrink:0;position:relative;top:-18px;width:76px;height:76px;border-radius:50%;border:5px solid white;background:#6484dd;color:#fff;font-size:14px;font-weight:800;box-shadow:0 2px 8px #0002}
  .sh-side-backdrop:not([hidden]){display:block;position:fixed;inset:0;z-index:100;background:#0006;border:0;width:100%;height:100%}
  body:has(.sh-side-open){overflow:hidden}
- .sh-side-contact{display:none}
+ .sh-side-help{display:none}
 }
 @media(prefers-reduced-motion:reduce){.sh-aside{transition:none}}
 

@@ -1,10 +1,10 @@
 ---
-import {toPublicPath,siteConfig as site} from '../lib/site-config.js';
+import {toPublicPath} from '../lib/site-config.js';
 const menus=[
  {label:'앤텔레콤 KT',items:[['요금제',toPublicPath('/plans/k/')],['유심구매','#start-usim'],['KT 개통하기','#start-choices']]},
  {label:'앤텔레콤 LG',items:[['요금제',toPublicPath('/plans/l/')],['유심구매','#start-usim'],['LG 개통하기','#start-choices']]},
  {label:'제휴혜택',items:[['제휴 혜택',toPublicPath('/benefits/')],['제휴카드 할인',toPublicPath('/card/')]]},
- {label:'고객센터',items:[['자주하는 질문','#start-faq'],['카카오톡 상담',site.business.kakao],['전화 상담','tel:'+site.business.phone]]},
+ {label:'이용안내',items:[['자주하는 질문','#start-faq'],['유심 준비','#start-usim']]},
  {label:'개통안내',items:[['개통안내',toPublicPath('/guide/')],['셀프개통 순서','#start-steps']]}
 ];
 ---
