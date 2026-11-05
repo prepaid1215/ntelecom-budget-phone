@@ -1,4 +1,5 @@
 ---
+import StartSidebar from "./StartSidebar.astro";
 import HomePlanFinder from "./HomePlanFinder.astro";
 import BenefitOffer from "./BenefitOffer.astro";
 import CardOffer from "./CardOffer.astro";
@@ -110,16 +111,5 @@ const menu=[
       </div>
     </details></div></section>
   </div>
-  <aside class="sh-aside" aria-label="추천 후불 요금제">
-    <div class="sh-aside-inner">
-      <h2>추천 후불 요금제</h2>
-      {featured.slice(0,3).map(p=><article>
-        <small>{p.network==="K"?"KT망":"LG망"} · 후불</small>
-        <strong>{p.name.replace(/^앤텔레콤\s*/,"")}</strong>
-        <p>{p.data_text}</p><b>{won(p.monthly_price)}/월</b>
-        <a href={targets[p.network]} data-outbound data-billing="postpaid" data-network={p.network==="K"?"kt":"lg"} data-plan={p.id} data-location="sidebar">개통하기 ›</a>
-      </article>)}
-      <a class="sh-aside-more" href="#postpaid-plans">전체 후불 요금제 보기 ›</a>
-    </div>
-  </aside>
+  <StartSidebar featured={featured} targets={targets}/>
 </div>

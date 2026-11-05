@@ -1,0 +1,64 @@
+---
+import {siteConfig as site} from "../lib/site-config.js";
+const {featured,targets}=Astro.props;
+const won=n=>n.toLocaleString("ko-KR")+"원";
+---
+<button class="sh-side-mobile" type="button" data-side-open aria-controls="start-sidebar" aria-expanded="false">추천 요금제</button>
+<button class="sh-side-backdrop" type="button" data-side-backdrop aria-label="사이드바 닫기" hidden></button>
+<aside class="sh-aside" id="start-sidebar" aria-label="추천 후불 요금제">
+  <button class="sh-side-toggle" type="button" data-side-toggle aria-controls="start-sidebar" aria-expanded="true" aria-label="사이드바 접기">›</button>
+  <div class="sh-side-frame">
+    <div class="sh-side-title"><strong>앤텔레콤 개통방법</strong><button type="button" data-side-close aria-label="사이드바 닫기">×</button></div>
+    <div class="sh-side-scroll">
+      <h2>추천요금제 <span aria-hidden="true"></span></h2>
+      {featured.slice(0,3).map(p=><article>
+        <small>{p.network==="K"?"KT망":"LG망"} · 후불</small>
+        <strong>{p.name.replace(/^앤텔레콤\s*/,"")}</strong>
+        <p>{p.data_text}</p><b>{won(p.monthly_price)}/월</b>
+        <a href={targets[p.network]} data-outbound data-billing="postpaid" data-network={p.network==="K"?"kt":"lg"} data-plan={p.id} data-location="sidebar">개통하기 ›</a>
+      </article>)}
+      <a class="sh-aside-more" href="#postpaid-plans">전체 후불 요금제 보기 ›</a>
+    </div>
+    <div class="sh-side-contact">
+      <a class="sh-side-kakao" href={site.business.kakao} target="_blank" rel="noopener noreferrer"><span aria-hidden="true">톡</span><strong>카카오톡 상담</strong><span aria-hidden="true">›</span></a>
+      <a class="sh-side-phone" href={"tel:"+site.business.phone}><span aria-hidden="true">☎</span><span><small>판매점 연락처</small><strong>{site.business.phone}</strong></span></a>
+      <a class="sh-side-action" href="#start-choices">후불 개통하기</a>
+    </div>
+  </div>
+</aside>
+<script>
+ const root=document.querySelector('[data-start-home]');
+ if(root){
+  const panel=root.querySelector('#start-sidebar');
+  const toggle=root.querySelector('[data-side-toggle]');
+  const opener=root.querySelector('[data-side-open]');
+  const backdrop=root.querySelector('[data-side-backdrop]');
+  const close=root.querySelector('[data-side-close]');
+  const mobile=window.matchMedia('(max-width:1230px)');
+  function setOpen(open){
+   root.classList.toggle('sh-side-collapsed',!open&&!mobile.matches);
+   root.classList.toggle('sh-side-open',open&&mobile.matches);
+   toggle?.setAttribute('aria-expanded',String(open));
+   toggle?.setAttribute('aria-label',open?'사이드바 접기':'사이드바 펼치기');
+   if(toggle)toggle.textContent=open?'›':'‹';
+   opener?.setAttribute('aria-expanded',String(open&&mobile.matches));
+   if(backdrop)backdrop.hidden=!(open&&mobile.matches);
+   const frame=panel?.querySelector(".sh-side-frame");
+   if(frame)frame.inert=!open;
+  }
+  toggle?.addEventListener('click',()=>setOpen(root.classList.contains('sh-side-collapsed')));
+  opener?.addEventListener('click',()=>{setOpen(true);close?.focus()});
+  function dismiss(){setOpen(false);opener?.focus()}
+  close?.addEventListener('click',dismiss);backdrop?.addEventListener('click',dismiss);
+  root.addEventListener('keydown',event=>{if(event.key==='Escape'&&mobile.matches)dismiss();
+   if(event.key==='Tab'&&root.classList.contains('sh-side-open')){
+    const items=[...panel.querySelectorAll('a,button')].filter(e=>e.getClientRects().length);
+    const first=items[0],last=items[items.length-1];
+    if(event.shiftKey&&document.activeElement===first){event.preventDefault();last?.focus()}
+    else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first?.focus()}
+   }
+  });
+  panel?.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener('click',()=>{if(mobile.matches)dismiss()}));
+  mobile.addEventListener('change',()=>setOpen(!mobile.matches));setOpen(!mobile.matches);
+ }
+</script>
