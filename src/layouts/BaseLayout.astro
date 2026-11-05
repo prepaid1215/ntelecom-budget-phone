@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import StartHeader from "../components/StartHeader.astro";
 import pagesData from "../data/generated-pages.json";
 import { siteConfig as site, activationLink, toPublicPath, toSiteUrl } from "../lib/site-config.js";
 const {
@@ -83,6 +84,7 @@ if(faqs.length) schemas["@graph"].push({
 <meta name="robots" content={robots} />
 <meta name="googlebot" content={robots} />
 <meta name="theme-color" content={site.primaryColor} />
+{pagePath==="/start/" && <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT/fonts/variable/woff2/SUIT-Variable.css" rel="stylesheet" />}
 <link rel="canonical" href={canonical} />
 <link rel="alternate" hreflang="ko-KR" href={canonical} />
 <link rel="icon" type="image/png" href={toPublicPath("/images/start/favicon.png?v=2")} />
@@ -103,11 +105,13 @@ if(faqs.length) schemas["@graph"].push({
 <script type="application/ld+json" set:html={JSON.stringify(schemas)}></script>
 </head>
 <body>
+{pagePath==="/start/" ? <StartHeader/> : (
 <header class="header"><div class="wrap header-inner">
   <a class="logo" href={toPublicPath("/")}>{pagePath==="/start/" ? <><img class="start-brand-logo" src={toPublicPath("/images/start/logo.png")} alt="앤텔레콤 N플랫폼" width="286" height="182" /><span class="start-brand-name">앤텔레콤 개통방법</span></> : <><span class="logo-mark">N</span><span>{site.brandName}</span></>}</a>
   <nav class="header-nav" aria-label="주요 메뉴"><a href={toPublicPath("/plans/")}>요금제</a><a href={toPublicPath("/benefits/")}>혜택</a><a href={toPublicPath("/card/")}>제휴카드</a><a href={toPublicPath("/guide/")}>개통안내</a></nav>
   <a class="header-cta" href={pagePath==="/start/" ? "#start-choices" : activationLink("header")}>{pagePath==="/start/" ? "통신망 선택" : "즉시 개통"}</a>
 </div></header>
+)}
 <main>
   <slot />
 </main>

@@ -1,0 +1,43 @@
+---
+import {toPublicPath,siteConfig as site} from '../lib/site-config.js';
+const menus=[
+ {label:'앤텔레콤 KT',items:[['요금제',toPublicPath('/plans/k/')],['유심구매','#start-usim'],['KT 개통하기','#start-choices']]},
+ {label:'앤텔레콤 LG',items:[['요금제',toPublicPath('/plans/l/')],['유심구매','#start-usim'],['LG 개통하기','#start-choices']]},
+ {label:'제휴혜택',items:[['제휴 혜택',toPublicPath('/benefits/')],['제휴카드 할인',toPublicPath('/card/')]]},
+ {label:'고객센터',items:[['자주하는 질문','#start-faq'],['카카오톡 상담',site.business.kakao],['전화 상담','tel:'+site.business.phone]]},
+ {label:'개통안내',items:[['후불 개통안내',toPublicPath('/guide/')],['셀프개통 순서','#start-steps']]}
+];
+---
+<header class="header start-header">
+ <div class="start-h-box">
+  <a class="start-header-logo" href={toPublicPath('/')} aria-label="앤텔레콤 개통방법 홈"><img src={toPublicPath('/images/start/logo.png')} alt="앤텔레콤 N플랫폼" width="289" height="191"/></a>
+  <nav class="start-desktop-menu" aria-label="주요 메뉴">
+   <ul>{menus.map((menu,i)=><li><button type="button" aria-expanded="false" aria-controls={'start-dropdown-'+i} data-header-dropdown>{menu.label}<span aria-hidden="true">⌄</span></button><ul id={'start-dropdown-'+i} class="start-mini">{menu.items.map(([label,href])=><li><a href={href}>{label}</a></li>)}</ul></li>)}</ul>
+  </nav>
+  <div class="start-header-actions"><a href="#start-choices">개통하기</a><a href="#postpaid-plans">맞춤요금제</a></div>
+  <span class="start-mobile-title">앤텔레콤 개통방법</span>
+  <button class="start-menu-toggle" type="button" data-header-open aria-label="전체 메뉴 열기" aria-controls="start-mobile-menu" aria-expanded="false"><span></span><span></span><span></span></button>
+ </div>
+</header>
+<dialog id="start-mobile-menu" class="start-mobile-menu" aria-label="전체 메뉴">
+ <div class="start-mobile-menu-header"><a href={toPublicPath('/')}><img src={toPublicPath('/images/start/logo.png')} alt="앤텔레콤 N플랫폼" width="289" height="191"/></a><button type="button" data-header-close aria-label="전체 메뉴 닫기">×</button></div>
+ <nav aria-label="모바일 주요 메뉴">{menus.map(menu=><section><h2>{menu.label}</h2><div>{menu.items.map(([label,href])=><a href={href}>{label}</a>)}</div></section>)}</nav>
+</dialog>
+<script>
+ const header=document.querySelector('.start-header');
+ if(header){
+  const buttons=[...header.querySelectorAll('[data-header-dropdown]')];
+  const closeDropdowns=()=>buttons.forEach(button=>button.setAttribute('aria-expanded','false'));
+  buttons.forEach(button=>button.addEventListener('click',()=>{const open=button.getAttribute('aria-expanded')!=='true';closeDropdowns();button.setAttribute('aria-expanded',String(open))}));
+  document.addEventListener('click',event=>{if(!header.contains(event.target))closeDropdowns()});
+  header.addEventListener('keydown',event=>{if(event.key==='Escape')closeDropdowns()});
+  const dialog=document.querySelector('#start-mobile-menu');
+  const opener=header.querySelector('[data-header-open]');
+  opener?.addEventListener('click',()=>{dialog?.showModal();opener.setAttribute('aria-expanded','true')});
+  dialog?.querySelector('[data-header-close]')?.addEventListener('click',()=>dialog.close());
+  dialog?.addEventListener('close',()=>{opener?.setAttribute('aria-expanded','false');opener?.focus()});
+  dialog?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>dialog.close()));
+  const breakpoint=window.matchMedia('(max-width:1100px)');
+  breakpoint.addEventListener('change',()=>{if(!breakpoint.matches&&dialog?.open)dialog.close()});
+ }
+</script>
