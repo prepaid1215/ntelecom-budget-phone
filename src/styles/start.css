@@ -215,4 +215,18 @@ body:has(.start-mobile-menu[open]){overflow:hidden}
  .start-mobile-menu-header{height:60px;padding:8px 16px}.start-mobile-menu-header img{width:68px}.start-mobile-menu nav{padding:8px 20px 30px}
 }
 
-body:has([data-start-home]){font-family:'SUIT Variable',-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif}
+/* Match the measured live preplan.site font cascade rather than using SUIT everywhere. */
+body:has([data-start-home]){font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',sans-serif;letter-spacing:-.8px;line-height:normal}
+body:has([data-start-home]) button,body:has([data-start-home]) input,body:has([data-start-home]) select{font-family:inherit}
+.sh-hero h1{font-size:38.4px;font-weight:700;line-height:1.25;letter-spacing:-.8px}
+.sh-btn{font-size:18.08px;font-weight:500;line-height:normal;letter-spacing:-.8px}
+.sh-guide{font-size:16px;font-weight:400;line-height:normal}
+.start-desktop-menu>ul>li>button{font-size:15.68px;font-weight:500;line-height:normal;letter-spacing:-.8px}
+.start-header-actions a{font-size:14.88px;font-weight:500;line-height:normal}
+.source-side-plan b,.source-side-plan p{font-family:'SUIT',sans-serif;letter-spacing:-.8px}
+.source-side-plan b{font-size:14.4px;font-weight:900;line-height:normal}
+.source-side-plan .flex>p{font-size:14.4px;font-weight:900;line-height:normal}
+.source-side-plan li p{font-size:12.8px;line-height:1.06}
+.sh-head h2{font-size:33.6px;line-height:normal;font-weight:800;letter-spacing:-.8px}
+.sh-small-intro{font-size:14.88px!important;font-weight:400}
+@media(max-width:550px){.sh-hero h1{font-size:33.6px;line-height:1.25}.sh-btn{font-size:15.82px;font-weight:500}.sh-head h2{font-size:25.2px}}

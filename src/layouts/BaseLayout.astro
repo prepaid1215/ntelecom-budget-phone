@@ -84,7 +84,10 @@ if(faqs.length) schemas["@graph"].push({
 <meta name="robots" content={robots} />
 <meta name="googlebot" content={robots} />
 <meta name="theme-color" content={site.primaryColor} />
-{pagePath==="/start/" && <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT/fonts/variable/woff2/SUIT-Variable.css" rel="stylesheet" />}
+{pagePath==="/start/" && <>
+<link rel="stylesheet" crossorigin="anonymous" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT/fonts/static/woff2/SUIT.css" />
+</>}
 <link rel="canonical" href={canonical} />
 <link rel="alternate" hreflang="ko-KR" href={canonical} />
 <link rel="icon" type="image/png" href={toPublicPath("/images/start/favicon.png?v=2")} />
