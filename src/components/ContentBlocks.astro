@@ -1,4 +1,5 @@
 ---
+import ActivationNext from "./ActivationNext.astro";
 import { siteConfig as site, activationLink, toPublicPath } from "../lib/site-config.js";
 import PlanCard from "./PlanCard.astro";
 import CardOffer from "./CardOffer.astro";
@@ -26,7 +27,7 @@ const planHubChecks=[
   ["월 기본료","제휴카드 할인을 적용하기 전 요금제 자체의 월 요금입니다. 비슷한 데이터 구간끼리 먼저 비교하면 실제 통신비를 판단하기 쉬워요.","현재 판매 상품은 월 17,900원부터"],
   ["데이터","기본 제공량과 소진 후 속도를 함께 보세요. 1Mbps는 메신저·가벼운 웹 이용, 3Mbps는 일반 영상 시청, 5Mbps는 더 여유로운 영상 이용에 적합해요.","사용 장소와 단말 상태에 따라 체감 속도는 달라질 수 있어요"],
   ["통화·문자","‘기본제공’ 상품과 100분·300분처럼 한도가 있는 상품을 구분하세요. 업무나 가족 통화가 많다면 통화 기본제공 상품이 편해요.","문자 인증을 자주 사용한다면 문자 제공 조건도 확인"],
-  ["가입 방법","신규가입은 새 번호를 받는 방식이고, 번호이동은 현재 번호를 그대로 옮기는 방식입니다. 번호이동은 요금 연체나 최근 이동 이력에 따라 제한될 수 있어요.","신청하면 개통돼요. 해피콜은 꼭 받아 주세요"]
+  ["가입 방법","가입 유형에서 신규가입 또는 기존 번호를 유지하는 번호이동을 선택합니다. 번호이동은 요금 연체나 최근 이동 이력에 따라 제한될 수 있어요.","개통 완료 안내 후 유심을 장착하세요"]
 ];
 const displayedChecks=isPlanHub ? planHubChecks : model.checks;
 /* 혜택 브랜드만 다른 유사 상품을 처음부터 나열하지 않고, 사용량별 대표 선택지를 먼저 제안한다. */
@@ -53,10 +54,10 @@ const recommendedPlans=[
 
 {!isBenefitDetail && model.benefits.length>0 && <section class="section"><div class="wrap"><h2>평소 쓰는 곳이 있다면, 생활혜택도 함께 고르세요</h2><p class="section-lead">통신비만 비교하기보다 자주 쓰는 쇼핑·구독·편의점 혜택을 함께 보면 매달 선택의 이유가 분명해집니다.</p><div class="grid cols-3">{model.benefits.map(b=><BenefitOffer benefit={b}/>)}</div></div></section>}
 
-<section class="section soft"><div class="wrap"><h2>신청부터 개통까지</h2><div class="steps">{model.steps.map(([n,t,d])=><article class="step"><span>{n}</span><div><strong>{t}</strong><p>{d}</p></div></article>)}</div></div></section>
+<ActivationNext transfer={(model.page.requiredTags||[]).includes("number-transfer")}/>
 
 <section class="section"><div class="wrap"><h2>자주 묻는 질문</h2><div class="faq-list">{model.faqs.map(f=><details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>)}</div></div></section>
 
 <section class="section soft"><div class="wrap"><h2>함께 보면 좋은 페이지</h2><div class="link-list">{model.related.map(p=><a href={toPublicPath(p.path)}><span>{p.keyword}</span><span>›</span></a>)}</div><div class="data-note">프로모션·혜택·카드 조건은 가입 시점에 달라질 수 있어요.</div></div></section>
 
-<section class="section"><div class="wrap final-box"><h2>요금제를 골랐다면 바로 신청하세요</h2><p>신청하면 개통돼서 바로 쓸 수 있어요. 해피콜은 꼭 받아 주세요.</p><a class="final-button" href={activationLink("final")}>바로 개통하기</a></div></section>
+<section class="section"><div class="wrap final-box"><h2>요금제를 골랐다면 바로 신청하세요</h2><p>신청 화면에서 가입 유형과 후불을 선택하고, 선택한 상품과 납부정보를 등록해 주세요.</p><a class="final-button" href={activationLink("final")}>바로 개통하기</a></div></section>

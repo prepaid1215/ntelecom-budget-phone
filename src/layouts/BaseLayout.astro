@@ -120,7 +120,7 @@ if(faqs.length) schemas["@graph"].push({
 </head>
 <body data-site-shell data-guide-source={ctaSource} data-site-base={site.basePath}>
 <StartHeader pagePath={pagePath} ctaSource={ctaSource}/>
-<main>
+<main data-catalog-page={!ctaSource && pagePath!=="/start/" ? "true" : undefined}>
   <slot />
 </main>
 <StartSidebar featured={sidebarPlans} targets={sidebarTargets} pagePath={pagePath} ctaSource={ctaSource}/>
