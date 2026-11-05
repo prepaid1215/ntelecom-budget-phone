@@ -10,6 +10,9 @@ assert.equal(pages.length,500,"All existing 500 catalog records must remain");
 for(const page of pages){
  const filename=page.path==="/"?"index.html":page.path.replace(/^\/|\/$/g,"")+"/index.html";
  assert.ok(fs.existsSync(path.join(root,filename)),"Missing existing page "+page.path);
+ const rendered=read(filename);
+ assert.match(rendered,/class="header start-header"/,"Shared header missing "+page.path);
+ assert.equal((rendered.match(/id="start-sidebar"/g)||[]).length,1,"Exactly one sidebar required "+page.path);
 }
 assert.match(start,/지금 바로/);
 assert.match(start,/셀프개통/);

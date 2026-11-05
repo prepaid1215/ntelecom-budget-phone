@@ -30,7 +30,7 @@ const ga4Id=process.env.PUBLIC_GA4_MEASUREMENT_ID?.trim()||"";
   </script>
   <script is:inline>
     (function(){
-      const root=document.querySelector("[data-start-home]");if(!root)return;
+      const root=document.querySelector("[data-site-shell]");if(!root)return;
       const q=new URLSearchParams(location.search);
       const clean=(value,max)=>String(value||"").replace(/[^a-zA-Z0-9_-]/g,"").slice(0,max);
       const source=clean(q.get("from"),72)||"direct";

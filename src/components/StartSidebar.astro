@@ -1,9 +1,13 @@
 ---
-import {toPublicPath} from "../lib/site-config.js";
-const {featured,targets}=Astro.props;
+import {toPublicPath,activationLink} from "../lib/site-config.js";
+const {featured,targets,pagePath="/start/"}=Astro.props;
+const atStart=pagePath==="/start/";
+const anchor=id=>atStart?"#"+id:toPublicPath("/start/")+"#"+id;
+const begin=atStart?"#start-choices":activationLink("sidebar");
+const planList=atStart?"#postpaid-plans":toPublicPath("/plans/");
 const won=n=>n.toLocaleString("ko-KR")+"원";
 ---
-<nav class="sh-side-mobile" aria-label="모바일 빠른 메뉴"><a href="#start-choices">개통하기</a><a href="#postpaid-plans">맞춤요금제</a><button type="button" data-side-open aria-controls="start-sidebar" aria-expanded="false">추천<br/>요금제</button><a href="#start-faq">자주묻는질문</a><a href="#start-steps">개통 가이드</a></nav>
+<nav class="sh-side-mobile" aria-label="모바일 빠른 메뉴"><a href={begin}>개통하기</a><a href={planList}>맞춤요금제</a><button type="button" data-side-open aria-controls="start-sidebar" aria-expanded="false">추천<br/>요금제</button><a href={anchor("start-faq")}>자주묻는질문</a><a href={anchor("start-steps")}>개통 가이드</a></nav>
 <button class="sh-side-backdrop" type="button" data-side-backdrop aria-label="사이드바 닫기" hidden></button>
 <aside class="sh-aside" id="start-sidebar" aria-label="추천 요금제">
   <button class="sh-side-toggle" type="button" data-side-toggle data-close-icon={toPublicPath("/images/start/side_close.svg")} data-open-icon={toPublicPath("/images/start/side_open.svg")} aria-controls="start-sidebar" aria-expanded="true" aria-label="사이드바 접기"><img src={toPublicPath("/images/start/side_close.svg")} alt="" width="36" height="110"/></button>
@@ -11,7 +15,7 @@ const won=n=>n.toLocaleString("ko-KR")+"원";
     <div class="sh-side-title"><strong>앤텔레콤 개통방법</strong><img class="sh-side-title-icon" src="https://www.n-telecom.co.kr/common/img/masterpage/side_icon.svg" alt=""/><button type="button" data-side-close aria-label="사이드바 닫기">×</button></div>
     <div class="sh-side-scroll">
       <h2>추천요금제 <span aria-hidden="true"></span></h2>
-      {featured.slice(0,3).map(p=><a class="source-side-plan" href={targets[p.network]} data-outbound data-billing="postpaid" data-network={p.network==="K"?"kt":"lg"} data-plan={p.id} data-location="sidebar">
+      {featured.slice(0,3).map(p=><a class="source-side-plan" href={atStart?targets[p.network]:activationLink("sidebar",{network:p.network,plan:p.id,planName:p.name})} data-outbound={atStart?"yes":undefined} data-billing="postpaid" data-network={p.network==="K"?"kt":"lg"} data-plan={p.id} data-location="sidebar">
         <div class="flex"><b>{p.name.replace(/^앤텔레콤\s*/,"")}</b><p>월 {won(p.monthly_price)}</p></div>
         <ul>
           <li><p>음성</p><p>{p.calls.replace(/\s*\(.*/,"")}</p></li>
@@ -19,17 +23,17 @@ const won=n=>n.toLocaleString("ko-KR")+"원";
           <li><p>데이터</p><p>{p.data_gb?p.data_gb+"GB+":p.data_text}{p.after_speed&&<><br/>{p.after_speed}</>}</p></li>
         </ul>
       </a>)}
-      <a class="sh-aside-more" href="#postpaid-plans">전체 요금제 보기 ›</a>
+      <a class="sh-aside-more" href={planList}>전체 요금제 보기 ›</a>
     </div>
     <div class="sh-side-help">
-      <a class="sh-side-help-link" href="#start-steps">개통 가이드 <span aria-hidden="true">›</span></a>
-      <a class="sh-side-help-link" href="#start-faq">자주 묻는 질문 <span aria-hidden="true">›</span></a>
-      <a class="sh-side-action" href="#start-choices">개통하기</a>
+      <a class="sh-side-help-link" href={anchor("start-steps")}>개통 가이드 <span aria-hidden="true">›</span></a>
+      <a class="sh-side-help-link" href={anchor("start-faq")}>자주 묻는 질문 <span aria-hidden="true">›</span></a>
+      <a class="sh-side-action" href={begin}>개통하기</a>
     </div>
   </div>
 </aside>
 <script>
- const root=document.querySelector('[data-start-home]');
+ const root=document.querySelector('[data-site-shell]');
  if(root){
   const panel=root.querySelector('#start-sidebar');
   const toggle=root.querySelector('[data-side-toggle]');
