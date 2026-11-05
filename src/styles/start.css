@@ -127,11 +127,11 @@ a:focus-visible,summary:focus-visible{outline:3px solid #244fc6;outline-offset:4
 
 /* Sidebar geometry and card layout ported from the supplied 59man-child source. */
 body:has([data-start-home]){--brand:#6484dd;--brand-deep:#4f6fc7;--brand-soft:#eef1fb;padding-bottom:0}
-body:has([data-start-home]) .header{margin-right:210px}
+body:has([data-start-home]) .header{margin-right:0}
 body:has([data-start-home]) .header-inner{max-width:1440px;min-height:65px}
-body:has([data-start-home]) .site-footer{margin-right:210px}
+body:has([data-start-home]) .site-footer{margin-right:0}
 body:has([data-start-home]) .bottom{display:none}
-.sh{display:block;max-width:none;margin:0 210px 0 0;padding:0;position:relative}
+.sh{display:block;max-width:none;margin:0;padding:0;position:relative}
 .sh-hero{background:#eef1fb}.sh-hero h1 em{color:#6484dd}
 .sh-main{max-width:none}.sh-wrap{max-width:1200px}
 .sh-aside{display:block;position:fixed;right:0;top:0;bottom:0;width:210px;height:100dvh;z-index:80;background:white;border-left:1px solid #ccc;transition:transform .4s ease-in-out}
