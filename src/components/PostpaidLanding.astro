@@ -21,9 +21,9 @@ const showPlans=!['card','usim','benefits'].includes(page.id);
   <nav class="ag-crumbs" aria-label="현재 위치"><a href={toPublicPath('/')}>홈</a><span>›</span><a href={toPublicPath('/guides/')}>알뜰폰 가이드</a><span>›</span><span>{page.title.split('｜')[0]}</span></nav>
   <article class="ag-article">
    <header class="ag-hero">
-    <p class="ag-label">앤텔레콤 · 후불 알뜰폰</p><h1>{page.title}</h1><p class="ag-lead">{page.lead}</p><p class="ag-answer">{page.answer}</p>
+    <p class="ag-label">앤텔레콤 · 후불 알뜰폰</p><h1>{page.title}</h1><p class="ag-lead">{page.lead}</p>
     <div class="ag-actions"><a class="ag-primary" href={primary}>{page.cta}</a><a class="ag-secondary" href={secondary}>{secondaryLabel}</a></div>
-    <div class="ag-highlights">{page.highlights.map(t=><span>{t}</span>)}</div>
+
    </header>
    {page.steps&&<section class="ag-section ag-process" aria-label="신규가입 순서"><h2>신규가입은 이렇게 진행해요</h2><ol>{page.steps.map((step,i)=><li><b>{i+1}</b><span>{step}</span></li>)}</ol></section>}
    <nav class="ag-toc" aria-label="이 글의 목차"><strong>필요한 내용 바로 보기</strong>{page.sections.map((s,i)=><a href={'#guide-'+(i+1)}>{String(i+1).padStart(2,'0')}　{s.heading}</a>)}</nav>

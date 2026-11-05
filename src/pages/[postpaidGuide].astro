@@ -2,9 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import guides from '../data/a-postpaid-landings.json';
 import PostpaidLanding from '../components/PostpaidLanding.astro';
+import SignupWalkthrough from '../components/SignupWalkthrough.astro';
 export function getStaticPaths(){return guides.map(page=>({params:{postpaidGuide:page.path.slice(1,-1)},props:{page}}))}
 const {page}=Astro.props;
 ---
 <BaseLayout title={page.title} description={page.description} pagePath={page.path} index={page.effectiveIndex} faqs={page.faq} ctaSource={'exp_a_'+page.id.replaceAll('-','_')}>
- <PostpaidLanding page={page}/>
+ {['signup','activation','network-k','network-l'].includes(page.id)?<SignupWalkthrough page={page}/>:<PostpaidLanding page={page}/>}
 </BaseLayout>
