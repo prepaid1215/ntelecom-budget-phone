@@ -1,0 +1,80 @@
+{
+  "provider": "ntelecom",
+  "checked_at": "2026-09-28",
+  "rules": {
+    "provider": {
+      "ntelecom": "모든 상품"
+    },
+    "network": {
+      "K": [
+        "k-network",
+        "kt"
+      ],
+      "L": [
+        "l-network",
+        "lg"
+      ]
+    },
+    "price": {
+      "thresholds": [
+        10000,
+        20000,
+        30000,
+        40000
+      ],
+      "ranges": [
+        "10000-range",
+        "20000-range",
+        "30000-range",
+        "40000-range"
+      ]
+    },
+    "data": [
+      "1gb",
+      "3gb",
+      "5gb",
+      "7gb",
+      "10gb",
+      "11gb",
+      "15gb",
+      "20gb",
+      "50gb",
+      "100gb"
+    ],
+    "after_speed": [
+      "1mbps",
+      "3mbps",
+      "5mbps"
+    ],
+    "network_type": [
+      "lte",
+      "5g"
+    ],
+    "join": [
+      "no-contract",
+      "new-number",
+      "number-transfer"
+    ],
+    "device": [
+      "self-phone",
+      "used-phone",
+      "iphone",
+      "galaxy",
+      "esim"
+    ],
+    "benefit": [
+      "card-discount",
+      "naverpay",
+      "daiso",
+      "oliveyoung",
+      "cu",
+      "coupang",
+      "content-benefit"
+    ]
+  },
+  "guardrails": [
+    "태그는 해당 필드 또는 공식 근거가 있을 때만 부여",
+    "가격 태그는 monthly_price 기준",
+    "확인되지 않은 무약정/eSIM/단말 태그 금지"
+  ]
+}

@@ -1,0 +1,101 @@
+﻿id,kind,group,path,keyword,intent,template,index,priority,angle,cta,note
+1,SEO,메인/허브,/,후불 알뜰폰,브랜드/전체 탐색,T0,index,P0,무약정·번호유지·혜택·개통,미러링 개통,
+2,SEO,메인/허브,/plans/,후불 요금제,요금제 탐색,T1,index,P0,데이터/가격별 탐색,미러링 개통,
+3,SEO,메인/허브,/no-contract/,무약정 알뜰폰,무약정,T1,index,P0,약정 부담 없음,미러링 개통,
+4,SEO,메인/허브,/number-transfer/,알뜰폰 번호이동,번호 유지,T1,index,P0,쓰던 번호 그대로,미러링 개통,
+5,SEO,메인/허브,/new-number/,알뜰폰 신규가입,새 번호,T1,index,P1,새 번호 개통,미러링 개통,
+6,SEO,메인/허브,/self-phone/,자급제 알뜰폰,자급제,T1,index,P0,휴대폰 그대로,미러링 개통,
+7,SEO,메인/허브,/used-phone/,중고폰 알뜰폰,중고폰,T1,index,P1,중고폰에 요금제 연결,미러링 개통,
+8,SEO,메인/허브,/card/,알뜰폰 제휴카드,카드 할인,T1,index,P0,통신비 추가 할인,미러링 개통,
+9,SEO,메인/허브,/benefits/,알뜰폰 혜택,제휴혜택,T1,index,P1,생활혜택으로 선택,미러링 개통,
+10,SEO,메인/허브,/guide/,알뜰폰 개통 방법,가이드,T1,index,P1,준비부터 개통까지,미러링 개통,
+11,SEO,요금제,/plans/7gb/,7GB 알뜰폰 요금제,7GB 사용자,T2,index,P1,7GB 가격/조건,미러링 개통,상품 DB 조건 충족 시 노출
+12,SEO,요금제,/plans/10gb/,10GB 알뜰폰 요금제,10GB 사용자,T2,index,P0,10GB 가격/조건,미러링 개통,상품 DB 조건 충족 시 노출
+13,SEO,요금제,/plans/15gb/,15GB 알뜰폰 요금제,15GB 사용자,T2,index,P0,15GB 가격/조건,미러링 개통,상품 DB 조건 충족 시 노출
+14,SEO,요금제,/plans/20gb/,20GB 알뜰폰 요금제,20GB 사용자,T2,index,P1,20GB 가격/조건,미러링 개통,상품 DB 조건 충족 시 노출
+15,SEO,요금제,/plans/unlimited/,알뜰폰 무제한 요금제,대용량 사용자,T2,index,P1,무제한/대용량,미러링 개통,상품 DB 조건 충족 시 노출
+16,SEO,요금제,/plans/1mbps/,1Mbps 알뜰폰 요금제,소진 후 속도,T2,index,P1,1Mbps,미러링 개통,상품 DB 조건 충족 시 노출
+17,SEO,요금제,/plans/3mbps/,3Mbps 알뜰폰 요금제,소진 후 속도,T2,index,P1,3Mbps,미러링 개통,상품 DB 조건 충족 시 노출
+18,SEO,요금제,/plans/5g/,5G 알뜰폰 요금제,5G,T2,index,P1,5G 상품,미러링 개통,상품 DB 조건 충족 시 노출
+19,SEO,요금제,/plans/under-20000/,2만원 이하 알뜰폰,저가,T2,index,P1,2만원 이하,미러링 개통,상품 DB 조건 충족 시 노출
+20,SEO,요금제,/plans/under-30000/,3만원 이하 알뜰폰,가격,T2,index,P0,3만원 이하,미러링 개통,상품 DB 조건 충족 시 노출
+21,SEO,요금제,/plans/20000-range/,2만원대 알뜰폰 요금제,가격,T2,index,P1,2만원대,미러링 개통,상품 DB 조건 충족 시 노출
+22,SEO,요금제,/plans/30000-range/,3만원대 알뜰폰 요금제,가격,T2,index,P1,3만원대,미러링 개통,상품 DB 조건 충족 시 노출
+23,SEO,요금제,/plans/light-user/,데이터 적게 쓰는 알뜰폰,라이트 사용자,T2,index,P1,저용량,미러링 개통,상품 DB 조건 충족 시 노출
+24,SEO,요금제,/plans/medium-user/,데이터 10GB 15GB 알뜰폰,중간 사용자,T2,index,P1,중용량,미러링 개통,상품 DB 조건 충족 시 노출
+25,SEO,요금제,/plans/heavy-user/,데이터 많이 쓰는 알뜰폰,헤비 사용자,T2,index,P1,대용량,미러링 개통,상품 DB 조건 충족 시 노출
+26,SEO,요금제,/plans/call-basic/,통화 기본제공 알뜰폰,통화 중심,T2,index,P1,통화 기본제공,미러링 개통,상품 DB 조건 충족 시 노출
+27,SEO,요금제,/plans/call-100/,통화 100분 알뜰폰,짧은 통화,T2,index,P1,100분,미러링 개통,상품 DB 조건 충족 시 노출
+28,SEO,요금제,/plans/sms-basic/,문자 기본제공 알뜰폰,문자 중심,T2,index,P1,문자 기본제공,미러링 개통,상품 DB 조건 충족 시 노출
+29,SEO,요금제,/plans/kt/,KT망 알뜰폰 요금제,KT망,T2,index,P1,KT망 상품,미러링 개통,상품 DB 조건 충족 시 노출
+30,SEO,요금제,/plans/lg/,LG망 알뜰폰 요금제,LG망,T2,index,P1,LG망 상품,미러링 개통,상품 DB 조건 충족 시 노출
+31,SEO,상황/기기,/no-contract/phone-plan/,무약정 휴대폰 요금제,무약정 일반,T3,index,P0,무약정 후불,미러링 개통,
+32,SEO,상황/기기,/no-contract/self-phone/,자급제 무약정 요금제,자급제+무약정,T3,index,P1,자급제에 무약정,미러링 개통,
+33,SEO,상황/기기,/no-contract/number-transfer/,무약정 번호이동,번호이동+무약정,T3,index,P1,번호 유지+무약정,미러링 개통,
+34,SEO,상황/기기,/number-transfer/how-to/,알뜰폰 번호이동 방법,방법,T3,index,P0,번호이동 절차,미러링 개통,
+35,SEO,상황/기기,/number-transfer/sim-only/,유심만 번호이동,유심,T3,index,P1,유심만 바꾸기,미러링 개통,
+36,SEO,상황/기기,/number-transfer/self-phone/,자급제 번호이동,자급제+번호이동,T3,index,P1,자급제 번호 유지,미러링 개통,
+37,SEO,상황/기기,/new-number/self-phone/,자급제 새 번호 개통,자급제+신규,T3,index,P1,자급제 신규번호,미러링 개통,
+38,SEO,상황/기기,/self-phone/iphone/,아이폰 자급제 알뜰폰,아이폰,T3,index,P0,아이폰 자급제,미러링 개통,
+39,SEO,상황/기기,/self-phone/galaxy/,갤럭시 자급제 알뜰폰,갤럭시,T3,index,P0,갤럭시 자급제,미러링 개통,
+40,SEO,상황/기기,/used-phone/iphone/,중고 아이폰 알뜰폰,중고 아이폰,T3,index,P1,중고 아이폰 연결,미러링 개통,
+41,SEO,상황/기기,/used-phone/galaxy/,중고 갤럭시 알뜰폰,중고 갤럭시,T3,index,P1,중고 갤럭시 연결,미러링 개통,
+42,SEO,상황/기기,/sim-only/,유심만 알뜰폰 개통,유심 단독,T3,index,P1,휴대폰 그대로 유심만,미러링 개통,
+43,SEO,상황/기기,/esim/,eSIM 알뜰폰 후불,eSIM,T3,index,P1,물리 유심 없이,미러링 개통,
+44,SEO,상황/기기,/dual-sim/,듀얼심 알뜰폰,듀얼심,T3,index,P1,한 대에 번호 추가,미러링 개통,
+45,SEO,상황/기기,/second-phone/,세컨폰 알뜰폰 요금제,세컨폰,T3,index,P1,두 번째 번호,미러링 개통,
+46,SEO,상황/기기,/work-phone/,업무용 알뜰폰 요금제,업무용,T3,index,P1,업무번호 분리,미러링 개통,
+47,SEO,상황/기기,/parents/,부모님 알뜰폰 요금제,부모님,T3,index,P1,저렴한 부모님 요금,미러링 개통,
+48,SEO,상황/기기,/senior/,시니어 알뜰폰 요금제,시니어,T3,index,P1,통화/저용량 중심,미러링 개통,
+49,SEO,상황/기기,/iphone/,아이폰 알뜰폰 요금제,아이폰,T3,index,P1,아이폰 후불,미러링 개통,
+50,SEO,상황/기기,/galaxy/,갤럭시 알뜰폰 요금제,갤럭시,T3,index,P1,갤럭시 후불,미러링 개통,
+51,SEO,카드/혜택,/card-discount/,알뜰폰 카드 할인,카드 전체,T4,index,P0,제휴카드 할인,미러링 개통,실제 제휴 데이터 있을 때 활성화
+52,SEO,카드/혜택,/card/kt/,KT 알뜰폰 제휴카드,KT 카드,T4,index,P0,KT망 카드 할인,미러링 개통,실제 제휴 데이터 있을 때 활성화
+53,SEO,카드/혜택,/card/lg/,LG 알뜰폰 제휴카드,LG 카드,T4,index,P0,LG망 카드 할인,미러링 개통,실제 제휴 데이터 있을 때 활성화
+54,SEO,카드/혜택,/card/under-10000/,알뜰폰 카드 할인 1만원대,카드 적용가,T4,index,P0,1만원대 가능 조건,미러링 개통,실제 제휴 데이터 있을 때 활성화
+55,SEO,카드/혜택,/card/10gb/,10GB 알뜰폰 제휴카드,10GB+카드,T4,index,P0,10GB 카드 할인,미러링 개통,실제 제휴 데이터 있을 때 활성화
+56,SEO,카드/혜택,/card/15gb/,15GB 알뜰폰 제휴카드,15GB+카드,T4,index,P0,15GB 카드 할인,미러링 개통,실제 제휴 데이터 있을 때 활성화
+57,SEO,카드/혜택,/benefits/naverpay/,네이버페이 알뜰폰 요금제,네이버페이,T4,index,P1,네이버페이 혜택,미러링 개통,실제 제휴 데이터 있을 때 활성화
+58,SEO,카드/혜택,/benefits/daiso/,다이소 혜택 알뜰폰,다이소,T4,index,P1,다이소 혜택,미러링 개통,실제 제휴 데이터 있을 때 활성화
+59,SEO,카드/혜택,/benefits/oliveyoung/,올리브영 혜택 알뜰폰,올리브영,T4,index,P1,올리브영 혜택,미러링 개통,실제 제휴 데이터 있을 때 활성화
+60,SEO,카드/혜택,/benefits/cu/,CU 혜택 알뜰폰,CU,T4,index,P1,CU 혜택,미러링 개통,실제 제휴 데이터 있을 때 활성화
+61,SEO,카드/혜택,/benefits/coupang/,쿠팡 혜택 알뜰폰,쿠팡,T4,index,P1,쿠팡 혜택,미러링 개통,실제 제휴 데이터 있을 때 활성화
+62,SEO,카드/혜택,/benefits/content/,콘텐츠 혜택 알뜰폰,콘텐츠,T4,index,P1,콘텐츠 구독 혜택,미러링 개통,실제 제휴 데이터 있을 때 활성화
+63,SEO,카드/혜택,/benefits/15gb/,15GB 혜택 알뜰폰,15GB+혜택,T4,index,P1,15GB 혜택 비교,미러링 개통,실제 제휴 데이터 있을 때 활성화
+64,SEO,카드/혜택,/benefits/number-transfer/,번호이동 알뜰폰 혜택,번호이동+혜택,T4,index,P1,번호이동 혜택,미러링 개통,실제 제휴 데이터 있을 때 활성화
+65,SEO,카드/혜택,/benefits/self-phone/,자급제 알뜰폰 혜택,자급제+혜택,T4,index,P1,자급제 혜택,미러링 개통,실제 제휴 데이터 있을 때 활성화
+66,SEO,가이드/비교,/guide/sim/,알뜰폰 유심 준비,가이드,T5,index,P1,유심 준비,미러링 개통,
+67,SEO,가이드/비교,/guide/esim/,알뜰폰 eSIM 개통,가이드,T5,index,P1,eSIM 준비/개통,미러링 개통,
+68,SEO,가이드/비교,/guide/number-transfer/,알뜰폰 번호이동 순서,가이드,T5,index,P1,번호이동 절차,미러링 개통,
+69,SEO,가이드/비교,/guide/new-number/,알뜰폰 신규가입 방법,가이드,T5,index,P1,신규가입 절차,미러링 개통,
+70,SEO,가이드/비교,/guide/card-discount/,알뜰폰 제휴카드 사용법,가이드,T5,index,P1,카드 할인 적용,미러링 개통,
+71,SEO,가이드/비교,/guide/self-phone/,자급제 알뜰폰 개통 방법,가이드,T5,index,P1,자급제 개통,미러링 개통,
+72,SEO,가이드/비교,/compare/10gb/,10GB 알뜰폰 요금제 비교,비교,T5,index,P1,10GB 비교,미러링 개통,
+73,SEO,가이드/비교,/compare/15gb/,15GB 알뜰폰 요금제 비교,비교,T5,index,P1,15GB 비교,미러링 개통,
+74,SEO,가이드/비교,/compare/kt-vs-lg/,KT LG 알뜰폰 비교,비교,T5,index,P1,망 비교,미러링 개통,
+75,SEO,가이드/비교,/compare/card-vs-no-card/,알뜰폰 제휴카드 할인 비교,비교,T5,index,P1,카드 사용/미사용 비교,미러링 개통,
+76,광고 LP,광고 랜딩,/lp/no-contract/,무약정,무약정 광고,T6,noindex,P0,무약정 단독 소구,미러링 개통,소재와 Hero 1:1 매칭
+77,광고 LP,광고 랜딩,/lp/number-transfer/,번호이동,번호이동 광고,T6,noindex,P0,번호 그대로,미러링 개통,소재와 Hero 1:1 매칭
+78,광고 LP,광고 랜딩,/lp/self-phone/,자급제,자급제 광고,T6,noindex,P0,자급제폰 그대로,미러링 개통,소재와 Hero 1:1 매칭
+79,광고 LP,광고 랜딩,/lp/used-phone/,중고폰,중고폰 광고,T6,noindex,P1,중고폰에 연결,미러링 개통,소재와 Hero 1:1 매칭
+80,광고 LP,광고 랜딩,/lp/7gb-price/,7GB 가격,가격 광고,T6,noindex,P1,7GB 월요금,미러링 개통,소재와 Hero 1:1 매칭
+81,광고 LP,광고 랜딩,/lp/10gb-price/,10GB 가격,가격 광고,T6,noindex,P1,10GB 월요금,미러링 개통,소재와 Hero 1:1 매칭
+82,광고 LP,광고 랜딩,/lp/15gb-price/,15GB 가격,가격 광고,T6,noindex,P0,15GB 월요금,미러링 개통,소재와 Hero 1:1 매칭
+83,광고 LP,광고 랜딩,/lp/20gb-price/,20GB 가격,가격 광고,T6,noindex,P1,20GB 월요금,미러링 개통,소재와 Hero 1:1 매칭
+84,광고 LP,광고 랜딩,/lp/under-30000/,3만원 이하,가격 광고,T6,noindex,P1,3만원 이하,미러링 개통,소재와 Hero 1:1 매칭
+85,광고 LP,광고 랜딩,/lp/card-discount/,제휴카드,카드 광고,T6,noindex,P0,카드 할인,미러링 개통,소재와 Hero 1:1 매칭
+86,광고 LP,광고 랜딩,/lp/card-15gb/,15GB 제휴카드,카드 광고,T6,noindex,P1,15GB 카드 적용가,미러링 개통,소재와 Hero 1:1 매칭
+87,광고 LP,광고 랜딩,/lp/card-10gb/,10GB 제휴카드,카드 광고,T6,noindex,P1,10GB 카드 적용가,미러링 개통,소재와 Hero 1:1 매칭
+88,광고 LP,광고 랜딩,/lp/naverpay/,네이버페이,혜택 광고,T6,noindex,P1,네이버페이,미러링 개통,소재와 Hero 1:1 매칭
+89,광고 LP,광고 랜딩,/lp/daiso/,다이소,혜택 광고,T6,noindex,P1,다이소,미러링 개통,소재와 Hero 1:1 매칭
+90,광고 LP,광고 랜딩,/lp/oliveyoung/,올리브영,혜택 광고,T6,noindex,P1,올리브영,미러링 개통,소재와 Hero 1:1 매칭
+91,광고 LP,광고 랜딩,/lp/cu/,CU,혜택 광고,T6,noindex,P1,CU,미러링 개통,소재와 Hero 1:1 매칭
+92,광고 LP,광고 랜딩,/lp/second-phone/,세컨폰,상황 광고,T6,noindex,P1,두 번째 번호,미러링 개통,소재와 Hero 1:1 매칭
+93,광고 LP,광고 랜딩,/lp/work-phone/,업무폰,상황 광고,T6,noindex,P1,업무용 번호,미러링 개통,소재와 Hero 1:1 매칭
+94,광고 LP,광고 랜딩,/lp/parents/,부모님,상황 광고,T6,noindex,P1,부모님 요금 절약,미러링 개통,소재와 Hero 1:1 매칭
+95,광고 LP,광고 랜딩,/lp/iphone/,아이폰,기기 광고,T6,noindex,P1,아이폰,미러링 개통,소재와 Hero 1:1 매칭
+96,광고 LP,광고 랜딩,/lp/galaxy/,갤럭시,기기 광고,T6,noindex,P1,갤럭시,미러링 개통,소재와 Hero 1:1 매칭
+97,광고 LP,광고 랜딩,/lp/esim/,eSIM,기기 광고,T6,noindex,P1,eSIM,미러링 개통,소재와 Hero 1:1 매칭
+98,광고 LP,광고 랜딩,/lp/kt/,KT망,망 광고,T6,noindex,P1,KT망,미러링 개통,소재와 Hero 1:1 매칭
+99,광고 LP,광고 랜딩,/lp/lg/,LG망,망 광고,T6,noindex,P1,LG망,미러링 개통,소재와 Hero 1:1 매칭
+100,광고 LP,광고 랜딩,/lp/save-return/,나중에 개통,복귀 광고/저장,T6,noindex,P1,유심·카드 준비 후 복귀,미러링 개통,소재와 Hero 1:1 매칭

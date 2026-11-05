@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import StartHome from "../../components/StartHome.astro";
+import pages from "../../data/generated-pages.json";
+import { buildModel } from "../../lib/page-model.js";
+import { siteConfig as site } from "../../lib/site-config.js";
+import "../../styles/start.css";
+const home=pages.find(p=>p.path==="/");
+const model=buildModel(home);
+const base=site.activationUrl||"https://preplan.site/";
+const targets={K:process.env.START_KT_URL?.trim()||base,L:process.env.START_LG_URL?.trim()||base};
+const prepaidTargets={K:process.env.START_PREPAID_KT_URL?.trim()||base,L:process.env.START_PREPAID_LG_URL?.trim()||base};
+const ga4Id=process.env.PUBLIC_GA4_MEASUREMENT_ID?.trim()||"";
+---
+<BaseLayout
+  title="앤텔레콤 알뜰폰 셀프개통 | KT·LG 개통 시작"
+  description="앤텔레콤 알뜰폰 전용 개통 페이지입니다. KT망·LG망 개통, 요금제 비교, 유심 준비, 제휴 혜택과 번호이동 방법을 안내합니다."
+  index="noindex"
+  pagePath="/start/"
+>
+  <StartHome model={model} targets={targets} prepaidTargets={prepaidTargets}/>
+  {ga4Id && <script async is:inline src={"https://www.googletagmanager.com/gtag/js?id="+encodeURIComponent(ga4Id)}></script>}
+  <script define:vars={{ga4Id}}>
+    if(ga4Id){
+      window.dataLayer=window.dataLayer||[];
+      window.gtag=window.gtag||function(){window.dataLayer.push(arguments)};
+      window.gtag("js",new Date());
+      window.gtag("config",ga4Id);
+    }
+  </script>
+  <script is:inline>
+    (function(){
+      const root=document.querySelector("[data-start-home]");if(!root)return;
+      const q=new URLSearchParams(location.search);
+      const clean=(value,max)=>String(value||"").replace(/[^a-zA-Z0-9_-]/g,"").slice(0,max);
+      const source=clean(q.get("from"),72)||"direct";
+      const planId=clean(q.get("plan"),90);
+      const planName=String(q.get("plan_name")||"").slice(0,80);
+      const networkHint=clean(q.get("net"),8).toLowerCase();
+      function track(event,params){
+        if(typeof window.gtag==="function")window.gtag("event",event,{...params,transport_type:"beacon"});
+      }
+      const selected=root.querySelector("[data-selected-plan]");
+      if(planId&&selected){selected.hidden=false;selected.querySelector("[data-selected-name]").textContent=planName||planId;}
+      root.querySelectorAll(".sh-main-buttons a").forEach(a=>{
+        if(networkHint===a.dataset.network)a.classList.add("is-chosen");
+      });
+      track("start_view",{traffic_source:source,plan_id:planId||"none",network_hint:networkHint||"none"});
+      // Delegated listener also sees dynamic postpaid plan-finder buttons.
+      root.addEventListener("click",function(event){
+        const link=event.target.closest("a[data-outbound]");if(!link||!root.contains(link))return;
+        const network=link.dataset.network||"unknown";
+        const billing=link.dataset.billing||"postpaid";
+        const product=link.dataset.plan||planId||"none";
+        const from=("start_"+billing+"_"+network+"_"+source).slice(0,145);
+        try{const target=new URL(link.href,location.href);target.searchParams.set("from",from);link.href=target.toString()}catch(e){}
+        track("activation_outbound",{
+          traffic_source:source,plan_id:product,network:network,billing_type:billing,
+          button_location:link.dataset.location||"plan_finder"
+        });
+      });
+      const details=root.querySelector("[data-prepaid-details]");
+      if(details)details.addEventListener("toggle",()=>{if(details.open)track("prepaid_alternative_open",{traffic_source:source})});
+    })();
+  </script>
+</BaseLayout>

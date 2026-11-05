@@ -1,0 +1,130 @@
+{
+  "ntelecom": {
+    "label": "앤텔레콤",
+    "group": "provider"
+  },
+  "k-network": {
+    "label": "K망",
+    "group": "network"
+  },
+  "l-network": {
+    "label": "L망",
+    "group": "network"
+  },
+  "kt": {
+    "label": "KT망",
+    "group": "network-op"
+  },
+  "lg": {
+    "label": "LG망",
+    "group": "network-op"
+  },
+  "7gb": {
+    "label": "7GB",
+    "group": "data"
+  },
+  "10gb": {
+    "label": "10GB",
+    "group": "data"
+  },
+  "11gb": {
+    "label": "11GB+일2GB",
+    "group": "data"
+  },
+  "15gb": {
+    "label": "15GB",
+    "group": "data"
+  },
+  "100gb": {
+    "label": "100GB",
+    "group": "data"
+  },
+  "5gb": {
+    "label": "매일 5GB",
+    "group": "data"
+  },
+  "1mbps": {
+    "label": "1Mbps",
+    "group": "speed"
+  },
+  "3mbps": {
+    "label": "3Mbps",
+    "group": "speed"
+  },
+  "5mbps": {
+    "label": "5Mbps",
+    "group": "speed"
+  },
+  "under-20000": {
+    "label": "2만원 이하",
+    "group": "price"
+  },
+  "under-30000": {
+    "label": "3만원 이하",
+    "group": "price"
+  },
+  "under-40000": {
+    "label": "4만원 이하",
+    "group": "price"
+  },
+  "10000-range": {
+    "label": "1만원대",
+    "group": "price"
+  },
+  "20000-range": {
+    "label": "2만원대",
+    "group": "price"
+  },
+  "30000-range": {
+    "label": "3만원대",
+    "group": "price"
+  },
+  "40000-range": {
+    "label": "4만원대",
+    "group": "price"
+  },
+  "new-number": {
+    "label": "신규가입",
+    "group": "join"
+  },
+  "number-transfer": {
+    "label": "번호이동",
+    "group": "join"
+  },
+  "no-contract": {
+    "label": "무약정",
+    "group": "contract"
+  },
+  "self-phone": {
+    "label": "자급제",
+    "group": "device"
+  },
+  "coupang": {
+    "label": "쿠팡캐쉬",
+    "group": "benefit"
+  },
+  "naverpay": {
+    "label": "네이버페이",
+    "group": "benefit"
+  },
+  "daiso": {
+    "label": "다이소",
+    "group": "benefit"
+  },
+  "content-benefit": {
+    "label": "밀리의서재",
+    "group": "benefit"
+  },
+  "oliveyoung": {
+    "label": "올리브영",
+    "group": "benefit"
+  },
+  "cu": {
+    "label": "CU",
+    "group": "benefit"
+  },
+  "lte": {
+    "label": "LTE",
+    "group": "network-type"
+  }
+}
