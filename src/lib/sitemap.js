@@ -1,4 +1,6 @@
-import pages from "../data/generated-pages.json";
+import existingPages from "../data/generated-pages.json";
+import guides from "../data/a-postpaid-landings.json";
+const pages=[...existingPages,...guides,{path:"/guides/",effectiveIndex:"index"}];
 import { siteConfig as site, toSiteUrl } from "./site-config.js";
 
 const priorityOf=page=>page.pageType==="home" ? "1.0" : ({P0:"0.9",P1:"0.7",P2:"0.5"}[page.priority] || "0.5");

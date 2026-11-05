@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import guides from '../../data/a-postpaid-landings.json';
+import {toPublicPath} from '../../lib/site-config.js';
+---
+<BaseLayout title="앤텔레콤 알뜰폰 가이드｜요금제·유심·가입 안내" description="앤텔레콤 후불 알뜰폰 요금제 비교, KT·LG 유심 준비, 신규가입과 번호이동, 제휴 혜택과 카드 할인 안내를 확인하세요." pagePath="/guides/">
+<section class="section"><div class="wrap"><p class="eyebrow">앤텔레콤 알뜰폰</p><h1>가입 전 필요한 안내를 확인하세요</h1><p class="section-lead">요금제 선택부터 유심 준비, 온라인 가입 신청까지.</p><div class="link-list">{guides.map(p=><a href={toPublicPath(p.path)}><span>{p.title}</span><span>›</span></a>)}</div></div></section>
+</BaseLayout>
