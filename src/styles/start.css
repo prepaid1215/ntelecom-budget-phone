@@ -160,8 +160,7 @@ body:has([data-start-home]) .bottom{display:none}
 .sh-side-action{display:block;text-align:center;height:50px;line-height:50px;margin:10px 10px 0;border-radius:15px;background:#6484dd;color:#fff;font-weight:600;font-size:14px}
 .sh-side-toggle{position:absolute;right:209px;top:50%;transform:translateY(-50%);width:36px;height:110px;padding:0;background:#fff;border:0;border-radius:16px 0 0 16px;cursor:pointer}
 .sh-side-toggle img{width:36px;height:110px;display:block}
-.sh-side-collapsed{margin-right:0}.sh-side-collapsed .sh-aside{transform:translateX(100%)}
-body:has(.sh-side-collapsed) .header,body:has(.sh-side-collapsed) .site-footer{margin-right:0}
+.sh-side-collapsed .sh-aside{transform:translateX(100%)}
 .sh-side-mobile,.sh-side-backdrop{display:none}
 @media(max-width:820px){
  body:has([data-start-home]){padding-bottom:calc(80px + env(safe-area-inset-bottom))}
