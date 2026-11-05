@@ -1,16 +1,16 @@
 ---
 import {toPublicPath,activationLink} from '../lib/site-config.js';
-const {pagePath="/start/"}=Astro.props;
+const {pagePath="/start/",ctaSource=""}=Astro.props;
 const atStart=pagePath==="/start/";
 const anchor=id=>atStart?"#"+id:toPublicPath("/start/")+"#"+id;
-const begin=atStart?"#start-choices":activationLink("header");
+const begin=atStart?"#start-choices":activationLink(ctaSource||"header");
 const planList=atStart?"#postpaid-plans":toPublicPath("/plans/");
 const menus=[
  {label:'앤텔레콤 KT',items:[['요금제',toPublicPath('/plans/k/')],['유심구매',anchor('start-usim')],['KT 개통하기',anchor('start-choices')]]},
  {label:'앤텔레콤 LG',items:[['요금제',toPublicPath('/plans/l/')],['유심구매',anchor('start-usim')],['LG 개통하기',anchor('start-choices')]]},
  {label:'제휴혜택',items:[['제휴 혜택',toPublicPath('/benefits/')],['제휴카드 할인',toPublicPath('/card/')]]},
  {label:'이용안내',items:[['자주하는 질문',anchor('start-faq')],['유심 준비',anchor('start-usim')]]},
- {label:'개통안내',items:[['개통안내',toPublicPath('/guide/')],['셀프개통 순서',anchor('start-steps')]]}
+ {label:'개통안내',items:[['알뜰폰 가이드',toPublicPath('/guides/')],['개통안내',toPublicPath('/guide/')],['셀프개통 순서',anchor('start-steps')]]}
 ];
 ---
 <header class="header start-header">

@@ -5,4 +5,4 @@ const siteUrl = process.env.SITE_URL?.trim() || site.siteUrl;
 const baseValue = String(process.env.BASE_PATH || '/').trim().replace(/^\/+|\/+$/g, '');
 const base = baseValue ? '/'+baseValue : '/';
 
-export default defineConfig({ site: siteUrl, base, output: 'static' });
+export default defineConfig({ site: siteUrl, base, output: 'static', vite: {server: {allowedHosts: ['terminal.local']}}  });

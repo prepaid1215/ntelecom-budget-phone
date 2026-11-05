@@ -11,7 +11,7 @@ const isGuide=page.path==="/guide/";
 const isTransfer=page.path==="/number-transfer/";
 const isHub=page.pageType.endsWith("hub");
 const cardMaxOff=n=>Math.max(0,...(model.cards||[]).filter(c=>(c.eligible_networks||[]).includes(n)).flatMap(c=>c.discount_tiers.map(t=>t.monthly_discount)));
-const price=isGuide ? null : one?.monthly_price ?? (isCardHub && matched.length ? Math.min(...matched.map(p=>Math.max(0,p.monthly_price-cardMaxOff(p.network)))) : matched.length ? Math.min(...matched.map(p=>p.monthly_price)) : null);
+const price=isGuide || isCardHub ? null : one?.monthly_price ?? (isCardHub && matched.length ? Math.min(...matched.map(p=>Math.max(0,p.monthly_price-cardMaxOff(p.network)))) : matched.length ? Math.min(...matched.map(p=>p.monthly_price)) : null);
 const lines = isHome
  ? ["약정 없이,","번호는 그대로","월 "+(price ?? 0).toLocaleString("ko-KR")+"원부터"]
  : isPlanHub
@@ -19,7 +19,7 @@ const lines = isHome
    : isTransfer
      ? ["번호는 그대로,","통신사만 바꾸세요"]
      : isGuide
-     ? ["앤텔레콤 개통","준비물 2개면 끝"]
+     ? ["앤텔레콤 개통","유심 준비부터 신청까지"]
      : isCardHub
      ? ["통신비, 카드로","월 최대 "+Math.max(...(model.cards||[]).map(c=>c.max_monthly_discount||0)).toLocaleString("ko-KR")+"원 할인"]
      : isBenefitHub
@@ -30,7 +30,7 @@ const description=isHome
  : isTransfer
    ? "쓰던 번호 그대로 앤텔레콤 K망 요금제 "+matched.length+"개 중에서 고를 수 있어요. 연체 중이거나 최근 3개월 안에 번호이동을 했다면 제한돼요."
    : isGuide
-   ? "편의점 유심과 간편인증서만 있으면 바로 신청할 수 있어요. 신청하면 개통돼서 유심을 꽂고 바로 쓸 수 있어요."
+   ? "유심, 본인 명의 인증수단과 요금 납부정보를 준비해 신청합니다. 개통 완료 안내를 받은 뒤 유심을 장착해 이용합니다."
    : isCardHub
    ? "K망은 BC 바로카드, L망은 삼성카드. 전월 30만원만 써도 월 7,000원이 빠져요."
    : isBenefitHub
@@ -50,7 +50,7 @@ const secondaryLabel=isTransfer ? "요금제 보기" : isGuide ? "요금제 먼�
     <h1>{lines[0]}{lines[1] && <><br />{isHome ? lines[1] : <em>{lines[1]}</em>}</>}{lines[2] && <><br /><em>{lines[2]}</em></>}</h1>
     <p>{description}</p>
     {price && <div class="hero-price"><strong>{price.toLocaleString("ko-KR")}원~</strong><span>{priceLabel}</span></div>}
-    <div class="hero-actions"><a class="btn-primary" href={activationLink("hero")}>바로 개통하기</a><a class="btn-secondary" href={secondaryHref}>{secondaryLabel}</a></div>
+    <div class="hero-actions"><a class="btn-primary" href={activationLink("hero")}>개통 안내 보기</a><a class="btn-secondary" href={secondaryHref}>{secondaryLabel}</a></div>
   </div>
   <div class="hero-visual">
     <img class="hero-art" src={toPublicPath("/images/hero-mobile.webp")} width="1000" height="750" alt="스마트폰, 유심, 요금제와 혜택을 표현한 일러스트" decoding="async" fetchpriority={isHome ? "high" : "auto"} />

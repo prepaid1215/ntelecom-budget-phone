@@ -7,6 +7,21 @@ on:
     paths:
       - "src/pages/start/**"
       - "src/lib/site-config.js"
+      - "src/lib/guide-journey.js"
+      - "src/pages/guides/**"
+      - "src/pages/*.astro"
+      - "src/components/GuideDecisionPanel.astro"
+      - "src/components/StartSidebar.astro"
+      - "src/components/PostpaidLanding.astro"
+      - "src/components/SignupWalkthrough.astro"
+      - "src/components/UsimPurchaseHelp.astro"
+      - "src/components/ActivationNext.astro"
+      - "src/components/ListingPage.astro"
+      - "src/components/ContentBlocks.astro"
+      - "src/lib/page-model.js"
+      - "src/data/a-postpaid-landings.json"
+      - "scripts/test-guide-journey.mjs"
+      - "scripts/seo-audit.mjs"
       - "src/layouts/BaseLayout.astro"
       - "src/components/HomePlanFinder.astro"
       - "src/components/PlanCard.astro"
@@ -32,5 +47,7 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: node --test scripts/test-guide-journey.mjs
       - run: pnpm run build
       - run: node scripts/test-start-funnel.mjs
+      - run: node scripts/seo-audit.mjs

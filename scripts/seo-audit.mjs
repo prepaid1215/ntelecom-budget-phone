@@ -1,7 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import rawSite from "../src/data/site.json" with { type: "json" };
-import pages from "../src/data/generated-pages.json" with { type: "json" };
+import generatedPages from "../src/data/generated-pages.json" with { type: "json" };
+import guides from "../src/data/a-postpaid-landings.json" with { type: "json" };
+const pages=[...generatedPages,...guides,{path:"/guides/",effectiveIndex:"index"},{path:"/start/",effectiveIndex:"noindex"}];
 
 const root=path.resolve("dist");
 const productionReady=process.env.PRODUCTION_READY==="true" ? true : process.env.PRODUCTION_READY==="false" ? false : rawSite.productionReady;

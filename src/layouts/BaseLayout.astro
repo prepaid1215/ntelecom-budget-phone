@@ -8,6 +8,7 @@ import pagesData from "../data/generated-pages.json";
 import { siteConfig as site, activationLink, toPublicPath, toSiteUrl } from "../lib/site-config.js";
 const {
   title,
+  ctaSource="",
   description=site.defaultDescription,
   index="index",
   faqs=[],
@@ -34,6 +35,8 @@ for(let i=1;i<=segments.length;i++){
   const hit=pageByPath.get(path);
   if(hit) trail.push({name:hit.keyword,path});
 }
+if(ctaSource.startsWith("exp_a_")) trail.push({name:"알뜰폰 가이드",path:"/guides/"},{name:title.split("｜")[0],path:pagePath});
+if(pagePath==="/guides/") trail.push({name:"알뜰폰 가이드",path:pagePath});
 const crumbs=[{name:site.brandName,path:"/"},...trail.filter(c=>c.path!=="/")];
 const schemas={
   "@context":"https://schema.org",
@@ -115,12 +118,12 @@ if(faqs.length) schemas["@graph"].push({
 <meta name="twitter:image" content={socialImage} />
 <script type="application/ld+json" set:html={JSON.stringify(schemas)}></script>
 </head>
-<body data-site-shell>
-<StartHeader pagePath={pagePath}/>
-<main>
+<body data-site-shell data-guide-source={ctaSource} data-site-base={site.basePath}>
+<StartHeader pagePath={pagePath} ctaSource={ctaSource}/>
+<main data-catalog-page={!ctaSource && pagePath!=="/start/" ? "true" : undefined}>
   <slot />
 </main>
-<StartSidebar featured={sidebarPlans} targets={sidebarTargets} pagePath={pagePath}/>
+<StartSidebar featured={sidebarPlans} targets={sidebarTargets} pagePath={pagePath} ctaSource={ctaSource}/>
 <footer class="site-footer"><div class="wrap">
   <p><strong>{pagePath==="/start/" ? site.business.operator : site.business.name}</strong> · 앤텔레콤 계약 판매점</p>
   <p>{site.business.address} · 사업자등록번호 {site.business.bizNo} · 통신판매신고 {site.business.mailOrderNo}</p>
@@ -128,7 +131,7 @@ if(faqs.length) schemas["@graph"].push({
 </div></footer>
 <div class="bottom"><div class="bottom-inner">
   <button class="bottom-save" type="button" data-save-page>저장</button>
-  <a class="bottom-go" href={pagePath==="/start/" ? "#start-choices" : activationLink("bottom")}>{pagePath==="/start/" ? "통신망 선택하기" : "바로 개통하기"}</a>
+  <a class="bottom-go" href={pagePath==="/start/" ? "#start-choices" : activationLink(ctaSource||"bottom")}>{pagePath==="/start/" ? "통신망 선택하기" : "바로 개통하기"}</a>
 </div></div>
 <script is:inline>
   document.addEventListener("click",function(e){
@@ -140,5 +143,9 @@ if(faqs.length) schemas["@graph"].push({
     }catch(err){}
     el.textContent="저장됨";
   });
+</script>
+<script>
+  import {installGuideJourney} from "../lib/guide-journey.js";
+  installGuideJourney();
 </script>
 </body></html>
