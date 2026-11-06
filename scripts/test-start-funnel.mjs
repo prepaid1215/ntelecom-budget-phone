@@ -66,7 +66,10 @@ assert.match(finderSource,/grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/,"D
 assert.match(finderSource,/grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/,"Tablet filter layout missing");
 assert.match(finderSource,/grid-template-columns:minmax\(0,1fr\)/,"Mobile single-column filter layout missing");
 const startCss=fs.readFileSync("src/styles/start.css","utf8");
-assert.match(startCss,/padding-right:210px/,"Stable desktop content rail must reserve sidebar width");
+assert.match(startCss,/The closed sidebar is the reference layout/,"Closed sidebar must define full-width baseline");
+assert.match(startCss,/\.sh-main\{[\s\S]*?width:100%;[\s\S]*?padding-right:0;/,"Main must keep the full available width");
+assert.doesNotMatch(startCss,/padding-right:210px/,"Main must not reserve 210px for open sidebar");
+assert.match(startCss,/\.sh-main \.pf\.pf-home\{[\s\S]*?margin-right:0/,"Home filter must remain fixed while sidebar toggles");
 assert.doesNotMatch(finderSource,/not\(\.sh-side-collapsed\)[^\n]*margin-right:210px/,"Filter must not move when sidebar toggles");
 assert.match(finderSource,/HomeFilterIcon/,"Homepage must use unified filter icon set");
 assert.match(home,/images\/usim\/baro-usim\.webp/,"KT SIM product photo missing on homepage");
