@@ -83,6 +83,20 @@ assert.equal((home.match(/<article class="pf-card"/g)||[]).length,4,"Four initia
 assert.doesNotMatch(home,/<details id="postpaid-plans"/,"Homepage filter must not be hidden by a disclosure");
 assert.match(home,/id="postpaid-plans"/);
 assert.match(home,/id="start-usim"/);
+assert.match(home,/data-guide-carousel/,"Home should contain the photo carousel");
+assert.match(start,/data-guide-carousel/,"Start page should contain the photo carousel");
+for(let i=0;i<6;i++){
+  const name="images/guide/step-"+String(i).padStart(2,"0")+".jpg";
+  const file=path.join(root,name);
+  assert.ok(fs.existsSync(file),"Missing guide image "+name);
+  assert.ok(fs.readFileSync(file).subarray(0,3).equals(Buffer.from([0xff,0xd8,0xff])),"Invalid JPEG "+name);
+  assert.ok(home.includes(name),"Guide photo not present on home: "+name);
+}
+assert.equal((home.match(/class="go-guide-slide/g)||[]).length,7,"Photo carousel should have six pictures and one CTA");
+assert.match(start,/data-location="guide_carousel_last"/,"Last slide CTA missing");
+assert.match(start,/https:\/\/www\.n-telecom\.co\.kr\/ntgo\/view\/open\/kt\/face_auth\.aspx/,"KT carousel must point to NTGO");
+assert.match(start,/https:\/\/www\.n-telecom\.co\.kr\/ntgo\/view\/open\/lg\/face_auth\.aspx/,"LG carousel must point to NTGO");
+
 assert.match(home,/id="start-faq"/);
 console.log("PASS: existing 500 pages, branded postpaid /start home, two CTA routes, noindex, catalog, USIM, benefits, FAQ and event tracking.");
 
