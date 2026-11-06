@@ -4,7 +4,7 @@ const {featured,targets,pagePath="/start/",ctaSource=null}=Astro.props;
 const atStart=pagePath==="/start/";
 const anchor=id=>atStart?"#"+id:toPublicPath("/start/")+"#"+id;
 const begin=atStart?"#start-choices":activationLink(ctaSource||"sidebar");
-const planList=atStart?"#postpaid-plans":toPublicPath("/plans/");
+const planList=atStart||pagePath==="/"? "#postpaid-plans":toPublicPath("/plans/");
 const won=n=>n.toLocaleString("ko-KR")+"원";
 ---
 <nav class="sh-side-mobile" aria-label="모바일 빠른 메뉴"><a href={begin}>개통하기</a><a href={planList}>맞춤요금제</a><button type="button" data-side-open aria-controls="start-sidebar" aria-expanded="false">추천<br/>요금제</button><a href={anchor("start-faq")}>자주묻는질문</a><a href={anchor("start-steps")}>개통 가이드</a></nav>
