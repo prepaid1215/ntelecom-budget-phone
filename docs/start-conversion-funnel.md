@@ -10,7 +10,7 @@
 1. `앤텔레콤개통방법.shop`에서 개통하기 클릭 → `/start/?from=antelcom_hero` 등으로 이동.
 2. 요금제를 먼저 고른 경우 `plan`, `net`, `plan_name`도 전달해 선택 내용을 보여줍니다.
 3. `/start/` 상단 **KT 개통하기 / LG 개통하기**, 추천 후불 상품의 개통 버튼 또는 후불 47개 비교기의 **신청하기**를 누르면 실제 온라인 신청 주소로 이동합니다.
-4. 후불 버튼의 목적지는 `START_KT_URL`, `START_LG_URL`로 각각 설정합니다. 미설정이면 기존 `ACTIVATION_URL`(현재 `preplan.site`)로 임시 이동하여 브랜드 분리가 완성되지 않습니다. **운영 전 검증된, 해당 판매점의 실개통 직행 URL로 교체해야 합니다.** 승인/태블릿번호를 요구하는 멤버십 앱 페이지로 연결하지 않습니다.
+4. 후불 버튼의 목적지는 `START_KT_URL`, `START_LG_URL`로 각각 설정합니다. 미설정이거나 다른 판매점 주소라면 `https://www.n-telecom.co.kr/ntgo/view/open/kt/face_auth.aspx` 또는 `https://www.n-telecom.co.kr/ntgo/view/open/lg/face_auth.aspx`로 이동합니다. **운영 전에 실제 모바일 브라우저로 직접 진입 테스트를 반드시 실시해야 합니다.** 승인/태블릿번호를 요구하는 멤버십 앱 페이지로 연결하지 않습니다.
 5. 선불 대안은 `START_PREPAID_KT_URL`, `START_PREPAID_LG_URL`로 후불과 별도로 연결할 수 있습니다. 기본은 현재 `ACTIVATION_URL`입니다.
 
 ## 전환 측정
@@ -62,3 +62,9 @@
 - 공통 사이드바를 /start 이벤트 리스너 범위에 포함해 최종 외부 클릭 추적을 유지합니다.
 - 로컬 빌드 비교: 기존 500개 페이지 모두 main 본문 SHA-256 및 title/description/canonical/robots 변경 0개. 공통 헤더/사이드바 변경으로 전체 HTML 바이트는 의도적으로 달라집니다.
 - 운영 배포 없이 PR #4 미리보기에서 검수합니다.
+
+
+## 2026-11-06 KT 버튼 연결 오류 수정
+- 기존 미설정 fallback `preplan.site`를 제거하고 `www.n-telecom.co.kr/ntgo/`의 KT/LG 직접 신청 경로를 코드 기본값으로 설정했습니다.
+- `/start/` 상단·추천 요금제·비교기·사이드바에 동일하게 적용합니다. 외부 링크에는 임의의 `from` 쿼리 파라미터를 추가하지 않습니다.
+- 기존 Cloudflare Pages Preview 재빌드 및 실기기 KT/LG 클릭 확인 전에는 프로덕션 병합 금지. 외부 사이트를 이 환경에서 직접 열 수 없어, 고객 화면에서의 최종 신청 완료 여부는 미검증입니다.
