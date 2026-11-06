@@ -6,6 +6,6 @@ import { buildModel } from "../lib/page-model.js";
 const page=pages.find(p=>p.path==="/");
 const model=buildModel(page);
 ---
-<BaseLayout title={model.seoTitle} description={model.meta} index="index" faqs={model.faqs} pagePath="/">
+<BaseLayout title={model.seoTitle} description={model.meta} index="index" faqs={model.faqs} pagePath="/" ogTitle="앤텔레콤 개통방법 | 요금제부터 셀프개통까지" ogDescription="선불폰·후불 알뜰폰, KT·LG 유심과 요금제를 비교하고 온라인 개통방법을 확인하세요.">
   <PageFactory model={model}/>
 </BaseLayout>

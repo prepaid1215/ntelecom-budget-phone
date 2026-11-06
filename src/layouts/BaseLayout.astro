@@ -8,7 +8,9 @@ const {
   index="index",
   faqs=[],
   pagePath=Astro.url.pathname,
-  image="/images/hero-mobile.webp"
+  image="/images/og/antelcom-og-main-v1.jpg",
+  ogTitle=title,
+  ogDescription=description
 } = Astro.props;
 const fullTitle = title;
 const canonical = toSiteUrl(pagePath);
@@ -88,17 +90,19 @@ if(faqs.length) schemas["@graph"].push({
 <link rel="icon" type="image/svg+xml" href={toPublicPath("/favicon.svg")} />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="ko_KR" />
-<meta property="og:site_name" content={site.brandName} />
-<meta property="og:title" content={fullTitle} />
-<meta property="og:description" content={description} />
+<meta property="og:site_name" content="앤텔레콤 개통방법" />
+<meta property="og:title" content={ogTitle} />
+<meta property="og:description" content={ogDescription} />
 <meta property="og:url" content={canonical} />
 <meta property="og:image" content={socialImage} />
-<meta property="og:image:width" content="1000" />
-<meta property="og:image:height" content="750" />
-<meta property="og:image:alt" content="앤텔레콤 알뜰폰 요금제와 혜택 안내" />
+<meta property="og:image:secure_url" content={socialImage} />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="앤텔레콤 개통방법, KT·LG 유심과 요금제 비교 및 온라인 신청 안내" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content={fullTitle} />
-<meta name="twitter:description" content={description} />
+<meta name="twitter:title" content={ogTitle} />
+<meta name="twitter:description" content={ogDescription} />
 <meta name="twitter:image" content={socialImage} />
 <script type="application/ld+json" set:html={JSON.stringify(schemas)}></script>
 </head>
