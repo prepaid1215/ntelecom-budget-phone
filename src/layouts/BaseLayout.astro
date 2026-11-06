@@ -6,6 +6,7 @@ import {buildModel} from "../lib/page-model.js";
 import StartHeader from "../components/StartHeader.astro";
 import pagesData from "../data/generated-pages.json";
 import { siteConfig as site, activationLink, toPublicPath, toSiteUrl } from "../lib/site-config.js";
+import { MIRROR_KT_URL, MIRROR_LG_URL, ntgoDestination } from "../lib/ntgo-targets.js";
 const {
   title,
   description=site.defaultDescription,
@@ -17,8 +18,10 @@ const {
 const homeModel=buildModel(pagesData.find(p=>p.path==="/"));
 const choose=(net,gb)=>homeModel.matched.filter(p=>p.network===net&&p.data_gb===gb).sort((a,b)=>a.monthly_price-b.monthly_price)[0];
 const sidebarPlans=[choose("L",7),choose("K",7),choose("K",15)].filter(Boolean);
-const outboundBase=site.activationUrl||"https://preplan.site/";
-const sidebarTargets={K:process.env.START_KT_URL?.trim()||outboundBase,L:process.env.START_LG_URL?.trim()||outboundBase};
+const sidebarTargets={
+  K:ntgoDestination(process.env.START_KT_URL,MIRROR_KT_URL),
+  L:ntgoDestination(process.env.START_LG_URL,MIRROR_LG_URL)
+};
 const fullTitle = title;
 const canonical = toSiteUrl(pagePath);
 const socialImage = toSiteUrl(image);
