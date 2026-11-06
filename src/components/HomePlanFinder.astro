@@ -3,6 +3,7 @@ import { toPublicPath, activationLink } from "../lib/site-config.js";
 import PlanFinderIcon from "./PlanFinderIcon.astro";
 
 const { model, mode="default", outboundLinks=null }=Astro.props;
+const homeMode=mode==="home";
 const plans=[...model.matched];
 const shortId=p=>p.id.replace("ntelecom-k-","").replace("ntelecom-l-","");
 const planPath=p=>toPublicPath("/plans/"+p.network.toLowerCase()+"/item/"+shortId(p)+"/");
@@ -64,9 +65,37 @@ const finderPlans=plans.map(p=>{
 });
 const applyUrl=activationLink("home");
 const startOutbound=mode==="start" ? outboundLinks : null;
+const pick=(net,gb)=>plans.filter(p=>p.network===net&&p.data_gb===gb).sort((a,b)=>a.monthly_price-b.monthly_price)[0];
+const featuredIds=[pick("L",7),pick("K",7),pick("K",15),pick("L",15)].filter(Boolean).map(p=>p.id);
+const featuredPlans=featuredIds.map(id=>finderPlans.find(p=>p.id===id)).filter(Boolean);
+const homeFilters=[
+ {group:"price",label:"월 요금",options:[["all","전체","all"],["under20","2만원 이하","under20"],["under30","2~3만원","data15"],["over30","3만원 초과","data100"]]},
+ {group:"data",label:"데이터 사용량",options:[["all","전체","all"],["light","가볍게","data7"],["medium","보통","data15"],["heavy","많이","data100"]]},
+ {group:"net",label:"통신망",options:[["all","전체","all"],["k","KT망","k"],["l","LG U+망","l"]]}
+];
 ---
 
-<section class="pf" data-plan-finder>
+<section class:list={["pf",{"pf-home":homeMode}]} data-plan-finder>
+  {homeMode ? (
+  <div class="pf-top">
+    <div class="wrap">
+      <div class="pf-head">
+        <div><span>맞춤요금제</span><h2>나에게 맞는 알뜰폰 요금제 찾기</h2><p>월 요금·데이터·통신망을 고르면 아래 추천 카드가 바로 바뀝니다.</p></div>
+        <a href={toPublicPath("/guide/")}>개통 방법 보기 <b>›</b></a>
+      </div>
+      <div class="pf-home-filter-groups">
+        {homeFilters.map(filter=><fieldset class="pf-home-group">
+          <legend class="pf-row-label">{filter.label}</legend>
+          <div class="pf-scroll pf-home-options" role="group" aria-label={filter.label+" 선택"}>
+            {filter.options.map(([value,label,icon],i)=><button type="button" class:list={["pf-category",{"is-on":i===0}]} data-home-filter data-group={filter.group} data-value={value} aria-pressed={i===0?"true":"false"}>
+              <span class={"pf-icon pf-icon-"+icon}><PlanFinderIcon name={icon}/></span><strong>{label}</strong>
+            </button>)}
+          </div>
+        </fieldset>)}
+      </div>
+    </div>
+  </div>
+  ) : (
   <div class="pf-top">
     <div class="wrap">
       <div class="pf-head"><div><span>빠른 조건 찾기</span><h2>어떤 요금제를 찾으세요?</h2></div><a href={toPublicPath("/guide/")}>개통 방법 보기 <b>›</b></a></div>
@@ -84,22 +113,31 @@ const startOutbound=mode==="start" ? outboundLinks : null;
       </div>
     </div>
   </div>
+  )}
   <div class="pf-tools">
     <div class="wrap">
       <label class="pf-search"><span aria-hidden="true">⌕</span><input type="search" placeholder="요금제명·혜택 검색 (예: 쿠팡, 15GB)" aria-label="요금제명 또는 혜택 검색" data-finder-search /></label>
       <div class="pf-bar">
         <div class="pf-total"><strong>총 <i data-finder-count>{plans.length}</i>개</strong><span data-finder-label>전체 요금제</span></div>
         <button class="pf-reset" type="button" data-finder-reset hidden>초기화</button>
-        <label class="pf-sort"><span class="sr-only">정렬</span><select data-finder-sort aria-label="정렬"><option value="low">낮은 가격순</option><option value="data">데이터 많은순</option><option value="high">높은 가격순</option><option value="card">카드 할인 적용가순</option></select></label>
+        <label class="pf-sort"><span class="sr-only">정렬</span><select data-finder-sort aria-label="정렬">{homeMode&&<option value="recommended">추천순</option>}<option value="low">낮은 가격순</option><option value="data">데이터 많은순</option><option value="high">높은 가격순</option><option value="card">카드 할인 적용가순</option></select></label>
       </div>
-      <div class="pf-list" data-finder-list aria-live="polite"></div>
+      <div class="pf-list" data-finder-list aria-live="polite">
+          {homeMode&&featuredPlans.map(p=><article class="pf-card">
+            <div class="pf-tags"><span class="pf-tag is-net">{p.net==="K"?"KT망":"LG U+망"}</span><span class="pf-tag">무약정</span></div>
+            <h3>{p.name}</h3>
+            <dl class="pf-spec"><div><dt>데이터</dt><dd>{p.dataText}</dd></div><div><dt>통화</dt><dd>{p.calls}</dd></div><div><dt>문자</dt><dd>{p.sms}</dd></div></dl>
+            <div class="pf-price"><div class="pf-price-main"><small>월 기본료</small><strong>{p.price.toLocaleString("ko-KR")}원</strong></div></div>
+            <div class="pf-actions"><a class="pf-btn" href={p.path}>자세히 보기</a><a class="pf-btn is-primary" href={activationLink("home",{network:p.net,plan:p.id,planName:p.name})}>신청하기</a></div>
+          </article>)}
+        </div>
       <button class="pf-more" type="button" data-finder-more>더보기</button>
       <p class="pf-note">월 기본료는 부가세 포함이며, 카드 최대 할인 시 금액은 전월 실적 최대 구간 기준이에요. 혜택 조건은 가입 시점에 달라질 수 있어요.</p>
     </div>
   </div>
 </section>
 
-<script define:vars={{finderPlans,applyUrl,startOutbound}}>
+<script define:vars={{finderPlans,applyUrl,startOutbound,homeMode,featuredIds}}>
   const root=document.querySelector("[data-plan-finder]");
   if(root){
     const buttons=[...root.querySelectorAll("[data-category]")];
@@ -110,20 +148,40 @@ const startOutbound=mode==="start" ? outboundLinks : null;
     const list=root.querySelector("[data-finder-list]");
     const more=root.querySelector("[data-finder-more]");
     const reset=root.querySelector("[data-finder-reset]");
-    const PAGE=6;
+    const PAGE=homeMode?4:6;
     const tools=root.querySelector(".pf-tools");
     const scrollToResults=()=>{
       const smooth=!window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       tools.scrollIntoView({behavior:smooth?"smooth":"auto",block:"start"});
     };
     let active="all", shown=PAGE;
+    const state={price:"all",data:"all",net:"all"};
+    const homeButtons=[...root.querySelectorAll("[data-home-filter]")];
     const won=n=>Number(n).toLocaleString("ko-KR")+"원";
     const el=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;};
     const matches=()=>{
       const q=(search.value||"").trim().toLowerCase();
-      const mode=sort.value;
-      const out=finderPlans.filter(p=>(active==="all"||p.groups.includes(active))&&(!q||(p.name+" "+p.benefit+" "+p.dataText).toLowerCase().includes(q)));
-      out.sort((a,b)=>mode==="high" ? b.price-a.price : mode==="data" ? b.data-a.data||a.price-b.price : mode==="card" ? a.cardPrice-b.cardPrice||a.price-b.price : a.price-b.price);
+      const order=sort.value;
+      const out=finderPlans.filter(p=>{
+        if(q&&!(p.name+" "+p.benefit+" "+p.dataText+" "+p.extra).toLowerCase().includes(q))return false;
+        if(!homeMode)return active==="all"||p.groups.includes(active);
+        if(state.net!=="all"&&p.net.toLowerCase()!==state.net)return false;
+        if(state.price==="under20"&&p.price>20000)return false;
+        if(state.price==="under30"&&(p.price<=20000||p.price>30000))return false;
+        if(state.price==="over30"&&p.price<=30000)return false;
+        if(state.data!=="all"){
+          const bucket=p.data<=7?"light":p.data<=20?"medium":"heavy";
+          if(bucket!==state.data)return false;
+        }
+        return true;
+      });
+      const priority=id=>{const idx=featuredIds.indexOf(id);return idx<0?1000:idx;};
+      out.sort((a,b)=>order==="recommended"
+         ? priority(a.id)-priority(b.id)||a.price-b.price
+         : order==="high" ? b.price-a.price
+         : order==="data" ? b.data-a.data||a.price-b.price
+         : order==="card" ? a.cardPrice-b.cardPrice||a.price-b.price
+         : a.price-b.price);
       return out;
     };
     const row=(k,v)=>{const d=el("div");d.append(el("dt",null,k),el("dd",null,v));return d;};
@@ -171,8 +229,8 @@ const startOutbound=mode==="start" ? outboundLinks : null;
       const q=(search.value||"").trim();
       const activeLabel=buttons.find(b=>b.dataset.category===active)?.dataset.label||"전체 요금제";
       countEl.textContent=String(all.length);
-      labelEl.textContent=q ? "‘"+q+"’ 검색 결과" : (active==="all" ? "전체 요금제" : activeLabel);
-      reset.hidden=!(q||active!=="all");
+      labelEl.textContent=q ? "‘"+q+"’ 검색 결과" : homeMode ? (Object.values(state).some(v=>v!=="all")?"선택한 조건의 요금제":"추천 요금제") : (active==="all"?"전체 요금제":activeLabel);
+      reset.hidden=homeMode ? !(q||Object.values(state).some(v=>v!=="all")||sort.value!=="recommended") : !(q||active!=="all");
       list.replaceChildren();
       if(!all.length){list.appendChild(el("div","pf-empty","조건에 맞는 요금제가 없어요. 조건을 바꿔 보세요."));more.hidden=true;return;}
       all.slice(0,shown).forEach(p=>list.appendChild(card(p)));
@@ -187,11 +245,21 @@ const startOutbound=mode==="start" ? outboundLinks : null;
       render();
       scrollToResults();
     }));
+    homeButtons.forEach(button=>button.addEventListener("click",()=>{
+      const {group,value}=button.dataset;
+      state[group]=value;shown=PAGE;
+      homeButtons.filter(b=>b.dataset.group===group).forEach(b=>{
+        const on=b===button;b.classList.toggle("is-on",on);b.setAttribute("aria-pressed",String(on));
+      });
+      render();
+    }));
     search.addEventListener("input",()=>{shown=PAGE;render();});
     sort.addEventListener("change",()=>{shown=PAGE;render();});
     more.addEventListener("click",()=>{shown+=PAGE;render();});
     reset.addEventListener("click",()=>{
-      active="all";shown=PAGE;search.value="";sort.value="low";
+      active="all";shown=PAGE;search.value="";sort.value=homeMode?"recommended":"low";
+      Object.keys(state).forEach(k=>state[k]="all");
+      homeButtons.forEach(b=>{const on=b.dataset.value==="all";b.classList.toggle("is-on",on);b.setAttribute("aria-pressed",String(on));});
       buttons.forEach((item,i)=>{item.classList.toggle("is-on",i===0);item.setAttribute("aria-pressed",String(i===0));});
       render();
     });
@@ -255,4 +323,29 @@ const startOutbound=mode==="start" ? outboundLinks : null;
   .pf-card .pf-price-main small,.pf-card .pf-price-card small{font-weight:400}
   .pf-card .pf-benefit{font-weight:400}
   .pf-card .pf-btn{font-weight:600}.pf-card .pf-btn.is-primary{font-weight:800}
+
+  /* Unified homepage filter: reuses established .pf-category, .pf-icon, .pf-card styles. */
+  .pf-home .pf-top{padding:42px 0 25px;background:#fff}
+  .pf-home .pf-head p{color:#625d68;font-size:14px;line-height:1.65;margin:8px 0 0}
+  .pf-home-filter-groups{display:grid;gap:16px;margin-top:23px}
+  .pf-home-group{border:0;margin:0;padding:0;min-width:0}
+  .pf-home .pf-row-label{font-size:15px;font-weight:850;color:#39333d;margin:4px 0 0}
+  .pf-home .pf-scroll{display:flex;flex-wrap:wrap;overflow:visible;gap:14px;margin:10px 0 0;padding:0}
+  .pf-home .pf-category{flex:0 0 90px}
+  .pf-home .pf-icon{height:62px;width:62px;margin:0 auto 8px}
+  .pf-home .pf-category strong{font-size:12px;white-space:normal;line-height:1.4}
+  .pf-home .pf-category.is-on .pf-icon{border:4px solid var(--violet,#7258e9);box-shadow:0 5px 12px #7258e933}
+  .pf-home .pf-tools{background:#fff7fb;padding:28px 0 34px;border-color:#f3e3ed}
+  .pf-home .pf-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+  .pf-home .pf-card{min-width:0;border-radius:20px;padding:17px 13px;gap:9px}
+  .pf-home .pf-card h3{font-size:17px;overflow-wrap:anywhere}
+  .pf-home .pf-tag{font-size:10px;padding:4px 7px}
+  .pf-home .pf-spec>div{grid-template-columns:43px minmax(0,1fr);gap:6px;font-size:12px}
+  .pf-home .pf-price-main strong{font-size:22px}
+  .pf-home .pf-price-card b{font-size:17px}
+  .pf-home .pf-price-card small,.pf-home .pf-price-main small{font-size:10px}
+  .pf-home .pf-btn{font-size:12px;min-height:42px}
+  .pf-home .pf-actions{gap:6px}
+  @media(max-width:1230px){.pf-home .pf-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:700px){.pf-home .pf-list{grid-template-columns:minmax(0,1fr)}.pf-home .pf-category{flex-basis:76px}.pf-home .pf-icon{width:54px;height:54px}.pf-home .pf-top{padding:30px 0 24px}.pf-home .pf-card{padding:17px}}
 </style>

@@ -294,3 +294,54 @@ body[data-site-shell]{--brand:#ff438b;--brand-deep:#e92d76;--brand-soft:#fff1f6;
  .sh-plan-details>summary strong{font-size:17px}
  .sh-plan-details>summary small{font-size:12px}
 }
+
+/* Brand system, definitive: primary pink #FF438B, supporting purple #7258E9. */
+body[data-site-shell]{
+  --brand:#FF438B;
+  --brand-deep:#E92D76;
+  --brand-soft:#FFF1F6;
+  --violet:#7258E9;
+}
+body[data-site-shell] .sh-kt{
+  background:#FF438B;
+  background-image:none;
+  box-shadow:0 7px 18px rgba(255,67,139,.20);
+}
+body[data-site-shell] .sh-lg{
+  background:#7258E9;
+  background-image:none;
+  box-shadow:0 7px 18px rgba(114,88,233,.20);
+}
+body[data-site-shell] .sh-hero h1 em,
+body[data-site-shell] .sh-hero.sh-hero-home h1 em{color:var(--violet)}
+body[data-site-shell] .sh-home-primary,
+body[data-site-shell] .sh-plan>a,
+body[data-site-shell] .sh-step-buttons a:first-child,
+body[data-site-shell] .start-header-actions a:nth-child(2){
+  background:var(--brand);
+  background-image:none;
+  color:#fff;
+}
+body[data-site-shell] .sh-guide,
+body[data-site-shell] .sh-step-buttons a:last-child{
+  background:var(--violet);
+  color:#fff;
+}
+body[data-site-shell] .sh-home-secondary{
+  border-color:var(--violet);
+  color:var(--violet);
+}
+body[data-site-shell] .sh-head small,
+body[data-site-shell] .sh-head>a,
+body[data-site-shell] .sh-plan>span,
+body[data-site-shell] .sh-price strong{color:var(--brand)}
+body[data-site-shell] .sh-usim-cta{border-color:var(--brand);background:#FFF8FB}
+body[data-site-shell] .sh-side-title,
+body[data-site-shell] .sh-side-help-link:hover{color:var(--brand)}
+body[data-site-shell] .sh-hero,
+body[data-site-shell] .sh-hero.sh-hero-home{
+  background:linear-gradient(145deg,#F0E9FF 0%,#F8F3FF 63%,#FFFAFD 100%);
+}
+@media(prefers-reduced-motion:reduce){
+  body[data-site-shell] .sh-btn{transition:none}
+}
