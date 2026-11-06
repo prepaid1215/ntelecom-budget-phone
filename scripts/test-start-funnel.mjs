@@ -65,7 +65,14 @@ const finderSource=fs.readFileSync("src/components/HomePlanFinder.astro","utf8")
 assert.match(finderSource,/grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/,"Desktop filter needs three equal columns");
 assert.match(finderSource,/grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/,"Tablet filter layout missing");
 assert.match(finderSource,/grid-template-columns:minmax\(0,1fr\)/,"Mobile single-column filter layout missing");
-assert.match(finderSource,/margin-right:210px/,"Open sidebar must not overlap homepage filters");
+const startCss=fs.readFileSync("src/styles/start.css","utf8");
+assert.match(startCss,/padding-right:210px/,"Stable desktop content rail must reserve sidebar width");
+assert.doesNotMatch(finderSource,/not\(\.sh-side-collapsed\)[^\n]*margin-right:210px/,"Filter must not move when sidebar toggles");
+assert.match(finderSource,/HomeFilterIcon/,"Homepage must use unified filter icon set");
+assert.match(home,/images\/usim\/baro-usim\.webp/,"KT SIM product photo missing on homepage");
+assert.match(home,/images\/usim\/onechip\.webp/,"LG SIM product photo missing on homepage");
+assert.match(start,/images\/usim\/baro-usim\.webp/,"KT SIM product photo missing on start page");
+assert.match(start,/images\/usim\/onechip\.webp/,"LG SIM product photo missing on start page");
 assert.match(finderSource,/price-mid/,"Monthly fee icons should not use data icons");
 
 assert.match(home,/data-finder-list/,"Homepage must have one matching result grid");
