@@ -6,8 +6,8 @@
   "activationUrl": "https://www.n-telecom.co.kr/ntgo/",
   "defaultTitleSuffix": " | 앤텔레콤 알뜰폰",
   "defaultDescription": "앤텔레콤 KT·LG 알뜰폰 신규가입, 요금제 비교와 유심 준비 및 온라인 개통방법 안내.",
-  "primaryColor": "#FF438B",
-  "secondaryColor": "#7258E9",
+  "primaryColor": "#ED2675",
+  "secondaryColor": "#FF88B0",
   "dataCheckedAt": "2026-09-28",
   "note": "공식 판매점 미러링 주소를 www.n-telecom.co.kr/ntgo/로 설정. /start/의 KT·LG 직접 신청 경로는 공개 전 실기기 검증 필요.",
   "business": {
