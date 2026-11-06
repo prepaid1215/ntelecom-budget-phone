@@ -3,13 +3,18 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import StartHome from "../../components/StartHome.astro";
 import pages from "../../data/generated-pages.json";
 import { buildModel } from "../../lib/page-model.js";
-import { siteConfig as site } from "../../lib/site-config.js";
+import { MIRROR_KT_URL, MIRROR_LG_URL, ntgoDestination } from "../../lib/ntgo-targets.js";
 import "../../styles/start.css";
 const home=pages.find(p=>p.path==="/");
 const model=buildModel(home);
-const base=site.activationUrl||"https://preplan.site/";
-const targets={K:process.env.START_KT_URL?.trim()||base,L:process.env.START_LG_URL?.trim()||base};
-const prepaidTargets={K:process.env.START_PREPAID_KT_URL?.trim()||base,L:process.env.START_PREPAID_LG_URL?.trim()||base};
+const targets={
+  K:ntgoDestination(process.env.START_KT_URL,MIRROR_KT_URL),
+  L:ntgoDestination(process.env.START_LG_URL,MIRROR_LG_URL)
+};
+const prepaidTargets={
+  K:ntgoDestination(process.env.START_PREPAID_KT_URL,MIRROR_KT_URL),
+  L:ntgoDestination(process.env.START_PREPAID_LG_URL,MIRROR_LG_URL)
+};
 const ga4Id=process.env.PUBLIC_GA4_MEASUREMENT_ID?.trim()||"";
 ---
 <BaseLayout
@@ -53,7 +58,7 @@ const ga4Id=process.env.PUBLIC_GA4_MEASUREMENT_ID?.trim()||"";
         const billing=link.dataset.billing||"postpaid";
         const product=link.dataset.plan||planId||"none";
         const from=("start_"+billing+"_"+network+"_"+source).slice(0,145);
-        try{const target=new URL(link.href,location.href);target.searchParams.set("from",from);link.href=target.toString()}catch(e){}
+        // Keep provider URLs unchanged; source attribution stays in GA4 events.
         track("activation_outbound",{
           traffic_source:source,plan_id:product,network:network,billing_type:billing,
           button_location:link.dataset.location||"plan_finder"
