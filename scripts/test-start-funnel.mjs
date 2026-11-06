@@ -55,7 +55,12 @@ assert.doesNotMatch(home,/선불폰/,"Postpaid-only home must not contain prepai
 assert.match(home,/data-start-home/,"Home must reuse the /start/ page content");
 assert.match(home,/sh-hero-home/,"Home must have second reference hero layout");
 assert.match(home,/요금제 비교부터 개통까지/);
-assert.match(home,/id="start-recommended"/);
+assert.doesNotMatch(home,/id="start-recommended"/,"No duplicate recommended section on homepage");
+assert.match(home,/class="pf pf-home"/,"Homepage must use existing circular filter styling");
+assert.match(home,/data-home-filter/,"Homepage must have price/data/network controls");
+assert.match(home,/data-finder-list/,"Homepage must have one matching result grid");
+assert.equal((home.match(/<article class="pf-card"/g)||[]).length,4,"Four initial homepage plans must be server rendered");
+assert.doesNotMatch(home,/<details id="postpaid-plans"/,"Homepage filter must not be hidden by a disclosure");
 assert.match(home,/id="postpaid-plans"/);
 assert.match(home,/id="start-usim"/);
 assert.match(home,/id="start-faq"/);
