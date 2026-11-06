@@ -23,7 +23,7 @@ for(const network of ["kt","lg"]){
   const expr=new RegExp('data-billing="postpaid" data-network="'+network+'"');
   assert.match(start,expr,network+" outbound postpaid action missing");
 }
-assert.match(start,/data-prepaid-details/);
+assert.doesNotMatch(start,/data-prepaid-details/,"Postpaid-only /start/ should not show prepaid enrollment");
 assert.match(start,/data-outbound/);
 const ogImage=path.join(root,"images/og/antelcom-og-main-v1.jpg");
 assert.ok(fs.existsSync(ogImage),"Dedicated 1200×630 OG image missing");
@@ -44,10 +44,14 @@ assert.match(start,/id="start-benefits"/);
 assert.match(start,/id="start-usim"/);
 assert.match(start,/id="start-faq"/);
 assert.match(start,/activation_outbound/);
-assert.match(start,/prepaid_alternative_open/);
+assert.doesNotMatch(start,/prepaid_alternative_open/);
 assert.match(start,/start_view/);
 assert.match(home,/\/start\/\?from=antelcom_hero/);
 assert.match(home,/\/start\/\?from=antelcom_header/);
 assert.match(home,/선불폰/);
 assert.match(home,/알뜰폰/);
 console.log("PASS: existing 500 pages, branded postpaid /start home, two CTA routes, noindex, catalog, USIM, benefits, FAQ and event tracking.");
+
+assert.match(home,/후불 알뜰폰/,"Home must highlight postpaid");
+assert.doesNotMatch(home,/선불폰부터|선불폰 알아보기|선불폰 개통방법/,"Home must not promote prepaid");
+assert.doesNotMatch(start,/data-billing="prepaid"/,"No prepaid activation on postpaid-only funnel");

@@ -3,7 +3,7 @@ import HomePlanFinder from "./HomePlanFinder.astro";
 import BenefitOffer from "./BenefitOffer.astro";
 import CardOffer from "./CardOffer.astro";
 import { toPublicPath } from "../lib/site-config.js";
-const {model,targets,prepaidTargets}=Astro.props;
+const {model,targets}=Astro.props;
 const plans=model.matched;
 const chosen=(net,gb)=>plans.filter(p=>p.network===net&&p.data_gb===gb).sort((a,b)=>a.monthly_price-b.monthly_price)[0];
 const featured=[chosen("L",7),chosen("K",7),chosen("K",15),chosen("L",15)].filter(Boolean);
@@ -17,9 +17,9 @@ const menu=[
   <div class="sh-main">
     <section class="sh-hero" id="start-choices">
       <div class="sh-hero-inner">
-        <span class="sh-pill">앤텔레콤 N플랫폼 알뜰폰</span>
+        <span class="sh-pill">앤텔레콤 후불 알뜰폰 셀프개통</span>
         <h1>지금 바로 <em>셀프개통</em>을<br/>시작해보세요</h1>
-        <p>KT망·LG U+망 알뜰폰을 직접 선택해 신청하세요.</p>
+        <p>KT망·LG U+망 후불 알뜰폰을 선택해 직접 신청하세요.</p>
         <div class="sh-main-buttons">
           <a class="sh-btn sh-kt" href={targets.K} data-outbound data-billing="postpaid" data-network="kt" data-location="hero">KT 개통하기</a>
           <a class="sh-btn sh-lg" href={targets.L} data-outbound data-billing="postpaid" data-network="lg" data-location="hero">LG 개통하기</a>
@@ -100,14 +100,5 @@ const menu=[
         </div>
       </div>
     </section>
-    <section class="sh-fallback"><div class="sh-wrap"><details data-prepaid-details>
-      <summary><span><strong>알뜰폰 가입이 어려우신가요?</strong><small>통신요금 미납 등으로 가입이 제한된다면 선불폰을 안내합니다.</small></span><span aria-hidden="true">⌄</span></summary>
-      <div class="sh-fallback-body"><p>선불폰은 사용할 요금을 먼저 충전하는 방식입니다. 본인명의 신규가입과 충전은 웹에서 직접 진행할 수 있으며, 본사 해피콜은 별도입니다.</p>
-        <div class="sh-fallback-links">
-          <a href={prepaidTargets.K} data-outbound data-billing="prepaid" data-network="kt" data-location="fallback">KT망 선불 신규가입 ›</a>
-          <a href={prepaidTargets.L} data-outbound data-billing="prepaid" data-network="lg" data-location="fallback">LG망 선불 신규가입 ›</a>
-        </div>
-      </div>
-    </details></div></section>
   </div>
 </div>

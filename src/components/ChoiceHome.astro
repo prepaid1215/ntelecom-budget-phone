@@ -1,56 +1,71 @@
 ---
 import { toPublicPath, activationLink } from "../lib/site-config.js";
-const cards = [
- {kind:"선불폰",tag:"요금을 먼저 충전하는 방식",desc:"미납·정지 상황에서 본인명의 신규가입을 준비하거나 업무용 번호를 따로 만들 때",checks:["KT 바로유심 · LG 모두의 원칩","요금제 선택과 충전","본인명의 신규가입"],href:"/선불폰/",label:"선불폰 알아보기"},
- {kind:"알뜰폰",tag:"월 이용료를 납부하는 방식",desc:"기존 번호로 통신비를 줄이거나 새 번호를 월 요금제로 이용할 때",checks:["신규가입 또는 번호이동","데이터별 요금제 비교","제휴혜택과 가입 방법"],href:"/알뜰폰/",label:"알뜰폰 알아보기"}
-];
 ---
 <section class="hero"><div class="wrap hero-inner">
   <div class="hero-copy">
-    <span class="eyebrow">앤텔레콤 개통방법</span>
-    <h1>선불폰부터<br /> <em>알뜰폰까지</em></h1>
-    <p>지금 필요한 방식부터 선택하세요. 앤텔레콤 선불폰 신규가입과 알뜰폰 신규가입·번호이동 방법을 각각 안내합니다.</p>
+    <span class="eyebrow">앤텔레콤 개통방법 · 후불 알뜰폰</span>
+    <h1>후불 알뜰폰,<br /><em>요금제 비교부터 개통까지</em></h1>
+    <p>KT망·LG U+망 후불 알뜰폰 요금제를 비교하고 온라인에서 직접 신청하세요. 매월 사용하는 요금을 납부하는 방식입니다.</p>
     <div class="hero-actions">
-      <a class="btn-primary" href={toPublicPath("/선불폰/")}>선불폰 개통방법</a>
-      <a class="btn-secondary" href={toPublicPath("/알뜰폰/")}>알뜰폰 개통방법</a>
+      <a class="btn-primary" href={activationLink("hero")}>후불 셀프개통 시작하기</a>
+      <a class="btn-secondary" href={toPublicPath("/plans/")}>후불 요금제 비교</a>
     </div>
-    <p class="choice-start"><a href={activationLink("hero")}>셀프개통 신청하기 →</a></p>
   </div>
-  <div class="hero-visual"><img class="hero-art" src={toPublicPath("/images/hero-mobile.webp")} width="1000" height="750" alt="휴대폰, 유심과 모바일 요금제를 표현한 그림" fetchpriority="high" /></div>
+  <div class="hero-visual"><img class="hero-art" src={toPublicPath("/images/hero-mobile.webp")} width="1000" height="750" alt="스마트폰과 유심, 후불 알뜰폰 요금제 안내 이미지" fetchpriority="high" /></div>
 </div></section>
 <section class="section"><div class="wrap">
-  <h2>어떤 개통을 찾으세요?</h2>
-  <p class="section-lead">선불폰과 알뜰폰의 가입 목적이 달라 상세 안내도 구분했습니다.</p>
-  <div class="choice-grid">
-    {cards.map(c=><article class="card choice-card">
-      <span class="plan-kicker">{c.tag}</span>
-      <h3>{c.kind}</h3>
-      <p>{c.desc}</p>
-      <ul>{c.checks.map(x=><li>{x}</li>)}</ul>
-      <a class="cta-btn choice-action" href={toPublicPath(c.href)}>{c.label} →</a>
-    </article>)}
+  <h2>KT망과 LG U+망, 원하는 통신망을 선택하세요</h2>
+  <p class="section-lead">후불 신규가입 신청은 통신망과 요금제 선택부터 시작합니다.</p>
+  <div class="postpaid-network-grid">
+    <article class="card postpaid-network-card">
+      <span class="plan-kicker">KT망 후불 알뜰폰</span>
+      <h3>KT망 개통</h3>
+      <p>KT망 후불 요금제를 살펴보고 신청 화면으로 이동하세요.</p>
+      <div class="network-actions">
+        <a class="btn-primary" href={activationLink("home_kt",{network:"kt"})}>KT 후불 개통하기</a>
+        <a class="btn-secondary" href={toPublicPath("/plans/k/")}>KT 요금제 보기</a>
+      </div>
+    </article>
+    <article class="card postpaid-network-card">
+      <span class="plan-kicker">LG U+망 후불 알뜰폰</span>
+      <h3>LG망 개통</h3>
+      <p>LG U+망 후불 요금제를 살펴보고 신청 화면으로 이동하세요.</p>
+      <div class="network-actions">
+        <a class="btn-primary" href={activationLink("home_lg",{network:"lg"})}>LG 후불 개통하기</a>
+        <a class="btn-secondary" href={toPublicPath("/plans/l/")}>LG 요금제 보기</a>
+      </div>
+    </article>
   </div>
 </div></section>
 <section class="section soft"><div class="wrap">
-  <h2>찾는 내용으로 바로 이동하세요</h2>
-  <div class="choice-links">
-    <a href={toPublicPath("/선불폰/#usim")}>KT·LG 유심 준비 <span>›</span></a>
-    <a href={toPublicPath("/선불폰/#plans")}>선불 요금제 비교 <span>›</span></a>
-    <a href={toPublicPath("/선불폰/#steps")}>선불폰 셀프개통 순서 <span>›</span></a>
-    <a href={toPublicPath("/알뜰폰/")}>알뜰폰 요금제·혜택 <span>›</span></a>
-    <a href={toPublicPath("/number-transfer/")}>알뜰폰 번호이동 안내 <span>›</span></a>
+  <h2>후불 알뜰폰 신청 전 확인할 것</h2>
+  <p class="section-lead">개통 흐름을 미리 확인하고 신청을 진행할 수 있습니다.</p>
+  <div class="postpaid-steps">
+    <div class="card"><b>01</b><strong>요금제 비교</strong><p>데이터·통화·월 기본료를 확인합니다.</p></div>
+    <div class="card"><b>02</b><strong>유심과 본인확인</strong><p>통신망에 맞는 유심을 준비하고 본인확인을 진행합니다.</p></div>
+    <div class="card"><b>03</b><strong>KT·LG 후불 신청</strong><p>개통 화면에서 가입 유형과 요금제를 선택합니다.</p></div>
+  </div>
+  <div class="postpaid-links">
+    <a href={toPublicPath("/start/#start-usim")}>후불 유심 준비 안내 <span aria-hidden="true">›</span></a>
+    <a href={toPublicPath("/start/#start-steps")}>후불 개통 순서 <span aria-hidden="true">›</span></a>
+    <a href={toPublicPath("/benefits/")}>제휴 혜택 확인 <span aria-hidden="true">›</span></a>
+    <a href={toPublicPath("/start/#start-faq")}>자주 묻는 질문 <span aria-hidden="true">›</span></a>
   </div>
 </div></section>
 <style>
-.choice-start{margin:16px 0 0}.choice-start a{display:inline-block;font-weight:800;color:#c82468;text-decoration:underline;text-underline-offset:3px}
-.choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.choice-card{padding:24px;display:flex;flex-direction:column;align-items:flex-start}
-.choice-card h3{font-size:28px;margin:5px 0 8px;letter-spacing:-.8px}
-.choice-card p{margin:0;color:#565863;line-height:1.65;min-height:55px}
-.choice-card ul{padding-left:20px;margin:14px 0 24px;line-height:1.9}
-.choice-action{margin-top:auto;text-align:center;display:block;padding:13px 22px;width:100%;border-radius:12px}
-.choice-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.choice-links a{background:#fff;border:1px solid #e1e1e5;padding:17px;border-radius:14px;font-weight:800;display:flex;justify-content:space-between}
-.choice-links span{color:#ff438b}
-@media(max-width:660px){.choice-grid,.choice-links{grid-template-columns:1fr}.choice-card p{min-height:0}}
+.postpaid-network-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.postpaid-network-card{padding:26px;display:flex;flex-direction:column;gap:12px}
+.postpaid-network-card h3{font-size:26px;margin:0;letter-spacing:-.6px}
+.postpaid-network-card p{line-height:1.7;color:#555963;margin:0 0 6px}
+.network-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto}
+.network-actions a{padding:12px;text-align:center;border-radius:12px;display:flex;justify-content:center;align-items:center;font-size:14px;font-weight:800}
+.postpaid-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.postpaid-steps .card{padding:22px;display:flex;flex-direction:column;gap:8px}
+.postpaid-steps b{color:#ef4388;font-size:20px}
+.postpaid-steps strong{font-size:18px}
+.postpaid-steps p{line-height:1.6;color:#555963;margin:0}
+.postpaid-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}
+.postpaid-links a{background:#fff;border:1px solid #e5e3e8;padding:16px;border-radius:12px;font-weight:800;display:flex;justify-content:space-between;gap:12px}
+.postpaid-links span{color:#ef4388}
+@media(max-width:700px){.postpaid-network-grid,.postpaid-steps,.postpaid-links{grid-template-columns:1fr}.network-actions{grid-template-columns:1fr}}
 </style>

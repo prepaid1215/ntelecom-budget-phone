@@ -11,21 +11,17 @@ const targets={
   K:ntgoDestination(process.env.START_KT_URL,MIRROR_KT_URL),
   L:ntgoDestination(process.env.START_LG_URL,MIRROR_LG_URL)
 };
-const prepaidTargets={
-  K:ntgoDestination(process.env.START_PREPAID_KT_URL,MIRROR_KT_URL),
-  L:ntgoDestination(process.env.START_PREPAID_LG_URL,MIRROR_LG_URL)
-};
 const ga4Id=process.env.PUBLIC_GA4_MEASUREMENT_ID?.trim()||"";
 ---
 <BaseLayout
-  title="앤텔레콤 알뜰폰 셀프개통 | KT·LG 개통 시작"
-  description="앤텔레콤 알뜰폰 전용 개통 페이지입니다. KT망·LG망 개통, 요금제 비교, 유심 준비, 제휴 혜택과 번호이동 방법을 안내합니다."
+  title="앤텔레콤 후불 알뜰폰 셀프개통 | KT·LG 개통 시작"
+  description="앤텔레콤 후불 알뜰폰 전용 개통 페이지입니다. KT망·LG망 개통, 요금제 비교, 유심 준비, 제휴 혜택과 번호이동 방법을 안내합니다."
   index="noindex"
   pagePath="/start/"
   ogTitle="앤텔레콤 셀프개통 | KT·LG 신청"
   ogDescription="KT·LG 후불 알뜰폰 신규가입. 통신망과 요금제를 선택하고 온라인에서 직접 신청하세요."
 >
-  <StartHome model={model} targets={targets} prepaidTargets={prepaidTargets}/>
+  <StartHome model={model} targets={targets}/>
   {ga4Id && <script async is:inline src={"https://www.googletagmanager.com/gtag/js?id="+encodeURIComponent(ga4Id)}></script>}
   <script define:vars={{ga4Id}}>
     if(ga4Id){
@@ -66,8 +62,6 @@ const ga4Id=process.env.PUBLIC_GA4_MEASUREMENT_ID?.trim()||"";
           button_location:link.dataset.location||"plan_finder"
         });
       });
-      const details=root.querySelector("[data-prepaid-details]");
-      if(details)details.addEventListener("toggle",()=>{if(details.open)track("prepaid_alternative_open",{traffic_source:source})});
     })();
   </script>
 </BaseLayout>
