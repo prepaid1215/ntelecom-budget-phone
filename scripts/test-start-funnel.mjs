@@ -126,5 +126,9 @@ assert.match(home,/href="\/guide\/kt\/"/,"Home must link to KT guide");
 assert.match(home,/href="\/guide\/lg\/"/,"Home must link to LG guide");
 assert.match(home,/href="\/faq\/"/,"Home must link to independent FAQ");
 assert.match(home,/href="#start-steps"/,"Homepage anchor navigation must remain");
+const seoGuideManifest=JSON.parse(fs.readFileSync("src/data/seo-guides.json","utf8"));
+const newPaths=["/guide/kt/","/guide/lg/","/faq/"];
+assert.deepEqual(seoGuideManifest.map(page=>page.path),newPaths,"Independent SEO guide routes must be registered in order");
 const smSource=fs.readFileSync("src/lib/sitemap.js","utf8");
-for(const url of ["/guide/kt/","/guide/lg/","/faq/"])assert.ok(smSource.includes('path:"'+url+'"'),"Sitemap must include gated SEO page "+url);
+assert.match(smSource,/\.\.\.seoGuides/,"Sitemap must use the shared guide manifest");
+
