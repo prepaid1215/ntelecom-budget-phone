@@ -7,7 +7,8 @@ const {model,targets,variant="start"}=Astro.props;
 const isHomepage=variant==="home";
 const plans=model.matched;
 const chosen=(net,gb)=>plans.filter(p=>p.network===net&&p.data_gb===gb).sort((a,b)=>a.monthly_price-b.monthly_price)[0];
-const featured=[chosen("L",7),chosen("K",7),chosen("K",15),chosen("L",15)].filter(Boolean);
+const recommended=[chosen("L",7),chosen("K",7),chosen("K",15),chosen("L",15)].filter(Boolean);
+const featured=[...recommended,...plans.filter(p=>!recommended.some(r=>r.id===p.id)).sort((a,b)=>a.monthly_price-b.monthly_price)].slice(0,4);
 const won=n=>n.toLocaleString("ko-KR")+"원";
 const menu=[
   ["icon2.png","개통하기","#start-choices"],["icon1.png","맞춤요금제","#postpaid-plans"],["icon3.png","유심구매","#start-usim"],
@@ -54,7 +55,7 @@ const menu=[
 
     <section class="sh-section" id="start-recommended">
       <div class="sh-wrap">
-        <div class="sh-head"><div><small>PLANS</small><h2>앤텔레콤 추천 요금제</h2><p>월 요금과 데이터 제공량을 비교해 선택하세요.</p></div><a href="#postpaid-plans">전체 요금제 보기 ›</a></div>
+        <div class="sh-head"><div><small>POPULAR PLANS</small><h2>추천 요금제 4가지</h2><p>자주 찾는 요금제를 먼저 비교해 보세요.</p></div><a href="#postpaid-plans" data-expand-plans>전체 {plans.length}개 요금제 찾기 ›</a></div>
         <div class="sh-plans">
           {featured.map(p=><article class="sh-plan">
             <span>{p.network==="K"?"KT망":"LG U+망"}</span>
@@ -67,9 +68,19 @@ const menu=[
         </div>
       </div>
     </section>
-    <div id="postpaid-plans" class="sh-catalog">
+    <details id="postpaid-plans" class="sh-catalog sh-plan-details">
+      <summary><span><strong>원하는 조건으로 요금제 더 찾기</strong><small>전체 {plans.length}개 · 가격·데이터·통신망·혜택별 검색</small></span><span class="sh-plan-expand-icon" aria-hidden="true">⌄</span></summary>
       <HomePlanFinder model={model} mode={isHomepage?"default":"start"} outboundLinks={isHomepage?null:targets}/>
-    </div>
+    </details>
+    <script>
+      const catalog=document.getElementById("postpaid-plans");
+      if(catalog){
+        const openCatalog=()=>{catalog.open=true;};
+        if(location.hash==="#postpaid-plans")openCatalog();
+        document.querySelectorAll('a[href="#postpaid-plans"]').forEach(link=>link.addEventListener("click",openCatalog));
+        window.addEventListener("hashchange",()=>{if(location.hash==="#postpaid-plans")openCatalog();});
+      }
+    </script>
     <section class="sh-section sh-soft" id="start-usim">
       <div class="sh-wrap">
         <div class="sh-head"><div><small>USIM</small><h2>알뜰폰 유심 준비하기</h2><p>사용할 망에 맞는 유심을 준비하면 온라인에서 신청할 수 있습니다.</p></div></div>
