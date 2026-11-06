@@ -53,6 +53,12 @@ const menu=[
       {menu.map(([image,label,href],i)=><a href={href}><span class={"sh-menu-art sh-color-"+i}><img src={toPublicPath("/images/start/"+image)} alt="" width="146" height="149" loading="lazy" /></span><strong>{label}</strong></a>)}
     </nav>
 
+    {isHomepage ? (
+      <div id="postpaid-plans" class="sh-catalog sh-unified-catalog">
+        <HomePlanFinder model={model} mode="home"/>
+      </div>
+    ) : (
+      <>
     <section class="sh-section" id="start-recommended">
       <div class="sh-wrap">
         <div class="sh-head"><div><small>POPULAR PLANS</small><h2>추천 요금제 4가지</h2><p>자주 찾는 요금제를 먼저 비교해 보세요.</p></div><a href="#postpaid-plans" data-expand-plans>전체 {plans.length}개 요금제 찾기 ›</a></div>
@@ -81,6 +87,8 @@ const menu=[
         window.addEventListener("hashchange",()=>{if(location.hash==="#postpaid-plans")openCatalog();});
       }
     </script>
+      </>
+    )}
     <section class="sh-section sh-soft" id="start-usim">
       <div class="sh-wrap">
         <div class="sh-head"><div><small>USIM</small><h2>알뜰폰 유심 준비하기</h2><p>사용할 망에 맞는 유심을 준비하면 온라인에서 신청할 수 있습니다.</p></div></div>
