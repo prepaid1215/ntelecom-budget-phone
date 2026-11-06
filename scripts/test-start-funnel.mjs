@@ -130,5 +130,5 @@ const seoGuideManifest=JSON.parse(fs.readFileSync("src/data/seo-guides.json","ut
 const newPaths=["/guide/kt/","/guide/lg/","/faq/"];
 assert.deepEqual(seoGuideManifest.map(page=>page.path),newPaths,"Independent SEO guide routes must be registered in order");
 const smSource=fs.readFileSync("src/lib/sitemap.js","utf8");
-assert.match(smSource,/\.\.\.seoGuides/,"Sitemap must use the shared guide manifest");
+for(const url of newPaths)assert.ok(smSource.includes('path:"'+url+'"'),"Sitemap missing independent SEO URL "+url);
 
