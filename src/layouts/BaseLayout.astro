@@ -15,7 +15,13 @@ const {
   pagePath=Astro.url.pathname,
   ctaSource=null,
   breadcrumbs=null,
-  image="/images/hero-mobile.webp"
+  image="/images/og/antelcom-og-main-v1.jpg",
+  imageWidth=1200,
+  imageHeight=630,
+  imageType="image/jpeg",
+  imageAlt="앤텔레콤 개통방법, KT·LG 유심과 요금제 비교 및 온라인 셀프개통 안내",
+  ogTitle=title,
+  ogDescription=description
 } = Astro.props;
 const homeModel=buildModel(pagesData.find(p=>p.path==="/"));
 const choose=(net,gb)=>homeModel.matched.filter(p=>p.network===net&&p.data_gb===gb).sort((a,b)=>a.monthly_price-b.monthly_price)[0];
@@ -107,17 +113,20 @@ if(faqs.length) schemas["@graph"].push({
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="ko_KR" />
 <meta property="og:site_name" content={site.brandName} />
-<meta property="og:title" content={fullTitle} />
-<meta property="og:description" content={description} />
+<meta property="og:title" content={ogTitle} />
+<meta property="og:description" content={ogDescription} />
 <meta property="og:url" content={canonical} />
 <meta property="og:image" content={socialImage} />
-<meta property="og:image:width" content="1000" />
-<meta property="og:image:height" content="750" />
-<meta property="og:image:alt" content="앤텔레콤 알뜰폰 요금제와 혜택 안내" />
+<meta property="og:image:secure_url" content={socialImage} />
+<meta property="og:image:type" content={imageType} />
+<meta property="og:image:width" content={imageWidth} />
+<meta property="og:image:height" content={imageHeight} />
+<meta property="og:image:alt" content={imageAlt} />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content={fullTitle} />
-<meta name="twitter:description" content={description} />
+<meta name="twitter:title" content={ogTitle} />
+<meta name="twitter:description" content={ogDescription} />
 <meta name="twitter:image" content={socialImage} />
+<meta name="twitter:image:alt" content={imageAlt} />
 <script type="application/ld+json" set:html={JSON.stringify(schemas)}></script>
 </head>
 <body data-site-shell>
