@@ -386,3 +386,10 @@ body[data-site-shell] .sh-main .pf.pf-home{
 .sh-usim-copy p{margin:10px 0;word-break:keep-all}
 @media(max-width:760px){.sh-usim{grid-template-columns:112px minmax(0,1fr);gap:14px}}
 @media(max-width:390px){.sh-usim{grid-template-columns:90px minmax(0,1fr);gap:10px;padding:15px}.sh-usim h3{font-size:18px}.sh-usim-product{padding:4px}}
+
+/* Crawlable detail links supplement, not replace, the homepage anchor menu. */
+.sh-guide-deep-links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:22px auto 0}
+.sh-guide-deep-links a{border:1px solid #F3BDD2;border-radius:10px;background:#FFF7FA;padding:12px 18px;color:#B31760;text-decoration:none;font-size:14px;font-weight:750}
+.sh-guide-deep-links a:hover,.sh-guide-deep-links a:focus-visible{background:#FF88B0;color:#34323A}
+.sh-faq-deep-link{margin:20px 0 0;text-align:right}
+.sh-faq-deep-link a{color:#B31760;font-weight:800;text-decoration:underline;text-underline-offset:4px}

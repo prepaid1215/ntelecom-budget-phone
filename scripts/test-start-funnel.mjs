@@ -111,3 +111,20 @@ assert.doesNotMatch(home,/후불/,"Do not show banned terminology on homepage");
 assert.doesNotMatch(start,/후불/,"Do not show banned terminology on /start/");
 assert.doesNotMatch(home,/선불폰부터|선불폰 알아보기|선불폰 개통방법/,"Home must not promote prepaid");
 assert.doesNotMatch(start,/data-billing="prepaid"/,"No prepaid activation on postpaid-only funnel");
+
+for(const [pagePath,heading] of [
+  ["guide/kt/index.html","KT망 알뜰폰 개통방법"],
+  ["guide/lg/index.html","LG U+망 알뜰폰 개통방법"],
+  ["faq/index.html","알뜰폰 자주 묻는 질문"]
+]){
+ const html=read(pagePath);
+ assert.match(html,new RegExp(heading),"Independent guide or FAQ missing "+pagePath);
+ assert.match(html,/rel="canonical"/,"Canonical URL missing "+pagePath);
+ assert.doesNotMatch(html,/후불/,"Banned word in visible guide metadata "+pagePath);
+}
+assert.match(home,/href="\/guide\/kt\/"/,"Home must link to KT guide");
+assert.match(home,/href="\/guide\/lg\/"/,"Home must link to LG guide");
+assert.match(home,/href="\/faq\/"/,"Home must link to independent FAQ");
+assert.match(home,/href="#start-steps"/,"Homepage anchor navigation must remain");
+const smSource=fs.readFileSync("src/lib/sitemap.js","utf8");
+for(const url of ["/guide/kt/","/guide/lg/","/faq/"])assert.ok(smSource.includes('path:"'+url+'"'),"Sitemap must include gated SEO page "+url);

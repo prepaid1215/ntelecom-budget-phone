@@ -13,7 +13,10 @@ export const sitemapXml=()=>{
     ? [
         ...pages.filter(page=>page.effectiveIndex==="index"),
         {path:"/선불폰/",pageType:"hub",priority:"P0"},
-        {path:"/알뜰폰/",pageType:"hub",priority:"P0"}
+        {path:"/알뜰폰/",pageType:"hub",priority:"P0"},
+        {path:"/guide/kt/",pageType:"guide",priority:"P1"},
+        {path:"/guide/lg/",pageType:"guide",priority:"P1"},
+        {path:"/faq/",pageType:"faq",priority:"P1"}
       ]
     : [];
   return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
