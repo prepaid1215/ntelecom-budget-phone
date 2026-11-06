@@ -48,8 +48,8 @@ assert.doesNotMatch(start,/prepaid_alternative_open/);
 assert.match(start,/start_view/);
 assert.match(home,/\/start\/\?from=antelcom_hero/);
 assert.match(home,/\/start\/\?from=antelcom_header/);
-assert.match(home,/선불폰/);
-assert.match(home,/알뜰폰/);
+assert.doesNotMatch(home,/선불폰/,"Postpaid-only home must not contain prepaid navigation");
+assert.match(home,/후불 알뜰폰/);
 console.log("PASS: existing 500 pages, branded postpaid /start home, two CTA routes, noindex, catalog, USIM, benefits, FAQ and event tracking.");
 
 assert.match(home,/후불 알뜰폰/,"Home must highlight postpaid");
