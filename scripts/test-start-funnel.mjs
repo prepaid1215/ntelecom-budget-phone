@@ -16,7 +16,10 @@ for(const page of pages){
 }
 assert.match(start,/지금 바로/);
 assert.match(start,/셀프개통/);
-assert.match(start,/앤텔레콤 추천 요금제/);
+assert.match(start,/추천 요금제 4가지/);
+assert.equal((start.match(/<article class="sh-plan"/g)||[]).length,4,"Four recommended plan cards expected");
+assert.match(start,/<details id="postpaid-plans" class="sh-catalog sh-plan-details">/,"The full catalog should be collapsed by default");
+assert.match(start,/전체 47개/,"Full catalog remains discoverable");
 assert.match(start,/name="robots" content="noindex,follow"/);
 assert.match(start,/rel="canonical" href="https:\/\/xn--h49a29twjdmms77a5sofgdjwa\.shop\/start\/"/);
 for(const network of ["kt","lg"]){
