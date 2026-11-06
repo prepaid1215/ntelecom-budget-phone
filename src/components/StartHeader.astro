@@ -15,12 +15,12 @@ const menus=[
 ---
 <header class="header start-header">
  <div class="start-h-box">
-  <a class="start-header-logo" href={toPublicPath('/')} aria-label="앤텔레콤 개통방법 홈"><img src={toPublicPath('/images/start/logo.png')} alt="앤텔레콤 N플랫폼" width="289" height="191"/></a>
+  <a class="start-header-logo" href={toPublicPath('/')} aria-label="앤텔레콤 알뜰폰 홈"><img src={toPublicPath('/images/start/logo.png')} alt="앤텔레콤 N플랫폼" width="289" height="191"/></a>
   <nav class="start-desktop-menu" aria-label="주요 메뉴">
    <ul>{menus.map((menu,i)=><li><button type="button" aria-expanded="false" aria-controls={'start-dropdown-'+i} data-header-dropdown>{menu.label}<svg class="start-menu-chevron" aria-hidden="true" viewBox="0 0 16 16" width="12" height="12" fill="none"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><ul id={'start-dropdown-'+i} class="start-mini">{menu.items.map(([label,href])=><li><a href={href}>{label}</a></li>)}</ul></li>)}</ul>
   </nav>
   <div class="start-header-actions"><a href={begin}>개통하기</a><a href={planList}>맞춤요금제</a></div>
-  <span class="start-mobile-title">앤텔레콤 개통방법</span>
+  <span class="start-mobile-title">앤텔레콤 알뜰폰</span>
   <button class="start-menu-toggle" type="button" data-header-open aria-label="전체 메뉴 열기" aria-controls="start-mobile-menu" aria-expanded="false"><span></span><span></span><span></span></button>
  </div>
 </header>
