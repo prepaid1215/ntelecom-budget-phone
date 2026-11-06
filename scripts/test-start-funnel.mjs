@@ -29,10 +29,10 @@ const ogImage=path.join(root,"images/og/antelcom-og-main-v1.jpg");
 assert.ok(fs.existsSync(ogImage),"Dedicated 1200×630 OG image missing");
 assert.ok(fs.readFileSync(ogImage).subarray(0,3).equals(Buffer.from([0xff,0xd8,0xff])),"OG image is not a valid JPEG");
 for(const html of [home,start]){
- assert.match(html,/property="og:image" content="https:\\/\\/xn--h49a29twjdmms77a5sofgdjwa\\.shop\\/images\\/og\\/antelcom-og-main-v1\\.jpg"/);
+ assert.ok(html.includes('property="og:image" content="https://xn--h49a29twjdmms77a5sofgdjwa.shop/images/og/antelcom-og-main-v1.jpg"'),"OG URL missing");
  assert.match(html,/property="og:image:width" content="1200"/);
  assert.match(html,/property="og:image:height" content="630"/);
- assert.match(html,/property="og:image:type" content="image\\/jpeg"/);
+ assert.ok(html.includes('property="og:image:type" content="image/jpeg"'),"OG MIME type missing");
  assert.match(html,/name="twitter:card" content="summary_large_image"/);
 }
 assert.match(start,/https:\/\/www\.n-telecom\.co\.kr\/ntgo\/view\/open\/kt\/face_auth\.aspx/,"KT CTA must use this NTGO mirror's direct application path");
