@@ -1,5 +1,6 @@
 ---
 import HomePlanFinder from "./HomePlanFinder.astro";
+import SelfOpenPhotoCarousel from "./SelfOpenPhotoCarousel.astro";
 import BenefitOffer from "./BenefitOffer.astro";
 import CardOffer from "./CardOffer.astro";
 import { toPublicPath } from "../lib/site-config.js";
@@ -114,10 +115,7 @@ const menu=[
           <div><b>04</b><strong>상품 신청</strong><p>요금제와 매월 요금 납부정보 선택</p></div>
           <div><b>05</b><strong>개통 확인</strong><p>가입 완료 안내와 본사 해피콜 확인</p></div>
         </div>
-        <div class="sh-step-buttons">
-          <a href={targets.K} data-outbound={isHomepage?undefined:"true"} data-billing="postpaid" data-network="kt" data-location="guide">KT 개통하기</a>
-          <a href={targets.L} data-outbound={isHomepage?undefined:"true"} data-billing="postpaid" data-network="lg" data-location="guide">LG 개통하기</a>
-        </div>
+        <SelfOpenPhotoCarousel />
       </div>
     </section>
     <section class="sh-section sh-soft" id="start-benefits">
