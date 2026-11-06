@@ -15,11 +15,8 @@ const cards=[
 <div class="go-guide" data-guide-carousel>
   <div class="go-guide-heading">
     <div><span>PHOTO GUIDE</span><h3>사진으로 보는 셀프개통 가이드</h3><p>화살표나 손가락으로 넘기면서 실제 신청 화면을 확인하세요.</p></div>
-    <div class="go-guide-nav">
-      <button type="button" data-prev aria-label="이전 개통 안내">‹</button>
-      <button type="button" data-next aria-label="다음 개통 안내">›</button>
-    </div>
   </div>
+  <div class="go-guide-stage">
   <div class="go-guide-track" data-track aria-label="셀프개통 사진 안내" tabindex="0">
     {cards.map((card,i)=><article class="go-guide-slide" aria-label={(i+1)+"번째 카드, "+card.title}>
       <div class="go-guide-top"><span>{String(i+1).padStart(2,"0")} / 07</span><strong>{card.title}</strong></div>
@@ -41,6 +38,15 @@ const cards=[
       </div>
     </article>
   </div>
+  <nav class="go-guide-nav" aria-label="사진 카드 넘기기">
+    <button type="button" class="go-guide-prev" data-prev aria-label="이전 개통 안내" disabled>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <button type="button" class="go-guide-next" data-next aria-label="다음 개통 안내">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+  </nav>
+  </div>
   <div class="go-guide-footer"><span data-count aria-live="polite">1 / 7</span><span>사진을 누르면 크게 볼 수 있습니다.</span></div>
 </div>
 <script>
@@ -52,17 +58,27 @@ const cards=[
       const width=slides[0]?.getBoundingClientRect().width||1;
       return Math.max(0,Math.min(slides.length-1,Math.round(track.scrollLeft/width)));
     };
+    const prev=root.querySelector('[data-prev]');
+    const next=root.querySelector('[data-next]');
+    const updateControls=()=>{
+      const i=getIndex();
+      count.textContent=(i+1)+' / '+slides.length;
+      prev.disabled=i===0;
+      next.disabled=i===slides.length-1;
+    };
     const go=n=>{
       const i=Math.max(0,Math.min(slides.length-1,n));
-      slides[i]?.scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'});
+      track.scrollTo({left:i*track.clientWidth,behavior:'smooth'});
     };
-    root.querySelector('[data-prev]')?.addEventListener('click',()=>go(getIndex()-1));
-    root.querySelector('[data-next]')?.addEventListener('click',()=>go(getIndex()+1));
+    prev.addEventListener('click',()=>go(getIndex()-1));
+    next.addEventListener('click',()=>go(getIndex()+1));
     let frame=0;
     track.addEventListener('scroll',()=>{
       cancelAnimationFrame(frame);
-      frame=requestAnimationFrame(()=>{count.textContent=(getIndex()+1)+' / '+slides.length;});
+      frame=requestAnimationFrame(updateControls);
     },{passive:true});
+    updateControls();
+    window.addEventListener('resize',updateControls,{passive:true});
     track.addEventListener('keydown',event=>{
       if(event.key==='ArrowRight'){event.preventDefault();go(getIndex()+1);}
       if(event.key==='ArrowLeft'){event.preventDefault();go(getIndex()-1);}
@@ -72,12 +88,20 @@ const cards=[
 <style>
   .go-guide{max-width:960px;margin:34px auto 0;color:#34323A;min-width:0}
   .go-guide-heading{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:15px}
+  .go-guide-stage{position:relative;min-width:0}
   .go-guide-heading span{font-size:12px;letter-spacing:.07em;font-weight:800;color:#ED2675}
   .go-guide-heading h3{font-size:clamp(22px,2.5vw,28px);margin:6px 0 3px;word-break:keep-all}
   .go-guide-heading p{margin:0;font-size:13px;color:#67616B;line-height:1.6}
-  .go-guide-nav{display:flex;gap:8px}
-  .go-guide-nav button{width:43px;height:43px;border:1px solid #F3C6D9;background:#FFF1F6;border-radius:50%;color:#ED2675;font-size:29px;cursor:pointer}
-  .go-guide-nav button:hover,.go-guide-nav button:focus-visible{background:#FF88B0;color:#34323A}
+  /* Arrows sit beside the image, not in the top-right heading. */
+  .go-guide-nav{position:absolute;inset:0;z-index:3;pointer-events:none}
+  .go-guide-nav button{position:absolute;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:50px;height:50px;padding:0;border:2px solid #ED2675;background:#FFFFFFF2;border-radius:50%;color:#ED2675;cursor:pointer;pointer-events:auto;box-shadow:0 5px 16px #34323A16}
+  .go-guide-nav .go-guide-prev{left:max(10px,calc(50% - 338px))}
+  .go-guide-nav .go-guide-next{right:max(10px,calc(50% - 338px))}
+  .go-guide-nav button svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+  .go-guide-nav button:hover,.go-guide-nav button:focus-visible{background:#ED2675;color:#FFF}
+  .go-guide-nav button:focus-visible{outline:3px solid #34323A;outline-offset:3px}
+  .go-guide-nav button:disabled{opacity:.3;cursor:not-allowed;border-color:#FF88B0;color:#A75B78;box-shadow:none}
+  .go-guide-nav button:disabled:hover{background:#FFFFFFF2;color:#A75B78}
   .go-guide-track{display:flex;scroll-snap-type:x mandatory;overflow-x:auto;overscroll-behavior-inline:contain;scroll-behavior:smooth;scrollbar-width:none;border-radius:22px}
   .go-guide-track::-webkit-scrollbar{display:none}
   .go-guide-slide{flex:0 0 100%;min-width:0;scroll-snap-align:start;box-sizing:border-box;background:#FFF1F6;padding:15px;border:1px solid #F3D5E0;border-radius:22px}
@@ -102,6 +126,10 @@ const cards=[
     .go-guide-heading{align-items:flex-start}
     .go-guide-heading h3{font-size:22px}
     .go-guide-slide{padding:9px}
+    .go-guide-nav button{width:40px;height:40px;background:#FFFFFFE8;box-shadow:0 3px 8px #34323A17}
+    .go-guide-nav button svg{width:22px;height:22px}
+    .go-guide-nav .go-guide-prev{left:5px}
+    .go-guide-nav .go-guide-next{right:5px}
     .go-guide-final-body{min-height:340px}
     .go-guide-actions{flex-direction:column}
     .go-guide-actions a{min-height:51px}

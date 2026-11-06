@@ -94,6 +94,13 @@ for(let i=0;i<6;i++){
 }
 assert.equal((home.match(/class="go-guide-slide/g)||[]).length,7,"Photo carousel should have six pictures and one CTA");
 assert.match(start,/data-location="guide_carousel_last"/,"Last slide CTA missing");
+const photoGuideSource=fs.readFileSync("src/components/SelfOpenPhotoCarousel.astro","utf8");
+assert.match(photoGuideSource,/class="go-guide-stage"/,"The arrows require a slide-relative stage");
+assert.match(photoGuideSource,/class="go-guide-prev"/,"Left-side arrow missing");
+assert.match(photoGuideSource,/class="go-guide-next"/,"Right-side arrow missing");
+assert.match(photoGuideSource,/go-guide-nav\{position:absolute/,"Arrows must be overlay controls");
+assert.match(photoGuideSource,/track\.scrollTo/,"Next/previous should change only the card, not scroll the whole page");
+
 assert.match(start,/https:\/\/www\.n-telecom\.co\.kr\/ntgo\/view\/open\/kt\/face_auth\.aspx/,"KT carousel must point to NTGO");
 assert.match(start,/https:\/\/www\.n-telecom\.co\.kr\/ntgo\/view\/open\/lg\/face_auth\.aspx/,"LG carousel must point to NTGO");
 
