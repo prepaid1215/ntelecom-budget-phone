@@ -1,0 +1,82 @@
+---
+import { toPublicPath } from "../lib/site-config.js";
+import { MIRROR_KT_URL, MIRROR_LG_URL, ntgoDestination } from "../lib/ntgo-targets.js";
+const {network="kt"}=Astro.props;
+const isKt=network==="kt";
+const destination=ntgoDestination(isKt?process.env.START_KT_URL:process.env.START_LG_URL,isKt?MIRROR_KT_URL:MIRROR_LG_URL);
+const label=isKt?"KT망":"LG U+망";
+const sim=isKt?"KT 바로유심":"LG 모두의 원칩";
+const serial=isKt?"유심 카드에 적힌 일련번호 숫자 19자리를 입력합니다. 마지막 영문 F는 입력하지 않습니다.":"유심 카드에서 모델코드 5자리(영문 1자리와 숫자 4자리), 일련번호 8자리를 구분해 입력합니다.";
+const buy=isKt?"CU·GS25·세븐일레븐·이마트24 등에서 KT 바로유심 판매 여부를 확인하세요.":"이마트24·스토리웨이 등에서 LG 모두의 원칩 판매 여부를 확인하세요.";
+const steps=[
+  {title:sim+" 준비",detail:buy+" 포장지와 카드의 유심번호를 확인할 수 있게 보관하세요."},
+  {title:label+" 개통 신청 화면 열기",detail:label+" 개통하기 버튼을 누르면 앤텔레콤 신청 화면으로 직접 이동합니다."},
+  {title:"가입유형 및 본인정보 입력",detail:"신규가입 또는 번호이동을 선택한 뒤 화면에서 안내하는 고객정보를 입력합니다. 번호이동은 기존 통신사의 확인 절차가 추가될 수 있습니다."},
+  {title:"안면인증·간편인증 진행",detail:"신분증과 카메라가 작동하는 휴대폰을 준비하고 안내에 따라 본인확인을 마칩니다. 제공되는 인증수단 중 이용 가능한 방법을 선택하세요."},
+  {title:"유심정보 정확히 입력",detail:serial},
+  {title:"요금제·매월 납부정보 선택",detail:"데이터·통화 제공량과 월 이용요금을 확인하고 요금제 및 납부정보를 입력해 신청을 마칩니다. 최종 신청 화면의 조건을 다시 확인하세요."},
+  {title:"개통 결과 확인 후 유심 장착",detail:"신청 화면에서 완료 여부를 확인한 뒤 유심을 휴대폰에 장착합니다. 연결되지 않으면 재부팅하고, 안내된 본사 확인 전화가 있으면 받아 주세요."}
+];
+const questions=isKt?[
+  {q:"KT망 신청에는 어떤 유심을 준비하나요?",a:"앤텔레콤 KT망 가입에 사용할 수 있는 KT 바로유심을 준비하세요. KT망을 사용한다고 모든 알뜰폰 유심이 서로 호환되는 것은 아닙니다."},
+  {q:"KT 바로유심 번호는 어떻게 입력하나요?",a:"유심 카드의 숫자 19자리를 입력합니다. 마지막에 영문 F가 표시되어 있어도 입력란에는 포함하지 않습니다."},
+  {q:"요금제는 신청 전에 확정해야 하나요?",a:"먼저 요금제 비교 페이지에서 데이터와 월 요금을 살펴보고, 실제 신청 화면에서 이용할 요금제를 선택하면 됩니다."}
+]:[
+  {q:"LG망 신청에는 어떤 유심을 준비하나요?",a:"LG 모두의 원칩 등 앤텔레콤 LG망 신청에 사용 가능한 유심을 준비하세요. 구매 전 상품 포장과 지원 여부를 확인하세요."},
+  {q:"LG 원칩 번호를 입력할 때 무엇이 필요한가요?",a:"유심 카드에 표시된 모델코드 5자리와 숫자 일련번호 8자리를 각각 정확히 입력합니다. 모델코드에는 영문이 포함됩니다."},
+  {q:"개통 후 유심은 언제 꽂나요?",a:"신청 화면에서 개통 결과를 확인한 다음 유심을 장착하세요. 바로 연결되지 않으면 휴대폰을 다시 시작해 주세요."}
+];
+---
+<article class="ng" data-network-guide={network}>
+  <div class="ng-wrap">
+    <nav class="ng-crumb" aria-label="현재 위치"><a href={toPublicPath("/")}>홈</a><span aria-hidden="true">›</span><a href={toPublicPath("/guide/")}>개통방법</a><span aria-hidden="true">›</span><span>{label}</span></nav>
+    <header class="ng-hero">
+      <span class="ng-eyebrow">앤텔레콤 알뜰폰 · 사이트 셀프개통</span>
+      <h1>{label} 알뜰폰 개통방법</h1>
+      <p>{sim}을 준비했다면 온라인에서 본인인증, 요금제 선택, 매월 요금 납부정보 입력까지 진행할 수 있습니다. 아래 순서대로 확인하세요.</p>
+      <div class="ng-buttons">
+        <a class="ng-primary" href={destination} data-network={network} data-location="seo_network_guide">{label} 개통하기</a>
+        <a class="ng-secondary" href={toPublicPath("/plans/")}>요금제 먼저 비교</a>
+      </div>
+    </header>
+    <section class="ng-prep" aria-labelledby="ng-prep-title">
+      <div class="ng-prep-photo"><img src={toPublicPath(isKt?"/images/usim/baro-usim.webp":"/images/usim/onechip.webp")} alt={sim+" 실제 제품 사진"} width="340" height="340" loading="eager"/></div>
+      <div>
+        <h2 id="ng-prep-title">시작 전 준비할 것</h2>
+        <p><strong>{sim}</strong>, 본인 신분증, 카메라 사용이 가능한 휴대폰과 이용할 수 있는 간편인증수단을 준비하세요.</p>
+        <p>{isKt?"KT망은 유심 숫자 19자리를 입력합니다. 마지막 영문 F는 제외합니다.":"LG망은 모델코드 5자리와 일련번호 숫자 8자리를 구분해서 입력합니다."}</p>
+        <a href={toPublicPath("/#start-usim")}>유심 구매 안내 보기 <span aria-hidden="true">›</span></a>
+      </div>
+    </section>
+    <section class="ng-section" aria-labelledby="ng-steps-title">
+      <h2 id="ng-steps-title">{label} 사이트 개통 순서</h2>
+      <p>아래 단계는 실제 신청 화면의 진행 흐름을 이해하기 위한 안내입니다. 화면에 표시되는 항목은 가입유형과 개통 시점에 따라 달라질 수 있습니다.</p>
+      <ol class="ng-steps">
+        {steps.map((step,i)=><li><span class="ng-index">{String(i+1).padStart(2,"0")}</span><div><h3>{step.title}</h3><p>{step.detail}</p></div></li>)}
+      </ol>
+      <a class="ng-photo-link" href={toPublicPath("/#start-steps")}>사진으로 보는 전체 개통 안내 <span aria-hidden="true">›</span></a>
+    </section>
+    <section class="ng-section" aria-labelledby="ng-check-title">
+      <h2 id="ng-check-title">신청할 때 확인하세요</h2>
+      <div class="ng-checks">
+        <div><strong>통신망과 유심이 일치하나요?</strong><p>{sim}을 선택한 통신망에 맞춰 준비했는지 확인하세요.</p></div>
+        <div><strong>데이터와 월 요금을 확인했나요?</strong><p>요금제별 기본 제공량, 소진 후 속도, 제휴 혜택 조건을 실제 신청 화면에서 확인하세요.</p></div>
+        <div><strong>본인인증을 마쳤나요?</strong><p>인증이 완료되지 않으면 다음 신청 단계로 진행할 수 없습니다.</p></div>
+      </div>
+    </section>
+    <section class="ng-section" aria-labelledby="ng-faq-title">
+      <h2 id="ng-faq-title">{label} 개통 자주 묻는 질문</h2>
+      <div class="ng-faq">{questions.map(item=><details><summary>{item.q}</summary><p>{item.a}</p></details>)}</div>
+      <a class="ng-more" href={toPublicPath("/faq/")}>알뜰폰 질문 전체 보기 <span aria-hidden="true">›</span></a>
+    </section>
+    <aside class="ng-final">
+      <h2>준비됐다면 {label} 개통 시작</h2>
+      <p>선택한 통신망의 앤텔레콤 신청 화면으로 바로 이동합니다.</p>
+      <div class="ng-buttons"><a class="ng-primary" href={destination} data-network={network} data-location="seo_network_guide_final">{label} 개통하기</a><a class="ng-secondary" href={toPublicPath(isKt?"/guide/lg/":"/guide/kt/")}>{isKt?"LG U+망":"KT망"} 개통방법 비교</a></div>
+    </aside>
+  </div>
+</article>
+<style>
+.ng{color:#34323A;background:#fff;padding:34px 18px 70px}.ng-wrap{max-width:1040px;margin:auto}.ng-crumb{display:flex;align-items:center;gap:10px;font-size:12px;color:#6B6870;margin:0 0 26px}.ng-crumb a{color:#A12863;text-decoration:none}.ng-eyebrow{font-size:12px;letter-spacing:.06em;color:#C91B69;font-weight:800}.ng-hero{background:#FFF1F6;border-radius:23px;padding:clamp(22px,4vw,42px);margin-bottom:28px}.ng-hero h1{font-size:clamp(27px,4vw,42px);line-height:1.3;margin:9px 0 12px;word-break:keep-all}.ng-hero p{max-width:750px;color:#5F5962;line-height:1.9}.ng-buttons{display:flex;gap:11px;flex-wrap:wrap;margin-top:22px}.ng-buttons a{display:inline-flex;justify-content:center;align-items:center;border-radius:12px;padding:15px 24px;font-size:15px;font-weight:850;text-decoration:none}.ng-primary{background:#ED2675;color:#fff}.ng-secondary{background:#fff;color:#B41459;border:1px solid #F5B8D2}.ng-prep{display:grid;grid-template-columns:180px minmax(0,1fr);align-items:center;gap:22px;border:1px solid #F1E1E7;border-radius:20px;padding:20px;margin:28px 0}.ng-prep-photo{background:#fff8fb;border-radius:14px;padding:12px;aspect-ratio:1;display:grid;place-items:center}.ng-prep-photo img{display:block;width:100%;max-height:160px;object-fit:contain}.ng-prep h2,.ng-section h2,.ng-final h2{font-size:clamp(21px,2.7vw,27px);margin:0 0 12px;line-height:1.35}.ng-prep p,.ng-section>p,.ng-final p{font-size:15px;line-height:1.8;color:#625A65}.ng-prep a,.ng-more,.ng-photo-link{font-weight:750;color:#BD1B66;text-decoration:underline;text-underline-offset:4px}.ng-section{padding-top:27px;margin-bottom:32px;border-top:1px solid #F0E3E9}.ng-steps{padding:0;margin:20px 0;list-style:none;display:grid;gap:10px}.ng-steps li{display:flex;align-items:flex-start;gap:18px;background:#FFFAFC;border:1px solid #F3E4EA;border-radius:15px;padding:20px}.ng-index{color:#ED2675;font-size:16px;font-weight:850}.ng-steps h3{font-size:17px;margin:0 0 5px}.ng-steps p{font-size:14px;line-height:1.8;margin:0;color:#605A65}.ng-checks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.ng-checks>div{padding:20px;border:1px solid #EDE2E7;border-radius:14px}.ng-checks strong{font-size:15px}.ng-checks p{font-size:13px;line-height:1.8;color:#655E67;margin:8px 0 0}.ng-faq{display:grid;gap:9px;margin:18px 0}.ng-faq details{border:1px solid #F0DEE7;border-radius:12px;padding:16px 19px}.ng-faq summary{font-size:15px;font-weight:800;cursor:pointer}.ng-faq details p{font-size:14px;color:#635D66;line-height:1.8;margin:10px 0 0}.ng-final{background:#FFF1F6;border-radius:20px;padding:30px}.ng-final p{margin:0}
+@media(max-width:650px){.ng{padding:22px 14px 50px}.ng-prep{grid-template-columns:100px minmax(0,1fr);gap:12px;padding:12px}.ng-prep h2{font-size:20px}.ng-prep p{font-size:13px}.ng-checks{grid-template-columns:1fr}.ng-buttons{flex-direction:column}.ng-buttons a{width:100%;box-sizing:border-box}.ng-steps li{padding:15px}.ng-final{padding:22px}}
+</style>

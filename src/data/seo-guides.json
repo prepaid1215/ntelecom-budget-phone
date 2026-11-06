@@ -1,0 +1,20 @@
+[
+  {
+    "path": "/guide/kt/",
+    "effectiveIndex": "index",
+    "pageType": "guide",
+    "priority": "P1"
+  },
+  {
+    "path": "/guide/lg/",
+    "effectiveIndex": "index",
+    "pageType": "guide",
+    "priority": "P1"
+  },
+  {
+    "path": "/faq/",
+    "effectiveIndex": "index",
+    "pageType": "faq",
+    "priority": "P1"
+  }
+]
