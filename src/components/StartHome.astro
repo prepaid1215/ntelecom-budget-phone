@@ -3,7 +3,8 @@ import HomePlanFinder from "./HomePlanFinder.astro";
 import BenefitOffer from "./BenefitOffer.astro";
 import CardOffer from "./CardOffer.astro";
 import { toPublicPath } from "../lib/site-config.js";
-const {model,targets}=Astro.props;
+const {model,targets,variant="start"}=Astro.props;
+const isHomepage=variant==="home";
 const plans=model.matched;
 const chosen=(net,gb)=>plans.filter(p=>p.network===net&&p.data_gb===gb).sort((a,b)=>a.monthly_price-b.monthly_price)[0];
 const featured=[chosen("L",7),chosen("K",7),chosen("K",15),chosen("L",15)].filter(Boolean);
@@ -15,21 +16,37 @@ const menu=[
 ---
 <div class="sh" data-start-home>
   <div class="sh-main">
-    <section class="sh-hero" id="start-choices">
-      <div class="sh-hero-inner">
-        <span class="sh-pill">앤텔레콤 후불 알뜰폰 셀프개통</span>
-        <h1>지금 바로 <em>셀프개통</em>을<br/>시작해보세요</h1>
-        <p>KT망·LG U+망 후불 알뜰폰을 선택해 직접 신청하세요.</p>
-        <div class="sh-main-buttons">
-          <a class="sh-btn sh-kt" href={targets.K} data-outbound data-billing="postpaid" data-network="kt" data-location="hero">KT 개통하기</a>
-          <a class="sh-btn sh-lg" href={targets.L} data-outbound data-billing="postpaid" data-network="lg" data-location="hero">LG 개통하기</a>
+    <section class:list={["sh-hero",{"sh-hero-home":isHomepage}]} id="start-choices">
+      {isHomepage ? (
+        <div class="sh-hero-inner sh-home-hero-grid">
+          <div class="sh-home-copy">
+            <span class="sh-home-eyebrow">앤텔레콤 알뜰폰 · 온라인 개통</span>
+            <h1>알뜰폰,<br/><em>요금제 비교부터 개통까지</em></h1>
+            <p>KT망·LG U+망 알뜰폰 요금제를 비교하고 온라인에서 직접 신청하세요. 매월 사용하는 요금을 납부하는 방식입니다.</p>
+            <div class="sh-home-actions">
+              <a class="sh-home-primary" href={toPublicPath("/start/")}>셀프개통 시작하기</a>
+              <a class="sh-home-secondary" href="#postpaid-plans">요금제 비교</a>
+            </div>
+          </div>
+          <div class="sh-home-art">
+            <img src={toPublicPath("/images/hero-mobile.webp")} width="1000" height="750" alt="스마트폰과 유심, 요금제 및 제휴 혜택을 표현한 일러스트" decoding="async" fetchpriority="high"/>
+          </div>
         </div>
-        <div class="sh-selected" data-selected-plan hidden>선택한 요금제: <strong data-selected-name></strong></div>
-        <a class="sh-usim-cta" href="#start-usim"><span>USIM</span><strong>유심이 없으신가요? 구매처 확인</strong><b aria-hidden="true">›</b></a>
-        <p class="sh-small-intro">셀프개통이 처음이신가요?</p>
-        <a class="sh-guide" href="#start-steps">개통 가이드 보기 <span aria-hidden="true">›</span></a>
-
-      </div>
+      ) : (
+        <div class="sh-hero-inner">
+          <span class="sh-pill">앤텔레콤 알뜰폰 셀프개통</span>
+          <h1>지금 바로 <em>셀프개통</em>을<br/>시작해보세요</h1>
+          <p>KT망·LG U+망 알뜰폰을 선택해 직접 신청하세요.</p>
+          <div class="sh-main-buttons">
+            <a class="sh-btn sh-kt" href={targets.K} data-outbound data-billing="postpaid" data-network="kt" data-location="hero">KT 개통하기</a>
+            <a class="sh-btn sh-lg" href={targets.L} data-outbound data-billing="postpaid" data-network="lg" data-location="hero">LG 개통하기</a>
+          </div>
+          <div class="sh-selected" data-selected-plan hidden>선택한 요금제: <strong data-selected-name></strong></div>
+          <a class="sh-usim-cta" href="#start-usim"><span>USIM</span><strong>유심이 없으신가요? 구매처 확인</strong><b aria-hidden="true">›</b></a>
+          <p class="sh-small-intro">셀프개통이 처음이신가요?</p>
+          <a class="sh-guide" href="#start-steps">개통 가이드 보기 <span aria-hidden="true">›</span></a>
+        </div>
+      )}
     </section>
     <nav class="sh-menu" aria-label="알뜰폰 빠른 안내">
       {menu.map(([image,label,href],i)=><a href={href}><span class={"sh-menu-art sh-color-"+i}><img src={toPublicPath("/images/start/"+image)} alt="" width="146" height="149" loading="lazy" /></span><strong>{label}</strong></a>)}
@@ -45,13 +62,13 @@ const menu=[
             <p>{p.data_text}</p>
             <div class="sh-price"><small>월 기본료</small><strong>{won(p.monthly_price)}</strong></div>
             <p>통화 {p.calls} · 문자 {p.sms}</p>
-            <a href={targets[p.network]} data-outbound data-billing="postpaid" data-network={p.network==="K"?"kt":"lg"} data-plan={p.id} data-location="recommended">이 요금제로 개통하기 ›</a>
+            <a href={targets[p.network]} data-outbound={isHomepage?undefined:"true"} data-billing="postpaid" data-network={p.network==="K"?"kt":"lg"} data-plan={p.id} data-location="recommended">이 요금제로 개통하기 ›</a>
           </article>)}
         </div>
       </div>
     </section>
     <div id="postpaid-plans" class="sh-catalog">
-      <HomePlanFinder model={model} mode="start" outboundLinks={targets}/>
+      <HomePlanFinder model={model} mode={isHomepage?"default":"start"} outboundLinks={isHomepage?null:targets}/>
     </div>
     <section class="sh-section sh-soft" id="start-usim">
       <div class="sh-wrap">
@@ -64,7 +81,7 @@ const menu=[
     </section>
     <section class="sh-section" id="start-steps">
       <div class="sh-wrap">
-        <div class="sh-head"><div><small>HOW TO START</small><h2>알뜰폰 셀프개통 순서</h2><p>신규가입은 새 번호를 만들고, 번호이동은 기존 번호를 유지합니다.</p></div></div>
+        <div class="sh-head"><div><small>HOW TO START</small><h2>알뜰폰 셀프개통 순서</h2><p>신규가입과 번호이동 중 원하는 가입 유형을 선택할 수 있습니다.</p></div></div>
         <div class="sh-steps">
           <div><b>01</b><strong>유심 준비</strong><p>KT 바로유심 또는 LG 모두의 원칩 준비</p></div>
           <div><b>02</b><strong>개통하기</strong><p>KT·LG 통신망과 신규가입·번호이동 선택</p></div>
@@ -73,8 +90,8 @@ const menu=[
           <div><b>05</b><strong>개통 확인</strong><p>가입 완료 안내와 본사 해피콜 확인</p></div>
         </div>
         <div class="sh-step-buttons">
-          <a href={targets.K} data-outbound data-billing="postpaid" data-network="kt" data-location="guide">KT 개통하기</a>
-          <a href={targets.L} data-outbound data-billing="postpaid" data-network="lg" data-location="guide">LG 개통하기</a>
+          <a href={targets.K} data-outbound={isHomepage?undefined:"true"} data-billing="postpaid" data-network="kt" data-location="guide">KT 개통하기</a>
+          <a href={targets.L} data-outbound={isHomepage?undefined:"true"} data-billing="postpaid" data-network="lg" data-location="guide">LG 개통하기</a>
         </div>
       </div>
     </section>
