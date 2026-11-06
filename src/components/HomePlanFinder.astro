@@ -1,8 +1,10 @@
 ---
 import { toPublicPath, activationLink } from "../lib/site-config.js";
 import PlanFinderIcon from "./PlanFinderIcon.astro";
+import HomeFilterIcon from "./HomeFilterIcon.astro";
 
-const { model }=Astro.props;
+const { model, mode="default", outboundLinks=null }=Astro.props;
+const homeMode=mode==="home";
 const plans=[...model.matched];
 const shortId=p=>p.id.replace("ntelecom-k-","").replace("ntelecom-l-","");
 const planPath=p=>toPublicPath("/plans/"+p.network.toLowerCase()+"/item/"+shortId(p)+"/");
@@ -44,6 +46,7 @@ const benefitInfo=Object.fromEntries((model.benefits||[]).map(b=>[b.id,b]));
 const finderPlans=plans.map(p=>{
   const b=benefitInfo[(p.benefit_ids||[])[0]];
   return {
+    id:p.id,
     name:p.name.replace("앤텔레콤 ","").replace(/^([KL])망\s*/,"$1망 "),
     net:p.network,
     price:p.monthly_price,
@@ -62,9 +65,38 @@ const finderPlans=plans.map(p=>{
   };
 });
 const applyUrl=activationLink("home");
+const startOutbound=mode==="start" ? outboundLinks : null;
+const pick=(net,gb)=>plans.filter(p=>p.network===net&&p.data_gb===gb).sort((a,b)=>a.monthly_price-b.monthly_price)[0];
+const featuredIds=[pick("L",7),pick("K",7),pick("K",15),pick("L",15)].filter(Boolean).map(p=>p.id);
+const featuredPlans=featuredIds.map(id=>finderPlans.find(p=>p.id===id)).filter(Boolean);
+const homeFilters=[
+ {group:"price",label:"월 요금",options:[["all","전체","all"],["under20","2만원 이하","under20"],["under30","2~3만원","price-mid"],["over30","3만원 초과","price-high"]]},
+ {group:"data",label:"데이터 사용량",options:[["all","전체","all"],["light","가볍게","data7"],["medium","보통","data15"],["heavy","많이","data100"]]},
+ {group:"net",label:"통신망",options:[["all","전체","all"],["k","KT망","k"],["l","LG U+망","l"]]}
+];
 ---
 
-<section class="pf" data-plan-finder>
+<section class:list={["pf",{"pf-home":homeMode}]} data-plan-finder>
+  {homeMode ? (
+  <div class="pf-top">
+    <div class="wrap">
+      <div class="pf-head">
+        <div><span>맞춤요금제</span><h2>나에게 맞는 알뜰폰 요금제 찾기</h2><p>월 요금·데이터·통신망을 고르면 아래 추천 카드가 바로 바뀝니다.</p></div>
+        <a href={toPublicPath("/guide/")}>개통 방법 보기 <b>›</b></a>
+      </div>
+      <div class="pf-home-filter-groups">
+        {homeFilters.map(filter=><fieldset class="pf-home-group">
+          <legend class="pf-row-label">{filter.label}</legend>
+          <div class="pf-scroll pf-home-options" role="group" aria-label={filter.label+" 선택"}>
+            {filter.options.map(([value,label,icon],i)=><button type="button" class:list={["pf-category",{"is-on":i===0}]} data-home-filter data-group={filter.group} data-value={value} aria-pressed={i===0?"true":"false"}>
+              <span class="pf-icon pf-home-symbol"><HomeFilterIcon name={icon}/></span><strong>{label}</strong>
+            </button>)}
+          </div>
+        </fieldset>)}
+      </div>
+    </div>
+  </div>
+  ) : (
   <div class="pf-top">
     <div class="wrap">
       <div class="pf-head"><div><span>빠른 조건 찾기</span><h2>어떤 요금제를 찾으세요?</h2></div><a href={toPublicPath("/guide/")}>개통 방법 보기 <b>›</b></a></div>
@@ -82,22 +114,31 @@ const applyUrl=activationLink("home");
       </div>
     </div>
   </div>
+  )}
   <div class="pf-tools">
     <div class="wrap">
       <label class="pf-search"><span aria-hidden="true">⌕</span><input type="search" placeholder="요금제명·혜택 검색 (예: 쿠팡, 15GB)" aria-label="요금제명 또는 혜택 검색" data-finder-search /></label>
       <div class="pf-bar">
         <div class="pf-total"><strong>총 <i data-finder-count>{plans.length}</i>개</strong><span data-finder-label>전체 요금제</span></div>
         <button class="pf-reset" type="button" data-finder-reset hidden>초기화</button>
-        <label class="pf-sort"><span class="sr-only">정렬</span><select data-finder-sort aria-label="정렬"><option value="low">낮은 가격순</option><option value="data">데이터 많은순</option><option value="high">높은 가격순</option><option value="card">카드 할인 적용가순</option></select></label>
+        <label class="pf-sort"><span class="sr-only">정렬</span><select data-finder-sort aria-label="정렬">{homeMode&&<option value="recommended">추천순</option>}<option value="low">낮은 가격순</option><option value="data">데이터 많은순</option><option value="high">높은 가격순</option><option value="card">카드 할인 적용가순</option></select></label>
       </div>
-      <div class="pf-list" data-finder-list aria-live="polite"></div>
+      <div class="pf-list" data-finder-list aria-live="polite">
+          {homeMode&&featuredPlans.map(p=><article class="pf-card">
+            <div class="pf-tags"><span class="pf-tag is-net">{p.net==="K"?"KT망":"LG U+망"}</span><span class="pf-tag">무약정</span></div>
+            <h3>{p.name}</h3>
+            <dl class="pf-spec"><div><dt>데이터</dt><dd>{p.dataText}</dd></div><div><dt>통화</dt><dd>{p.calls}</dd></div><div><dt>문자</dt><dd>{p.sms}</dd></div></dl>
+            <div class="pf-price"><div class="pf-price-main"><small>월 기본료</small><strong>{p.price.toLocaleString("ko-KR")}원</strong></div></div>
+            <div class="pf-actions"><a class="pf-btn" href={p.path}>자세히 보기</a><a class="pf-btn is-primary" href={activationLink("home",{network:p.net,plan:p.id,planName:p.name})}>신청하기</a></div>
+          </article>)}
+        </div>
       <button class="pf-more" type="button" data-finder-more>더보기</button>
       <p class="pf-note">월 기본료는 부가세 포함이며, 카드 최대 할인 시 금액은 전월 실적 최대 구간 기준이에요. 혜택 조건은 가입 시점에 달라질 수 있어요.</p>
     </div>
   </div>
 </section>
 
-<script define:vars={{finderPlans,applyUrl}}>
+<script define:vars={{finderPlans,applyUrl,startOutbound,homeMode,featuredIds}}>
   const root=document.querySelector("[data-plan-finder]");
   if(root){
     const buttons=[...root.querySelectorAll("[data-category]")];
@@ -108,20 +149,40 @@ const applyUrl=activationLink("home");
     const list=root.querySelector("[data-finder-list]");
     const more=root.querySelector("[data-finder-more]");
     const reset=root.querySelector("[data-finder-reset]");
-    const PAGE=6;
+    const PAGE=homeMode?4:6;
     const tools=root.querySelector(".pf-tools");
     const scrollToResults=()=>{
       const smooth=!window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       tools.scrollIntoView({behavior:smooth?"smooth":"auto",block:"start"});
     };
     let active="all", shown=PAGE;
+    const state={price:"all",data:"all",net:"all"};
+    const homeButtons=[...root.querySelectorAll("[data-home-filter]")];
     const won=n=>Number(n).toLocaleString("ko-KR")+"원";
     const el=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;};
     const matches=()=>{
       const q=(search.value||"").trim().toLowerCase();
-      const mode=sort.value;
-      const out=finderPlans.filter(p=>(active==="all"||p.groups.includes(active))&&(!q||(p.name+" "+p.benefit+" "+p.dataText).toLowerCase().includes(q)));
-      out.sort((a,b)=>mode==="high" ? b.price-a.price : mode==="data" ? b.data-a.data||a.price-b.price : mode==="card" ? a.cardPrice-b.cardPrice||a.price-b.price : a.price-b.price);
+      const order=sort.value;
+      const out=finderPlans.filter(p=>{
+        if(q&&!(p.name+" "+p.benefit+" "+p.dataText+" "+p.extra).toLowerCase().includes(q))return false;
+        if(!homeMode)return active==="all"||p.groups.includes(active);
+        if(state.net!=="all"&&p.net.toLowerCase()!==state.net)return false;
+        if(state.price==="under20"&&p.price>20000)return false;
+        if(state.price==="under30"&&(p.price<=20000||p.price>30000))return false;
+        if(state.price==="over30"&&p.price<=30000)return false;
+        if(state.data!=="all"){
+          const bucket=p.data<=7?"light":p.data<=20?"medium":"heavy";
+          if(bucket!==state.data)return false;
+        }
+        return true;
+      });
+      const priority=id=>{const idx=featuredIds.indexOf(id);return idx<0?1000:idx;};
+      out.sort((a,b)=>order==="recommended"
+         ? priority(a.id)-priority(b.id)||a.price-b.price
+         : order==="high" ? b.price-a.price
+         : order==="data" ? b.data-a.data||a.price-b.price
+         : order==="card" ? a.cardPrice-b.cardPrice||a.price-b.price
+         : a.price-b.price);
       return out;
     };
     const row=(k,v)=>{const d=el("div");d.append(el("dt",null,k),el("dd",null,v));return d;};
@@ -146,7 +207,20 @@ const applyUrl=activationLink("home");
       if(p.benefitValue) art.append(el("p","pf-benefit",p.benefitValue));
       const actions=el("div","pf-actions");
       const detail=el("a","pf-btn","자세히 보기");detail.href=p.path;
-      const apply=el("a","pf-btn is-primary","신청하기");apply.href=applyUrl;
+      const apply=el("a","pf-btn is-primary","신청하기");
+      if(startOutbound){
+        apply.href=startOutbound[p.net];
+        apply.dataset.outbound="yes";
+        apply.dataset.network=p.net==="K"?"kt":"lg";
+        apply.dataset.billing="postpaid";
+        apply.dataset.plan=p.id;
+      } else {
+        const next=new URL(applyUrl,location.origin);
+        next.searchParams.set("net",p.net==="K"?"kt":"lg");
+        next.searchParams.set("plan",p.id);
+        next.searchParams.set("plan_name",p.name);
+        apply.href=next.toString();
+      }
       actions.append(detail,apply);
       art.append(actions);
       return art;
@@ -156,8 +230,8 @@ const applyUrl=activationLink("home");
       const q=(search.value||"").trim();
       const activeLabel=buttons.find(b=>b.dataset.category===active)?.dataset.label||"전체 요금제";
       countEl.textContent=String(all.length);
-      labelEl.textContent=q ? "‘"+q+"’ 검색 결과" : (active==="all" ? "전체 요금제" : activeLabel);
-      reset.hidden=!(q||active!=="all");
+      labelEl.textContent=q ? "‘"+q+"’ 검색 결과" : homeMode ? (Object.values(state).some(v=>v!=="all")?"선택한 조건의 요금제":"추천 요금제") : (active==="all"?"전체 요금제":activeLabel);
+      reset.hidden=homeMode ? !(q||Object.values(state).some(v=>v!=="all")||sort.value!=="recommended") : !(q||active!=="all");
       list.replaceChildren();
       if(!all.length){list.appendChild(el("div","pf-empty","조건에 맞는 요금제가 없어요. 조건을 바꿔 보세요."));more.hidden=true;return;}
       all.slice(0,shown).forEach(p=>list.appendChild(card(p)));
@@ -172,11 +246,21 @@ const applyUrl=activationLink("home");
       render();
       scrollToResults();
     }));
+    homeButtons.forEach(button=>button.addEventListener("click",()=>{
+      const {group,value}=button.dataset;
+      state[group]=value;shown=PAGE;
+      homeButtons.filter(b=>b.dataset.group===group).forEach(b=>{
+        const on=b===button;b.classList.toggle("is-on",on);b.setAttribute("aria-pressed",String(on));
+      });
+      render();
+    }));
     search.addEventListener("input",()=>{shown=PAGE;render();});
     sort.addEventListener("change",()=>{shown=PAGE;render();});
     more.addEventListener("click",()=>{shown+=PAGE;render();});
     reset.addEventListener("click",()=>{
-      active="all";shown=PAGE;search.value="";sort.value="low";
+      active="all";shown=PAGE;search.value="";sort.value=homeMode?"recommended":"low";
+      Object.keys(state).forEach(k=>state[k]="all");
+      homeButtons.forEach(b=>{const on=b.dataset.value==="all";b.classList.toggle("is-on",on);b.setAttribute("aria-pressed",String(on));});
       buttons.forEach((item,i)=>{item.classList.toggle("is-on",i===0);item.setAttribute("aria-pressed",String(i===0));});
       render();
     });
@@ -190,7 +274,7 @@ const applyUrl=activationLink("home");
   .pf{border-top:1px solid #eee8f3;border-bottom:1px solid #e7e7eb;background:#fff}
   .pf-top{padding:38px 0 30px}
   .pf-head{display:flex;align-items:end;justify-content:space-between;gap:16px}
-  .pf-head>div>span{color:#e92d76;font-size:13px;font-weight:900}
+  .pf-head>div>span{color:#ED2675;font-size:13px;font-weight:900}
   .pf-head h2{margin:6px 0 0;font-size:29px;letter-spacing:-1.1px}
   .pf-head>a{color:#4a4650;font-size:14px;font-weight:850;white-space:nowrap}.pf-head>a b{font-size:18px}
   .pf-row-label{margin-top:22px;color:#5f5a64;font-size:13px;font-weight:800}
@@ -200,11 +284,11 @@ const applyUrl=activationLink("home");
   .pf-icon{width:76px;height:76px;margin:0 auto 10px;border-radius:50%;display:grid;place-items:center;background:#f5f4f6;border:1px solid #dedce2;transition:.2s;box-shadow:inset 0 1px 0 rgba(255,255,255,.8)}
   .pf-category strong,.pf-category small{display:block}.pf-category strong{font-size:14px;white-space:nowrap}.pf-category small{margin-top:3px;color:#5f5a64;font-size:12px}
   .pf-category.is-on .pf-icon{background:#fff;border:5px solid #36333a;box-shadow:0 9px 20px rgba(35,30,39,.18);transform:translateY(-2px)}.pf-category.is-on strong{color:#111;font-weight:950}
-  .pf-icon-under20{background:#fff4da;color:#9c6a00}.pf-icon-data7{background:#e7f6ff;color:#1676a8}.pf-icon-data15{background:#eeeaff;color:#654fd3}.pf-icon-data100{background:#ffe9f1;color:#c82d67}.pf-icon-daily{background:#e5fff0;color:#118149}.pf-icon-benefit{background:#fff0f6;color:#ff438b}.pf-icon-k{background:#fff2d9;color:#8b5c00}.pf-icon-l{background:#ece8ff;color:#5e45c7}
+  .pf-icon-under20{background:#fff4da;color:#9c6a00}.pf-icon-data7{background:#e7f6ff;color:#1676a8}.pf-icon-data15{background:#eeeaff;color:#654fd3}.pf-icon-data100{background:#ffe9f1;color:#c82d67}.pf-icon-daily{background:#e5fff0;color:#118149}.pf-icon-benefit{background:#fff0f6;color:#ED2675}.pf-icon-k{background:#fff2d9;color:#8b5c00}.pf-icon-l{background:#ece8ff;color:#5e45c7}
   .pf-tools{scroll-margin-top:84px;padding:28px 0 24px;background:#f7f7f9;border-top:1px solid #e7e7eb}
   .pf-search{min-height:54px;display:flex;align-items:center;gap:10px;padding:0 16px;border-radius:15px;background:#fff;border:1px solid #d8d8df}.pf-search>span{font-size:23px;transform:rotate(-20deg)}.pf-search input{width:100%;border:0;outline:0;background:transparent;font:inherit;font-size:16px}
   .pf-bar{display:flex;align-items:center;gap:10px;margin:20px 0 14px;flex-wrap:wrap}
-  .pf-total{display:flex;align-items:baseline;gap:8px;margin-right:auto;min-width:0}.pf-total strong{font-size:22px;letter-spacing:-.6px}.pf-total i{font-style:normal;color:#e92d76}.pf-total span{color:#5f5a64;font-size:14px;font-weight:700}
+  .pf-total{display:flex;align-items:baseline;gap:8px;margin-right:auto;min-width:0}.pf-total strong{font-size:22px;letter-spacing:-.6px}.pf-total i{font-style:normal;color:#ED2675}.pf-total span{color:#5f5a64;font-size:14px;font-weight:700}
   .pf-reset{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid #cfcdd4;background:#fff;color:#4a4650;font-size:14px;font-weight:800}
   .pf-sort{display:flex;align-items:center;border-radius:12px;background:#fff;border:1px solid #d8d8df;padding:0 10px}.pf-sort select{min-height:40px;border:0;outline:0;background:#fff;font:inherit;font-size:14px;font-weight:800;color:#252128}
   .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -215,10 +299,10 @@ const applyUrl=activationLink("home");
   .pf-spec{margin:0;border-top:1px solid #eeeef1}.pf-spec>div{display:grid;grid-template-columns:56px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid #eeeef1;font-size:14px;line-height:1.5}.pf-spec dt{color:#5f5a64;font-weight:700}.pf-spec dd{margin:0;font-weight:700;word-break:keep-all}
   .pf-price{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:2px}
   .pf-price-main small{display:block;color:#5f5a64;font-size:12px;font-weight:700}.pf-price-main strong{font-size:28px;letter-spacing:-1px;line-height:1.1}
-  .pf-price-card{text-align:right}.pf-price-card small{display:block;color:#5f5a64;font-size:12px;font-weight:700}.pf-price-card b{color:#e92d76;font-size:20px;letter-spacing:-.5px}
+  .pf-price-card{text-align:right}.pf-price-card small{display:block;color:#5f5a64;font-size:12px;font-weight:700}.pf-price-card b{color:#ED2675;font-size:20px;letter-spacing:-.5px}
   .pf-benefit{margin:0;padding:10px 12px;border-radius:12px;background:#fff7ea;color:#6d4a0b;font-size:13px;font-weight:700;line-height:1.5}
   .pf-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto;padding-top:4px}
-  .pf-btn{min-height:48px;border-radius:12px;border:1px solid #d8d8df;background:#fff;display:grid;place-items:center;font-size:15px;font-weight:900;color:#39343f}.pf-btn.is-primary{background:#ff438b;border-color:#ff438b;color:#fff}
+  .pf-btn{min-height:48px;border-radius:12px;border:1px solid #d8d8df;background:#fff;display:grid;place-items:center;font-size:15px;font-weight:900;color:#39343f}.pf-btn.is-primary{background:#ED2675;border-color:#ED2675;color:#fff}
   .pf-more{display:block;width:100%;min-height:52px;margin-top:16px;border-radius:14px;border:1px solid #cfcdd4;background:#fff;font-size:15px;font-weight:900;color:#39343f}.pf-more[hidden],.pf-reset[hidden]{display:none}
   .pf-empty{padding:28px 16px;border-radius:16px;background:#fff;border:1px dashed #cfcdd4;text-align:center;color:#5f5a64;font-size:15px}
   .pf-note{margin:14px 0 0;color:#5f5a64;font-size:13px;line-height:1.6}
@@ -227,7 +311,7 @@ const applyUrl=activationLink("home");
   .pf-icon-benefit-brand img{position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;object-fit:contain;padding:12px 8px;box-sizing:border-box}
   .pf-icon-benefit-brand.is-square{border:0}.pf-icon-benefit-brand.is-square img{padding:0;object-fit:cover}
   .pf-category.is-on .pf-icon.pf-icon-benefit-brand{border:0;box-shadow:0 0 0 4px #36333a,0 9px 20px rgba(35,30,39,.18);transform:translateY(-2px)}
-  .pf-category:focus{outline:none}.pf-category:focus-visible{outline:3px solid #7258e9;outline-offset:4px;border-radius:16px}
+  .pf-category:focus{outline:none}.pf-category:focus-visible{outline:3px solid #FF88B0;outline-offset:4px;border-radius:16px}
   .pf-scroll-benefit{padding-bottom:4px}
   @media(min-width:1000px){.pf-scroll{display:grid;grid-template-columns:repeat(8,1fr);gap:12px;overflow:visible}.pf-category{flex:none}}
   @media(max-width:799px){.pf-top{padding:30px 0 24px}.pf-head h2{font-size:25px}.pf-scroll{gap:13px}.pf-category{flex-basis:82px}.pf-icon{width:68px;height:68px;font-size:18px}.pf-icon.pf-icon-benefit-brand{width:68px;height:68px;border-radius:18px}}
@@ -240,4 +324,80 @@ const applyUrl=activationLink("home");
   .pf-card .pf-price-main small,.pf-card .pf-price-card small{font-weight:400}
   .pf-card .pf-benefit{font-weight:400}
   .pf-card .pf-btn{font-weight:600}.pf-card .pf-btn.is-primary{font-weight:800}
+
+  /* Unified homepage: balanced 3-panel desktop filter instead of a narrow left-hand stack. */
+  .pf.pf-home{min-width:0;width:auto}
+  .pf.pf-home .pf-top{padding:40px 0 30px;background:var(--page-bg,#FFFFFF)}
+  .pf.pf-home .pf-top>.wrap,.pf.pf-home .pf-tools>.wrap{width:100%;max-width:1200px;margin-inline:auto;padding-inline:clamp(16px,2.7vw,30px)}
+  .pf.pf-home .pf-head{align-items:center;gap:18px}
+  .pf.pf-home .pf-head h2{font-size:clamp(25px,2.4vw,33px);line-height:1.3;word-break:keep-all}
+  .pf.pf-home .pf-head p{color:#625d68;font-size:14px;line-height:1.65;margin:9px 0 0}
+  .pf.pf-home .pf-home-filter-groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;width:100%;margin-top:26px;align-items:stretch}
+  .pf.pf-home .pf-home-group{min-width:0;min-inline-size:0;width:100%;margin:0;padding:13px 14px 16px;border:1px solid #F1D7E2;border-radius:17px;background:var(--filter-bg,#FFF1F6)}
+  .pf.pf-home .pf-home-group legend{font-size:15px;font-weight:850;line-height:1.4;padding:0 7px;margin-inline:4px;color:var(--filter-text,#34323A)}
+  .pf.pf-home .pf-home-options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:start;gap:6px;width:100%;min-width:0;overflow:visible;margin:6px 0 0;padding:0}
+  .pf.pf-home .pf-home-group:has([data-group="net"]) .pf-home-options{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .pf.pf-home .pf-home-options .pf-category{display:flex;flex-direction:column;align-items:center;width:100%;min-width:0;max-width:none;padding:5px 0 2px;text-align:center}
+  .pf.pf-home .pf-home-options .pf-icon{width:56px;height:56px;margin:0 auto 8px;flex-shrink:0;background:#FFFFFF;border-color:var(--brand-secondary,#FF88B0)}
+  .pf.pf-home .pf-home-options .pf-icon svg{width:41px;height:41px;max-width:100%}
+  .pf.pf-home .pf-home-options .pf-category strong{font-size:12px;line-height:1.35;min-height:2.7em;word-break:keep-all;white-space:normal;color:var(--filter-text,#34323A)}
+  .pf.pf-home .pf-home-options .pf-category.is-on strong{color:var(--brand,#ED2675);font-weight:900}
+  .pf.pf-home .pf-home-options .pf-category.is-on .pf-icon{background:#FFFFFF;border:4px solid var(--brand,#ED2675);box-shadow:0 4px 13px rgba(237,38,117,.16);transform:none}
+  .pf.pf-home .pf-home-symbol{color:var(--brand,#ED2675)}
+  .pf.pf-home .pf-tools{padding:27px 0 34px;background:var(--filter-bg,#FFF1F6);border-color:#F1D7E2}
+  .pf.pf-home .pf-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+  .pf.pf-home .pf-card{min-width:0;padding:17px 13px;gap:9px;border-radius:20px}
+  .pf.pf-home .pf-card h3{font-size:17px;overflow-wrap:anywhere}
+  .pf.pf-home .pf-tag{font-size:10px;padding:4px 7px}
+  .pf.pf-home .pf-spec>div{grid-template-columns:43px minmax(0,1fr);gap:6px;font-size:12px}
+  .pf.pf-home .pf-price-main strong{font-size:22px}
+  .pf.pf-home .pf-price-card b{font-size:17px}
+  .pf.pf-home .pf-price-card small,.pf.pf-home .pf-price-main small{font-size:10px}
+  .pf.pf-home .pf-btn{font-size:12px;min-height:42px}
+  .pf.pf-home .pf-actions{gap:6px}
+  /* Match the fixed 210px sidebar when open so filter panels/cards never sit behind it. */
+  /* Sidebar spacing is reserved in the main content itself, independent of open/closed state. */
+  @media(max-width:1230px){
+    .pf.pf-home .pf-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+  @media(max-width:1150px){
+    .pf.pf-home .pf-home-filter-groups{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .pf.pf-home .pf-home-group:last-child{grid-column:1 / -1}
+  }
+  @media(max-width:760px){
+    .pf.pf-home .pf-home-filter-groups{grid-template-columns:minmax(0,1fr)}
+    .pf.pf-home .pf-home-group:last-child{grid-column:auto}
+    .pf.pf-home .pf-head{align-items:flex-start;flex-direction:column}
+    .pf.pf-home .pf-head>a{font-size:13px}
+    .pf.pf-home .pf-card{padding:17px}
+  }
+  @media(max-width:700px){.pf.pf-home .pf-list{grid-template-columns:minmax(0,1fr)}}
+  @media(max-width:380px){
+    .pf.pf-home .pf-home-group{padding:12px 8px 14px}
+    .pf.pf-home .pf-home-options{gap:3px}
+    .pf.pf-home .pf-home-options .pf-icon{width:49px;height:49px}
+    .pf.pf-home .pf-home-options .pf-icon svg{width:37px;height:37px}
+    .pf.pf-home .pf-home-options .pf-category strong{font-size:11px}
+  }
+  
+  /* Theme guide for both homepage matcher and /start/ full catalog. */
+  .pf{background:var(--page-bg,#FFFFFF);color:var(--filter-text,#34323A)}
+  .pf .pf-top{background:var(--page-bg,#FFFFFF)}
+  .pf .pf-tools{background:var(--filter-bg,#FFF1F6)}
+  .pf .pf-category{color:var(--filter-text,#34323A)}
+  .pf .pf-icon{background:var(--filter-bg,#FFF1F6);border-color:var(--brand-secondary,#FF88B0)}
+  .pf .pf-category strong,.pf .pf-category small,.pf .pf-row-label{color:var(--filter-text,#34323A)}
+  .pf .pf-category.is-on .pf-icon,
+  .pf.pf-home .pf-category.is-on .pf-icon{background:var(--filter-bg,#FFF1F6);border:4px solid var(--brand,#ED2675);box-shadow:0 5px 14px rgba(237,38,117,.15)}
+  .pf .pf-category.is-on strong{color:var(--brand,#ED2675)}
+  .pf .pf-category:focus-visible{outline-color:var(--brand,#ED2675)}
+  .pf .pf-category.is-on .pf-icon.pf-icon-benefit-brand{border:0;box-shadow:0 0 0 4px var(--brand,#ED2675)}
+  .pf .pf-card{background:var(--page-bg,#FFFFFF)}
+  .pf .pf-card .pf-tag.is-net{background:var(--filter-bg,#FFF1F6);color:var(--filter-text,#34323A)}
+  .pf .pf-card .pf-tag.is-benefit{background:var(--filter-bg,#FFF1F6);color:var(--brand,#ED2675)}
+  .pf .pf-card .pf-price-main strong,.pf .pf-card .pf-price-card b{color:var(--brand,#ED2675)}
+  .pf .pf-btn.is-primary{background:var(--brand,#ED2675);border-color:var(--brand,#ED2675);color:#fff}
+  .pf .pf-btn:not(.is-primary),.pf .pf-reset,.pf .pf-more{background:var(--page-bg,#FFFFFF);border-color:var(--brand-secondary,#FF88B0);color:var(--filter-text,#34323A)}
+  .pf .pf-sort select,.pf .pf-search input{color:var(--filter-text,#34323A)}
+  .pf .pf-home-group .pf-category:not(.is-on) .pf-icon{background:var(--filter-bg,#FFF1F6)}
 </style>

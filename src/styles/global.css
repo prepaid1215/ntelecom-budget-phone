@@ -1,6 +1,14 @@
 :root{
-  --brand:#ff438b;--brand-deep:#e92d76;--brand-soft:#fff1f6;
-  --violet:#7258e9;--cream:#fff9ef;--ink:#171719;--muted:#70727a;
+  /* Theme guide: exactly five design roles */
+  --brand:#ED2675;          /* main */
+  --brand-deep:#ED2675;
+  --brand-secondary:#FF88B0;/* sub */
+  --violet:#FF88B0;         /* legacy alias for existing components */
+  --page-bg:#FFFFFF;
+  --brand-soft:#FFF1F6;
+  --filter-bg:#FFF1F6;
+  --filter-text:#34323A;
+  --cream:#fff9ef;--ink:#34323A;--muted:#70727a;
   --line:#e8e8ec;--soft:#f7f7f8;--dark:#36383d;--dark2:#46484f;
 }
 *{box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:hidden}
@@ -333,7 +341,7 @@ p,dd,li,summary,strong,small,span,td,th{word-break:keep-all;overflow-wrap:break-
 .lp-main strong{display:block;font-size:17px;letter-spacing:-.4px;line-height:1.35;word-break:keep-all}
 .lp-main>span{display:block;margin-top:4px;color:#52545c;font-size:14px;line-height:1.5}
 .lp-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.lp-tags em{padding:4px 9px;border-radius:999px;background:#f1f1f4;color:#4a4650;font-size:12px;font-style:normal;font-weight:800}.lp-tags .is-benefit{background:#fff0f6;color:#c82d67}.lp-tags .is-promo{background:#e5fff0;color:#0f7a43}
-.lp-price{text-align:right}.lp-price b{display:block;font-size:19px;letter-spacing:-.5px;white-space:nowrap}.lp-price small{display:block;margin-top:3px;color:#e92d76;font-size:13px;font-weight:800}
+.lp-price{text-align:right}.lp-price b{display:block;font-size:19px;letter-spacing:-.5px;white-space:nowrap}.lp-price small{display:block;margin-top:3px;color:#ED2675;font-size:13px;font-weight:800}
 .lp-row>i{color:#8c8790;font-size:22px;font-style:normal}
 .lp-points{display:grid;gap:10px}
 .lp-points a{display:flex;flex-direction:column;gap:4px;padding:16px;border-radius:16px;background:#fff;border:1px solid var(--line)}
@@ -391,3 +399,11 @@ p,dd,li,summary,strong,small,span,td,th{word-break:keep-all;overflow-wrap:break-
 .nf{text-align:center}.nf-code{margin:0;color:var(--brand-deep);font-size:15px;font-weight:900;letter-spacing:.1em}
 .nf h1{margin:6px 0 10px;font-size:34px;letter-spacing:-1px}.nf-lead{margin:0 auto 22px;color:#52545c;font-size:16px}
 .nf .link-list{text-align:left;max-width:520px;margin:0 auto}
+
+/* Theme guide tokens are shared by all pages and SEO landings. */
+body{background:var(--page-bg);color:var(--filter-text)}
+.hero h1 em,.pd-hero h1 em{color:var(--brand)}
+.btn-primary,.header-cta,.cta-btn,.bottom-go{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn-secondary{border-color:var(--brand-secondary);background:var(--filter-bg);color:var(--filter-text)}
+.badge{background:var(--filter-bg);color:var(--brand)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--brand);outline-offset:3px}

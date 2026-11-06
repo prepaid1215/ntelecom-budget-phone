@@ -18,7 +18,7 @@ const steps = [
   ["audit-existing-500.mjs", "node", ["scripts/audit-existing-500.mjs"], PROD],
   ["audit-500-links-schema.mjs", "node", ["scripts/audit-500-links-schema.mjs"], PROD],
   ["audit diff vs baseline (pre-existing vs new findings)", "node", ["scripts/seo-experiments/audit-diff.mjs"]],
-  ["existing 503 HTML SHA-256 vs baseline", "node", ["scripts/seo-experiments/compare-baseline.mjs"], PROD],
+  ...(fs.existsSync("src/pages/start/index.astro") ? [["approved /start/ layout: 503 original routes and core metadata", "node", ["scripts/seo-experiments/funnel-content-preservation.mjs"], PROD]] : [["existing 503 HTML SHA-256 vs baseline", "node", ["scripts/seo-experiments/compare-baseline.mjs"], PROD]]),
   ["dist tests", "node", ["--test", "scripts/seo-experiments/test-dist.mjs"], PROD],
   ["HTTP access tests", "node", ["--test", "scripts/seo-experiments/test-http.mjs"], PROD],
   ["C link manifest", "node", ["scripts/seo-experiments/link-manifest.mjs"], PROD],

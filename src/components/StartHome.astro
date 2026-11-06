@@ -1,0 +1,144 @@
+---
+import HomePlanFinder from "./HomePlanFinder.astro";
+import SelfOpenPhotoCarousel from "./SelfOpenPhotoCarousel.astro";
+import BenefitOffer from "./BenefitOffer.astro";
+import CardOffer from "./CardOffer.astro";
+import { toPublicPath } from "../lib/site-config.js";
+const {model,targets,variant="start"}=Astro.props;
+const isHomepage=variant==="home";
+const plans=model.matched;
+const chosen=(net,gb)=>plans.filter(p=>p.network===net&&p.data_gb===gb).sort((a,b)=>a.monthly_price-b.monthly_price)[0];
+const recommended=[chosen("L",7),chosen("K",7),chosen("K",15),chosen("L",15)].filter(Boolean);
+const featured=[...recommended,...plans.filter(p=>!recommended.some(r=>r.id===p.id)).sort((a,b)=>a.monthly_price-b.monthly_price)].slice(0,4);
+const won=n=>n.toLocaleString("ko-KR")+"원";
+const menu=[
+  ["icon2.png","개통하기","#start-choices"],["icon1.png","맞춤요금제","#postpaid-plans"],["icon3.png","유심구매","#start-usim"],
+  ["icon6.png","제휴혜택","#start-benefits"],["icon8.png","개통안내","#start-steps"],["icon5.png","자주묻는질문","#start-faq"]
+];
+---
+<div class="sh" data-start-home>
+  <div class="sh-main">
+    <section class:list={["sh-hero",{"sh-hero-home":isHomepage}]} id="start-choices">
+      {isHomepage ? (
+        <div class="sh-hero-inner sh-home-hero-grid">
+          <div class="sh-home-copy">
+            <span class="sh-home-eyebrow">앤텔레콤 알뜰폰 · 온라인 개통</span>
+            <h1>알뜰폰,<br/><em>요금제 비교부터 개통까지</em></h1>
+            <p>KT망·LG U+망 알뜰폰 요금제를 비교하고 온라인에서 직접 신청하세요. 매월 사용하는 요금을 납부하는 방식입니다.</p>
+            <div class="sh-home-actions">
+              <a class="sh-home-primary" href={toPublicPath("/start/")}>셀프개통 시작하기</a>
+              <a class="sh-home-secondary" href="#postpaid-plans">요금제 비교</a>
+            </div>
+          </div>
+          <div class="sh-home-art">
+            <img src={toPublicPath("/images/hero-mobile.webp")} width="1000" height="750" alt="스마트폰과 유심, 요금제 및 제휴 혜택을 표현한 일러스트" decoding="async" fetchpriority="high"/>
+          </div>
+        </div>
+      ) : (
+        <div class="sh-hero-inner">
+          <span class="sh-pill">앤텔레콤 알뜰폰 셀프개통</span>
+          <h1>지금 바로 <em>셀프개통</em>을<br/>시작해보세요</h1>
+          <p>KT망·LG U+망 알뜰폰을 선택해 직접 신청하세요.</p>
+          <div class="sh-main-buttons">
+            <a class="sh-btn sh-kt" href={targets.K} data-outbound data-billing="postpaid" data-network="kt" data-location="hero">KT 개통하기</a>
+            <a class="sh-btn sh-lg" href={targets.L} data-outbound data-billing="postpaid" data-network="lg" data-location="hero">LG 개통하기</a>
+          </div>
+          <div class="sh-selected" data-selected-plan hidden>선택한 요금제: <strong data-selected-name></strong></div>
+          <a class="sh-usim-cta" href="#start-usim"><span>USIM</span><strong>유심이 없으신가요? 구매처 확인</strong><b aria-hidden="true">›</b></a>
+          <p class="sh-small-intro">셀프개통이 처음이신가요?</p>
+          <a class="sh-guide" href="#start-steps">개통 가이드 보기 <span aria-hidden="true">›</span></a>
+        </div>
+      )}
+    </section>
+    <nav class="sh-menu" aria-label="알뜰폰 빠른 안내">
+      {menu.map(([image,label,href],i)=><a href={href}><span class={"sh-menu-art sh-color-"+i}><img src={toPublicPath("/images/start/"+image)} alt="" width="146" height="149" loading="lazy" /></span><strong>{label}</strong></a>)}
+    </nav>
+
+    {isHomepage ? (
+      <div id="postpaid-plans" class="sh-catalog sh-unified-catalog">
+        <HomePlanFinder model={model} mode="home"/>
+      </div>
+    ) : (
+      <>
+    <section class="sh-section" id="start-recommended">
+      <div class="sh-wrap">
+        <div class="sh-head"><div><small>POPULAR PLANS</small><h2>추천 요금제 4가지</h2><p>자주 찾는 요금제를 먼저 비교해 보세요.</p></div><a href="#postpaid-plans" data-expand-plans>전체 {plans.length}개 요금제 찾기 ›</a></div>
+        <div class="sh-plans">
+          {featured.map(p=><article class="sh-plan">
+            <span>{p.network==="K"?"KT망":"LG U+망"}</span>
+            <h3>{p.name.replace(/^앤텔레콤\s*/,"")}</h3>
+            <p>{p.data_text}</p>
+            <div class="sh-price"><small>월 기본료</small><strong>{won(p.monthly_price)}</strong></div>
+            <p>통화 {p.calls} · 문자 {p.sms}</p>
+            <a href={targets[p.network]} data-outbound={isHomepage?undefined:"true"} data-billing="postpaid" data-network={p.network==="K"?"kt":"lg"} data-plan={p.id} data-location="recommended">이 요금제로 개통하기 ›</a>
+          </article>)}
+        </div>
+      </div>
+    </section>
+    <details id="postpaid-plans" class="sh-catalog sh-plan-details">
+      <summary><span><strong>원하는 조건으로 요금제 더 찾기</strong><small>전체 {plans.length}개 · 가격·데이터·통신망·혜택별 검색</small></span><span class="sh-plan-expand-icon" aria-hidden="true">⌄</span></summary>
+      <HomePlanFinder model={model} mode={isHomepage?"default":"start"} outboundLinks={isHomepage?null:targets}/>
+    </details>
+    <script>
+      const catalog=document.getElementById("postpaid-plans");
+      if(catalog){
+        const openCatalog=()=>{catalog.open=true;};
+        if(location.hash==="#postpaid-plans")openCatalog();
+        document.querySelectorAll('a[href="#postpaid-plans"]').forEach(link=>link.addEventListener("click",openCatalog));
+        window.addEventListener("hashchange",()=>{if(location.hash==="#postpaid-plans")openCatalog();});
+      }
+    </script>
+      </>
+    )}
+    <section class="sh-section sh-soft" id="start-usim">
+      <div class="sh-wrap">
+        <div class="sh-head"><div><small>USIM</small><h2>알뜰폰 유심 준비하기</h2><p>사용할 망에 맞는 유심을 준비하면 온라인에서 신청할 수 있습니다.</p></div></div>
+        <div class="sh-two">
+          <article class="sh-usim">
+            <figure class="sh-usim-product"><img src={toPublicPath("/images/usim/baro-usim.webp")} width="560" height="700" loading="lazy" decoding="async" alt="KT 바로유심 실물 패키지" /></figure>
+            <div class="sh-usim-copy"><span>KT망</span><h3>KT 바로유심</h3><strong>8,800원</strong><p>CU·GS25·세븐일레븐·이마트24 등에서 구매할 수 있습니다.</p><small>유심번호 숫자 19자리(F 제외)</small></div>
+          </article>
+          <article class="sh-usim">
+            <figure class="sh-usim-product"><img src={toPublicPath("/images/usim/onechip.webp")} width="560" height="560" loading="lazy" decoding="async" alt="LG U+ 모두의 원칩 실물 패키지" /></figure>
+            <div class="sh-usim-copy"><span>LG U+망</span><h3>LG 모두의 원칩</h3><strong>8,800원</strong><p>이마트24·스토리웨이 등에서 구매할 수 있습니다.</p><small>모델코드 5자리 + 일련번호 8자리</small></div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="sh-section" id="start-steps">
+      <div class="sh-wrap">
+        <div class="sh-head"><div><small>HOW TO START</small><h2>알뜰폰 셀프개통 순서</h2><p>신규가입과 번호이동 중 원하는 가입 유형을 선택할 수 있습니다.</p></div></div>
+        <div class="sh-steps">
+          <div><b>01</b><strong>유심 준비</strong><p>KT 바로유심 또는 LG 모두의 원칩 준비</p></div>
+          <div><b>02</b><strong>개통하기</strong><p>KT·LG 통신망과 신규가입·번호이동 선택</p></div>
+          <div><b>03</b><strong>본인확인</strong><p>안면인증·간편인증과 유심정보 입력</p></div>
+          <div><b>04</b><strong>상품 신청</strong><p>요금제와 매월 요금 납부정보 선택</p></div>
+          <div><b>05</b><strong>개통 확인</strong><p>가입 완료 안내와 본사 해피콜 확인</p></div>
+        </div>
+        <SelfOpenPhotoCarousel />
+      </div>
+    </section>
+    <section class="sh-section sh-soft" id="start-benefits">
+      <div class="sh-wrap">
+        <div class="sh-head"><div><small>BENEFITS</small><h2>알뜰폰 제휴 혜택</h2><p>제휴 혜택은 해당 요금제의 이용 조건에 따라 제공됩니다.</p></div><a href={toPublicPath("/benefits/")}>혜택 자세히 보기 ›</a></div>
+        <div class="grid cols-3">{model.benefits.map(b=><BenefitOffer benefit={b}/>)}</div>
+      </div>
+    </section>
+    <section class="sh-section" id="start-cards">
+      <div class="sh-wrap">
+        <div class="sh-head"><div><small>CARD DISCOUNTS</small><h2>통신요금 제휴카드 할인</h2><p>카드 할인은 전월 실적·자동납부 등 조건 충족 시 적용됩니다.</p></div><a href={toPublicPath("/card/")}>할인 조건 보기 ›</a></div>
+        <div class="grid cols-2">{model.cards.map(c=><CardOffer card={c} plan={plans.filter(p=>(c.eligible_networks||[]).includes(p.network)).sort((a,b)=>a.monthly_price-b.monthly_price)[0]}/>)}</div>
+      </div>
+    </section>
+    <section class="sh-section sh-soft" id="start-faq">
+      <div class="sh-wrap">
+        <div class="sh-head"><div><small>FAQ</small><h2>알뜰폰 자주 묻는 질문</h2></div></div>
+        <div class="sh-faq">
+          <details><summary>가입에도 요금 충전이 필요한가요?</summary><p>요금을 미리 충전할 필요 없이 매월 사용 요금을 납부합니다. 가입 시 납부 정보를 등록합니다.</p></details>
+          <details><summary>쓰던 번호로 번호이동할 수 있나요?</summary><p>번호이동을 선택하면 기존 번호를 유지할 수 있습니다. 미납 등 제한 조건이 있으면 신청이 제한됩니다.</p></details>
+          <details><summary>가입 후 본사 해피콜을 받아야 하나요?</summary><p>본사 확인 전화는 별도로 받아 주세요. 담당자 승인과는 다른 절차입니다.</p></details>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

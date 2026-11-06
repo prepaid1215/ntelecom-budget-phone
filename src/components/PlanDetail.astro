@@ -92,7 +92,7 @@ const adLabel={price:"월 요금",card:"카드 할인","number-transfer":"번호
     <div><small>소진 후</small><b>{plan.after_speed ? `${plan.after_speed}` : "-"}</b><i>최대 속도</i></div>
     <div><small>통화·문자</small><b>{plan.sms==="기본제공" ? "기본제공" : plan.sms}</b><i>{plan.calls.replace(/^기본제공\s*/,"") || "무제한"}</i></div>
   </div>
-  <div class="hero-actions pd-actions"><a class="btn-primary" href={activationLink("hero")}>이 요금제로 신청하기</a><a class="btn-secondary" href={site.business.kakao} rel="noopener">카톡으로 먼저 물어보기</a></div>
+  <div class="hero-actions pd-actions"><a class="btn-primary" href={activationLink("hero",{network:plan.network,plan:plan.id,planName:displayName(plan)})}>이 요금제로 신청하기</a><a class="btn-secondary" href={site.business.kakao} rel="noopener">카톡으로 먼저 물어보기</a></div>
 </div></section>
 
 <section class="section"><div class="wrap"><h2>요금제 정보</h2>
@@ -146,4 +146,4 @@ const adLabel={price:"월 요금",card:"카드 할인","number-transfer":"번호
 
 <section class="section soft"><div class="wrap"><h2>함께 보면 좋은 페이지</h2><div class="link-list">{model.related.map(p=><a href={toPublicPath(p.path)}><span>{p.keyword}</span><span>›</span></a>)}</div><div class="data-note">프로모션·혜택·카드 조건은 가입 시점에 달라질 수 있어요.</div></div></section>
 
-<section class="section"><div class="wrap final-box"><h2>{displayName(plan)}, 신청해 볼까요?</h2><p>신청하면 개통돼서 바로 쓸 수 있어요. 해피콜은 꼭 받아 주세요.</p><a class="final-button" href={activationLink("final")}>바로 신청하기</a></div></section>
+<section class="section"><div class="wrap final-box"><h2>{displayName(plan)}, 신청해 볼까요?</h2><p>신청하면 개통돼서 바로 쓸 수 있어요. 해피콜은 꼭 받아 주세요.</p><a class="final-button" href={activationLink("final",{network:plan.network,plan:plan.id,planName:displayName(plan)})}>바로 신청하기</a></div></section>
