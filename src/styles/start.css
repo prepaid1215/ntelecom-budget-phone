@@ -350,13 +350,15 @@ body[data-site-shell] .sh-faq details{background:var(--page-bg)}
 @media(max-width:820px){body[data-site-shell] .sh-side-title{background:var(--brand);color:#fff}}
 @media(prefers-reduced-motion:reduce){body[data-site-shell] .sh-btn{transition:none}}
 
-/* Stable content rail: reserve the 210px fixed sidebar width on every desktop
-   state, not only while the sidebar happens to be open. */
-@media(min-width:821px){
-  body[data-site-shell] .sh-main{box-sizing:border-box;padding-right:210px}
+/* The closed sidebar is the reference layout. Keep all homepage content at
+   its full width in both sidebar states; the fixed 210px sidebar overlays it. */
+body[data-site-shell] .sh-main{
+  box-sizing:border-box;
+  width:100%;
+  padding-right:0;
 }
-@media(max-width:820px){
-  body[data-site-shell] .sh-main{padding-right:0}
+body[data-site-shell] .sh-main .pf.pf-home{
+  margin-right:0;
 }
 /* Product photos already available under /images/usim. */
 .sh-usim{
