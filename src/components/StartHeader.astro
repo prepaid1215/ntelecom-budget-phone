@@ -4,7 +4,7 @@ const {pagePath="/start/",ctaSource=null}=Astro.props;
 const atStart=pagePath==="/start/";
 const anchor=id=>atStart?"#"+id:toPublicPath("/start/")+"#"+id;
 const begin=atStart?"#start-choices":activationLink(ctaSource||"header");
-const planList=atStart?"#postpaid-plans":toPublicPath("/plans/");
+const planList=atStart||pagePath==="/"? "#postpaid-plans":toPublicPath("/plans/");
 const menus=[
  {label:'앤텔레콤 KT',items:[['요금제',toPublicPath('/plans/k/')],['유심구매',anchor('start-usim')],['KT 개통하기',anchor('start-choices')]]},
  {label:'앤텔레콤 LG',items:[['요금제',toPublicPath('/plans/l/')],['유심구매',anchor('start-usim')],['LG 개통하기',anchor('start-choices')]]},

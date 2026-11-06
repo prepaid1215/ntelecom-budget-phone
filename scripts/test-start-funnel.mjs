@@ -58,6 +58,16 @@ assert.match(home,/요금제 비교부터 개통까지/);
 assert.doesNotMatch(home,/id="start-recommended"/,"No duplicate recommended section on homepage");
 assert.match(home,/class="pf pf-home"/,"Homepage must use existing circular filter styling");
 assert.match(home,/data-home-filter/,"Homepage must have price/data/network controls");
+assert.match(home,/data-group="price"/,"Price filter panel missing");
+assert.match(home,/data-group="data"/,"Data filter panel missing");
+assert.match(home,/data-group="net"/,"Network filter panel missing");
+const finderSource=fs.readFileSync("src/components/HomePlanFinder.astro","utf8");
+assert.match(finderSource,/grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/,"Desktop filter needs three equal columns");
+assert.match(finderSource,/grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/,"Tablet filter layout missing");
+assert.match(finderSource,/grid-template-columns:minmax\(0,1fr\)/,"Mobile single-column filter layout missing");
+assert.match(finderSource,/margin-right:210px/,"Open sidebar must not overlap homepage filters");
+assert.match(finderSource,/price-mid/,"Monthly fee icons should not use data icons");
+
 assert.match(home,/data-finder-list/,"Homepage must have one matching result grid");
 assert.equal((home.match(/<article class="pf-card"/g)||[]).length,4,"Four initial homepage plans must be server rendered");
 assert.doesNotMatch(home,/<details id="postpaid-plans"/,"Homepage filter must not be hidden by a disclosure");

@@ -69,7 +69,7 @@ const pick=(net,gb)=>plans.filter(p=>p.network===net&&p.data_gb===gb).sort((a,b)
 const featuredIds=[pick("L",7),pick("K",7),pick("K",15),pick("L",15)].filter(Boolean).map(p=>p.id);
 const featuredPlans=featuredIds.map(id=>finderPlans.find(p=>p.id===id)).filter(Boolean);
 const homeFilters=[
- {group:"price",label:"월 요금",options:[["all","전체","all"],["under20","2만원 이하","under20"],["under30","2~3만원","data15"],["over30","3만원 초과","data100"]]},
+ {group:"price",label:"월 요금",options:[["all","전체","all"],["under20","2만원 이하","under20"],["under30","2~3만원","price-mid"],["over30","3만원 초과","price-high"]]},
  {group:"data",label:"데이터 사용량",options:[["all","전체","all"],["light","가볍게","data7"],["medium","보통","data15"],["heavy","많이","data100"]]},
  {group:"net",label:"통신망",options:[["all","전체","all"],["k","KT망","k"],["l","LG U+망","l"]]}
 ];
@@ -88,7 +88,7 @@ const homeFilters=[
           <legend class="pf-row-label">{filter.label}</legend>
           <div class="pf-scroll pf-home-options" role="group" aria-label={filter.label+" 선택"}>
             {filter.options.map(([value,label,icon],i)=><button type="button" class:list={["pf-category",{"is-on":i===0}]} data-home-filter data-group={filter.group} data-value={value} aria-pressed={i===0?"true":"false"}>
-              <span class={"pf-icon pf-icon-"+icon}><PlanFinderIcon name={icon}/></span><strong>{label}</strong>
+              <span class={"pf-icon pf-icon-"+icon}>{icon==="price-mid"||icon==="price-high"?<b class="pf-home-price-mark">{icon==="price-mid"?"2~3만":"3만+"}</b>:<PlanFinderIcon name={icon}/>}</span><strong>{label}</strong>
             </button>)}
           </div>
         </fieldset>)}
@@ -324,31 +324,61 @@ const homeFilters=[
   .pf-card .pf-benefit{font-weight:400}
   .pf-card .pf-btn{font-weight:600}.pf-card .pf-btn.is-primary{font-weight:800}
 
-  /* Unified homepage filter: reuses established .pf-category, .pf-icon, .pf-card styles. */
-  .pf-home .pf-top{padding:42px 0 25px;background:#fff}
-  .pf-home .pf-head p{color:#625d68;font-size:14px;line-height:1.65;margin:8px 0 0}
-  .pf-home-filter-groups{display:grid;gap:16px;margin-top:23px}
-  .pf-home-group{border:0;margin:0;padding:0;min-width:0}
-  .pf-home .pf-row-label{font-size:15px;font-weight:850;color:#39333d;margin:4px 0 0}
-  .pf-home .pf-scroll{display:flex;flex-wrap:wrap;overflow:visible;gap:14px;margin:10px 0 0;padding:0}
-  .pf-home .pf-category{flex:0 0 90px}
-  .pf-home .pf-icon{height:62px;width:62px;margin:0 auto 8px}
-  .pf-home .pf-category strong{font-size:12px;white-space:normal;line-height:1.4}
-  .pf-home .pf-category.is-on .pf-icon{border:4px solid var(--violet,#FF88B0);box-shadow:0 5px 12px #FF88B033}
-  .pf-home .pf-tools{background:#fff7fb;padding:28px 0 34px;border-color:#f3e3ed}
-  .pf-home .pf-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-  .pf-home .pf-card{min-width:0;border-radius:20px;padding:17px 13px;gap:9px}
-  .pf-home .pf-card h3{font-size:17px;overflow-wrap:anywhere}
-  .pf-home .pf-tag{font-size:10px;padding:4px 7px}
-  .pf-home .pf-spec>div{grid-template-columns:43px minmax(0,1fr);gap:6px;font-size:12px}
-  .pf-home .pf-price-main strong{font-size:22px}
-  .pf-home .pf-price-card b{font-size:17px}
-  .pf-home .pf-price-card small,.pf-home .pf-price-main small{font-size:10px}
-  .pf-home .pf-btn{font-size:12px;min-height:42px}
-  .pf-home .pf-actions{gap:6px}
-  @media(max-width:1230px){.pf-home .pf-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
-  @media(max-width:700px){.pf-home .pf-list{grid-template-columns:minmax(0,1fr)}.pf-home .pf-category{flex-basis:76px}.pf-home .pf-icon{width:54px;height:54px}.pf-home .pf-top{padding:30px 0 24px}.pf-home .pf-card{padding:17px}}
-
+  /* Unified homepage: balanced 3-panel desktop filter instead of a narrow left-hand stack. */
+  .pf.pf-home{min-width:0;width:auto}
+  .pf.pf-home .pf-top{padding:40px 0 30px;background:var(--page-bg,#FFFFFF)}
+  .pf.pf-home .pf-top>.wrap,.pf.pf-home .pf-tools>.wrap{width:100%;max-width:1200px;margin-inline:auto;padding-inline:clamp(16px,2.7vw,30px)}
+  .pf.pf-home .pf-head{align-items:center;gap:18px}
+  .pf.pf-home .pf-head h2{font-size:clamp(25px,2.4vw,33px);line-height:1.3;word-break:keep-all}
+  .pf.pf-home .pf-head p{color:#625d68;font-size:14px;line-height:1.65;margin:9px 0 0}
+  .pf.pf-home .pf-home-filter-groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;width:100%;margin-top:26px;align-items:stretch}
+  .pf.pf-home .pf-home-group{min-width:0;min-inline-size:0;width:100%;margin:0;padding:13px 14px 16px;border:1px solid #F1D7E2;border-radius:17px;background:var(--filter-bg,#FFF1F6)}
+  .pf.pf-home .pf-home-group legend{font-size:15px;font-weight:850;line-height:1.4;padding:0 7px;margin-inline:4px;color:var(--filter-text,#34323A)}
+  .pf.pf-home .pf-home-options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:start;gap:6px;width:100%;min-width:0;overflow:visible;margin:6px 0 0;padding:0}
+  .pf.pf-home .pf-home-group:has([data-group="net"]) .pf-home-options{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .pf.pf-home .pf-home-options .pf-category{display:flex;flex-direction:column;align-items:center;width:100%;min-width:0;max-width:none;padding:5px 0 2px;text-align:center}
+  .pf.pf-home .pf-home-options .pf-icon{width:56px;height:56px;margin:0 auto 8px;flex-shrink:0;background:#FFFFFF;border-color:var(--brand-secondary,#FF88B0)}
+  .pf.pf-home .pf-home-options .pf-icon svg{width:41px;height:41px;max-width:100%}
+  .pf.pf-home .pf-home-options .pf-category strong{font-size:12px;line-height:1.35;min-height:2.7em;word-break:keep-all;white-space:normal;color:var(--filter-text,#34323A)}
+  .pf.pf-home .pf-home-options .pf-category.is-on strong{color:var(--brand,#ED2675);font-weight:900}
+  .pf.pf-home .pf-home-options .pf-category.is-on .pf-icon{background:#FFFFFF;border:4px solid var(--brand,#ED2675);box-shadow:0 4px 13px rgba(237,38,117,.16);transform:none}
+  .pf.pf-home .pf-home-price-mark{display:grid;place-items:center;width:100%;height:100%;font-size:13px;letter-spacing:-.8px;font-weight:900;color:var(--brand,#ED2675)}
+  .pf.pf-home .pf-tools{padding:27px 0 34px;background:var(--filter-bg,#FFF1F6);border-color:#F1D7E2}
+  .pf.pf-home .pf-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+  .pf.pf-home .pf-card{min-width:0;padding:17px 13px;gap:9px;border-radius:20px}
+  .pf.pf-home .pf-card h3{font-size:17px;overflow-wrap:anywhere}
+  .pf.pf-home .pf-tag{font-size:10px;padding:4px 7px}
+  .pf.pf-home .pf-spec>div{grid-template-columns:43px minmax(0,1fr);gap:6px;font-size:12px}
+  .pf.pf-home .pf-price-main strong{font-size:22px}
+  .pf.pf-home .pf-price-card b{font-size:17px}
+  .pf.pf-home .pf-price-card small,.pf.pf-home .pf-price-main small{font-size:10px}
+  .pf.pf-home .pf-btn{font-size:12px;min-height:42px}
+  .pf.pf-home .pf-actions{gap:6px}
+  /* Match the fixed 210px sidebar when open so filter panels/cards never sit behind it. */
+  @media(min-width:821px){body[data-site-shell]:not(.sh-side-collapsed) .sh-main .pf.pf-home{margin-right:210px}}
+  @media(max-width:1230px){
+    .pf.pf-home .pf-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+  @media(max-width:1150px){
+    .pf.pf-home .pf-home-filter-groups{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .pf.pf-home .pf-home-group:last-child{grid-column:1 / -1}
+  }
+  @media(max-width:760px){
+    .pf.pf-home .pf-home-filter-groups{grid-template-columns:minmax(0,1fr)}
+    .pf.pf-home .pf-home-group:last-child{grid-column:auto}
+    .pf.pf-home .pf-head{align-items:flex-start;flex-direction:column}
+    .pf.pf-home .pf-head>a{font-size:13px}
+    .pf.pf-home .pf-card{padding:17px}
+  }
+  @media(max-width:700px){.pf.pf-home .pf-list{grid-template-columns:minmax(0,1fr)}}
+  @media(max-width:380px){
+    .pf.pf-home .pf-home-group{padding:12px 8px 14px}
+    .pf.pf-home .pf-home-options{gap:3px}
+    .pf.pf-home .pf-home-options .pf-icon{width:49px;height:49px}
+    .pf.pf-home .pf-home-options .pf-icon svg{width:37px;height:37px}
+    .pf.pf-home .pf-home-options .pf-category strong{font-size:11px}
+  }
+  
   /* Theme guide for both homepage matcher and /start/ full catalog. */
   .pf{background:var(--page-bg,#FFFFFF);color:var(--filter-text,#34323A)}
   .pf .pf-top{background:var(--page-bg,#FFFFFF)}
