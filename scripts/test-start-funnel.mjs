@@ -25,6 +25,10 @@ for(const network of ["kt","lg"]){
 }
 assert.match(start,/data-prepaid-details/);
 assert.match(start,/data-outbound/);
+assert.match(start,/https:\/\/www\.n-telecom\.co\.kr\/ntgo\/view\/open\/kt\/face_auth\.aspx/,"KT CTA must use this NTGO mirror's direct application path");
+assert.match(start,/https:\/\/www\.n-telecom\.co\.kr\/ntgo\/view\/open\/lg\/face_auth\.aspx/,"LG CTA must use this NTGO mirror's direct application path");
+assert.doesNotMatch(start,/https:\/\/preplan\.site/,"No previous seller fallback on /start/");
+
 assert.match(start,/id="postpaid-plans"/);
 assert.match(start,/id="start-benefits"/);
 assert.match(start,/id="start-usim"/);
