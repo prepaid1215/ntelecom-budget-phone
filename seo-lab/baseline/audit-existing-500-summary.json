@@ -1,0 +1,20 @@
+{
+  "source": "built Astro HTML for existing generated-pages.json",
+  "auditedPages": 500,
+  "foundHtml": 500,
+  "indexCandidates": 138,
+  "noindexCandidates": 362,
+  "indexRobots": 138,
+  "noindexRobots": 362,
+  "htmlFound": 500,
+  "allPathsUnique": true,
+  "listingGroupsWithSameProductSet": 46,
+  "sourceDataCheckedAt": "2026-09-28",
+  "ready": true,
+  "distinctVisibleBodies": 500,
+  "errors": 0,
+  "warnings": 203,
+  "issueCounts": {
+    "warning:h1-duplicate": 203
+  }
+}

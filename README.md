@@ -17,8 +17,8 @@
 ## 페이지 공장
 
 - 자동 생성 페이지: 500개
-- index 후보: 141개
-- noindex: 359개
+- index 후보: 138개 (최근 생성 산출물 기준)
+- noindex: 362개 (최근 생성 산출물 기준)
 - 광고 LP는 항상 `/lp/` + noindex
 - 실제 상품 근거가 있는 태그 조합만 SEO index 후보
 
@@ -96,7 +96,34 @@ pnpm run dev
 pnpm run build
 ```
 
+## 전국 지역페이지 생성 검수
+
+전국 행정동 원본을 기반으로 선불폰·알뜰폰 지역 URL 후보와 시도·시군구·행정동 허브를 별도 검수 폴더에 생성합니다. 현재 데이터 기준 유형별 3,832개, 합계 7,664개의 정적 HTML 후보가 만들어집니다. 이 수는 생성 파일 수이며 검색 노출·색인 수가 아닙니다.
+
+```bash
+pnpm run regions:generate
+pnpm run regions:audit
+pnpm run regions:quality-test
+pnpm run regions:pipeline-test
+pnpm run regions:sources-test
+```
+
+지역 HTML은 `seo-lab-regions-preview/`, 선불폰·알뜰폰 검색 의도별 상품 비교 예시는 `seo-lab-regional-content-preview/`에만 생성됩니다. 두 폴더 모두 Astro 경로·공개 sitemap·robots·DNS·배포 설정과 분리되어 있습니다. 지역 사례·매장 주소·재고 정보가 원본 자료에서 검증되지 않았으므로 지역 색인 후보는 0개입니다. 출처 신뢰는 `seo-lab/regions/source-snapshots.json`의 SHA-256 고정 자료와 JSON 포인터 값 대조로 검사합니다. IndexFlow 상태 원장은 `seo-lab/regions/index-flow-observations.json`에 보존되므로 미리보기 재생성 후에도 관측 기록을 유지합니다. 관측 전 색인 수와 노출값은 0이 아닌 `null`로 둡니다.
+
+행정구역 데이터 출처, URL 잠금 정책, 근거 등록 형식은 [`seo-lab/regions/README.md`](seo-lab/regions/README.md)를 참고하세요.
+
 Vercel에서는 저장소의 `pnpm-lock.yaml`과 `packageManager`를 사용해 정적 Astro 빌드를 그대로 실행할 수 있습니다. 별도 서버나 `vercel.json`은 필요하지 않습니다.
+
+## SEO 실험 A·B·C
+
+A 검색의도 랜딩, B 지역페이지, C 네이버 블로그 원문 링크 실험이 Astro 라우트로 통합되어 있습니다. 구조와 현재 수치는 [`seo-lab/README.md`](seo-lab/README.md#통합-구현-v1-astro-라우트)를 참고하세요.
+
+```bash
+pnpm run seo:test            # 전체 검증 (빌드 4종 + 단위·산출물·HTTP·렌더링·시스템 테스트 + 기존 감사)
+pnpm run seo:indexkit status # C 대상·배정 상태
+pnpm run seo:observe --input=events.json   # Google·네이버 관측 기록
+pnpm run seo:report          # 7·14·28일 비교 JSON/CSV
+```
 
 ## 운영 전에 반드시 설정
 
@@ -110,7 +137,7 @@ Vercel에서는 저장소의 `pnpm-lock.yaml`과 `packageManager`를 사용해 �
 
 로컬에서는 `.env.example`을 복사해 사용할 수 있습니다. 환경변수가 없으면 `src/data/site.json`의 값이 대체값으로 쓰입니다.
 
-`PRODUCTION_READY=false`에서는 모든 HTML이 `noindex,follow`이고, `robots.txt`는 전체 크롤링을 차단하며 sitemap은 비어 있습니다. `true`로 전환하면 `effectiveIndex`가 index인 141개 페이지만 검색 대상과 sitemap에 포함됩니다. 나머지 페이지와 광고 LP는 계속 제외됩니다.
+`PRODUCTION_READY=false`에서는 모든 HTML이 `noindex,follow`이고, `robots.txt`는 전체 크롤링을 차단하며 sitemap은 비어 있습니다. 현재 생성 결과에서 `effectiveIndex`가 index인 138개 페이지만 조건상 검색 대상과 sitemap에 포함됩니다. 실제 공개 또는 색인 상태를 뜻하지 않으며, 나머지 페이지와 광고 LP는 계속 제외됩니다.
 
 배포 전 검증:
 

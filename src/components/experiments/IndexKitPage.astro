@@ -1,0 +1,54 @@
+---
+// Experiment C template. Treatment targets are printed as plain <a href> links (no nofollow/ugc)
+// with data-ik-* attributes so the post-build link manifest can verify page, position and anchor.
+// Control and unassigned targets are never printed.
+import { toPublicPath } from "../../lib/site-config.js";
+import { targetLabel } from "../../lib/seo-experiments/indexkit.js";
+const { page } = Astro.props;
+const statusText = { enrolling: "대상 등록 중", ready: "게시 준비", live: "게시 중" };
+---
+<section class="section" data-experiment="C" data-role={page.role}><div class="wrap">
+  <p class="eyebrow">블로그 원문 링크</p>
+  <h1>{page.h1}</h1>
+  <p class="section-lead">{page.role === "hub" ? page.description : page.batch.intro}</p>
+</div></section>
+
+{page.role === "hub" && (
+  <section class="section soft"><div class="wrap">
+    <h2>링크 묶음</h2>
+    <div class="link-list">
+      {page.batches.map(batch => <a href={toPublicPath(batch.path)}><span>{batch.title} · {statusText[batch.status]}</span><span>›</span></a>)}
+    </div>
+    {page.hubTargets.length > 0 && (
+      <ul class="xp-links">{page.hubTargets.map(target => (
+        <li><a href={target.url} data-ik-target={target.id} data-ik-position="hub">{targetLabel(target)}</a></li>
+      ))}</ul>
+    )}
+  </div></section>
+)}
+
+{page.role === "batch" && (
+  <section class="section soft"><div class="wrap">
+    <h2>원문 목록</h2>
+    {page.batch.linksRendered ? (
+      <>
+        <ul class="xp-links">{page.batch.treatment.filter(t => t.placements.includes("list")).map(target => (
+          <li><a href={target.url} data-ik-target={target.id} data-ik-position="list">{targetLabel(target)}</a>{target.summary && <p>{target.summary}</p>}</li>
+        ))}</ul>
+        {page.batch.treatment.filter(t => t.placements.includes("contextual")).map(target => (
+          <p class="xp-context">{target.summary} <a href={target.url} data-ik-target={target.id} data-ik-position="contextual">{targetLabel(target)}</a>에서 원문을 볼 수 있습니다.</p>
+        ))}
+      </>
+    ) : (
+      <p>실험군과 대조군 대상이 충분히 등록되지 않아 아직 링크를 게시하지 않았습니다.</p>
+    )}
+    <p class="pd-note">링크는 원문으로 이동하는 경로일 뿐이며 검색엔진의 수집이나 색인을 보장하지 않습니다.</p>
+    <p><a href={toPublicPath("/indexkit/")}>← 링크 묶음 목록</a></p>
+  </div></section>
+)}
+
+<style>
+  .xp-links{padding-left:20px;line-height:1.9}
+  .xp-links p{margin:2px 0 10px;color:#555963}
+  .xp-context{line-height:1.8;color:#3d3f46}
+</style>

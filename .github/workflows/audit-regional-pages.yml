@@ -1,0 +1,32 @@
+name: Audit regional page content pipeline
+
+on:
+  push:
+    branches: [feat/seo-three-experiments-v1]
+  pull_request:
+    branches: [feat/seo-three-experiments-v1]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  regional-content-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Generate review-only regional HTML
+        run: node scripts/generate-regional-pages.mjs
+      - name: Audit source coverage, candidate counts, links and index-flow states
+        run: node scripts/audit-regional-pages.mjs
+      - name: Test evidence and near-duplicate gates
+        run: node scripts/test-regional-quality.mjs
+      - name: Verify pinned source claims and scope
+        run: node scripts/test-regional-sources.mjs
+      - name: Generate source-backed intent examples and audit candidate gating
+        run: node scripts/test-regional-pipeline.mjs

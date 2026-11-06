@@ -2,7 +2,7 @@
 import { toPublicPath, activationLink } from "../lib/site-config.js";
 import PlanFinderIcon from "./PlanFinderIcon.astro";
 
-const { model }=Astro.props;
+const { model, mode="default", outboundLinks=null }=Astro.props;
 const plans=[...model.matched];
 const shortId=p=>p.id.replace("ntelecom-k-","").replace("ntelecom-l-","");
 const planPath=p=>toPublicPath("/plans/"+p.network.toLowerCase()+"/item/"+shortId(p)+"/");
@@ -44,6 +44,7 @@ const benefitInfo=Object.fromEntries((model.benefits||[]).map(b=>[b.id,b]));
 const finderPlans=plans.map(p=>{
   const b=benefitInfo[(p.benefit_ids||[])[0]];
   return {
+    id:p.id,
     name:p.name.replace("앤텔레콤 ","").replace(/^([KL])망\s*/,"$1망 "),
     net:p.network,
     price:p.monthly_price,
@@ -62,6 +63,7 @@ const finderPlans=plans.map(p=>{
   };
 });
 const applyUrl=activationLink("home");
+const startOutbound=mode==="start" ? outboundLinks : null;
 ---
 
 <section class="pf" data-plan-finder>
@@ -97,7 +99,7 @@ const applyUrl=activationLink("home");
   </div>
 </section>
 
-<script define:vars={{finderPlans,applyUrl}}>
+<script define:vars={{finderPlans,applyUrl,startOutbound}}>
   const root=document.querySelector("[data-plan-finder]");
   if(root){
     const buttons=[...root.querySelectorAll("[data-category]")];
@@ -146,7 +148,20 @@ const applyUrl=activationLink("home");
       if(p.benefitValue) art.append(el("p","pf-benefit",p.benefitValue));
       const actions=el("div","pf-actions");
       const detail=el("a","pf-btn","자세히 보기");detail.href=p.path;
-      const apply=el("a","pf-btn is-primary","신청하기");apply.href=applyUrl;
+      const apply=el("a","pf-btn is-primary","신청하기");
+      if(startOutbound){
+        apply.href=startOutbound[p.net];
+        apply.dataset.outbound="yes";
+        apply.dataset.network=p.net==="K"?"kt":"lg";
+        apply.dataset.billing="postpaid";
+        apply.dataset.plan=p.id;
+      } else {
+        const next=new URL(applyUrl,location.origin);
+        next.searchParams.set("net",p.net==="K"?"kt":"lg");
+        next.searchParams.set("plan",p.id);
+        next.searchParams.set("plan_name",p.name);
+        apply.href=next.toString();
+      }
       actions.append(detail,apply);
       art.append(actions);
       return art;

@@ -1,0 +1,80 @@
+---
+// Experiment A template. All copy comes from src/data/seo-experiments/a-landings.json via landings.js.
+import { toPublicPath, siteConfig as site } from "../../lib/site-config.js";
+import ExperimentImage from "./ExperimentImage.astro";
+const { page } = Astro.props;
+const heroImages = {
+  "kt-barousim-prepaid": "kt", "lg-onechip-prepaid": "lg",
+  "onechip-modelcode-entry": "numbers", "naverpay-7gb-mvno": "kt",
+  "daiso-usim": "lg", "kt-barousim-number-entry": "numbers"
+};
+const heroImage = heroImages[page.id];
+// Unified closing steps repeated on every landing (kept identical on purpose); marked so overlap checks judge page-specific copy only.
+const commonSteps = new Set(["본인명의 신규가입을 마치고 홈페이지에서 요금 직접 충전", "유심을 장착하고 휴대폰 다시 켜기", "본사 해피콜(1899-7700)은 별도로 오니 꼭 받기"]);
+const showNumberGuide = ["kt-barousim-prepaid", "lg-onechip-prepaid", "naverpay-7gb-mvno"].includes(page.id);
+---
+<section class="section xp-hero" data-experiment="A" data-intent={page.id}><div class:list={["wrap", {"xp-hero-grid": heroImage}]}><div>
+  <p class="eyebrow">{page.template === "plan-guide" ? "요금제 개통 안내" : page.template === "troubleshoot" ? "입력·확인 안내" : "개통 준비 안내"}</p>
+  <h1>{page.h1}</h1>
+  <p class="section-lead">{page.lead}</p>
+  {page.intentOwner && <p class="xp-owner">이 주제의 대표 안내는 <a href={toPublicPath(page.intentOwner)}>여기</a>에 있습니다.</p>}
+</div>
+  {heroImage && <div class="xp-hero-visual"><ExperimentImage kind={heroImage} eager /><p class="xp-visual-note">{page.id === "daiso-usim" ? "사진은 LG 모두의 원칩입니다. 다이소 고고비 제품 사진과 구분해 주세요." : ""}</p></div>}
+</div></section>
+
+{page.sections.map((section, index) => (
+  <section class={index % 2 ? "section soft" : "section"}><div class="wrap">
+    <h2>{section.heading}</h2>
+    {section.paragraphs.map(text => <p class="xp-p">{text}</p>)}
+    {showNumberGuide && index === 1 && <ExperimentImage kind="numbers" />}
+  </div></section>
+))}
+
+{page.planRows.length > 0 && (
+  <section class="section"><div class="wrap">
+    <h2>함께 비교할 요금제</h2>
+    <div class="ch-table-wrap"><table class="ch-table xp-table">
+      <thead><tr><th scope="col">요금제</th><th scope="col">망</th><th scope="col">요금</th><th scope="col">데이터</th></tr></thead>
+      <tbody>{page.planRows.map(row => (
+        <tr><td><a href={toPublicPath(row.path)}>{row.name}</a></td><td>{row.network}</td><td>{row.priceLabel}</td><td>{row.data}</td></tr>
+      ))}</tbody>
+    </table></div>
+    <p class="pd-note">상품 카탈로그 기준({site.ratesReceivedAt} 수령). 실제 제공량과 가입 조건은 신청 시점의 상품 안내를 따릅니다.</p>
+  </div></section>
+)}
+
+<section class="section soft"><div class="wrap">
+  <h2>진행 순서</h2>
+  <ol class="xp-steps">{page.steps.map(step => <li data-shared-step={commonSteps.has(step) ? "common" : undefined}>{step}</li>)}</ol>
+</div></section>
+
+<section class="section" data-shared-block="happy-call"><div class="wrap" data-notice="happy-call">
+  <h2>본사 해피콜 안내</h2>
+  <p class="xp-p">담당자 승인 없이 본인이 직접 개통합니다. 본사 해피콜(1899-7700)은 별도 본인확인 전화이니 꼭 받아 주세요. 문의는 <a href={site.business.kakao} rel="noopener">카카오톡</a> 또는 {site.business.phone}.</p>
+</div></section>
+
+{page.faq.length > 0 && (
+  <section class="section"><div class="wrap">
+    <h2>자주 묻는 질문</h2>
+    <div class="faq-list">{page.faq.map(item => <details class="faq"><summary>{item.q}</summary><p class="answer">{item.a}</p></details>)}</div>
+  </div></section>
+)}
+
+<section class="section soft"><div class="wrap">
+  <h2>관련 안내</h2>
+  <div class="link-list">
+    {[...page.links, ...page.related].map(link => <a href={toPublicPath(link.path)}><span>{link.label}</span><span>›</span></a>)}
+  </div>
+</div></section>
+
+<style>
+  .xp-hero h1{font-size:clamp(26px,5vw,38px);line-height:1.3;letter-spacing:-.8px;margin:6px 0 12px}
+  .xp-p{line-height:1.8;color:#3d3f46;margin:0 0 12px}
+  .xp-steps{padding-left:22px;line-height:1.9}
+  .xp-owner{margin-top:12px;font-size:14px;color:#61636b}
+  .xp-table td,.xp-table th{text-align:left}
+  .xp-hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:40px;align-items:center}
+  .xp-hero-grid>div{min-width:0}
+  .xp-visual-note{font-size:13px;color:#61636b;text-align:center}
+  @media(max-width:760px){.xp-hero-grid{grid-template-columns:1fr;gap:4px}}
+</style>

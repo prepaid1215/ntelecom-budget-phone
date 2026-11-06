@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageFactory from "../../components/PageFactory.astro";
+import pages from "../../data/generated-pages.json";
+import { buildModel } from "../../lib/page-model.js";
+const originalHome=pages.find(p=>p.path==="/");
+const model=buildModel(originalHome);
+---
+<BaseLayout title="앤텔레콤 알뜰폰 개통방법 | 신규가입·번호이동과 요금제" description="앤텔레콤 알뜰폰 요금제와 제휴혜택을 비교하고, 신규가입과 번호이동 방법을 알아보세요." pagePath="/알뜰폰/" index="index" faqs={model.faqs}>
+  <PageFactory model={model} />
+</BaseLayout>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xn--h49a29twjdmms77a5sofgdjwa.shop/sitemap.xml

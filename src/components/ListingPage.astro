@@ -31,6 +31,16 @@ const tags=new Set(page.requiredTags||[]);
 const wantsTransfer=tags.has("number-transfer");
 const netForSim=kCount && !lCount ? "K" : lCount && !kCount ? "L" : "both";
 const maxPrice=list[list.length-1].monthly_price;
+const focusMatch=page.path.match(/^\/(plans\/k|new-number|number-transfer)\/(7gb|10gb)\/$/);
+const focusLabel=focusMatch?.[2]==="7gb"?"7GB":"10GB";
+const focusIntro=focusMatch?.[1]==="new-number"
+  ? "추가 번호를 새로 개통할 때는 실제 두 번째 번호로 어떤 앱을 사용할지 먼저 정하는 것이 좋습니다."
+  : focusMatch?.[1]==="number-transfer"
+    ? "쓰던 번호를 유지하는 번호이동은 이전 통신사의 한 달 데이터 사용량과 현재 요금제를 비교하는 것이 출발점입니다."
+    : "KT망 요금제는 데이터 기본 제공량뿐 아니라 제휴 혜택과 소진 후 속도를 함께 비교해야 합니다.";
+const focusExamples=focusMatch?.[2]==="7gb"
+  ? ["와이파이를 자주 쓰고 외부에서는 메신저·지도·검색 위주로 사용하는 생활 패턴","영상보다 통화·문자·업무 알림에 집중하는 이용 형태","필요한 데이터가 7GB 안팎일 때 기존 사용량과 비교하는 방법"]
+  : ["외부에서 지도와 검색을 반복하고 SNS 이미지·영상도 자주 보는 이용 형태","와이파이 연결이 적은 외근·이동 시간에 데이터를 추가로 쓰는 생활 패턴","7GB보다 3GB 더 넉넉한 기본 제공량이 실제 사용 패턴에 필요한지 판단하는 방법"];
 const point=[];
 point.push(["가장 저렴한 요금제",`${displayName(cheapest)} · 월 ${won(cheapest.monthly_price)}`,planPath(cheapest)]);
 if(biggest.id!==cheapest.id) point.push(["데이터가 가장 큰 요금제",`${displayName(biggest)} · ${dataLabel(biggest)} · 월 ${won(biggest.monthly_price)}`,planPath(biggest)]);
@@ -45,6 +55,23 @@ if(cardOff[cheapestCard.network] && cardPrice(cheapestCard)<cheapestCard.monthly
     <div><small>소진 후 속도</small><strong>{speeds.length ? (speeds.length>1 ? `${speeds[0]}~${speeds[speeds.length-1]}` : speeds[0]) : "-"}</strong><span>최대 속도 기준</span></div>
   </div>
 </div></section>
+
+
+{focusMatch && <section class="section"><div class="wrap">
+  <h2>{focusLabel} 요금제를 고르는 실제 기준</h2>
+  <p class="section-lead">{focusIntro}</p>
+  <div class="info-grid">
+    <div class="info-card">
+      <strong>{focusLabel}를 선택할 때 살펴볼 사용 패턴</strong>
+      <p>{focusExamples[0]}</p>
+    </div>
+    <div class="info-card">
+      <strong>휴대폰 사용 목적</strong>
+      <p>{focusExamples[1]}</p>
+    </div>
+  </div>
+  <p class="pd-note">{focusExamples[2]}. 아래 실제 요금제에서 월 기본료, 통화·문자, 소진 후 속도를 이어서 비교하세요.</p>
+</div></section>}
 
 <section class="section soft"><div class="wrap">
   <div class="lp-bar"><h2>요금제 목록</h2>
@@ -71,6 +98,19 @@ if(cardOff[cheapestCard.network] && cardPrice(cheapestCard)<cheapestCard.monthly
     {wantsTransfer && <li><b>번호이동</b> 요금을 연체 중이거나 최근 3개월 안에 번호이동을 했다면 제한돼요. <a href={toPublicPath("/number-transfer/restrictions/")}>제한 조건 보기</a></li>}
   </ul>
 </div></section>
+
+
+{page.path==="/new-number/" && <section class="section soft"><div class="wrap">
+  <h2>신규가입 요금제를 예산과 혜택으로 찾기</h2>
+  <p class="section-lead">신규가입은 기존 번호를 유지하면서 별도의 번호로 가입할 때 선택하는 방식입니다.</p>
+  <div class="link-list">
+    {[
+      ["/new-number/price/under-40000/","신규가입 월 4만원 미만"],
+      ["/new-number/price/20000-range/","신규가입 월 2만원대"],
+      ["/new-number/benefits/cu/","신규가입 CU 혜택 요금제"]
+    ].map(([href,label])=><a href={toPublicPath(href)}><span>{label}</span><span>›</span></a>)}
+  </div>
+</div></section>}
 
 <section class="section soft"><div class="wrap">
   <h2>다른 조건도 살펴보세요</h2>

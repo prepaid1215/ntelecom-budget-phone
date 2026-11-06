@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": "20261001",
+  "expectedAreaRecords": 3559,
+  "expectedDistrictRecords": 256,
+  "expectedSido": [
+    { "code": "11", "name": "서울특별시" },
+    { "code": "12", "name": "전남광주통합특별시" },
+    { "code": "26", "name": "부산광역시" },
+    { "code": "27", "name": "대구광역시" },
+    { "code": "28", "name": "인천광역시" },
+    { "code": "30", "name": "대전광역시" },
+    { "code": "31", "name": "울산광역시" },
+    { "code": "36", "name": "세종특별자치시" },
+    { "code": "41", "name": "경기도" },
+    { "code": "43", "name": "충청북도" },
+    { "code": "44", "name": "충청남도" },
+    { "code": "47", "name": "경상북도" },
+    { "code": "48", "name": "경상남도" },
+    { "code": "50", "name": "제주특별자치도" },
+    { "code": "51", "name": "강원특별자치도" },
+    { "code": "52", "name": "전북특별자치도" }
+  ],
+  "transitionNote": "2026-07-01부터 광주광역시와 전라남도는 전남광주통합특별시로 통합되어, 이 2026-10-01 자료에는 종전 17개 광역단체가 아닌 현행 16개 시도가 나타납니다. 세종특별자치시는 포함됩니다.",
+  "transitionSources": [
+    "https://www.law.go.kr/LSW/lsRvsDocListP.do?chrClsCd=010202&lsId=015064&lsRvsGubun=all",
+    "https://mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&nttId=126845"
+  ],
+  "reviewRule": "새 원본 버전을 가져오면 expectedSido와 area/district counts를 공식 행정구역 자료에 대조한 뒤 이 매니페스트를 갱신합니다."
+}

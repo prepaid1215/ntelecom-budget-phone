@@ -1,17 +1,35 @@
 ---
 import "../styles/global.css";
+import "../styles/start.css";
+import StartSidebar from "../components/StartSidebar.astro";
+import {buildModel} from "../lib/page-model.js";
+import StartHeader from "../components/StartHeader.astro";
 import pagesData from "../data/generated-pages.json";
 import { siteConfig as site, activationLink, toPublicPath, toSiteUrl } from "../lib/site-config.js";
+import { MIRROR_KT_URL, MIRROR_LG_URL, ntgoDestination } from "../lib/ntgo-targets.js";
 const {
   title,
   description=site.defaultDescription,
   index="index",
   faqs=[],
   pagePath=Astro.url.pathname,
+  ctaSource=null,
+  breadcrumbs=null,
   image="/images/og/antelcom-og-main-v1.jpg",
+  imageWidth=1200,
+  imageHeight=630,
+  imageType="image/jpeg",
+  imageAlt="앤텔레콤 개통방법, KT·LG 유심과 요금제 비교 및 온라인 셀프개통 안내",
   ogTitle=title,
   ogDescription=description
 } = Astro.props;
+const homeModel=buildModel(pagesData.find(p=>p.path==="/"));
+const choose=(net,gb)=>homeModel.matched.filter(p=>p.network===net&&p.data_gb===gb).sort((a,b)=>a.monthly_price-b.monthly_price)[0];
+const sidebarPlans=[choose("L",7),choose("K",7),choose("K",15)].filter(Boolean);
+const sidebarTargets={
+  K:ntgoDestination(process.env.START_KT_URL,MIRROR_KT_URL),
+  L:ntgoDestination(process.env.START_LG_URL,MIRROR_LG_URL)
+};
 const fullTitle = title;
 const canonical = toSiteUrl(pagePath);
 const socialImage = toSiteUrl(image);
@@ -27,7 +45,7 @@ for(let i=1;i<=segments.length;i++){
   const hit=pageByPath.get(path);
   if(hit) trail.push({name:hit.keyword,path});
 }
-const crumbs=[{name:site.brandName,path:"/"},...trail.filter(c=>c.path!=="/")];
+const crumbs=[{name:site.brandName,path:"/"},...(breadcrumbs || trail).filter(c=>c.path!=="/")];
 const schemas={
   "@context":"https://schema.org",
   "@graph":[
@@ -42,7 +60,7 @@ const schemas={
     {
       "@type":"Organization",
       "@id":organizationId,
-      "name":site.business.name,
+      "name":site.business.operator,
       "legalName":site.business.operator,
       "url":toSiteUrl("/"),
       "telephone":site.business.phone,
@@ -85,44 +103,46 @@ if(faqs.length) schemas["@graph"].push({
 <meta name="robots" content={robots} />
 <meta name="googlebot" content={robots} />
 <meta name="theme-color" content={site.primaryColor} />
+<>
+<link rel="stylesheet" crossorigin="anonymous" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT/fonts/static/woff2/SUIT.css" />
+</>
 <link rel="canonical" href={canonical} />
 <link rel="alternate" hreflang="ko-KR" href={canonical} />
-<link rel="icon" type="image/svg+xml" href={toPublicPath("/favicon.svg")} />
+<link rel="icon" type="image/png" href={toPublicPath("/images/start/favicon.png?v=2")} />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="ko_KR" />
-<meta property="og:site_name" content="앤텔레콤 개통방법" />
+<meta property="og:site_name" content={site.brandName} />
 <meta property="og:title" content={ogTitle} />
 <meta property="og:description" content={ogDescription} />
 <meta property="og:url" content={canonical} />
 <meta property="og:image" content={socialImage} />
 <meta property="og:image:secure_url" content={socialImage} />
-<meta property="og:image:type" content="image/jpeg" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="앤텔레콤 개통방법, KT·LG 유심과 요금제 비교 및 온라인 신청 안내" />
+<meta property="og:image:type" content={imageType} />
+<meta property="og:image:width" content={imageWidth} />
+<meta property="og:image:height" content={imageHeight} />
+<meta property="og:image:alt" content={imageAlt} />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={ogTitle} />
 <meta name="twitter:description" content={ogDescription} />
 <meta name="twitter:image" content={socialImage} />
+<meta name="twitter:image:alt" content={imageAlt} />
 <script type="application/ld+json" set:html={JSON.stringify(schemas)}></script>
 </head>
-<body>
-<header class="header"><div class="wrap header-inner">
-  <a class="logo" href={toPublicPath("/")}><span class="logo-mark">N</span><span>{site.brandName}</span></a>
-  <nav class="header-nav" aria-label="주요 메뉴"><a href={toPublicPath("/plans/")}>요금제</a><a href={toPublicPath("/benefits/")}>혜택</a><a href={toPublicPath("/card/")}>제휴카드</a><a href={toPublicPath("/guide/")}>개통안내</a></nav>
-  <a class="header-cta" href={activationLink("header")}>즉시 개통</a>
-</div></header>
+<body data-site-shell>
+<StartHeader pagePath={pagePath} ctaSource={ctaSource}/>
 <main>
   <slot />
 </main>
+<StartSidebar featured={sidebarPlans} targets={sidebarTargets} pagePath={pagePath} ctaSource={ctaSource}/>
 <footer class="site-footer"><div class="wrap">
-  <p><strong>{site.business.name}</strong> · 앤텔레콤 공식파트너</p>
+  <p><strong>{pagePath==="/start/" ? site.business.operator : site.business.operator}</strong> · 앤텔레콤 계약 판매점</p>
   <p>{site.business.address} · 사업자등록번호 {site.business.bizNo} · 통신판매신고 {site.business.mailOrderNo}</p>
-  <p><a href={site.business.kakao} rel="noopener">카카오톡 채널 상담</a></p>
+
 </div></footer>
 <div class="bottom"><div class="bottom-inner">
   <button class="bottom-save" type="button" data-save-page>저장</button>
-  <a class="bottom-go" href={activationLink("bottom")}>바로 개통하기</a>
+  <a class="bottom-go" href={pagePath==="/start/" ? "#start-choices" : activationLink("bottom")}>{pagePath==="/start/" ? "통신망 선택하기" : "바로 개통하기"}</a>
 </div></div>
 <script is:inline>
   document.addEventListener("click",function(e){

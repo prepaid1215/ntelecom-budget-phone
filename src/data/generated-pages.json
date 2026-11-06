@@ -3288,7 +3288,7 @@
   {
     "id": 99,
     "supportCount": 2,
-    "effectiveIndex": "index",
+    "effectiveIndex": "noindex",
     "priority": "P1",
     "requiredTags": [
       "k-network",
@@ -3302,7 +3302,7 @@
     "keyword": "알뜰폰 K망 1만원대 요금제",
     "pageType": "combo",
     "template": "T3",
-    "indexCandidate": true,
+    "indexCandidate": false,
     "angle": "K망 · 1만원대 요금제 모아보기"
   },
   {
@@ -5338,7 +5338,7 @@
   {
     "id": 185,
     "supportCount": 2,
-    "effectiveIndex": "index",
+    "effectiveIndex": "noindex",
     "priority": "P1",
     "requiredTags": [
       "10000-range",
@@ -5352,13 +5352,13 @@
     "keyword": "알뜰폰 1만원대 신규가입 요금제",
     "pageType": "combo",
     "template": "T3",
-    "indexCandidate": true,
+    "indexCandidate": false,
     "angle": "1만원대 · 신규가입 요금제 모아보기"
   },
   {
     "id": 186,
     "supportCount": 2,
-    "effectiveIndex": "index",
+    "effectiveIndex": "noindex",
     "priority": "P1",
     "requiredTags": [
       "10000-range",
@@ -5372,7 +5372,7 @@
     "keyword": "알뜰폰 1만원대 번호이동 요금제",
     "pageType": "combo",
     "template": "T3",
-    "indexCandidate": true,
+    "indexCandidate": false,
     "angle": "1만원대 · 번호이동 요금제 모아보기"
   },
   {

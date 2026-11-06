@@ -29,6 +29,9 @@ jobs:
           SITE_URL: https://prepaid1215.github.io
           BASE_PATH: /ntelecom-budget-phone
           PRODUCTION_READY: "true"
+          # Experiment B: publish only regional index candidates and their parent hubs (currently 0 pages).
+          # The full 7,664-URL set is built in development/CI only.
+          SEO_REGIONS_EMIT: candidates
 
   deploy:
     needs: build

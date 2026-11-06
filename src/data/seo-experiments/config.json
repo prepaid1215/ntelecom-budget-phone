@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "domain": "앤텔레콤개통방법.shop",
+  "productionOrigin": "https://xn--h49a29twjdmms77a5sofgdjwa.shop",
+  "observationWindowsDays": [7, 14, 28],
+  "engines": ["google", "naver"],
+  "intentOwners": [
+    { "path": "/", "keyword": "앤텔레콤 개통방법", "builtFrom": "src/pages/index.astro" },
+    { "path": "/선불폰/", "keyword": "앤텔레콤 선불폰 개통방법", "builtFrom": "src/pages/선불폰/index.astro" },
+    { "path": "/알뜰폰/", "keyword": "앤텔레콤 알뜰폰 개통방법", "builtFrom": "src/pages/알뜰폰/index.astro" }
+  ],
+  "experiments": {
+    "A": {
+      "id": "A-keyword-landing",
+      "label": "테무쿠폰형 검색의도 랜딩",
+      "dataFile": "src/data/seo-experiments/a-landings.json",
+      "routeRule": "single top-level segment starting with 앤텔레콤-",
+      "launchedAt": null,
+      "minBodyCharacters": 600,
+      "minInternalLinks": 3
+    },
+    "B": {
+      "id": "B-regional",
+      "label": "지역페이지형",
+      "routePrefix": "/regions/",
+      "launchedAt": null,
+      "emit": "all",
+      "emitEnv": "SEO_REGIONS_EMIT"
+    },
+    "C": {
+      "id": "C-indexkit",
+      "label": "IndexKit형 네이버 블로그 원문 링크 실험",
+      "dataFile": "src/data/seo-experiments/indexkit.json",
+      "routePrefix": "/indexkit/",
+      "minTargetsPerGroup": 5,
+      "assignmentSeed": "indexkit-v1",
+      "excludeTargetsIndexedAtBaseline": true
+    }
+  }
+}

@@ -68,6 +68,22 @@ const cheapNames=t7 ? t7.list.filter(x=>x.p.monthly_price===t7.min).map(x=>x.b.n
   <p class="pd-note">혜택 조건은 가입 요금제와 이용 조건에 따라 달라질 수 있어요.</p>
 </div></section>
 
+
+<section class="section soft"><div class="wrap">
+  <h2>혜택 이름과 사용량으로 다시 찾기</h2>
+  <p class="section-lead">선호하는 제휴 혜택과 데이터 소진 후 속도로 비교할 수 있습니다.</p>
+  <div class="link-list">
+    {[
+      ["/benefits/coupang/","쿠팡 제휴 요금제"],
+      ["/benefits/content-benefit/","콘텐츠 구독 혜택 요금제"],
+      ["/benefits/content-benefit/speed/1mbps/","콘텐츠 혜택·1Mbps"],
+      ["/benefits/cu/speed/1mbps/","CU 혜택·1Mbps"],
+      ["/benefits/content-benefit/speed/3mbps/","콘텐츠 혜택·3Mbps"],
+      ["/benefits/cu/speed/3mbps/","CU 혜택·3Mbps"]
+    ].map(([href,label])=><a href={toPublicPath(href)}><span>{label}</span><span>›</span></a>)}
+  </div>
+</div></section>
+
 <section class="section soft"><div class="wrap">
   <h2>혜택 포함 요금제 전체</h2>
   <p class="section-lead">{model.matched.length}개 요금제를 월 기본료순으로 모았어요.</p>

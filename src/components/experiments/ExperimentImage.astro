@@ -1,0 +1,28 @@
+---
+import { toPublicPath } from "../../lib/site-config.js";
+const { kind = "products", eager = false } = Astro.props;
+const assets = {
+  kt: { src: "/images/usim/baro-usim.webp", width: 560, height: 699, alt: "KT 바로유심 제품 패키지", caption: "KT망 · 바로유심" },
+  lg: { src: "/images/usim/onechip.webp", width: 560, height: 560, alt: "LG 모두의 원칩 제품 패키지", caption: "LG망 · 모두의 원칩" },
+  numbers: { src: "/images/usim/usim-number-guide.webp", width: 1000, height: 666, alt: "KT 유심번호와 LG 모델명·일련번호 입력 위치 설명", caption: "입력 위치 설명용 이미지 · 실제 번호는 준비한 유심에서 읽어 입력하세요." },
+  lifestyle: { src: "/images/experiments/phone-at-home.webp", width: 1200, height: 800, alt: "집에서 스마트폰으로 통화하는 모습", caption: "AI로 제작한 생활 장면 · 설명용 이미지" }
+};
+const items = kind === "products" ? [assets.kt, assets.lg] : [assets[kind]];
+---
+<div class:list={["xp-images", `xp-images--${kind}`]}>
+  {items.map(item => <figure>
+    <div class="xp-image-frame"><img src={toPublicPath(item.src)} width={item.width} height={item.height} alt={item.alt} loading={eager ? "eager" : "lazy"} fetchpriority={eager ? "high" : "auto"} decoding="async" /></div>
+    <figcaption>{item.caption}</figcaption>
+  </figure>)}
+</div>
+<style>
+  .xp-images{display:flex;justify-content:center;gap:16px;width:100%;min-width:0;margin:24px 0 8px}
+  figure{margin:0;min-width:0;flex:1;max-width:640px}
+  .xp-image-frame{overflow:hidden;border:1px solid #e2e8ee;border-radius:20px;background:#f4f8fa}
+  img{display:block;width:100%;height:auto;object-fit:contain}
+  .xp-images--kt img,.xp-images--lg img,.xp-images--products img{height:300px;padding:16px}
+  .xp-images--kt figure,.xp-images--lg figure{max-width:380px}
+  .xp-images--products figure{max-width:280px}
+  figcaption{margin-top:9px;color:#61636b;font-size:13px;line-height:1.6;text-align:center;word-break:keep-all}
+  @media(max-width:600px){.xp-images{gap:10px;margin-top:20px}.xp-images--products img{height:210px;padding:10px}.xp-images--kt img,.xp-images--lg img{height:260px}.xp-image-frame{border-radius:14px}}
+</style>
