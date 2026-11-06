@@ -50,7 +50,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -65,7 +65,10 @@
       "number-transfer",
       "coupang"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2636433",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-10gb-coupang-cash",
@@ -118,7 +121,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -133,7 +136,10 @@
       "number-transfer",
       "coupang"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2636434",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-15gb-coupang-cash",
@@ -186,7 +192,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -201,7 +207,10 @@
       "number-transfer",
       "coupang"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2636435",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-100min-15gb-coupang-cash",
@@ -254,7 +263,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -268,7 +277,10 @@
       "number-transfer",
       "coupang"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2636436",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-300min-15gb-coupang-cash",
@@ -321,7 +333,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -335,7 +347,10 @@
       "number-transfer",
       "coupang"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2636437",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-11gb-daily2gb-coupang-cash",
@@ -388,7 +403,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -402,7 +417,10 @@
       "number-transfer",
       "coupang"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2636438",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-100gb-coupang-cash",
@@ -455,7 +473,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -468,7 +486,10 @@
       "number-transfer",
       "coupang"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2636439",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-7gb-naverpay",
@@ -521,7 +542,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -536,7 +557,10 @@
       "number-transfer",
       "naverpay"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL261U215",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-10gb-naverpay",
@@ -589,7 +613,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -604,7 +628,10 @@
       "number-transfer",
       "naverpay"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL261U218",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-15gb-naverpay",
@@ -657,7 +684,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -672,7 +699,10 @@
       "number-transfer",
       "naverpay"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL261U219",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-100min-15gb-naverpay",
@@ -725,7 +755,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -739,7 +769,10 @@
       "number-transfer",
       "naverpay"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL261U220",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-300min-15gb-naverpay",
@@ -792,7 +825,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -806,7 +839,10 @@
       "number-transfer",
       "naverpay"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL261U221",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-11gb-daily2gb-naverpay",
@@ -859,7 +895,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -873,7 +909,10 @@
       "number-transfer",
       "naverpay"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL261U216",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-100gb-naverpay",
@@ -926,7 +965,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -939,7 +978,10 @@
       "number-transfer",
       "naverpay"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL261U217",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-7gb-daiso",
@@ -992,7 +1034,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -1007,7 +1049,10 @@
       "number-transfer",
       "daiso"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544254",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-10gb-daiso",
@@ -1060,7 +1105,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -1075,7 +1120,10 @@
       "number-transfer",
       "daiso"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544258",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-15gb-daiso",
@@ -1128,7 +1176,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -1143,7 +1191,10 @@
       "number-transfer",
       "daiso"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544260",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-100min-15gb-daiso",
@@ -1196,7 +1247,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -1210,7 +1261,10 @@
       "number-transfer",
       "daiso"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544257",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-300min-15gb-daiso",
@@ -1263,7 +1317,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -1277,7 +1331,10 @@
       "number-transfer",
       "daiso"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544263",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-11gb-daily2gb-daiso",
@@ -1330,7 +1387,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -1344,7 +1401,10 @@
       "number-transfer",
       "daiso"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544255",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-100gb-daiso",
@@ -1397,7 +1457,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -1410,7 +1470,10 @@
       "number-transfer",
       "daiso"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544262",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-7gb-millie",
@@ -1463,7 +1526,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -1479,7 +1542,10 @@
       "number-transfer",
       "content-benefit"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL24BP115",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-10gb-millie",
@@ -1532,7 +1598,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -1547,7 +1613,10 @@
       "number-transfer",
       "content-benefit"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL24BP119",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-15gb-millie",
@@ -1600,7 +1669,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -1615,7 +1684,10 @@
       "number-transfer",
       "content-benefit"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544285",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-100min-15gb-millie",
@@ -1668,7 +1740,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -1683,7 +1755,10 @@
       "number-transfer",
       "content-benefit"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL24BP118",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-300min-15gb-millie",
@@ -1736,7 +1811,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -1750,7 +1825,10 @@
       "number-transfer",
       "content-benefit"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544287",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-11gb-daily2gb-millie",
@@ -1803,7 +1881,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -1817,7 +1895,10 @@
       "number-transfer",
       "content-benefit"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL24BP116",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-100gb-millie",
@@ -1870,7 +1951,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -1883,7 +1964,10 @@
       "number-transfer",
       "content-benefit"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544286",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-7gb-oliveyoung",
@@ -1936,7 +2020,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -1951,7 +2035,10 @@
       "number-transfer",
       "oliveyoung"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544265",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-10gb-oliveyoung",
@@ -2004,7 +2091,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -2019,7 +2106,10 @@
       "number-transfer",
       "oliveyoung"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544270",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-15gb-oliveyoung",
@@ -2072,7 +2162,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -2087,7 +2177,10 @@
       "number-transfer",
       "oliveyoung"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544272",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-100min-15gb-oliveyoung",
@@ -2140,7 +2233,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -2154,7 +2247,10 @@
       "number-transfer",
       "oliveyoung"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544268",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-300min-15gb-oliveyoung",
@@ -2207,7 +2303,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -2221,7 +2317,10 @@
       "number-transfer",
       "oliveyoung"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544274",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-11gb-daily2gb-oliveyoung",
@@ -2274,7 +2373,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -2288,7 +2387,10 @@
       "number-transfer",
       "oliveyoung"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544267",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-100gb-oliveyoung",
@@ -2341,7 +2443,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -2354,7 +2456,10 @@
       "number-transfer",
       "oliveyoung"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544273",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-7gb-cu",
@@ -2407,7 +2512,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -2423,7 +2528,10 @@
       "number-transfer",
       "cu"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2636440",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-10gb-cu",
@@ -2476,7 +2584,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -2491,7 +2599,10 @@
       "number-transfer",
       "cu"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544280",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-15gb-cu",
@@ -2544,7 +2655,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -2559,7 +2670,10 @@
       "number-transfer",
       "cu"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544282",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-100min-15gb-cu",
@@ -2612,7 +2726,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -2627,7 +2741,10 @@
       "number-transfer",
       "cu"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544279",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-300min-15gb-cu",
@@ -2680,7 +2797,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -2694,7 +2811,10 @@
       "number-transfer",
       "cu"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544284",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-11gb-daily2gb-cu",
@@ -2747,7 +2867,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -2761,7 +2881,10 @@
       "number-transfer",
       "cu"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544277",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-k-100gb-cu",
@@ -2814,7 +2937,7 @@
       "https://www.n-telecom.co.kr/59man/view/main/main.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "k-network",
@@ -2827,7 +2950,10 @@
       "number-transfer",
       "cu"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 신규/번호이동은 데이터 추가 프로모션의 신규(010, MNP) 문구를 근거로 표시. 무약정/eSIM/테더링 등은 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "PL2544283",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-l-100min-15gb",
@@ -2877,7 +3003,7 @@
       "https://www.n-telecom.co.kr/59man/view/plan/phone_plan.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "l-network",
@@ -2889,7 +3015,10 @@
       "3mbps",
       "lte"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 가입유형/eSIM/약정 여부는 공개 목록에서 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 가입유형/eSIM/약정 여부는 공개 목록에서 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "LPZ1005071",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-l-300min-15gb",
@@ -2939,7 +3068,7 @@
       "https://www.n-telecom.co.kr/59man/view/plan/phone_plan.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "l-network",
@@ -2950,7 +3079,10 @@
       "3mbps",
       "lte"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 가입유형/eSIM/약정 여부는 공개 목록에서 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 가입유형/eSIM/약정 여부는 공개 목록에서 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "LPZ1005070",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-l-11gb-daily2gb",
@@ -3000,7 +3132,7 @@
       "https://www.n-telecom.co.kr/59man/view/plan/phone_plan.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "l-network",
@@ -3011,7 +3143,10 @@
       "3mbps",
       "lte"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 가입유형/eSIM/약정 여부는 공개 목록에서 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 가입유형/eSIM/약정 여부는 공개 목록에서 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "LPZ1005069",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-l-daily5gb",
@@ -3061,7 +3196,7 @@
       "https://www.n-telecom.co.kr/59man/view/plan/phone_plan.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "l-network",
@@ -3071,7 +3206,10 @@
       "5mbps",
       "lte"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 가입유형/eSIM/약정 여부는 공개 목록에서 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 가입유형/eSIM/약정 여부는 공개 목록에서 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "LPZ1005068",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   },
   {
     "id": "ntelecom-l-7gb",
@@ -3121,7 +3259,7 @@
       "https://www.n-telecom.co.kr/59man/view/plan/phone_plan.aspx",
       "https://www.n-telecom.co.kr/Resources/MpolicyPDF/policy_24903.pdf"
     ],
-    "checked_at": "2026-09-28",
+    "checked_at": "2026-11-02",
     "tags": [
       "ntelecom",
       "l-network",
@@ -3134,6 +3272,9 @@
       "1mbps",
       "lte"
     ],
-    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 가입유형/eSIM/약정 여부는 공개 목록에서 개별 확인 불가."
+    "notes": "59만모바일 실제 요금제 목록에서 후불로 노출. 가입유형/eSIM/약정 여부는 공개 목록에서 개별 확인 불가. | 2026-11-02 운영자 제공 요금제sort 응답에서 상품코드·월요금·통화·문자 일치 확인. 별도 제휴혜택 지급조건·카드 할인·프로모션 종료일은 이 목록에 없음.",
+    "official_product_code": "LPZ1004257",
+    "official_pay_division": "후불",
+    "official_list_received_at": "2026-11-02"
   }
 ]

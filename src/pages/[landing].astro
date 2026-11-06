@@ -1,0 +1,16 @@
+---
+// Experiment A routes: single top-level segment `/앤텔레콤-…/`. Only paths returned here are built;
+// the registry guarantees none of them collide with the existing 500 pages or other experiments.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import LandingPage from "../components/experiments/LandingPage.astro";
+import { buildExperimentRegistry } from "../lib/seo-experiments/registry.js";
+
+export function getStaticPaths(){
+  const { landings }=buildExperimentRegistry();
+  return landings.pages.map(page=>({params:{landing:page.path.replace(/^\/|\/$/g,"")},props:{page}}));
+}
+const { page }=Astro.props;
+---
+<BaseLayout title={page.title} description={page.description} index={page.effectiveIndex} faqs={page.faq} pagePath={page.path} ctaSource={"exp_a_" + page.id.replaceAll("-", "_")} breadcrumbs={[{name:page.h1,path:page.path}]}>
+  <LandingPage page={page}/>
+</BaseLayout>

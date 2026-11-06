@@ -13,6 +13,8 @@ const {
   index="index",
   faqs=[],
   pagePath=Astro.url.pathname,
+  ctaSource=null,
+  breadcrumbs=null,
   image="/images/hero-mobile.webp"
 } = Astro.props;
 const homeModel=buildModel(pagesData.find(p=>p.path==="/"));
@@ -37,7 +39,7 @@ for(let i=1;i<=segments.length;i++){
   const hit=pageByPath.get(path);
   if(hit) trail.push({name:hit.keyword,path});
 }
-const crumbs=[{name:site.brandName,path:"/"},...trail.filter(c=>c.path!=="/")];
+const crumbs=[{name:site.brandName,path:"/"},...(breadcrumbs || trail).filter(c=>c.path!=="/")];
 const schemas={
   "@context":"https://schema.org",
   "@graph":[
@@ -52,7 +54,7 @@ const schemas={
     {
       "@type":"Organization",
       "@id":organizationId,
-      "name":site.business.name,
+      "name":site.business.operator,
       "legalName":site.business.operator,
       "url":toSiteUrl("/"),
       "telephone":site.business.phone,
@@ -119,13 +121,13 @@ if(faqs.length) schemas["@graph"].push({
 <script type="application/ld+json" set:html={JSON.stringify(schemas)}></script>
 </head>
 <body data-site-shell>
-<StartHeader pagePath={pagePath}/>
+<StartHeader pagePath={pagePath} ctaSource={ctaSource}/>
 <main>
   <slot />
 </main>
-<StartSidebar featured={sidebarPlans} targets={sidebarTargets} pagePath={pagePath}/>
+<StartSidebar featured={sidebarPlans} targets={sidebarTargets} pagePath={pagePath} ctaSource={ctaSource}/>
 <footer class="site-footer"><div class="wrap">
-  <p><strong>{pagePath==="/start/" ? site.business.operator : site.business.name}</strong> · 앤텔레콤 계약 판매점</p>
+  <p><strong>{pagePath==="/start/" ? site.business.operator : site.business.operator}</strong> · 앤텔레콤 계약 판매점</p>
   <p>{site.business.address} · 사업자등록번호 {site.business.bizNo} · 통신판매신고 {site.business.mailOrderNo}</p>
 
 </div></footer>

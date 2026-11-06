@@ -1,0 +1,39 @@
+name: SEO experiments A/B/C checks (no deployment)
+
+on:
+  push:
+    branches: [feat/seo-three-experiments-v1]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  seo-experiments:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Test SEO publication manifest, RSS and IndexNow safety gates
+        run: node --test scripts/seo-experiments/test-indexnow.mjs
+      - name: Install Chromium for the render check
+        run: |
+          pip install playwright==1.56.0
+          python -m playwright install --with-deps chromium
+      - name: Run all checks (builds into dist/, dist-noready/ and dist-fixture/; nothing is deployed)
+        run: node scripts/seo-experiments/test-all.mjs
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-experiments-reports
+          path: |
+            reports/seo-experiments/
+            audit-results/
+          if-no-files-found: warn

@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import rawSite from "../src/data/site.json" with { type: "json" };
 import pages from "../src/data/generated-pages.json" with { type: "json" };
+import { buildExperimentRegistry, experimentSitemapEntries } from "../src/lib/seo-experiments/registry.js";
 
 const root=path.resolve("dist");
 const productionReady=process.env.PRODUCTION_READY==="true" ? true : process.env.PRODUCTION_READY==="false" ? false : rawSite.productionReady;
@@ -24,7 +25,14 @@ const routeFor=file=>{
   if(relative==="404.html") return "/404/";
   return "/"+relative.replace(/index\.html$/,"");
 };
-const pageByPath=new Map(pages.map(page=>[page.path,page]));
+const dedicatedSections=[
+  {path:"/선불폰/",effectiveIndex:"index",pageType:"hub",priority:"P0"},
+  {path:"/알뜰폰/",effectiveIndex:"index",pageType:"hub",priority:"P0"}
+];
+// SEO experiments A/B/C: every emitted route with its gate decision (src/lib/seo-experiments/registry.js).
+const experimentRegistry=buildExperimentRegistry();
+const experimentPages=experimentRegistry.pages;
+const pageByPath=new Map([...pages,...dedicatedSections,...experimentPages].map(page=>[page.path,page]));
 const builtRoutes=new Set(htmlFiles.map(routeFor));
 const errors=[];
 const titles=new Map();
@@ -91,16 +99,17 @@ for(const file of htmlFiles){
   recordDuplicate(canonicals,canonical,route,"canonical");
 }
 
-if(htmlFiles.length!==pages.length+1 || !builtRoutes.has("/404/")) errors.push("HTML 수 "+htmlFiles.length+", 페이지 맵 "+pages.length+" + 404");
+if(htmlFiles.length!==pages.length+dedicatedSections.length+experimentPages.length+1 || !builtRoutes.has("/404/")) errors.push("HTML 수 "+htmlFiles.length+", 페이지 맵 "+pages.length+" + "+dedicatedSections.length+" 독립 섹션 + 실험 "+experimentPages.length+" + 404");
 const robotsText=fs.readFileSync(path.join(root,"robots.txt"),"utf8");
 const sitemapText=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
 const sitemapUrls=(sitemapText.match(/<url>/g)||[]).length;
-const expectedSitemapUrls=productionReady ? pages.filter(page=>page.effectiveIndex==="index").length : 0;
+const experimentLocations=experimentSitemapEntries().map(entry=>entry.loc);
+const expectedSitemapUrls=productionReady ? [...pages,...dedicatedSections].filter(page=>page.effectiveIndex==="index").length+experimentLocations.length : 0;
 if(!sitemapText.includes("<urlset") || sitemapText.includes("<sitemapindex") || sitemapText.includes("<sitemap>")) errors.push("sitemap.xml은 URL을 직접 담는 단일 urlset이어야 합니다");
 if(sitemapText.includes("<lastmod>")) errors.push("확인 기준일을 lastmod로 사용하지 마세요");
 if(sitemapUrls!==expectedSitemapUrls) errors.push("sitemap URL 수 "+sitemapUrls+", 기대값 "+expectedSitemapUrls);
 const sitemapLocations=[...sitemapText.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match=>match[1]);
-const expectedLocations=productionReady ? pages.filter(page=>page.effectiveIndex==="index").map(page=>new URL(withBase(page.path),expectedOrigin).toString()) : [];
+const expectedLocations=productionReady ? [...[...pages,...dedicatedSections].filter(page=>page.effectiveIndex==="index").map(page=>new URL(withBase(page.path),expectedOrigin).toString()),...experimentLocations] : [];
 if(new Set(sitemapLocations).size!==sitemapLocations.length) errors.push("sitemap URL 중복");
 if(sitemapLocations.length!==expectedLocations.length || expectedLocations.some(location=>!sitemapLocations.includes(location))) errors.push("sitemap URL이 색인 대상 페이지와 일치하지 않습니다");
 if(productionReady){
@@ -116,6 +125,8 @@ console.log(JSON.stringify({
   uniqueCanonicals:canonicals.size,
   basePath:basePrefix || "/",
   sitemapUrls,
+  experimentHtml:Object.fromEntries(["A","B","C"].map(k=>[k,experimentPages.filter(p=>p.experiment===k).length])),
+  experimentSitemapUrls:experimentLocations.length,
   productionReady,
   errors:errors.length
 },null,2));

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "notes": "대상 추가·배정·게시일 기록은 scripts/seo-experiments/indexkit.mjs로만 변경한다. 배정(group)은 한 번 기록되면 다시 섞지 않는다. 게시일(publishedAt)이 기록된 배치에는 새 대상을 넣을 수 없다.",
+  "batches": [
+    {
+      "id": "2026-11-b1",
+      "title": "앤텔레콤 개통 안내 블로그 원문 모음 1",
+      "intro": "네이버 블로그에 게시된 앤텔레콤 개통 안내 원문으로 이동하는 링크 목록입니다. 각 항목은 원문 제목과 운영자가 직접 쓴 한 줄 요약입니다.",
+      "carrierRobots": "index",
+      "createdAt": "2026-11-03",
+      "publishedAt": null
+    }
+  ],
+  "targets": [
+    {
+      "id": "ik-0001",
+      "url": "https://m.blog.naver.com/ntelecom59/224462343217",
+      "batch": "2026-11-b1",
+      "addedAt": "2026-11-02",
+      "label": null,
+      "summary": null,
+      "group": null,
+      "assignment": null,
+      "placements": ["list"]
+    }
+  ]
+}

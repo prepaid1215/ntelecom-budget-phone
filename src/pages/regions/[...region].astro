@@ -1,0 +1,20 @@
+---
+// Experiment B routes under /regions/{prepaid|mvno}/{시도}/{시군구}/{읍면동}/.
+// SEO_REGIONS_EMIT=candidates limits output to index candidates and their parent hubs.
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import RegionPage from "../../components/experiments/RegionPage.astro";
+import { buildExperimentRegistry } from "../../lib/seo-experiments/registry.js";
+
+export function getStaticPaths(){
+  const { regional, emittedRegions }=buildExperimentRegistry();
+  const emitted=new Set(emittedRegions.map(page=>page.path));
+  return emittedRegions.map(page=>({
+    params:{region:page.path.replace(/^\/regions\/|\/$/g,"")},
+    props:{page,byPath:regional.byPath,emitted,attribution:regional.sourceAttribution}
+  }));
+}
+const { page, byPath, emitted, attribution }=Astro.props;
+---
+<BaseLayout title={page.title} description={page.description} index={page.effectiveIndex} pagePath={page.path} breadcrumbs={page.crumbs}>
+  <RegionPage page={page} byPath={byPath} emitted={emitted} attribution={attribution}/>
+</BaseLayout>

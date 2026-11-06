@@ -175,6 +175,18 @@ for(const group of byProductSet.values()){
   );
   for(const duplicate of group.slice(1)) duplicate.indexCandidate=false;
 }
+// 1만원대와 2만원 미만은 이 카탈로그에서 정확히 같은 가격 구간입니다.
+// 보조 필터 URL은 유지하되 중복 의도를 가진 1만원대 페이지는 색인 제외합니다.
+// 가입 유형(일반/K망·신규가입·번호이동)은 별도 의도이므로 대표 페이지를 유지합니다.
+for(const page of pages){
+  if(!page.path.endsWith("/price/10000-range/")) continue;
+  const representative=pages.find(other=>
+    other.path===page.path.replace("/price/10000-range/","/price/under-20000/")
+    && other.supportingPlanIds.length===page.supportingPlanIds.length
+    && other.supportingPlanIds.every(id=>page.supportingPlanIds.includes(id))
+  );
+  if(representative && representative.indexCandidate) page.indexCandidate=false;
+}
 for(const page of pages){
   page.effectiveIndex=page.indexCandidate&&page.supportingPlanIds.length ? "index":"noindex";
 }

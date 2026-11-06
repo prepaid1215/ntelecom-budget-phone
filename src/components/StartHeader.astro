@@ -1,9 +1,9 @@
 ---
 import {toPublicPath,activationLink} from '../lib/site-config.js';
-const {pagePath="/start/"}=Astro.props;
+const {pagePath="/start/",ctaSource=null}=Astro.props;
 const atStart=pagePath==="/start/";
 const anchor=id=>atStart?"#"+id:toPublicPath("/start/")+"#"+id;
-const begin=atStart?"#start-choices":activationLink("header");
+const begin=atStart?"#start-choices":activationLink(ctaSource||"header");
 const planList=atStart?"#postpaid-plans":toPublicPath("/plans/");
 const menus=[
  {label:'앤텔레콤 KT',items:[['요금제',toPublicPath('/plans/k/')],['유심구매',anchor('start-usim')],['KT 개통하기',anchor('start-choices')]]},

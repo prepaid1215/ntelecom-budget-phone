@@ -76,6 +76,28 @@ const speedRows=[1,3,5].map(m=>{
   </div>
 </div></section>
 
+
+<section class="section soft"><div class="wrap">
+  <h2>데이터·예산별로 더 살펴보기</h2>
+  <p class="section-lead">사용량이나 월 예산이 정해져 있다면 해당 조건의 요금제만 비교하세요.</p>
+  <div class="link-list">
+    {[
+      ["/compare/","전체 요금제 비교표"],
+      ["/plans/7gb/","7GB 요금제"],
+      ["/plans/10gb/","10GB 요금제"],
+      ["/plans/11gb/","11GB 요금제"],
+      ["/plans/100gb/","100GB 요금제"],
+      ["/plans/speed/1mbps/","데이터 소진 후 1Mbps"],
+      ["/plans/speed/3mbps/","데이터 소진 후 3Mbps"],
+      ["/plans/price/under-40000/","월 4만원 미만"],
+      ["/plans/price/10000-range/","월 1만원대"],
+      ["/plans/price/20000-range/","월 2만원대"],
+      ["/plans/price/30000-range/","월 3만원대"],
+      ["/plans/price/40000-range/","월 4만원대"]
+    ].map(([href,label])=><a href={toPublicPath(href)}><span>{label}</span><span>›</span></a>)}
+  </div>
+</div></section>
+
 <section class="section"><div class="wrap"><h2>자주 묻는 질문</h2><div class="faq-list">{model.faqs.map(f=><details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>)}</div>
   <p class="pd-note">막히는 부분이 있으면 <a href={biz.kakao} rel="noopener">카카오톡 채널</a>로 문의하세요. 운영시간: {biz.hours}</p>
 </div></section>

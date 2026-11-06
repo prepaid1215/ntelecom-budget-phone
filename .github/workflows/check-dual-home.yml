@@ -1,0 +1,27 @@
+name: Validate combined home and prepaid content
+
+on:
+  push:
+    branches: [feat/seo-three-experiments-v1]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout SEO development branch
+        uses: actions/checkout@v4
+      - name: Build Astro pages
+        uses: withastro/action@v6
+        env:
+          SITE_URL: https://xn--h49a29twjdmms77a5sofgdjwa.shop
+          BASE_PATH: /
+          PRODUCTION_READY: "false"
+      - name: Confirm generated pages are present
+        run: |
+          test -f "dist/index.html"
+          test -f "dist/선불폰/index.html"
+          test -f "dist/알뜰폰/index.html"

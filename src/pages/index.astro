@@ -1,11 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import PageFactory from "../components/PageFactory.astro";
-import pages from "../data/generated-pages.json";
-import { buildModel } from "../lib/page-model.js";
-const page=pages.find(p=>p.path==="/");
-const model=buildModel(page);
+import ChoiceHome from "../components/ChoiceHome.astro";
 ---
-<BaseLayout title={model.seoTitle} description={model.meta} index="index" faqs={model.faqs} pagePath="/">
-  <PageFactory model={model}/>
+<BaseLayout title="앤텔레콤 개통방법 | 선불폰·알뜰폰 신규가입 및 번호이동" description="앤텔레콤 선불폰 신규가입, 알뜰폰 신규가입과 번호이동 방법을 선택하세요. KT·LG 유심과 요금제, 개통 절차를 안내합니다." pagePath="/" index="index">
+  <ChoiceHome />
 </BaseLayout>

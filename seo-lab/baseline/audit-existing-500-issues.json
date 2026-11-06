@@ -1,0 +1,1220 @@
+[
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-coupang-cash/price/",
+    "detail": "/plans/k/item/7gb-coupang-cash/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-coupang-cash/price/",
+    "detail": "/plans/k/item/10gb-coupang-cash/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-coupang-cash/price/",
+    "detail": "/plans/k/item/15gb-coupang-cash/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-coupang-cash/price/",
+    "detail": "/plans/k/item/100min-15gb-coupang-cash/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-coupang-cash/price/",
+    "detail": "/plans/k/item/300min-15gb-coupang-cash/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-coupang-cash/price/",
+    "detail": "/plans/k/item/11gb-daily2gb-coupang-cash/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-coupang-cash/price/",
+    "detail": "/plans/k/item/100gb-coupang-cash/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-naverpay/price/",
+    "detail": "/plans/k/item/7gb-naverpay/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-naverpay/price/",
+    "detail": "/plans/k/item/10gb-naverpay/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-naverpay/price/",
+    "detail": "/plans/k/item/15gb-naverpay/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-naverpay/price/",
+    "detail": "/plans/k/item/100min-15gb-naverpay/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-naverpay/price/",
+    "detail": "/plans/k/item/300min-15gb-naverpay/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-naverpay/price/",
+    "detail": "/plans/k/item/11gb-daily2gb-naverpay/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-naverpay/price/",
+    "detail": "/plans/k/item/100gb-naverpay/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-daiso/price/",
+    "detail": "/plans/k/item/7gb-daiso/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-daiso/price/",
+    "detail": "/plans/k/item/10gb-daiso/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-daiso/price/",
+    "detail": "/plans/k/item/15gb-daiso/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-daiso/price/",
+    "detail": "/plans/k/item/100min-15gb-daiso/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-daiso/price/",
+    "detail": "/plans/k/item/300min-15gb-daiso/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-daiso/price/",
+    "detail": "/plans/k/item/11gb-daily2gb-daiso/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-daiso/price/",
+    "detail": "/plans/k/item/100gb-daiso/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-millie/price/",
+    "detail": "/plans/k/item/7gb-millie/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-millie/price/",
+    "detail": "/plans/k/item/10gb-millie/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-millie/price/",
+    "detail": "/plans/k/item/15gb-millie/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-millie/price/",
+    "detail": "/plans/k/item/100min-15gb-millie/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-millie/price/",
+    "detail": "/plans/k/item/300min-15gb-millie/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-millie/price/",
+    "detail": "/plans/k/item/11gb-daily2gb-millie/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-millie/price/",
+    "detail": "/plans/k/item/100gb-millie/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-oliveyoung/price/",
+    "detail": "/plans/k/item/7gb-oliveyoung/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-oliveyoung/price/",
+    "detail": "/plans/k/item/10gb-oliveyoung/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-oliveyoung/price/",
+    "detail": "/plans/k/item/15gb-oliveyoung/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-oliveyoung/price/",
+    "detail": "/plans/k/item/100min-15gb-oliveyoung/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-oliveyoung/price/",
+    "detail": "/plans/k/item/300min-15gb-oliveyoung/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-oliveyoung/price/",
+    "detail": "/plans/k/item/11gb-daily2gb-oliveyoung/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-oliveyoung/price/",
+    "detail": "/plans/k/item/100gb-oliveyoung/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-cu/price/",
+    "detail": "/plans/k/item/7gb-cu/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-cu/price/",
+    "detail": "/plans/k/item/10gb-cu/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-cu/price/",
+    "detail": "/plans/k/item/15gb-cu/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-cu/price/",
+    "detail": "/plans/k/item/100min-15gb-cu/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-cu/price/",
+    "detail": "/plans/k/item/300min-15gb-cu/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-cu/price/",
+    "detail": "/plans/k/item/11gb-daily2gb-cu/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-cu/price/",
+    "detail": "/plans/k/item/100gb-cu/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/l/100min-15gb/price/",
+    "detail": "/plans/l/item/100min-15gb/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/l/300min-15gb/price/",
+    "detail": "/plans/l/item/300min-15gb/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/l/11gb-daily2gb/price/",
+    "detail": "/plans/l/item/11gb-daily2gb/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/l/daily5gb/price/",
+    "detail": "/plans/l/item/daily5gb/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/l/7gb/price/",
+    "detail": "/plans/l/item/7gb/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-coupang-cash/number-transfer/",
+    "detail": "/lp/k/7gb-coupang-cash/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-coupang-cash/number-transfer/",
+    "detail": "/lp/k/10gb-coupang-cash/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-coupang-cash/number-transfer/",
+    "detail": "/lp/k/15gb-coupang-cash/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-coupang-cash/number-transfer/",
+    "detail": "/lp/k/100min-15gb-coupang-cash/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-coupang-cash/number-transfer/",
+    "detail": "/lp/k/300min-15gb-coupang-cash/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-coupang-cash/number-transfer/",
+    "detail": "/lp/k/11gb-daily2gb-coupang-cash/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-coupang-cash/number-transfer/",
+    "detail": "/lp/k/100gb-coupang-cash/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-naverpay/number-transfer/",
+    "detail": "/lp/k/7gb-naverpay/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-naverpay/number-transfer/",
+    "detail": "/lp/k/10gb-naverpay/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-naverpay/number-transfer/",
+    "detail": "/lp/k/15gb-naverpay/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-naverpay/number-transfer/",
+    "detail": "/lp/k/100min-15gb-naverpay/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-naverpay/number-transfer/",
+    "detail": "/lp/k/300min-15gb-naverpay/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-naverpay/number-transfer/",
+    "detail": "/lp/k/11gb-daily2gb-naverpay/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-naverpay/number-transfer/",
+    "detail": "/lp/k/100gb-naverpay/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-daiso/number-transfer/",
+    "detail": "/lp/k/7gb-daiso/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-daiso/number-transfer/",
+    "detail": "/lp/k/10gb-daiso/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-daiso/number-transfer/",
+    "detail": "/lp/k/15gb-daiso/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-daiso/number-transfer/",
+    "detail": "/lp/k/100min-15gb-daiso/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-daiso/number-transfer/",
+    "detail": "/lp/k/300min-15gb-daiso/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-daiso/number-transfer/",
+    "detail": "/lp/k/11gb-daily2gb-daiso/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-daiso/number-transfer/",
+    "detail": "/lp/k/100gb-daiso/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-millie/number-transfer/",
+    "detail": "/lp/k/7gb-millie/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-millie/number-transfer/",
+    "detail": "/lp/k/10gb-millie/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-millie/number-transfer/",
+    "detail": "/lp/k/15gb-millie/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-millie/number-transfer/",
+    "detail": "/lp/k/100min-15gb-millie/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-millie/number-transfer/",
+    "detail": "/lp/k/300min-15gb-millie/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-millie/number-transfer/",
+    "detail": "/lp/k/11gb-daily2gb-millie/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-millie/number-transfer/",
+    "detail": "/lp/k/100gb-millie/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-oliveyoung/number-transfer/",
+    "detail": "/lp/k/7gb-oliveyoung/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-oliveyoung/number-transfer/",
+    "detail": "/lp/k/10gb-oliveyoung/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-oliveyoung/number-transfer/",
+    "detail": "/lp/k/15gb-oliveyoung/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-oliveyoung/number-transfer/",
+    "detail": "/lp/k/100min-15gb-oliveyoung/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-oliveyoung/number-transfer/",
+    "detail": "/lp/k/300min-15gb-oliveyoung/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-oliveyoung/number-transfer/",
+    "detail": "/lp/k/11gb-daily2gb-oliveyoung/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-oliveyoung/number-transfer/",
+    "detail": "/lp/k/100gb-oliveyoung/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-cu/number-transfer/",
+    "detail": "/lp/k/7gb-cu/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-cu/number-transfer/",
+    "detail": "/lp/k/10gb-cu/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-cu/number-transfer/",
+    "detail": "/lp/k/15gb-cu/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-cu/number-transfer/",
+    "detail": "/lp/k/100min-15gb-cu/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-cu/number-transfer/",
+    "detail": "/lp/k/300min-15gb-cu/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-cu/number-transfer/",
+    "detail": "/lp/k/11gb-daily2gb-cu/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-cu/number-transfer/",
+    "detail": "/lp/k/100gb-cu/price/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-coupang-cash/new-number/",
+    "detail": "/lp/k/7gb-coupang-cash/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-coupang-cash/new-number/",
+    "detail": "/lp/k/10gb-coupang-cash/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-coupang-cash/new-number/",
+    "detail": "/lp/k/15gb-coupang-cash/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-coupang-cash/new-number/",
+    "detail": "/lp/k/100min-15gb-coupang-cash/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-coupang-cash/new-number/",
+    "detail": "/lp/k/300min-15gb-coupang-cash/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-coupang-cash/new-number/",
+    "detail": "/lp/k/11gb-daily2gb-coupang-cash/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-coupang-cash/new-number/",
+    "detail": "/lp/k/100gb-coupang-cash/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-naverpay/new-number/",
+    "detail": "/lp/k/7gb-naverpay/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-naverpay/new-number/",
+    "detail": "/lp/k/10gb-naverpay/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-naverpay/new-number/",
+    "detail": "/lp/k/15gb-naverpay/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-naverpay/new-number/",
+    "detail": "/lp/k/100min-15gb-naverpay/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-naverpay/new-number/",
+    "detail": "/lp/k/300min-15gb-naverpay/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-naverpay/new-number/",
+    "detail": "/lp/k/11gb-daily2gb-naverpay/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-naverpay/new-number/",
+    "detail": "/lp/k/100gb-naverpay/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-daiso/new-number/",
+    "detail": "/lp/k/7gb-daiso/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-daiso/new-number/",
+    "detail": "/lp/k/10gb-daiso/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-daiso/new-number/",
+    "detail": "/lp/k/15gb-daiso/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-daiso/new-number/",
+    "detail": "/lp/k/100min-15gb-daiso/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-daiso/new-number/",
+    "detail": "/lp/k/300min-15gb-daiso/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-daiso/new-number/",
+    "detail": "/lp/k/11gb-daily2gb-daiso/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-daiso/new-number/",
+    "detail": "/lp/k/100gb-daiso/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-millie/new-number/",
+    "detail": "/lp/k/7gb-millie/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-millie/new-number/",
+    "detail": "/lp/k/10gb-millie/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-millie/new-number/",
+    "detail": "/lp/k/15gb-millie/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-millie/new-number/",
+    "detail": "/lp/k/100min-15gb-millie/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-millie/new-number/",
+    "detail": "/lp/k/300min-15gb-millie/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-millie/new-number/",
+    "detail": "/lp/k/11gb-daily2gb-millie/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-millie/new-number/",
+    "detail": "/lp/k/100gb-millie/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-oliveyoung/new-number/",
+    "detail": "/lp/k/7gb-oliveyoung/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-oliveyoung/new-number/",
+    "detail": "/lp/k/10gb-oliveyoung/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-oliveyoung/new-number/",
+    "detail": "/lp/k/15gb-oliveyoung/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-oliveyoung/new-number/",
+    "detail": "/lp/k/100min-15gb-oliveyoung/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-oliveyoung/new-number/",
+    "detail": "/lp/k/300min-15gb-oliveyoung/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-oliveyoung/new-number/",
+    "detail": "/lp/k/11gb-daily2gb-oliveyoung/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-oliveyoung/new-number/",
+    "detail": "/lp/k/100gb-oliveyoung/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-cu/new-number/",
+    "detail": "/lp/k/7gb-cu/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-cu/new-number/",
+    "detail": "/lp/k/10gb-cu/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-cu/new-number/",
+    "detail": "/lp/k/15gb-cu/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-cu/new-number/",
+    "detail": "/lp/k/100min-15gb-cu/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-cu/new-number/",
+    "detail": "/lp/k/300min-15gb-cu/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-cu/new-number/",
+    "detail": "/lp/k/11gb-daily2gb-cu/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-cu/new-number/",
+    "detail": "/lp/k/100gb-cu/number-transfer/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-coupang-cash/benefit/",
+    "detail": "/lp/k/7gb-coupang-cash/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-coupang-cash/benefit/",
+    "detail": "/lp/k/10gb-coupang-cash/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-coupang-cash/benefit/",
+    "detail": "/lp/k/15gb-coupang-cash/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-coupang-cash/benefit/",
+    "detail": "/lp/k/100min-15gb-coupang-cash/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-coupang-cash/benefit/",
+    "detail": "/lp/k/300min-15gb-coupang-cash/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-coupang-cash/benefit/",
+    "detail": "/lp/k/11gb-daily2gb-coupang-cash/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-coupang-cash/benefit/",
+    "detail": "/lp/k/100gb-coupang-cash/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-naverpay/benefit/",
+    "detail": "/lp/k/7gb-naverpay/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-naverpay/benefit/",
+    "detail": "/lp/k/10gb-naverpay/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-naverpay/benefit/",
+    "detail": "/lp/k/15gb-naverpay/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-naverpay/benefit/",
+    "detail": "/lp/k/100min-15gb-naverpay/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-naverpay/benefit/",
+    "detail": "/lp/k/300min-15gb-naverpay/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-naverpay/benefit/",
+    "detail": "/lp/k/11gb-daily2gb-naverpay/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-naverpay/benefit/",
+    "detail": "/lp/k/100gb-naverpay/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-daiso/benefit/",
+    "detail": "/lp/k/7gb-daiso/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-daiso/benefit/",
+    "detail": "/lp/k/10gb-daiso/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-daiso/benefit/",
+    "detail": "/lp/k/15gb-daiso/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-daiso/benefit/",
+    "detail": "/lp/k/100min-15gb-daiso/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-daiso/benefit/",
+    "detail": "/lp/k/300min-15gb-daiso/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-daiso/benefit/",
+    "detail": "/lp/k/11gb-daily2gb-daiso/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-daiso/benefit/",
+    "detail": "/lp/k/100gb-daiso/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-millie/benefit/",
+    "detail": "/lp/k/7gb-millie/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-millie/benefit/",
+    "detail": "/lp/k/10gb-millie/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-millie/benefit/",
+    "detail": "/lp/k/15gb-millie/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-millie/benefit/",
+    "detail": "/lp/k/100min-15gb-millie/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-millie/benefit/",
+    "detail": "/lp/k/300min-15gb-millie/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-millie/benefit/",
+    "detail": "/lp/k/11gb-daily2gb-millie/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-millie/benefit/",
+    "detail": "/lp/k/100gb-millie/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-oliveyoung/benefit/",
+    "detail": "/lp/k/7gb-oliveyoung/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-oliveyoung/benefit/",
+    "detail": "/lp/k/10gb-oliveyoung/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-oliveyoung/benefit/",
+    "detail": "/lp/k/15gb-oliveyoung/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-oliveyoung/benefit/",
+    "detail": "/lp/k/100min-15gb-oliveyoung/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-oliveyoung/benefit/",
+    "detail": "/lp/k/300min-15gb-oliveyoung/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-oliveyoung/benefit/",
+    "detail": "/lp/k/11gb-daily2gb-oliveyoung/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-oliveyoung/benefit/",
+    "detail": "/lp/k/100gb-oliveyoung/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-cu/benefit/",
+    "detail": "/lp/k/7gb-cu/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-cu/benefit/",
+    "detail": "/lp/k/10gb-cu/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-cu/benefit/",
+    "detail": "/lp/k/15gb-cu/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-cu/benefit/",
+    "detail": "/lp/k/100min-15gb-cu/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-cu/benefit/",
+    "detail": "/lp/k/300min-15gb-cu/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-cu/benefit/",
+    "detail": "/lp/k/11gb-daily2gb-cu/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-cu/benefit/",
+    "detail": "/lp/k/100gb-cu/new-number/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-coupang-cash/card/",
+    "detail": "/lp/k/7gb-coupang-cash/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-coupang-cash/card/",
+    "detail": "/lp/k/10gb-coupang-cash/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-coupang-cash/card/",
+    "detail": "/lp/k/15gb-coupang-cash/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-coupang-cash/card/",
+    "detail": "/lp/k/100min-15gb-coupang-cash/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-coupang-cash/card/",
+    "detail": "/lp/k/300min-15gb-coupang-cash/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-coupang-cash/card/",
+    "detail": "/lp/k/11gb-daily2gb-coupang-cash/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-coupang-cash/card/",
+    "detail": "/lp/k/100gb-coupang-cash/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-naverpay/card/",
+    "detail": "/lp/k/7gb-naverpay/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-naverpay/card/",
+    "detail": "/lp/k/10gb-naverpay/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-naverpay/card/",
+    "detail": "/lp/k/15gb-naverpay/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-naverpay/card/",
+    "detail": "/lp/k/100min-15gb-naverpay/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-naverpay/card/",
+    "detail": "/lp/k/300min-15gb-naverpay/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-naverpay/card/",
+    "detail": "/lp/k/11gb-daily2gb-naverpay/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-naverpay/card/",
+    "detail": "/lp/k/100gb-naverpay/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-daiso/card/",
+    "detail": "/lp/k/7gb-daiso/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-daiso/card/",
+    "detail": "/lp/k/10gb-daiso/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-daiso/card/",
+    "detail": "/lp/k/15gb-daiso/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-daiso/card/",
+    "detail": "/lp/k/100min-15gb-daiso/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-daiso/card/",
+    "detail": "/lp/k/300min-15gb-daiso/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-daiso/card/",
+    "detail": "/lp/k/11gb-daily2gb-daiso/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-daiso/card/",
+    "detail": "/lp/k/100gb-daiso/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-millie/card/",
+    "detail": "/lp/k/7gb-millie/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-millie/card/",
+    "detail": "/lp/k/10gb-millie/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/15gb-millie/card/",
+    "detail": "/lp/k/15gb-millie/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100min-15gb-millie/card/",
+    "detail": "/lp/k/100min-15gb-millie/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/300min-15gb-millie/card/",
+    "detail": "/lp/k/300min-15gb-millie/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/11gb-daily2gb-millie/card/",
+    "detail": "/lp/k/11gb-daily2gb-millie/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/100gb-millie/card/",
+    "detail": "/lp/k/100gb-millie/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/7gb-oliveyoung/card/",
+    "detail": "/lp/k/7gb-oliveyoung/benefit/"
+  },
+  {
+    "level": "warning",
+    "category": "h1-duplicate",
+    "route": "/lp/k/10gb-oliveyoung/card/",
+    "detail": "/lp/k/10gb-oliveyoung/benefit/"
+  }
+]
