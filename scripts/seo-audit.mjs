@@ -27,7 +27,8 @@ const routeFor=file=>{
 };
 const dedicatedSections=[
   {path:"/선불폰/",effectiveIndex:"index",pageType:"hub",priority:"P0"},
-  {path:"/알뜰폰/",effectiveIndex:"index",pageType:"hub",priority:"P0"}
+  {path:"/알뜰폰/",effectiveIndex:"index",pageType:"hub",priority:"P0"},
+  {path:"/start/",effectiveIndex:"noindex",pageType:"conversion",priority:"P0"}
 ];
 // SEO experiments A/B/C: every emitted route with its gate decision (src/lib/seo-experiments/registry.js).
 const experimentRegistry=buildExperimentRegistry();

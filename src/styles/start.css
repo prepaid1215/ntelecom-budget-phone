@@ -137,7 +137,7 @@ body[data-site-shell] .bottom{display:none}
 .sh-aside{display:block;position:fixed;right:0;top:0;bottom:0;width:210px;height:100dvh;z-index:80;background:white;border-left:1px solid #ccc;transition:transform .4s ease-in-out}
 .sh-side-frame{display:flex;flex-direction:column;height:100%;background:#fff;overflow:hidden}
 .sh-side-title{min-height:65px;height:65px;padding:10px 10px 10px 15px;background:#ff438b;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:5px}
-.sh-side-title strong{font-size:16px;font-weight:600;white-space:nowrap;letter-spacing:-1px}.sh-side-title-icon{width:34px;height:34px;object-fit:contain}
+.sh-side-title strong{font-size:16px;font-weight:600;white-space:nowrap;letter-spacing:-1px}.sh-side-title-icon{width:34px;height:34px;object-fit:contain}.sh-side-brand{display:grid;place-items:center;border-radius:50%;background:#fff;color:#e92d76;font-size:20px;font-weight:900}
 .sh-side-title button{display:none;background:none;border:0;color:inherit;font-size:28px;min-width:44px;min-height:44px}
 .sh-side-scroll{overflow-y:auto;min-height:0;flex:1;padding:10px 10px 16px}
 .sh-side-scroll h2{font-size:14px;display:flex;align-items:center;gap:8px;margin:0 0 7px;font-weight:600}

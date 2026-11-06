@@ -12,7 +12,7 @@ const won=n=>n.toLocaleString("ko-KR")+"원";
 <aside class="sh-aside" id="start-sidebar" aria-label="추천 요금제">
   <button class="sh-side-toggle" type="button" data-side-toggle data-close-icon={toPublicPath("/images/start/side_close.svg")} data-open-icon={toPublicPath("/images/start/side_open.svg")} aria-controls="start-sidebar" aria-expanded="true" aria-label="사이드바 접기"><img src={toPublicPath("/images/start/side_close.svg")} alt="" width="36" height="110"/></button>
   <div class="sh-side-frame">
-    <div class="sh-side-title"><strong>앤텔레콤 개통방법</strong><img class="sh-side-title-icon" src="https://www.n-telecom.co.kr/common/img/masterpage/side_icon.svg" alt=""/><button type="button" data-side-close aria-label="사이드바 닫기">×</button></div>
+    <div class="sh-side-title"><strong>앤텔레콤 개통방법</strong><span class="sh-side-title-icon sh-side-brand" aria-hidden="true">N</span><button type="button" data-side-close aria-label="사이드바 닫기">×</button></div>
     <div class="sh-side-scroll">
       <h2>추천요금제 <span aria-hidden="true"></span></h2>
       {featured.slice(0,3).map(p=><a class="source-side-plan" href={atStart?targets[p.network]:activationLink(ctaSource||"sidebar",{network:p.network,plan:p.id,planName:p.name})} data-outbound={atStart?"yes":undefined} data-billing="postpaid" data-network={p.network==="K"?"kt":"lg"} data-plan={p.id} data-location="sidebar">

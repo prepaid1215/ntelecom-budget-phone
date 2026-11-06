@@ -29,7 +29,8 @@ try:
                 page.on("pageerror", lambda e: errors.append(str(e)))
                 page.on("response", lambda r: bad.append(f"{r.status} {r.url}") if r.url.startswith(origin) and r.status >= 400 else None)
                 url = origin + urllib.parse.quote(page_info["path"])
-                resp = page.goto(url, wait_until="networkidle")
+                resp = page.goto(url, wait_until="domcontentloaded")
+                page.wait_for_timeout(300)
                 info = page.evaluate("""() => ({
                   title: document.title,
                   h1: [...document.querySelectorAll('h1')].filter(h => h.offsetParent !== null).length,

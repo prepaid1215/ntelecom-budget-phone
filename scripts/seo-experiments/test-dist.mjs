@@ -20,11 +20,12 @@ const expectedRobots = page => state.productionReady && page.effectiveIndex === 
 test("every built HTML file has exactly one owner and every registered route is built", () => {
   const owners = new Map(registry.owners);
   owners.set("/404/", "existing");
+  owners.set("/start/", "conversion");
   const unowned = [...routes.keys()].filter(r => !owners.has(r));
   const unbuilt = [...owners.keys()].filter(r => !routes.has(r));
   assert.deepEqual(unowned, []);
   assert.deepEqual(unbuilt, []);
-  assert.equal(routes.size, generated.length + 2 + 1 + registry.pages.length);
+  assert.equal(routes.size, generated.length + 2 + 1 + 1 + registry.pages.length);
 });
 
 test("experiment routes are valid URLs (NFC, lowercase, no stray characters)", () => {
