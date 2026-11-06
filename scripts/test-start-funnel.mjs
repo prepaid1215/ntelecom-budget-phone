@@ -90,7 +90,7 @@ for(let i=0;i<6;i++){
   const file=path.join(root,name);
   assert.ok(fs.existsSync(file),"Missing guide image "+name);
   assert.ok(fs.readFileSync(file).subarray(0,3).equals(Buffer.from([0xff,0xd8,0xff])),"Invalid JPEG "+name);
-  assert.match(home,new RegExp(name.replace(/[.*+?^$\{\}()|[\]\\]/g,"\\assert.match(home,/id="start-usim"/);")),"Guide photo not present on home");
+  assert.ok(home.includes(name),"Guide photo not present on home: "+name);
 }
 assert.equal((home.match(/class="go-guide-slide/g)||[]).length,7,"Photo carousel should have six pictures and one CTA");
 assert.match(start,/data-location="guide_carousel_last"/,"Last slide CTA missing");
