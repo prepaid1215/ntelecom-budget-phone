@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import rawSite from "../src/data/site.json" with { type: "json" };
 import pages from "../src/data/generated-pages.json" with { type: "json" };
+import seoGuides from "../src/data/seo-guides.json" with { type: "json" };
 import { buildExperimentRegistry, experimentSitemapEntries } from "../src/lib/seo-experiments/registry.js";
 
 const root=path.resolve("dist");
@@ -28,7 +29,8 @@ const routeFor=file=>{
 const dedicatedSections=[
   {path:"/선불폰/",effectiveIndex:"index",pageType:"hub",priority:"P0"},
   {path:"/알뜰폰/",effectiveIndex:"index",pageType:"hub",priority:"P0"},
-  {path:"/start/",effectiveIndex:"noindex",pageType:"conversion",priority:"P0"}
+  {path:"/start/",effectiveIndex:"noindex",pageType:"conversion",priority:"P0"},
+  ...seoGuides
 ];
 // SEO experiments A/B/C: every emitted route with its gate decision (src/lib/seo-experiments/registry.js).
 const experimentRegistry=buildExperimentRegistry();

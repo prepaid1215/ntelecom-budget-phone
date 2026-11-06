@@ -14,6 +14,7 @@ const state = siteState();
 const registry = buildExperimentRegistry();
 const routes = htmlRoutes(root);
 const generated = readJson("src/data/generated-pages.json");
+const seoGuides = readJson("src/data/seo-guides.json");
 const read = route => fs.readFileSync(routes.get(route), "utf8");
 const expectedRobots = page => state.productionReady && page.effectiveIndex === "index" ? "index,follow" : "noindex,follow";
 
@@ -25,7 +26,7 @@ test("every built HTML file has exactly one owner and every registered route is 
   const unbuilt = [...owners.keys()].filter(r => !routes.has(r));
   assert.deepEqual(unowned, []);
   assert.deepEqual(unbuilt, []);
-  assert.equal(routes.size, generated.length + 2 + 1 + 1 + registry.pages.length);
+  assert.equal(routes.size, generated.length + 2 + 1 + 1 + seoGuides.length + registry.pages.length);
 });
 
 test("experiment routes are valid URLs (NFC, lowercase, no stray characters)", () => {
@@ -52,7 +53,7 @@ test("sitemap.xml = existing index pages + experiment index candidates only", ()
   const locs = sitemapLocs(root);
   assert.equal(new Set(locs).size, locs.length, "duplicate sitemap URL");
   const existing = state.productionReady
-    ? [...generated.filter(p => p.effectiveIndex === "index").map(p => p.path), "/선불폰/", "/알뜰폰/"].map(p => toSiteUrlFor(state, p)) : [];
+    ? [...generated.filter(p => p.effectiveIndex === "index").map(p => p.path), "/선불폰/", "/알뜰폰/", ...seoGuides.filter(p=>p.effectiveIndex==="index").map(p=>p.path)].map(p => toSiteUrlFor(state, p)) : [];
   const experiments = experimentSitemapEntries().map(e => e.loc);
   assert.deepEqual(locs, [...existing, ...experiments], "existing entries must keep their order and experiments are appended");
   for (const loc of locs) {

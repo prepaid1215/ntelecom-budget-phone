@@ -8,7 +8,8 @@ import { buildIndexKitModel } from "./indexkit.js";
 export const existingRoutes = () => {
   const generated = readJson("src/data/generated-pages.json");
   const dedicated = experimentConfig().intentOwners.map(owner => owner.path);
-  return new Set([...generated.map(page => page.path), ...dedicated]);
+  const seoGuides = readJson("src/data/seo-guides.json").map(page => page.path);
+  return new Set([...generated.map(page => page.path), ...dedicated, ...seoGuides]);
 };
 
 const summarize = page => ({
