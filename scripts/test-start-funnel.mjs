@@ -118,7 +118,7 @@ for(const [pagePath,heading] of [
   ["faq/index.html","알뜰폰 자주 묻는 질문"]
 ]){
  const html=read(pagePath);
- assert.match(html,new RegExp(heading),"Independent guide or FAQ missing "+pagePath);
+ assert.ok(html.includes(heading),"Independent guide or FAQ missing "+pagePath);
  assert.match(html,/rel="canonical"/,"Canonical URL missing "+pagePath);
  assert.doesNotMatch(html,/후불/,"Banned word in visible guide metadata "+pagePath);
 }
