@@ -75,7 +75,10 @@ test("robots.txt keeps noindex experiment pages crawlable (noindex must be seen 
     assert.match(robots, /^Sitemap: /m);
     for (const prefix of ["/regions/", "/indexkit/", "/%EC%95%A4"]) assert.ok(!robots.includes("Disallow: " + prefix));
   } else {
-    assert.match(robots, /^Disallow: \/$/m);
+    if(new URL(state.origin).hostname==="prepaid1215.github.io"){
+      assert.match(robots, /^Allow: \/$/m);
+      assert.doesNotMatch(robots, /^Sitemap:/m);
+    }else assert.match(robots, /^Disallow: \/$/m);
     assert.equal(sitemapLocs(root).length, 0);
   }
 });
