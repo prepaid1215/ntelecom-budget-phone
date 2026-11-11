@@ -16,7 +16,9 @@ export const siteState = (env = process.env) => {
   const origin = new URL(env.SITE_URL?.trim() || raw.siteUrl);
   origin.pathname = "/"; origin.search = ""; origin.hash = "";
   const cleaned = String(env.BASE_PATH || "/").trim().replace(/^\/+|\/+$/g, "");
-  const productionReady = env.PRODUCTION_READY === "true" ? true : env.PRODUCTION_READY === "false" ? false : raw.productionReady;
+  // The published Cloudflare Pages main branch is always a crawlable production build.
+  const cloudflareMain = env.CF_PAGES === "1" && env.CF_PAGES_BRANCH === "main";
+  const productionReady = cloudflareMain || (env.PRODUCTION_READY === "true" ? true : env.PRODUCTION_READY === "false" ? false : raw.productionReady);
   return { origin: origin.toString(), basePath: cleaned ? "/" + cleaned : "/", productionReady, raw };
 };
 
