@@ -27,8 +27,8 @@ const steps = [
   ...(process.argv.includes("--skip-render") ? [] : [["Chromium render check", "python3", ["scripts/seo-experiments/render-check.py"], { ...PROD, ...(process.env.PLAYWRIGHT_BROWSERS_PATH ? { PLAYWRIGHT_BROWSERS_PATH: process.env.PLAYWRIGHT_BROWSERS_PATH } : {}) }]]),
   ["build (PRODUCTION_READY=false) into dist-noready", "npx", ["astro", "build", "--outDir", "dist-noready"], { ...PROD, PRODUCTION_READY: "false", SEO_REGIONS_EMIT: "candidates" }],
   ["dist tests on PRODUCTION_READY=false build", "node", ["--test", "scripts/seo-experiments/test-dist.mjs"], { ...PROD, PRODUCTION_READY: "false", SEO_REGIONS_EMIT: "candidates", SEO_DIST: "dist-noready" }],
-  ["build with deploy-pages.yml env (BASE_PATH, SEO_REGIONS_EMIT=candidates) into dist-pages", "npx", ["astro", "build", "--outDir", "dist-pages"], { SITE_URL: "https://prepaid1215.github.io", BASE_PATH: "/ntelecom-budget-phone", PRODUCTION_READY: "true", SEO_REGIONS_EMIT: "candidates" }],
-  ["dist tests on deploy-env build", "node", ["--test", "scripts/seo-experiments/test-dist.mjs"], { SITE_URL: "https://prepaid1215.github.io", BASE_PATH: "/ntelecom-budget-phone", PRODUCTION_READY: "true", SEO_REGIONS_EMIT: "candidates", SEO_DIST: "dist-pages" }],
+  ["build with deploy-pages.yml env (BASE_PATH, SEO_REGIONS_EMIT=candidates) into dist-pages", "npx", ["astro", "build", "--outDir", "dist-pages"], { SITE_URL: "https://prepaid1215.github.io", BASE_PATH: "/ntelecom-budget-phone", PRODUCTION_READY: "false", SEO_REGIONS_EMIT: "candidates" }],
+  ["dist tests on deploy-env build", "node", ["--test", "scripts/seo-experiments/test-dist.mjs"], { SITE_URL: "https://prepaid1215.github.io", BASE_PATH: "/ntelecom-budget-phone", PRODUCTION_READY: "false", SEO_REGIONS_EMIT: "candidates", SEO_DIST: "dist-pages" }],
   ["system test (C CLI, fixture build, manifest, observe, report)", "node", ["--test", "scripts/seo-experiments/test-system.mjs"], PROD]
 ];
 const results = [];
