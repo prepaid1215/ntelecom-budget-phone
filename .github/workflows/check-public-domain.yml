@@ -66,6 +66,12 @@ jobs:
           inspect "Cloudflare Pages default home" "https://ntelecom-budget-phone.pages.dev/" /tmp/cf-default-home.html
           inspect "Cloudflare Pages default robots" "https://ntelecom-budget-phone.pages.dev/robots.txt" /tmp/cf-default-robots.txt
           inspect "Cloudflare Pages default sitemap" "https://ntelecom-budget-phone.pages.dev/sitemap.xml" /tmp/cf-default-sitemap.xml
+          inspect "Naver IndexNow key" "https://$DOMAIN/7be9bab21ea2fbefbb07353904211af3.txt" /tmp/indexnow-proof.txt
+          if [ -f /tmp/indexnow-proof.txt ] && [ "$(tr -d '\\r\\n' < /tmp/indexnow-proof.txt)" = "7be9bab21ea2fbefbb07353904211af3" ]; then
+            echo "NAVER_INDEXNOW_KEY: VERIFIED"
+          else
+            echo "NAVER_INDEXNOW_KEY: UNVERIFIED"
+          fi
           inspect "GitHub Pages home" "https://prepaid1215.github.io/ntelecom-budget-phone/" /tmp/gh-home.html
           inspect "GitHub Pages robots" "https://prepaid1215.github.io/ntelecom-budget-phone/robots.txt" /tmp/gh-robots.txt
           inspect "GitHub Pages sitemap" "https://prepaid1215.github.io/ntelecom-budget-phone/sitemap.xml" /tmp/gh-sitemap.xml
