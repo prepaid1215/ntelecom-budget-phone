@@ -129,7 +129,7 @@ if(faqs.length) schemas["@graph"].push({
 <meta name="twitter:image:alt" content={imageAlt} />
 <script type="application/ld+json" set:html={JSON.stringify(schemas)}></script>
 </head>
-<body data-site-shell>
+<body data-site-shell data-guide-source={ctaSource || ""} data-site-base={site.basePath}>
 <StartHeader pagePath={pagePath} ctaSource={ctaSource}/>
 <main>
   <slot />
@@ -142,7 +142,7 @@ if(faqs.length) schemas["@graph"].push({
 </div></footer>
 <div class="bottom"><div class="bottom-inner">
   <button class="bottom-save" type="button" data-save-page>저장</button>
-  <a class="bottom-go" href={pagePath==="/start/" ? "#start-choices" : activationLink("bottom")}>{pagePath==="/start/" ? "통신망 선택하기" : "바로 개통하기"}</a>
+  <a class="bottom-go" href={pagePath==="/start/" ? "#start-choices" : activationLink(ctaSource||"bottom")}>{pagePath==="/start/" ? "통신망 선택하기" : "바로 개통하기"}</a>
 </div></div>
 <script is:inline>
   document.addEventListener("click",function(e){
@@ -154,5 +154,9 @@ if(faqs.length) schemas["@graph"].push({
     }catch(err){}
     el.textContent="저장됨";
   });
+</script>
+<script>
+import { installGuideJourney } from "../lib/guide-journey.js";
+installGuideJourney();
 </script>
 </body></html>

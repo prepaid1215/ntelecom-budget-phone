@@ -1,0 +1,38 @@
+---
+import guides from '../data/a-postpaid-landings.json';
+import GuideDecisionPanel from './GuideDecisionPanel.astro';
+import {activationLink,toPublicPath} from '../lib/site-config.js';
+const {page}=Astro.props;
+const source='exp_a_'+page.id.replaceAll('-','_');
+const start=activationLink(source,{network:page.network});
+const browse=page.id==='usim'?'/start/?from='+source+'#start-usim':page.id==='benefits'?'/benefits/':page.id==='card'?'/card/':page.network?'/plans/'+page.network.toLowerCase()+'/':'/plans/';
+const related=(page.relatedIds||[]).map(id=>guides.find(p=>p.id===id)).filter(Boolean);
+const primary=page.primaryDestination==='start'?start:toPublicPath(browse);
+const secondary=page.primaryDestination==='start'?toPublicPath('/plans/'+(page.network?page.network.toLowerCase()+'/':'')):start;
+const secondaryLabel=page.primaryDestination==='start'?'요금제 먼저 보기':'개통 안내 보기';
+const sectionLink={comparison:['#comparison-picks','사용 방식별 상품 다시 보기'],benefits:['#benefit-options','혜택별 상세 안내 보기'],card:['#card-options','통신망별 카드 조건 보기'],usim:['#guide-3','유심정보 입력 방법 보기'],transfer:['#guide-4','유심 교체 시점 보기']}[page.id];
+---
+<div class="ag" data-a-guide={page.id}>
+ <div class="ag-shell">
+  <nav class="ag-crumbs" aria-label="현재 위치"><a href={toPublicPath('/')}>홈</a><span>›</span><a href={toPublicPath('/guides/')}>알뜰폰 가이드</a><span>›</span><span>{page.title.split('｜')[0]}</span></nav>
+  <article class="ag-article">
+   <header class="ag-hero">
+    <p class="ag-label">앤텔레콤 · 후불 알뜰폰</p><h1>{page.title}</h1><p class="ag-lead">{page.lead}</p>
+    <div class="ag-actions"><a class="ag-primary" href={primary}>{page.cta}</a><a class="ag-secondary" href={secondary}>{secondaryLabel}</a></div>
+
+   </header>
+   {page.steps&&<section class="ag-section ag-process" aria-label="신규가입 순서"><h2>신규가입은 이렇게 진행해요</h2><ol>{page.steps.map((step,i)=><li><b>{i+1}</b><span>{step}</span></li>)}</ol></section>}
+   <GuideDecisionPanel page={page}/>
+   <nav class="ag-toc" aria-label="이 글의 목차"><strong>필요한 내용 바로 보기</strong>{page.sections.map((s,i)=><a href={'#guide-'+(i+1)}>{String(i+1).padStart(2,'0')}　{s.heading}</a>)}</nav>
+   {page.sections.map((s,i)=><section class="ag-section" id={'guide-'+(i+1)}><span class="ag-number">{String(i+1).padStart(2,'0')}</span><h2>{s.heading}</h2>{s.paragraphs.map(p=><p>{p}</p>)}
+    {i===1&&sectionLink&&<a class="ag-inline" href={sectionLink[0]}>{sectionLink[1]} <span aria-hidden="true">↓</span></a>}</section>)}
+
+   {page.faq.length>0&&<section class="ag-section" id="guide-faq"><h2>자주 묻는 질문</h2>{page.faq.map(f=><details class="ag-faq"><summary>{f.q}</summary><p>{f.a}</p></details>)}</section>}
+   <section class="ag-closing"><h2>{page.closing.heading}</h2><p>{page.closing.text}</p><div class="ag-actions"><a class="ag-primary" href={primary}>{page.cta}</a><a class="ag-secondary" href={secondary}>{secondaryLabel}</a></div></section>
+  </article>
+  <section class="ag-related"><h2>함께 확인할 안내</h2><div>{related.map(p=><a href={toPublicPath(p.path)}>{p.title}<span aria-hidden="true">›</span></a>)}</div></section>
+ </div>
+</div>
+<style>
+.ag{background:#fbf9fc;padding:30px 24px 90px}.ag-shell{max-width:960px;margin:auto}.ag-crumbs{display:flex;gap:10px;flex-wrap:wrap;font-size:13px;color:#777;margin-bottom:20px}.ag-article{background:#fff;border:1px solid #eee5ed;border-radius:24px;overflow:hidden}.ag-hero{padding:40px 48px;background:linear-gradient(130deg,#fff0f6,#f6f1ff)}.ag-label{font-size:13px;color:#a8295d;font-weight:700;margin:0 0 15px}.ag h1{font-size:clamp(27px,3.5vw,40px);line-height:1.4;letter-spacing:-1.2px;margin:0 0 20px;word-break:keep-all}.ag-lead{font-size:17px;line-height:1.9;color:#555}.ag-answer{padding:18px 20px;background:#fff;border-left:3px solid #b91f60;border-radius:0 12px 12px 0;line-height:1.9;font-weight:600;color:#382337;margin-top:18px}.ag-products{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin:26px 0}.ag-products figure{margin:0;flex:1;min-width:180px;max-width:300px;padding:18px;border:1px solid #eee4eb;border-radius:16px;background:#fafafa;text-align:center}.ag-products img{width:100%;height:220px;object-fit:contain;display:block}.ag-products figcaption{font-size:14px;font-weight:700;margin-top:14px}.ag-process ol{list-style:none;padding:0;margin:0;display:grid;gap:12px}.ag-process li{display:flex;align-items:center;gap:14px;line-height:1.7;background:#fcf7fb;padding:12px 16px;border-radius:12px}.ag-process li b{display:grid;place-items:center;flex:0 0 28px;height:28px;border-radius:50%;background:#b91f60;color:white;font-size:13px}.ag-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:25px}.ag-primary,.ag-secondary{display:inline-flex;align-items:center;justify-content:center;padding:15px 22px;border-radius:12px;font-weight:700;text-decoration:none}.ag-primary{background:#b91f60;color:#fff}.ag-secondary{background:#fff;color:#6c3997;border:1px solid #d9c8e5}.ag-highlights{display:flex;gap:9px;flex-wrap:wrap;margin-top:26px}.ag-highlights span{background:#fff9;border-radius:30px;padding:6px 12px;font-size:12px;color:#6a4766}.ag-toc{margin:0;padding:18px 42px;border:1px solid #eee6f1;border-radius:0;display:grid;grid-template-columns:1fr 1fr;gap:13px;background:#fcfaff}.ag-toc strong{grid-column:1/-1;font-size:13px;color:#776b7a}.ag-toc a{font-size:14px;color:#60456e}.ag-section{padding:32px 48px;border-top:1px solid #f0eaf0;scroll-margin-top:110px}.ag-number{font-size:13px;font-weight:800;color:#b91f60}.ag h2{font-size:24px;line-height:1.5;letter-spacing:-.7px;margin:9px 0 20px;word-break:keep-all}.ag-section>p,.ag-faq p{font-size:16px;line-height:1.95;color:#48434c;margin:0 0 17px;word-break:keep-all}.ag-inline{display:inline-flex;gap:20px;font-weight:700;color:#a42357;margin:8px 0;text-decoration:underline;text-underline-offset:5px}.ag-plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0}.ag-plans :global(.card){min-width:0}.ag-faq{border-top:1px solid #eee;padding:20px 0}.ag-faq summary{cursor:pointer;font-weight:700;line-height:1.7}.ag-faq p{margin:14px 0 0}.ag-closing{padding:36px 48px;background:#fff0f6}.ag-closing p{line-height:1.8;color:#655564}.ag-related{margin-top:36px}.ag-related>div{display:grid;grid-template-columns:1fr 1fr;gap:12px}.ag-related a{display:flex;gap:15px;justify-content:space-between;border:1px solid #eadfeb;background:#fff;padding:20px;border-radius:14px;font-size:14px;line-height:1.6}.ag a:focus-visible,.ag summary:focus-visible{outline:3px solid #7258e9;outline-offset:5px}@media(min-width:1101px){.ag{padding-right:244px}}@media(max-width:700px){.ag{padding:18px 14px 80px}.ag-hero{padding:28px 22px}.ag-toc{margin:0;padding:20px 22px;grid-template-columns:1fr}.ag-section,.ag-closing{padding:28px 22px}.ag h2{font-size:21px}.ag-plans,.ag-related>div{grid-template-columns:1fr}.ag-actions{flex-direction:column}.ag-actions a{width:100%}.ag-lead{font-size:16px}}
+</style>

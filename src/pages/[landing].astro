@@ -3,14 +3,18 @@
 // the registry guarantees none of them collide with the existing 500 pages or other experiments.
 import BaseLayout from "../layouts/BaseLayout.astro";
 import LandingPage from "../components/experiments/LandingPage.astro";
+import postpaidGuides from "../data/a-postpaid-landings.json";
+import PostpaidLanding from "../components/PostpaidLanding.astro";
+import SignupWalkthrough from "../components/SignupWalkthrough.astro";
 import { buildExperimentRegistry } from "../lib/seo-experiments/registry.js";
 
 export function getStaticPaths(){
   const { landings }=buildExperimentRegistry();
-  return landings.pages.map(page=>({params:{landing:page.path.replace(/^\/|\/$/g,"")},props:{page}}));
+  return [...landings.pages.map(page=>({params:{landing:page.path.replace(/^\/|\/$/g,"")},props:{page,isPostpaidGuide:false}})),...postpaidGuides.map(page=>({params:{landing:page.path.replace(/^\/|\/$/g,"")},props:{page,isPostpaidGuide:true}}))];
 }
-const { page }=Astro.props;
+const { page,isPostpaidGuide=false }=Astro.props;
+const isWalkthrough=isPostpaidGuide && ["signup","activation","network-k","network-l"].includes(page.id);
 ---
-<BaseLayout title={page.title} description={page.description} index={page.effectiveIndex} faqs={page.faq} pagePath={page.path} ctaSource={"exp_a_" + page.id.replaceAll("-", "_")} breadcrumbs={[{name:page.h1,path:page.path}]}>
-  <LandingPage page={page}/>
+<BaseLayout title={page.title} description={page.description} index={page.effectiveIndex} faqs={page.faq} pagePath={page.path} ctaSource={"exp_a_" + page.id.replaceAll("-", "_")} breadcrumbs={[{name:isPostpaidGuide?"알뜰폰 가이드":page.h1,path:isPostpaidGuide?"/guides/":page.path},{name:isPostpaidGuide?page.title:page.h1,path:page.path}]}>
+  {isPostpaidGuide ? (isWalkthrough ? <SignupWalkthrough page={page}/> : <PostpaidLanding page={page}/>) : <LandingPage page={page}/>}
 </BaseLayout>

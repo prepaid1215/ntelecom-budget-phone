@@ -2,11 +2,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import pages from "../src/data/generated-pages.json" with {type:"json"};
+import postpaidGuides from "../src/data/a-postpaid-landings.json" with {type:"json"};
 const dist=path.resolve("dist"),out=path.resolve("audit-results");
 fs.mkdirSync(out,{recursive:true});
 const issues=[];
 const seenDescription=new Map();
-const known=new Set([...pages.map(p=>p.path),"/선불폰/","/알뜰폰/","/start/","/404/"]);
+const known=new Set([...pages.map(p=>p.path),...postpaidGuides.map(p=>p.path),"/guides/","/선불폰/","/알뜰폰/","/start/","/404/"]);
 const fileFor=r=>path.join(dist,...r.split("/").filter(Boolean),"index.html");
 const check=(level,kind,url,detail)=>issues.push({level,kind,url,detail});
 let scanned=0,imageCount=0,localLinks=0,schemas=0,missingDescriptions=0;

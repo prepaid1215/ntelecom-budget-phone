@@ -1,4 +1,5 @@
 import pages from "../data/generated-pages.json";
+import postpaidGuides from "../data/a-postpaid-landings.json";
 import { siteConfig as site, toSiteUrl } from "./site-config.js";
 import { experimentSitemapEntries } from "./seo-experiments/registry.js";
 
@@ -13,7 +14,9 @@ export const sitemapXml=()=>{
     ? [
         ...pages.filter(page=>page.effectiveIndex==="index"),
         {path:"/선불폰/",pageType:"hub",priority:"P0"},
-        {path:"/알뜰폰/",pageType:"hub",priority:"P0"}
+        {path:"/알뜰폰/",pageType:"hub",priority:"P0"},
+        ...postpaidGuides.filter(page=>page.effectiveIndex==="index"),
+        {path:"/guides/",pageType:"hub",priority:"P1"}
       ]
     : [];
   return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
