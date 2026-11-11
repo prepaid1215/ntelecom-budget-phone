@@ -1,0 +1,65 @@
+name: Verify public domain discovery readiness
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/check-public-domain.yml"
+      - ".github/workflows/deploy-pages.yml"
+      - "src/pages/robots.txt.js"
+      - "src/pages/sitemap.xml.js"
+      - "src/lib/sitemap.js"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect-domain:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Inspect public DNS, HTTPS, robots, sitemap and canonical
+        shell: bash
+        run: |
+          set -uo pipefail
+          DOMAIN="xn--h49a29twjdmms77a5sofgdjwa.shop"
+          echo "::group::DNS from independent public resolvers"
+          for resolver in 1.1.1.1 8.8.8.8; do
+            echo "=== resolver $resolver ==="
+            for record in NS A AAAA CNAME; do
+              echo "$record:"
+              dig +time=3 +tries=1 +short @"$resolver" "$DOMAIN" "$record" || true
+            done
+          done
+          echo "::endgroup::"
+
+          inspect () {
+            local label="$1" url="$2" dest="$3" status
+            echo "::group::$label ($url)"
+            status=$(curl --silent --show-error --location --max-time 25 --connect-timeout 10 --output "$dest" --write-out '%{http_code}' "$url") || status="request_error"
+            echo "HTTP status: $status"
+            if [ "$status" = "200" ]; then
+              case "$label" in
+                *home*)
+                  grep -oEi '<link rel="canonical"[^>]*>|<meta name="robots"[^>]*>|<meta name="google-site-verification"[^>]*>' "$dest" | head -n 8 || true
+                  ;;
+                *robots*)
+                  head -n 12 "$dest" || true
+                  ;;
+                *sitemap*)
+                  echo "URL count: $(grep -o '<loc>' "$dest" | wc -l)"
+                  grep -o '<loc>[^<]*</loc>' "$dest" | head -n 3 || true
+                  ;;
+              esac
+            fi
+            echo "::endgroup::"
+          }
+
+          inspect "custom home" "https://$DOMAIN/" /tmp/custom-home.html
+          inspect "custom robots" "https://$DOMAIN/robots.txt" /tmp/custom-robots.txt
+          inspect "custom sitemap" "https://$DOMAIN/sitemap.xml" /tmp/custom-sitemap.xml
+          inspect "GitHub Pages home" "https://prepaid1215.github.io/ntelecom-budget-phone/" /tmp/gh-home.html
+          inspect "GitHub Pages robots" "https://prepaid1215.github.io/ntelecom-budget-phone/robots.txt" /tmp/gh-robots.txt
+          inspect "GitHub Pages sitemap" "https://prepaid1215.github.io/ntelecom-budget-phone/sitemap.xml" /tmp/gh-sitemap.xml
+
+          echo "Diagnostic only; deployment, Search Console verification, indexing and DNS are not modified."
