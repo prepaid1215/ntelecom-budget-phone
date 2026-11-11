@@ -1,0 +1,49 @@
+---
+import allPages from "../data/generated-pages.json";
+import {toPublicPath} from "../lib/site-config.js";
+const {pagePath}=Astro.props;
+const benefitPrefixes={
+  "/benefits/coupang-cash/":["/benefits/coupang/"],
+  "/benefits/naverpay/":["/benefits/naverpay/"],
+  "/benefits/daiso/":["/benefits/daiso/"],
+  "/benefits/oliveyoung/":["/benefits/oliveyoung/"],
+  "/benefits/cu/":["/benefits/cu/"],
+  "/benefits/millie/":["/benefits/content-benefit/"]
+};
+const fixed={
+  "/plans/":[
+    "/no-contract/","/plans/k/price/under-20000/","/plans/7gb/price/20000-range/",
+    "/plans/15gb/price/20000-range/","/plans/15gb/price/30000-range/"
+  ],
+  "/guide/":["/self-phone/guide/"],
+  "/number-transfer/":["/number-transfer/price/under-20000/"],
+  "/guides/":[
+    "/new-number/7gb/","/new-number/11gb/","/new-number/15gb/",
+    "/new-number/price/under-20000/","/new-number/price/under-30000/",
+    "/new-number/price/under-40000/","/new-number/price/20000-range/",
+    "/new-number/price/30000-range/","/new-number/benefits/naverpay/",
+    "/new-number/benefits/daiso/","/new-number/benefits/oliveyoung/",
+    "/new-number/benefits/cu/"
+  ]
+};
+const source=allPages.filter(p=>p.effectiveIndex==="index");
+const accepted=new Set(source.map(p=>p.path));
+const fromPrefixes=(benefitPrefixes[pagePath]||[]).flatMap(prefix=>source.filter(p=>p.path.startsWith(prefix)).map(p=>p.path));
+const targets=[...new Set([...(fixed[pagePath]||[]),...fromPrefixes])].filter(x=>x!==pagePath&&accepted.has(x));
+const links=targets.map(route=>source.find(p=>p.path===route)).filter(Boolean);
+const title=pagePath==="/guides/"?"신규가입 조건별 요금제":pagePath.startsWith("/benefits/")?"혜택과 월요금 함께 비교하기":"함께 비교하면 좋은 안내";
+---
+{links.length>0&&<section class="relevant-index-links" aria-label={title}>
+  <h2>{title}</h2>
+  <p>사용할 데이터와 월요금, 가입 조건에 맞는 안내를 골라보세요.</p>
+  <ul>{links.map(p=><li><a href={toPublicPath(p.path)}>{p.keyword}<span aria-hidden="true">›</span></a></li>)}</ul>
+</section>}
+<style>
+.relevant-index-links{max-width:1020px;margin:26px auto 42px;padding:24px;border-radius:16px;background:#fff;border:1px solid #f0dce6}
+.relevant-index-links h2{font-size:20px;margin:0 0 10px;color:#3c3540}
+.relevant-index-links p{font-size:14px;color:#777;margin:0 0 16px}
+.relevant-index-links ul{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:0;padding:0}
+.relevant-index-links a{display:flex;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid #f3e8ee;border-radius:10px;background:#fef9fb;color:#423541;text-decoration:none;font-size:14px;line-height:1.6;word-break:keep-all}
+.relevant-index-links a:hover,.relevant-index-links a:focus-visible{border-color:#e38ab2;color:#b72863}
+@media(max-width:700px){.relevant-index-links{margin:18px 12px 30px;padding:18px}.relevant-index-links ul{grid-template-columns:1fr}}
+</style>

@@ -1,5 +1,6 @@
 import pages from "../data/generated-pages.json";
 import postpaidGuides from "../data/a-postpaid-landings.json";
+import lastmodLedger from "../data/seo-lastmod.json";
 import { siteConfig as site, toSiteUrl } from "./site-config.js";
 import { experimentSitemapEntries } from "./seo-experiments/registry.js";
 
@@ -8,7 +9,11 @@ const priorityOf=page=>page.pageType==="home" ? "1.0" : ({P0:"0.9",P1:"0.7",P2:"
 export const escapeXml=value=>String(value).replace(/[<>&'"]/g,char=>({"<":"&lt;",">":"&gt;","&":"&amp;","'":"&apos;",'"':"&quot;"}[char]));
 
 // Publish one flat sitemap: every indexable page is listed directly in sitemap.xml.
-// lastmod is omitted because the data-check date is not the page's modification date.
+// Only verified per-route content revisions have lastmod; unknown dates remain omitted.
+const modificationTag=route=>{
+ const date=lastmodLedger.entries?.[route]?.lastmod;
+ return typeof date==="string" && /^\d{4}-\d{2}-\d{2}$/.test(date) ? "<lastmod>"+date+"</lastmod>" : "";
+};
 export const sitemapXml=()=>{
   const indexablePages=site.productionReady
     ? [
@@ -20,8 +25,8 @@ export const sitemapXml=()=>{
       ]
     : [];
   return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-    +indexablePages.map(page=>"<url><loc>"+escapeXml(toSiteUrl(page.path))+"</loc><priority>"+priorityOf(page)+"</priority></url>").join("")
+    +indexablePages.map(page=>"<url><loc>"+escapeXml(toSiteUrl(page.path))+"</loc>"+modificationTag(page.path)+"<priority>"+priorityOf(page)+"</priority></url>").join("")
     // Experiments A/B/C: only pages whose gate made them index candidates, appended after existing entries.
-    +experimentSitemapEntries().map(entry=>"<url><loc>"+escapeXml(entry.loc)+"</loc><priority>0.5</priority></url>").join("")
+    +experimentSitemapEntries().map(entry=>"<url><loc>"+escapeXml(entry.loc)+"</loc>"+modificationTag(entry.path)+"<priority>0.5</priority></url>").join("")
     +"</urlset>\n";
 };

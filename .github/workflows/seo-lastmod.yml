@@ -1,0 +1,64 @@
+name: Update verified page modification dates
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "scripts/generate-pages.mjs"
+      - "scripts/seo-experiments/lastmod-ledger.mjs"
+      - ".github/workflows/seo-lastmod.yml"
+  schedule:
+    - cron: "37 17 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: seo-lastmod-main
+  cancel-in-progress: false
+
+jobs:
+  track:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Build only production-eligible URLs (B region previews excluded)
+        env:
+          SITE_URL: https://xn--h49a29twjdmms77a5sofgdjwa.shop
+          BASE_PATH: /
+          PRODUCTION_READY: "true"
+          SEO_REGIONS_EMIT: candidates
+        run: pnpm run build
+      - name: Compare the rendered main content and page metadata against known revisions
+        env:
+          SITE_URL: https://xn--h49a29twjdmms77a5sofgdjwa.shop
+        shell: bash
+        run: |
+          set -euo pipefail
+          REVISION_DATE="$(git log -1 --format=%cs)"
+          node scripts/seo-experiments/lastmod-ledger.mjs --write --date="$REVISION_DATE"
+      - name: Store truthful revisions only when they changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add src/data/seo-lastmod.json
+          if git diff --cached --quiet; then
+            echo "No meaningful changes in the published sitemap"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "seo: save verified page revisions [skip ci]"
+          git push origin HEAD:main

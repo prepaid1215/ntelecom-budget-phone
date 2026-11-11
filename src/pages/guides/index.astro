@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import guides from '../../data/a-postpaid-landings.json';
 import {toPublicPath} from '../../lib/site-config.js';
+import SeoDiscoveryLinks from '../../components/SeoDiscoveryLinks.astro';
 const groups=[
  {title:'신규가입을 진행하려면',items:[['signup','신규가입 순서','준비물부터 신청 후 안내까지'],['network-k','KT 바로유심으로 신청','KT망 선택과 유심번호 입력'],['network-l','LG 원칩으로 신청','LG망 선택과 모델코드 입력']]},
  {title:'요금제와 혜택을 고르려면',items:[['comparison','요금제 비교','사용량에 맞는 데이터·통화 선택'],['benefits','제휴 혜택 고르기','네이버페이·밀리의서재 등 비교'],['card','제휴카드 할인','통신망별 카드와 적용 조건']]},
@@ -9,10 +10,12 @@ const groups=[
 ];
 ---
 <BaseLayout title="앤텔레콤 알뜰폰 가이드｜요금제·유심·가입 안내" description="앤텔레콤 후불 알뜰폰 요금제 비교, KT·LG 유심 준비, 신규가입과 번호이동, 제휴 혜택과 카드 할인 안내를 확인하세요." pagePath="/guides/">
-<div class="gh"><div class="gh-wrap"><header class="gh-intro"><p>앤텔레콤 후불 알뜰폰</p><h1>지금 필요한 안내부터 보세요</h1><span>신청 순서가 궁금한지, 요금제를 고르는 중인지에 맞춰 찾아보세요.</span></header>
+<div class="gh"><div class="gh-wrap"><header class="gh-intro"><p>앤텔레콤 후불 알뜰폰</p><h1>지금 필요한 안내부터 보세요</h1><span>신청 순서가 궁금한지, 요금제를 고르는 중인지에 맞춰 찾아보세요.</span><p class="gh-main-link"><a href={toPublicPath("/알뜰폰/")}>앤텔레콤 알뜰폰 전체 안내 보기 ›</a></p></header>
  {groups.map(group=><section class="gh-group"><h2>{group.title}</h2><div class="gh-grid">{group.items.map(([id,label,note])=>{const guide=guides.find(x=>x.id===id);return <a href={toPublicPath(guide.path)}><strong>{label}</strong><span>{note}</span><b aria-hidden="true">→</b></a>})}</div></section>)}
 </div></div>
+<SeoDiscoveryLinks pagePath="/guides/"/>
 </BaseLayout>
 <style>
+.gh-main-link{margin-top:16px}.gh-main-link a{display:inline-block;padding:10px 16px;background:#fff0f6;border:1px solid #eed5e2;border-radius:9px;color:#8c2153;font-weight:700;text-decoration:none}
 .gh{padding:36px 24px 90px;background:#fbf9fc}.gh-wrap{max-width:900px;margin:auto}.gh-intro{margin-bottom:36px}.gh-intro p{font-size:13px;font-weight:700;color:#ab225b;margin:0 0 14px}.gh h1{font-size:clamp(28px,4vw,38px);line-height:1.4;letter-spacing:-1px;margin:0 0 15px}.gh-intro>span{font-size:16px;color:#766a7b;line-height:1.8}.gh-group{margin-top:30px}.gh h2{font-size:21px;line-height:1.5;margin:0 0 16px}.gh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.gh-grid a{display:flex;flex-direction:column;gap:12px;min-height:165px;padding:24px;border:1px solid #e9dce6;border-radius:16px;background:white}.gh-grid strong{font-size:18px;line-height:1.5}.gh-grid span{color:#776b7a;font-size:14px;line-height:1.7}.gh-grid b{font-size:20px;color:#b91f60;margin-top:auto}.gh a:focus-visible{outline:3px solid #7750b7;outline-offset:4px}@media(min-width:1101px){.gh{padding-right:244px}}@media(max-width:700px){.gh{padding:28px 18px 80px}.gh-grid{grid-template-columns:1fr}.gh-grid a{min-height:0;padding:22px}.gh h2{font-size:20px}}
 </style>

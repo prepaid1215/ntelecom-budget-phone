@@ -3,6 +3,7 @@ import path from "node:path";
 import rawSite from "../src/data/site.json" with { type: "json" };
 import pages from "../src/data/generated-pages.json" with { type: "json" };
 import postpaidGuides from "../src/data/a-postpaid-landings.json" with { type: "json" };
+import lastmodLedger from "../src/data/seo-lastmod.json" with { type: "json" };
 import { buildExperimentRegistry, experimentSitemapEntries } from "../src/lib/seo-experiments/registry.js";
 
 const root=path.resolve("dist");
@@ -109,7 +110,17 @@ const sitemapUrls=(sitemapText.match(/<url>/g)||[]).length;
 const experimentLocations=experimentSitemapEntries().map(entry=>entry.loc);
 const expectedSitemapUrls=productionReady ? [...pages,...postpaidGuides,...dedicatedSections].filter(page=>page.effectiveIndex==="index").length+experimentLocations.length : 0;
 if(!sitemapText.includes("<urlset") || sitemapText.includes("<sitemapindex") || sitemapText.includes("<sitemap>")) errors.push("sitemap.xml은 URL을 직접 담는 단일 urlset이어야 합니다");
-if(sitemapText.includes("<lastmod>")) errors.push("확인 기준일을 lastmod로 사용하지 마세요");
+// Only dates backed by the persisted revision ledger may appear in this sitemap.
+if(lastmodLedger.schemaVersion!==1) errors.push("SEO lastmod ledger schema 오류");
+for(const match of sitemapText.matchAll(/<url><loc>([^<]+)<\/loc>([\s\S]*?)<\/url>/g)){
+  const loc=match[1].replace(/&amp;/g,"&");
+  const pathname=decodeURI(new URL(loc).pathname);
+  const route=basePrefix && pathname.startsWith(basePrefix+"/") ? pathname.slice(basePrefix.length) : pathname;
+  const expected=lastmodLedger.entries?.[route]?.lastmod||null;
+  const actual=[...match[2].matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map(x=>x[1]);
+  if(actual.length>1 || (expected ? actual.length!==1 || actual[0]!==expected : actual.length!==0)) errors.push("lastmod 이력 불일치: "+route);
+  if(expected && (!/^\d{4}-\d{2}-\d{2}$/.test(expected) || expected>new Date().toISOString().slice(0,10))) errors.push("lastmod 날짜 오류: "+route);
+}
 if(sitemapUrls!==expectedSitemapUrls) errors.push("sitemap URL 수 "+sitemapUrls+", 기대값 "+expectedSitemapUrls);
 const sitemapLocations=[...sitemapText.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match=>match[1]);
 const expectedLocations=productionReady ? [...[...pages,...postpaidGuides,...dedicatedSections].filter(page=>page.effectiveIndex==="index").map(page=>new URL(withBase(page.path),expectedOrigin).toString()),...experimentLocations] : [];

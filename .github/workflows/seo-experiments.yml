@@ -20,14 +20,16 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - name: Test SEO publication manifest, RSS and IndexNow safety gates
-        run: node --test scripts/seo-experiments/test-indexnow.mjs
+      - name: Test SEO publication, truthful lastmod, RSS and IndexNow safety gates
+        run: node --test scripts/seo-experiments/test-indexnow.mjs scripts/seo-experiments/test-lastmod-ledger.mjs scripts/seo-experiments/test-naver-indexnow-live.mjs
       - name: Install Chromium for the render check
         run: |
           pip install playwright==1.56.0
           python -m playwright install --with-deps chromium
       - name: Run all checks (builds into dist/, dist-noready/ and dist-fixture/; nothing is deployed)
         run: node scripts/seo-experiments/test-all.mjs
+      - name: Inspect crawl depth and indexable URL internal links
+        run: node scripts/seo-experiments/check-discovery-links.mjs
       - name: Upload reports
         if: always()
         uses: actions/upload-artifact@v4
