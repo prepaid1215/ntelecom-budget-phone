@@ -55,7 +55,7 @@ test("sitemap.xml = existing index pages + experiment index candidates only", ()
   const locs = sitemapLocs(root);
   assert.equal(new Set(locs).size, locs.length, "duplicate sitemap URL");
   const existing = state.productionReady
-    ? [...generated.filter(p => p.effectiveIndex === "index").map(p => p.path), ...postpaidGuides.filter(p => p.effectiveIndex === "index").map(p => p.path), "/선불폰/", "/알뜰폰/", "/guides/"].map(p => toSiteUrlFor(state, p)) : [];
+    ? [...generated.filter(p => p.effectiveIndex === "index").map(p => p.path), "/선불폰/", "/알뜰폰/", ...postpaidGuides.filter(p => p.effectiveIndex === "index").map(p => p.path), "/guides/"].map(p => toSiteUrlFor(state, p)) : [];
   const experiments = experimentSitemapEntries().map(e => e.loc);
   assert.deepEqual(locs, [...existing, ...experiments], "existing entries must keep their order and experiments are appended");
   for (const loc of locs) {
