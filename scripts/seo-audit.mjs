@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import rawSite from "../src/data/site.json" with { type: "json" };
 import pages from "../src/data/generated-pages.json" with { type: "json" };
+import postpaidGuides from "../src/data/a-postpaid-landings.json" with { type: "json" };
 import { buildExperimentRegistry, experimentSitemapEntries } from "../src/lib/seo-experiments/registry.js";
 
 const root=path.resolve("dist");
@@ -28,12 +29,13 @@ const routeFor=file=>{
 const dedicatedSections=[
   {path:"/선불폰/",effectiveIndex:"index",pageType:"hub",priority:"P0"},
   {path:"/알뜰폰/",effectiveIndex:"index",pageType:"hub",priority:"P0"},
+  {path:"/guides/",effectiveIndex:"index",pageType:"hub",priority:"P1"},
   {path:"/start/",effectiveIndex:"noindex",pageType:"conversion",priority:"P0"}
 ];
 // SEO experiments A/B/C: every emitted route with its gate decision (src/lib/seo-experiments/registry.js).
 const experimentRegistry=buildExperimentRegistry();
 const experimentPages=experimentRegistry.pages;
-const pageByPath=new Map([...pages,...dedicatedSections,...experimentPages].map(page=>[page.path,page]));
+const pageByPath=new Map([...pages,...postpaidGuides,...dedicatedSections,...experimentPages].map(page=>[page.path,page]));
 const builtRoutes=new Set(htmlFiles.map(routeFor));
 const errors=[];
 const titles=new Map();
@@ -105,7 +107,7 @@ const robotsText=fs.readFileSync(path.join(root,"robots.txt"),"utf8");
 const sitemapText=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
 const sitemapUrls=(sitemapText.match(/<url>/g)||[]).length;
 const experimentLocations=experimentSitemapEntries().map(entry=>entry.loc);
-const expectedSitemapUrls=productionReady ? [...pages,...dedicatedSections].filter(page=>page.effectiveIndex==="index").length+experimentLocations.length : 0;
+const expectedSitemapUrls=productionReady ? [...pages,...postpaidGuides,...dedicatedSections].filter(page=>page.effectiveIndex==="index").length+experimentLocations.length : 0;
 if(!sitemapText.includes("<urlset") || sitemapText.includes("<sitemapindex") || sitemapText.includes("<sitemap>")) errors.push("sitemap.xml은 URL을 직접 담는 단일 urlset이어야 합니다");
 if(sitemapText.includes("<lastmod>")) errors.push("확인 기준일을 lastmod로 사용하지 마세요");
 if(sitemapUrls!==expectedSitemapUrls) errors.push("sitemap URL 수 "+sitemapUrls+", 기대값 "+expectedSitemapUrls);
