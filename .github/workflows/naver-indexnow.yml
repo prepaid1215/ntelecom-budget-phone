@@ -1,0 +1,43 @@
+name: Naver IndexNow notify verified changed pages
+
+on:
+  schedule:
+    - cron: "20 18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: naver-indexnow-main
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Notify only published and meaningfully changed site URLs
+        env:
+          INDEXNOW_ALLOW_SEND: "yes"
+        run: node scripts/seo-experiments/naver-indexnow-live.mjs --send
+      - name: Save confirmed notifications for deduplication
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add src/data/seo-indexnow-sent.json
+          if git diff --cached --quiet; then
+            echo "Nothing new submitted"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "seo(naver): remember accepted IndexNow URLs [skip ci]"
+          git push origin HEAD:main
