@@ -60,6 +60,12 @@ jobs:
           inspect "custom home" "https://$DOMAIN/" /tmp/custom-home.html
           inspect "custom robots" "https://$DOMAIN/robots.txt" /tmp/custom-robots.txt
           inspect "custom sitemap" "https://$DOMAIN/sitemap.xml" /tmp/custom-sitemap.xml
+          inspect "Cloudflare production alias home" "https://6f44f373.ntelecom-budget-phone.pages.dev/" /tmp/cf-prod-home.html
+          inspect "Cloudflare production alias robots" "https://6f44f373.ntelecom-budget-phone.pages.dev/robots.txt" /tmp/cf-prod-robots.txt
+          inspect "Cloudflare production alias sitemap" "https://6f44f373.ntelecom-budget-phone.pages.dev/sitemap.xml" /tmp/cf-prod-sitemap.xml
+          inspect "Cloudflare Pages default home" "https://ntelecom-budget-phone.pages.dev/" /tmp/cf-default-home.html
+          inspect "Cloudflare Pages default robots" "https://ntelecom-budget-phone.pages.dev/robots.txt" /tmp/cf-default-robots.txt
+          inspect "Cloudflare Pages default sitemap" "https://ntelecom-budget-phone.pages.dev/sitemap.xml" /tmp/cf-default-sitemap.xml
           inspect "GitHub Pages home" "https://prepaid1215.github.io/ntelecom-budget-phone/" /tmp/gh-home.html
           inspect "GitHub Pages robots" "https://prepaid1215.github.io/ntelecom-budget-phone/robots.txt" /tmp/gh-robots.txt
           inspect "GitHub Pages sitemap" "https://prepaid1215.github.io/ntelecom-budget-phone/sitemap.xml" /tmp/gh-sitemap.xml
