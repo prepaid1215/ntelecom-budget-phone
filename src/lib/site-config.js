@@ -6,6 +6,10 @@ const envBoolean=(value,fallback)=>{
   return fallback;
 };
 
+// The published Cloudflare Pages main branch is the verified production site.
+// Its static HTML must not inherit an accidental staging noindex flag.
+const cloudflareMainSite=env=>env.CF_PAGES==="1" && env.CF_PAGES_BRANCH==="main";
+
 const normalizeSiteOrigin=value=>{
   const url=new URL(value);
   url.pathname="/";
@@ -44,7 +48,7 @@ export const siteConfig={
   siteOrigin,
   basePath,
   activationUrl:process.env.ACTIVATION_URL?.trim() || rawSite.activationUrl,
-  productionReady:envBoolean(process.env.PRODUCTION_READY,rawSite.productionReady)
+  productionReady:cloudflareMainSite(process.env) || envBoolean(process.env.PRODUCTION_READY,rawSite.productionReady)
 };
 
 // On-site conversion funnel; provider URLs are selected on /start/.

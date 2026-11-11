@@ -2,7 +2,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { routeProblems } from "../../src/lib/seo-experiments/common.js";
+import { routeProblems, siteState } from "../../src/lib/seo-experiments/common.js";
 import { buildLandingModel, slugPattern } from "../../src/lib/seo-experiments/landings.js";
 import { buildRegionalModel, emittedRegionalPages } from "../../src/lib/seo-experiments/regions.js";
 import { assignBatch, buildIndexKitModel, normalizeNaverBlogUrl, validateIndexKitData } from "../../src/lib/seo-experiments/indexkit.js";
@@ -15,6 +15,12 @@ const fakeTargets = (n, batch = "test-b1") => Array.from({ length: n }, (_, i) =
   batch, addedAt: "2026-11-03", label: null, summary: null, group: null, assignment: null, placements: ["list"] }));
 const kitData = (targets, batches = [{ id: "test-b1", title: "테스트 묶음", intro: "테스트용 링크 목록입니다.", carrierRobots: "index", createdAt: "2026-11-03", publishedAt: null }]) =>
   ({ schemaVersion: 1, batches, targets });
+
+test("Cloudflare Pages main branch is never accidentally built as noindex", () => {
+  assert.equal(siteState({ CF_PAGES: "1", CF_PAGES_BRANCH: "main", PRODUCTION_READY: "false" }).productionReady, true);
+  assert.equal(siteState({ CF_PAGES: "1", CF_PAGES_BRANCH: "preview", PRODUCTION_READY: "false" }).productionReady, false);
+  assert.equal(siteState({ PRODUCTION_READY: "false" }).productionReady, false);
+});
 
 test("route hygiene rejects malformed paths", () => {
   assert.deepEqual(routeProblems("/앤텔레콤-바로유심-선불폰-개통방법/"), []);
