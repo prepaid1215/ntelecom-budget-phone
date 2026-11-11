@@ -102,7 +102,7 @@ for(const file of htmlFiles){
   recordDuplicate(canonicals,canonical,route,"canonical");
 }
 
-if(htmlFiles.length!==pages.length+dedicatedSections.length+experimentPages.length+1 || !builtRoutes.has("/404/")) errors.push("HTML 수 "+htmlFiles.length+", 페이지 맵 "+pages.length+" + "+dedicatedSections.length+" 독립 섹션 + 실험 "+experimentPages.length+" + 404");
+if(htmlFiles.length!==pages.length+postpaidGuides.length+dedicatedSections.length+experimentPages.length+1 || !builtRoutes.has("/404/")) errors.push("HTML 수 "+htmlFiles.length+", 페이지 맵 "+pages.length+" + "+dedicatedSections.length+" 독립 섹션 + 실험 "+experimentPages.length+" + 404");
 const robotsText=fs.readFileSync(path.join(root,"robots.txt"),"utf8");
 const sitemapText=fs.readFileSync(path.join(root,"sitemap.xml"),"utf8");
 const sitemapUrls=(sitemapText.match(/<url>/g)||[]).length;
@@ -112,7 +112,7 @@ if(!sitemapText.includes("<urlset") || sitemapText.includes("<sitemapindex") || 
 if(sitemapText.includes("<lastmod>")) errors.push("확인 기준일을 lastmod로 사용하지 마세요");
 if(sitemapUrls!==expectedSitemapUrls) errors.push("sitemap URL 수 "+sitemapUrls+", 기대값 "+expectedSitemapUrls);
 const sitemapLocations=[...sitemapText.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match=>match[1]);
-const expectedLocations=productionReady ? [...[...pages,...dedicatedSections].filter(page=>page.effectiveIndex==="index").map(page=>new URL(withBase(page.path),expectedOrigin).toString()),...experimentLocations] : [];
+const expectedLocations=productionReady ? [...[...pages,...postpaidGuides,...dedicatedSections].filter(page=>page.effectiveIndex==="index").map(page=>new URL(withBase(page.path),expectedOrigin).toString()),...experimentLocations] : [];
 if(new Set(sitemapLocations).size!==sitemapLocations.length) errors.push("sitemap URL 중복");
 if(sitemapLocations.length!==expectedLocations.length || expectedLocations.some(location=>!sitemapLocations.includes(location))) errors.push("sitemap URL이 색인 대상 페이지와 일치하지 않습니다");
 if(productionReady){
