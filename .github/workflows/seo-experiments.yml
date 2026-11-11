@@ -21,7 +21,7 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - name: Test SEO publication, truthful lastmod, RSS and IndexNow safety gates
-        run: node --test scripts/seo-experiments/test-indexnow.mjs scripts/seo-experiments/test-lastmod-ledger.mjs
+        run: node --test scripts/seo-experiments/test-indexnow.mjs scripts/seo-experiments/test-lastmod-ledger.mjs scripts/seo-experiments/test-naver-indexnow-live.mjs
       - name: Install Chromium for the render check
         run: |
           pip install playwright==1.56.0
