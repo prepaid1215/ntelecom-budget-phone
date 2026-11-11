@@ -5,7 +5,7 @@
 import fs from "node:fs";
 import { spawnSync } from "node:child_process";
 
-const PROD = { SITE_URL: "https://xn--h49a29twjdmms77a5sofgdjwa.shop", BASE_PATH: "/", PRODUCTION_READY: "true" };
+const PROD = { SITE_URL: "https://xn--h49a29twjdmms77a5sofgdjwa.shop", BASE_PATH: "/", PRODUCTION_READY: "true", SEO_REGIONS_EMIT: "all" };
 const steps = [
   ["regional preview generator (existing)", "node", ["scripts/generate-regional-pages.mjs"]],
   ["regional audit (existing)", "node", ["scripts/audit-regional-pages.mjs"]],

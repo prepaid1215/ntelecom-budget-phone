@@ -9,6 +9,8 @@ on:
       - "src/pages/robots.txt.js"
       - "src/pages/sitemap.xml.js"
       - "src/lib/sitemap.js"
+      - "src/data/site.json"
+      - "src/data/seo-experiments/config.json"
   workflow_dispatch:
 
 permissions:
