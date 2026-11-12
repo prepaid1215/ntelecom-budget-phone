@@ -1,5 +1,6 @@
 ---
 import { plans, promoActive } from "../lib/catalog.js";
+import editorialBlogLinks from "../data/editorial-blog-links.json";
 import { activationLink, toPublicPath, siteConfig } from "../lib/site-config.js";
 
 const { model } = Astro.props;
@@ -14,6 +15,7 @@ const dataLabel = plan => {
 const planPath = plan => toPublicPath(`/plans/k/item/${plan.id.replace("ntelecom-k-", "")}/`);
 const applyPath = plan => activationLink("daiso_plan", { network: "kt", plan: plan.id, planName: plan.name });
 const faq = model.faqs;
+const editorialPost = editorialBlogLinks.links.find(item=>item.pagePath==="/benefits/daiso/");
 ---
 
 <section class="da-hero" aria-labelledby="da-title">
@@ -100,7 +102,7 @@ const faq = model.faqs;
     <div class="faq-list">{faq.map(item => <details class="faq"><summary>{item.q}</summary><p>{item.a}</p></details>)}</div>
     <aside class="da-blog">
       <div><span>네이버 블로그 발행글</span><h3>다이소 상품권, 실제로 어떤 혜택일까요?</h3><p>더 편하게 읽고 싶다면 블로그에서 사례와 설명을 확인하세요.</p></div>
-      <a href="https://blog.naver.com/ntelecomhowto/224474522697" target="_blank" rel="noopener noreferrer">네이버 블로그 글 보기 ›</a>
+      <a href={editorialPost.url} data-editorial-link="true" target="_blank" rel="noopener noreferrer">{editorialPost.anchorText}</a>
     </aside>
     <div class="da-more">
       <h3>다른 혜택과도 비교해 보세요</h3>
