@@ -1,4 +1,15 @@
 {
   "schemaVersion": 1,
-  "entries": {}
+  "entries": {
+    "/": {
+      "hash": "32bf6c584e93f8695ca6151c2f48434e45e0c1872016d67ed18a9b9ec940b558",
+      "lastmod": "2026-11-12",
+      "status": 200
+    },
+    "/benefits/daiso/": {
+      "hash": "e49c5384e163892b6f4fe32f76a72b256e7f986859c21be33973f6b4cf31a5d2",
+      "lastmod": "2026-11-12",
+      "status": 200
+    }
+  }
 }
