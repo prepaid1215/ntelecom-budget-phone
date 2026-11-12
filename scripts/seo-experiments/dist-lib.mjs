@@ -30,7 +30,7 @@ export const overlapText = html => mainText(html.replace(/<section[^>]*data-shar
 export const anchors = html => [...html.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)].map(m => {
   const a = m[1];
   const get = name => decodeEntities((a.match(new RegExp(`\\s${name}="([^"]*)"`, "i")) || [])[1] ?? "") || null;
-  return { href: get("href"), rel: get("rel"), target: get("data-ik-target"), position: get("data-ik-position"), text: decodeEntities(m[2].replace(/<[^>]+>/g, "").trim()) };
+  return { href: get("href"), rel: get("rel"), target: get("data-ik-target"), position: get("data-ik-position"), editorial: get("data-editorial-link"), text: decodeEntities(m[2].replace(/<[^>]+>/g, "").trim()) };
 });
 // Local route for an href, or null for external/asset links. Handles percent-encoded Korean paths and BASE_PATH.
 export const localRoute = (href, basePath = "/") => {

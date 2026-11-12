@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Editorial links to actual published Naver blog articles. These are not Experiment C treatment/control URLs. Each item must have exactly one verified occurrence.",
+  "links": [
+    {
+      "pagePath": "/benefits/daiso/",
+      "url": "https://m.blog.naver.com/ntelecomhowto/224474522697",
+      "anchorText": "네이버 블로그 글 보기 ›"
+    }
+  ]
+}
