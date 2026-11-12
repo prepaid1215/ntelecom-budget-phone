@@ -1,12 +1,11 @@
 ---
 import { plans, promoActive } from "../lib/catalog.js";
-import { benefitGuides } from "../data/benefit-guides.js";
 import { activationLink, toPublicPath, siteConfig } from "../lib/site-config.js";
 
 const { model } = Astro.props;
-const guide = benefitGuides["benefit-daiso"];
 const planIds = ["ntelecom-k-7gb-daiso", "ntelecom-k-10gb-daiso", "ntelecom-k-15gb-daiso"];
 const choices = planIds.map(id => plans.find(plan => plan.id === id)).filter(Boolean);
+const otherChoices = plans.filter(plan => (plan.benefit_ids || []).includes("benefit-daiso") && !planIds.includes(plan.id)).sort((a,b) => a.monthly_price-b.monthly_price);
 const won = value => Number(value).toLocaleString("ko-KR") + "원";
 const dataLabel = plan => {
   const extra = promoActive(plan.promotion) ? (plan.monthly_extra_data_gb || 0) : 0;
@@ -21,9 +20,9 @@ const faq = model.faqs;
   <div class="wrap da-hero-grid">
     <div>
       <p class="da-kicker">KT망 후불 · 다이소 생활혜택</p>
-      <h1 id="da-title">다이소 상품권 5,000원,<br /><em>휴대폰 요금제와 함께 받는 방법</em></h1>
-      <p class="da-lead">다이소에서 평소 자주 사는 생활용품이 있다면, 통신비와 함께 비교해 볼 만한 선택입니다. 앤텔레콤 다이소 제휴 요금제의 가격과 상품권 조건을 한곳에 모았습니다.</p>
-      <div class="da-pills"><span>다이소 모바일상품권 월 5,000원</span><span>KT 후불</span><span>신규가입·번호이동</span></div>
+      <h1 id="da-title">앤텔레콤 다이소 요금제,<br /><em>매달 5천 원 혜택은 어떻게?</em></h1>
+      <p class="da-lead">KT 후불 요금제 중에는 다이소 상품권을 매달 받을 수 있는 상품이 있습니다. 가격과 조건을 먼저 비교해 보세요.</p>
+      <div class="da-pills"><span>월 5천 원 상품권</span><span>KT 후불</span><span>번호이동 가능</span></div>
       <div class="da-hero-buttons">
         <a class="da-primary" href="#daiso-plans">요금제 먼저 비교하기</a>
         <a class="da-quiet" href="#daiso-terms">상품권 조건 확인하기</a>
@@ -32,33 +31,31 @@ const faq = model.faqs;
     <div class="da-highlight" aria-label="다이소 제휴 요금제 주요 정보">
       <span class="da-highlight-eyebrow">생활혜택</span>
       <strong>5,000<small>원</small></strong>
-      <p>지급 조건 충족 시 매월<br />다이소 모바일상품권 1매</p>
+      <p>매월 모바일상품권 1매</p>
       <div class="da-highlight-bottom"><b>12개월 사용하면?</b><span>최대 60,000원 상당</span></div>
-      <small>매월 조건 충족·기한 내 사용을 가정한 금액입니다. 통신요금 청구 할인은 아닙니다.</small>
+      <small>상품권은 조건을 충족해야 지급됩니다. 요금 할인은 아닙니다.</small>
     </div>
   </div>
 </section>
 
 <section class="section" id="daiso-plans">
   <div class="wrap">
-    <div class="da-section-head"><span>요금제 비교</span><h2>다이소 혜택, 월 요금은 얼마일까요?</h2><p>상품권 금액을 요금에서 빼지 않고 실제 월 기본료를 그대로 표시했습니다. 데이터 사용량에 맞춰 선택해 보세요.</p></div>
-    <div class="da-cards">
-      {choices.map((plan, index) => <article class:list={["da-plan", { "da-plan-featured": index === 0 }]}>
-        <div class="da-plan-top"><span>{index === 0 ? "와이파이를 자주 쓴다면" : index === 1 ? "데이터를 조금 더 넉넉히" : "외부에서 영상도 본다면"}</span><strong>{plan.data_gb}GB+</strong></div>
-        <div class="da-plan-price"><small>월 기본료 · 부가세 포함</small><strong>{won(plan.monthly_price)}</strong></div>
-        <dl>
-          <div><dt>이번 달 데이터</dt><dd>{dataLabel(plan)}{promoActive(plan.promotion) && plan.monthly_extra_data_gb ? <small>기본 {plan.data_gb}GB + 프로모션 {plan.monthly_extra_data_gb}GB</small> : <small>기본 {plan.data_gb}GB</small>}</dd></div>
-          <div><dt>소진 후</dt><dd>최대 {plan.after_speed}</dd></div>
-          <div><dt>통화·문자</dt><dd>기본제공<small>영상·부가통화 300분</small></dd></div>
-          <div><dt>다이소 혜택</dt><dd>월 5,000원 상품권<small>지급 조건 충족 시</small></dd></div>
-        </dl>
-        <a class="da-plan-link" href={planPath(plan)}>이 요금제 자세히 보기 <span aria-hidden="true">›</span></a>
-        <a class="da-plan-apply" href={applyPath(plan)}>이 요금제로 가입하기</a>
+    <div class="da-section-head"><span>01 · 요금제 비교</span><h2>월 요금부터 비교해 보세요</h2><p>상품권을 제외한 실제 기본료입니다. 7GB와 10GB는 추가 데이터 적용 여부를 함께 확인하세요.</p></div>
+    <div class="da-compare-table" aria-label="다이소 제휴 요금제 비교">
+      {choices.map(plan => <article class="da-compare-row">
+        <div class="da-row-identity"><small>KT망 · LTE</small><h3>{plan.data_gb}GB+</h3></div>
+        <div class="da-row-price"><small>월 기본료</small><strong>{won(plan.monthly_price)}</strong></div>
+        <div class="da-row-details"><strong>총 {dataLabel(plan)}</strong><span>{promoActive(plan.promotion) && plan.monthly_extra_data_gb ? `기본 ${plan.data_gb}GB + 추가 ${plan.monthly_extra_data_gb}GB` : `기본 ${plan.data_gb}GB`}</span><span>소진 후 최대 {plan.after_speed} · 통화·문자 기본제공</span></div>
+        <div class="da-row-buttons"><a href={planPath(plan)}>상세 조건</a><a href={applyPath(plan)}>가입하기</a></div>
       </article>)}
     </div>
+    {otherChoices.length>0 && <details class="da-extra-plans">
+      <summary>그 밖의 다이소 요금제 {otherChoices.length}개 더 보기</summary>
+      <div>{otherChoices.map(plan=><a href={planPath(plan)}><span>{plan.name.replace(/^앤텔레콤 K망 /, "")}</span><strong>{won(plan.monthly_price)}</strong></a>)}</div>
+    </details>}
     <div class="da-notice">
-      <strong>추가 데이터는 모든 다이소 요금제에 적용되지 않습니다.</strong>
-      <p>현재 등록된 상품 정보에서 7GB+와 10GB+는 대상 기간 내 개통하면 24개월간 매월 10GB 추가 제공 대상으로 안내됩니다. <b>15GB+에는 이 추가 데이터 혜택이 표시되어 있지 않습니다.</b> 프로모션 종료일 및 실제 가입 화면의 적용 여부를 확인하세요.</p>
+      <strong>추가 데이터는 7GB·10GB에만 적용</strong>
+      <p>현재 등록된 프로모션에서는 7GB·10GB에 매월 10GB 추가(24개월)가 안내됩니다. <b>15GB에는 추가 10GB가 없습니다.</b> 실제 신청 시 적용 기간을 다시 확인하세요.</p>
     </div>
     <p class="da-source">요금제 기준: {siteConfig.ratesReceivedAt} 제공 목록 · 가입 시점의 실제 신청 화면이 최종 기준입니다.</p>
   </div>
@@ -66,34 +63,32 @@ const faq = model.faqs;
 
 <section class="section soft" id="daiso-terms">
   <div class="wrap">
-    <div class="da-section-head"><span>혜택 사용 조건</span><h2>상품권은 언제, 어떻게 받을까요?</h2><p>처음 가입하자마자 받는 상품권은 아닙니다. 실제로 사용할 수 있도록 받는 과정과 주의할 점을 먼저 확인하세요.</p></div>
+    <div class="da-section-head"><span>02 · 상품권 혜택</span><h2>받는 조건은 어렵지 않습니다</h2><p>가입 즉시 지급되는 혜택은 아닙니다. 아래 네 단계만 기억하면 됩니다.</p></div>
     <div class="da-flow">
-      <article><b>01</b><h3>다이소 제휴 요금제 이용</h3><p>KT 후불 다이소 제휴 요금제로 신규가입하거나 번호이동합니다.</p></article>
-      <article><b>02</b><h3>30일 사용·31일 차 유지</h3><p>사용일수 30일을 충족하고 31일 차까지 대상 요금제를 유지해야 첫 지급 조건을 충족합니다.</p></article>
-      <article><b>03</b><h3>기프티쇼 문자 확인</h3><p>조건 충족 시 모바일상품권이 MMS로 발송됩니다. 발송일은 매월 같지 않을 수 있습니다.</p></article>
-      <article><b>04</b><h3>기한 내 등록·사용</h3><p>발행일 기준 30일 안에 등록하고 사용해야 합니다. 미등록·미사용 시 소멸 및 재발행 제한이 있습니다.</p></article>
+      <article><b>01</b><h3>다이소 제휴 요금제 이용</h3><p>대상 요금제로 가입합니다.</p></article>
+      <article><b>02</b><h3>30일 사용·31일 차 유지</h3><p>30일 사용하고 31일 차까지 유지합니다.</p></article>
+      <article><b>03</b><h3>기프티쇼 문자 확인</h3><p>문자로 발송되는 쿠폰을 확인합니다.</p></article>
+      <article><b>04</b><h3>기한 내 등록·사용</h3><p>발행 후 30일 안에 등록·사용합니다.</p></article>
     </div>
     <div class="da-term-grid">
-      <div class="da-term-card">
-        <h3>어디서 사용할 수 있나요?</h3>
+      <details class="da-term-card"><summary>어디서 사용할 수 있나요?</summary>
         <p>다이소몰에서는 상품권을 등록한 다음 결제할 때 사용할 수 있고, 사용 가능한 다이소 매장에서는 바코드를 제시합니다. 셀프계산대에서도 ‘다이소상품권’ 결제를 선택할 수 있습니다.</p>
         <a href="https://www.daisogift.co.kr/usestoreinfo" target="_blank" rel="noopener noreferrer">다이소 상품권 사용 가능 매장 확인 ›</a>
-      </div>
-      <div class="da-term-card">
-        <h3>월 요금에서 5천 원 할인될까요?</h3>
+      </details>
+      <details class="da-term-card"><summary>월 요금에서 5천 원 할인될까요?</summary>
         <p>아닙니다. 통신요금은 선택한 요금제의 기본료로 청구됩니다. 별도 지급되는 상품권은 현금 환급이나 통신요금 자동 할인과 다릅니다.</p>
-        <p>쿠폰 미발송은 앤텔레콤 고객센터(1899-7700), 등록·사용은 기프티쇼(1588-6474)에서 확인할 수 있습니다.</p>
-      </div>
+        <p>쿠폰 미발송: 앤텔레콤 1899-7700 · 등록/사용: 기프티쇼 1588-6474</p>
+      </details>
     </div>
   </div>
 </section>
 
 <section class="section">
   <div class="wrap">
-    <div class="da-section-head"><span>가입 전 확인</span><h2>쓰던 휴대폰과 번호를 그대로 써도 될까요?</h2></div>
+    <div class="da-section-head"><span>03 · 가입 유형</span><h2>휴대폰과 전화번호는 그대로 써도 될까요?</h2></div>
     <div class="da-compare">
-      <article><span>번호이동</span><h3>지금 번호를 유지하고 싶다면</h3><p>사용 중인 휴대폰이 KT망과 호환되고 번호이동 조건을 충족하면, 쓰던 전화번호를 유지하며 알뜰폰으로 옮길 수 있습니다. 기존 통신사 약정·할부금 및 미납 여부는 미리 확인하세요.</p></article>
-      <article><span>신규가입</span><h3>번호를 추가로 사용하고 싶다면</h3><p>별도의 번호가 필요한 경우 신규가입으로 진행할 수 있습니다. 가입할 통신망과 호환되는 휴대폰·유심, 본인확인 수단을 준비하세요.</p></article>
+      <article><span>번호이동</span><h3>지금 번호를 유지하고 싶다면</h3><p>KT망 호환 휴대폰이라면 기존 전화번호를 유지하며 옮길 수 있습니다. 약정·할부금·미납 여부는 먼저 확인하세요.</p></article>
+      <article><span>신규가입</span><h3>번호를 추가로 사용하고 싶다면</h3><p>번호를 추가로 사용하려면 신규가입을 선택합니다. KT망 호환 휴대폰과 유심, 본인확인 수단이 필요합니다.</p></article>
     </div>
     <div class="da-action"><div><strong>마음에 드는 요금제를 찾았다면</strong><p>요금제 선택부터 본인확인과 개통 신청까지 홈페이지에서 이어서 진행할 수 있습니다.</p></div><a href={activationLink("daiso_guide", { network:"kt" })}>KT 후불 가입 화면으로 이동</a></div>
   </div>
@@ -101,8 +96,12 @@ const faq = model.faqs;
 
 <section class="section soft">
   <div class="wrap">
-    <div class="da-section-head"><span>자주 묻는 질문</span><h2>가입 전 많이 확인하는 내용</h2></div>
+    <div class="da-section-head"><span>04 · 추가 정보</span><h2>궁금한 점만 펼쳐보세요</h2></div>
     <div class="faq-list">{faq.map(item => <details class="faq"><summary>{item.q}</summary><p>{item.a}</p></details>)}</div>
+    <aside class="da-blog">
+      <div><span>네이버 블로그 발행글</span><h3>다이소 상품권, 실제로 어떤 혜택일까요?</h3><p>더 편하게 읽고 싶다면 블로그에서 사례와 설명을 확인하세요.</p></div>
+      <a href="https://blog.naver.com/ntelecomhowto/224474522697" target="_blank" rel="noopener noreferrer">네이버 블로그 글 보기 ›</a>
+    </aside>
     <div class="da-more">
       <h3>다른 혜택과도 비교해 보세요</h3>
       <p>다이소를 잘 이용하지 않는다면 생활혜택보다 월 기본료가 낮은 상품이 더 나을 수 있습니다.</p>
@@ -155,4 +154,33 @@ const faq = model.faqs;
   .da-more>div{display:flex;gap:9px;flex-wrap:wrap}.da-more a{border:1px solid #dfd5db;border-radius:10px;padding:10px 12px;font-size:13px;font-weight:800}
   @media(max-width:850px){.da-hero-grid{grid-template-columns:1fr}.da-cards{grid-template-columns:1fr}.da-flow{grid-template-columns:1fr 1fr}.da-action{flex-direction:column;align-items:stretch}.da-action>a{width:100%}}
   @media(max-width:520px){.da-hero-grid{padding:38px 16px;gap:22px}.da-highlight{padding:20px}.da-flow,.da-term-grid,.da-compare{grid-template-columns:1fr}.da-plan{padding:17px}.da-action{padding:18px}.da-hero-buttons>*{width:100%}}
+
+  /* Compact reading layout: scan prices first, expand secondary explanations as needed. */
+  .da-compare-table{border:1px solid #e8e1e5;border-radius:18px;overflow:hidden;background:#fff}
+  .da-compare-row{display:grid;grid-template-columns:100px 135px minmax(0,1fr) 116px;gap:16px;align-items:center;padding:18px 20px;border-bottom:1px solid #efe9ed}
+  .da-compare-row:last-child{border-bottom:0}
+  .da-row-identity small,.da-row-price small{display:block;color:#777;font-size:12px}
+  .da-row-identity h3{font-size:24px;margin:3px 0 0;letter-spacing:-.7px}
+  .da-row-price strong{display:block;font-size:21px;color:#c82868}
+  .da-row-details strong{display:block;font-size:15px}
+  .da-row-details span{display:block;color:#666;font-size:12px;line-height:1.6}
+  .da-row-buttons{display:grid;gap:6px}
+  .da-row-buttons a{display:block;text-align:center;padding:9px 8px;border-radius:9px;font-weight:850;font-size:12px}
+  .da-row-buttons a:first-child{border:1px solid #ded5da;color:#49434b}
+  .da-row-buttons a:last-child{background:#e52f76;color:white}
+  .da-extra-plans{margin-top:12px;border:1px solid #eae3e7;background:#fff;border-radius:12px;padding:12px 17px}
+  .da-extra-plans summary{cursor:pointer;font-weight:850;color:#333;font-size:14px}
+  .da-extra-plans>div{margin-top:12px;border-top:1px solid #eee}
+  .da-extra-plans a{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid #f0ecee;font-size:13px}
+  .da-extra-plans a:last-child{border-bottom:0}
+  .da-term-card summary{cursor:pointer;font-size:17px;font-weight:850;line-height:1.4}
+  .da-term-card p{margin-top:13px}
+  .da-blog{margin-top:24px;border:1px solid #e7e0e5;border-radius:16px;padding:22px;background:#fff;display:flex;justify-content:space-between;align-items:center;gap:24px}
+  .da-blog span{font-size:12px;font-weight:800;color:#a83763}.da-blog h3{font-size:18px;margin:6px 0}.da-blog p{margin:0;color:#65616a;font-size:13px}
+  .da-blog a{white-space:nowrap;border:1px solid #d9cfd5;border-radius:10px;padding:12px 14px;font-weight:850;font-size:13px}
+  .da-hero-grid{padding-top:42px;padding-bottom:42px}.da-hero h1{font-size:clamp(29px,3.6vw,43px)}
+  .da-section-head{max-width:790px}.da-section-head p{max-width:720px}
+  .da-flow article{padding:15px}.da-flow h3{margin:8px 0 5px}.da-flow p{line-height:1.65}
+  @media(max-width:830px){.da-compare-row{grid-template-columns:1fr 1fr;gap:12px}.da-row-details{grid-column:1/3}.da-row-buttons{grid-column:1/3;grid-template-columns:1fr 1fr}.da-blog{flex-direction:column;align-items:stretch}.da-blog a{text-align:center}}
+  @media(max-width:520px){.da-compare-row{padding:15px}.da-row-identity h3{font-size:22px}.da-row-price{text-align:right}.da-row-details{padding-top:9px;border-top:1px solid #f4eef1}.da-flow article{padding:14px}.da-highlight-bottom{flex-direction:column;align-items:center}}
 </style>
