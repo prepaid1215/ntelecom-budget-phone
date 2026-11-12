@@ -64,7 +64,10 @@ test("3. fixture build (production limit SEO_REGIONS_EMIT=candidates) passes dis
   const data = JSON.parse(fs.readFileSync(kit, "utf8"));
   const treatment = data.targets.filter(t => t.group === "treatment");
   const contextual = treatment.filter(t => t.placements.includes("contextual")).length;
-  assert.equal(manifest.counts.foundNaverLinks, treatment.length + contextual);
+  assert.equal(manifest.counts.foundNaverLinks, treatment.length + contextual + manifest.counts.editorialLinks);
+  assert.equal(manifest.counts.editorialLinks, 1, "Daiso article stays explicitly tracked as a separate editorial reference");
+  assert.equal(manifest.editorialPlacements[0].pagePath, "/benefits/daiso/");
+  assert.equal(manifest.editorialPlacements[0].url, "https://m.blog.naver.com/ntelecomhowto/224474522697");
   assert.equal(manifest.counts.controlOrUnassignedLinked, 0);
   const [b1, b2] = manifest.batches;
   assert.equal(b1.carrierRobotsInHtml, "index,follow"); assert.equal(b1.carrierInSitemap, true);
