@@ -9,7 +9,33 @@ export function getStaticPaths(){
 }
 const { page }=Astro.props;
 const model=buildModel(page);
+const isDaiso=page.path==="/benefits/daiso/";
+if(isDaiso) model.faqs=[
+  {
+    "q": "다이소 상품권은 가입 즉시 받을 수 있나요?",
+    "a": "가입 즉시는 아닙니다. 대상 요금제를 30일 사용하고 31일 차까지 유지해야 첫 쿠폰 지급 조건이 충족됩니다. 이후에도 해당 요금제 유지 등 지급 조건이 적용됩니다."
+  },
+  {
+    "q": "월 요금에서 다이소 상품권 5,000원이 할인되나요?",
+    "a": "아닙니다. 통신요금은 선택한 요금제 금액으로 청구되며, 다이소 모바일상품권은 별도로 발송되는 혜택입니다."
+  },
+  {
+    "q": "7GB, 10GB, 15GB 모두 데이터 10GB가 추가되나요?",
+    "a": "아닙니다. 현재 등록된 프로모션 기준으로 7GB+와 10GB+만 개통 후 24개월간 추가 10GB 대상입니다. 15GB+에는 추가 10GB가 표시되지 않습니다. 가입 시점에 적용 대상과 기간을 확인하세요."
+  },
+  {
+    "q": "기존 휴대폰과 전화번호를 유지할 수 있나요?",
+    "a": "KT망 호환 단말이라면 기존 휴대폰을 그대로 이용할 수 있습니다. 기존 번호를 유지하고 싶다면 번호이동 조건을 확인하고 신청하면 됩니다. 기존 약정과 할부금도 함께 확인하세요."
+  },
+  {
+    "q": "다이소 모바일상품권은 어디서 사용하나요?",
+    "a": "다이소몰과 사용 가능한 다이소 매장에서 이용할 수 있습니다. MMS로 받은 쿠폰은 안내된 기간 안에 등록·사용해야 하며, 미등록·미사용으로 소멸한 쿠폰은 재발행되지 않을 수 있습니다."
+  }
+];
+const seoTitle=isDaiso ? "앤텔레콤 다이소 요금제 | 월 5천원 상품권·KT 후불 비교" : model.seoTitle;
+const seoDescription=isDaiso ? "앤텔레콤 KT 후불 다이소 7·10·15GB 요금제 비교. 매월 5천원 상품권 지급 조건과 데이터 추가 혜택, 번호이동 가입방법 안내." : model.meta;
+
 ---
-<BaseLayout title={model.seoTitle} description={model.meta} index={page.effectiveIndex} faqs={model.faqs} pagePath={page.path}>
+<BaseLayout title={seoTitle} description={seoDescription} index={page.effectiveIndex} faqs={model.faqs} pagePath={page.path}>
   <PageFactory model={model}/>
 </BaseLayout>
