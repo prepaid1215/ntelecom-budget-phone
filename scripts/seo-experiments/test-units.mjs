@@ -1,13 +1,11 @@
 // Unit tests for the experiment libraries (no build needed).  node --test scripts/seo-experiments/test-units.mjs
 import test from "node:test";
 import assert from "node:assert/strict";
-import fs from "node:fs";
 import { routeProblems, siteState } from "../../src/lib/seo-experiments/common.js";
 import { buildLandingModel, slugPattern } from "../../src/lib/seo-experiments/landings.js";
-import { buildRegionalModel, emittedRegionalPages } from "../../src/lib/seo-experiments/regions.js";
 import { assignBatch, buildIndexKitModel, normalizeNaverBlogUrl, validateIndexKitData } from "../../src/lib/seo-experiments/indexkit.js";
 import { assertNoRouteConflicts, buildExperimentRegistry, existingRoutes } from "../../src/lib/seo-experiments/registry.js";
-import { evaluateUnit, legacyRegionalEvents, summarizeRows, validateEvent } from "../../src/lib/seo-experiments/observations.js";
+import { evaluateUnit, summarizeRows, validateEvent } from "../../src/lib/seo-experiments/observations.js";
 import { buildObservationUnits } from "../../src/lib/seo-experiments/units.js";
 
 const fakeTargets = (n, batch = "test-b1") => Array.from({ length: n }, (_, i) => ({
@@ -61,29 +59,7 @@ test("route conflicts are detected", () => {
   assert.throws(() => assertNoRouteConflicts(existing, [{ experiment: "B", path: "/x/" }, { experiment: "C", path: "/x/" }], []), /Route conflict/);
   assert.throws(() => assertNoRouteConflicts(existing, [], ["/plans/"]), /shadows existing/);
   assert.throws(() => assertNoRouteConflicts(existing, [{ experiment: "A", path: "/regions/" }], ["/regions/"]), /shadows an experiment prefix/);
-  assert.doesNotThrow(() => assertNoRouteConflicts(existingRoutes(), buildExperimentRegistry().pages, ["/regions/", "/indexkit/"]));
-});
-
-test("B: 7,664 URLs generated, 0 index candidates, candidates mode emits nothing", () => {
-  const { pages, duplicatePairs } = buildRegionalModel();
-  assert.equal(pages.length, 7664);
-  assert.deepEqual(Object.fromEntries(["root", "sido", "sgg", "emd"].map(l => [l, pages.filter(p => p.level === l).length])), { root: 2, sido: 32, sgg: 512, emd: 7118 });
-  assert.equal(pages.filter(p => p.indexCandidate).length, 0);
-  assert.ok(pages.every(p => p.effectiveIndex === "noindex"));
-  assert.equal(duplicatePairs.length, 0);
-  assert.equal(new Set(pages.map(p => p.title)).size, pages.length);
-  assert.ok(pages.every(p => [...p.title].length <= 40 && [...p.description].length <= 80));
-  assert.ok(pages.filter(p => p.level === "emd").every(p => p.gateReasons.includes("verified_region_evidence_missing")));
-  assert.equal(emittedRegionalPages({ SEO_REGIONS_EMIT: "candidates" }).length, 0);
-  assert.equal(emittedRegionalPages({ SEO_REGIONS_EMIT: "all" }).length, 7664);
-  assert.throws(() => emittedRegionalPages({ SEO_REGIONS_EMIT: "everything" }), /must be/);
-});
-
-test("B paths and candidate set match the review generator's url-registry", { skip: !fs.existsSync("seo-lab-regions-preview/url-registry.json") }, () => {
-  const preview = JSON.parse(fs.readFileSync("seo-lab-regions-preview/url-registry.json", "utf8")).pages;
-  const { pages } = buildRegionalModel();
-  assert.deepEqual(pages.map(p => p.path).sort(), preview.map(p => p.path).sort());
-  assert.deepEqual(pages.filter(p => p.indexCandidate).map(p => p.path).sort(), preview.filter(p => p.editorialIndexCandidate).map(p => p.path).sort());
+  assert.doesNotThrow(() => assertNoRouteConflicts(existingRoutes(), buildExperimentRegistry().pages, ["/indexkit/"]));
 });
 
 test("C: Naver blog URL normalization", () => {
@@ -187,13 +163,10 @@ test("observations: 7/14/28-day windows keep unknown and unobservable apart from
   assert.equal(evaluateUnit(unit, events, { windows: [28], today: "2026-11-20" })[0].windowStatus, "in_progress");
 });
 
-test("observations: C targets indexed before start are excluded, legacy B ledger maps to stages", () => {
+test("observations: C targets indexed before start are excluded", () => {
   const unit = { ...cUnit, startDate: "2026-11-10" };
   const pre = validateEvent({ unit: cUnit.unit, engine: "google", stage: "indexed", result: "yes", observedAt: "2026-11-05T00:00:00Z", method: "exact_url_search", source: "manual check log #1" }, units);
   const rows = evaluateUnit(unit, [pre], { windows: [7], today: "2026-12-01", excludeIndexedAtBaseline: true });
   assert.ok(rows.find(r => r.engine === "google").excluded);
   assert.equal(summarizeRows(rows).find(s => s.engine === "google").started, 0);
-  const bUnit = [...units.values()].find(u => u.experiment === "B");
-  const mapped = legacyRegionalEvents({ events: [{ url: bUnit.unit, type: "googleIndex", observedAt: "2026-11-20T00:00:00Z", source: "https://search.google.com/search-console", data: { status: "not_indexed" } }] }, units);
-  assert.equal(mapped.length, 1); assert.equal(mapped[0].stage, "indexed"); assert.equal(mapped[0].result, "no");
 });

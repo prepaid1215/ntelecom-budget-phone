@@ -65,22 +65,6 @@ export const validateEvent = (raw, units) => {
   return { id: eventId(event), ...event };
 };
 
-// Maps the older experiment-B ledger (seo-lab/regions/index-flow-observations.json) onto the common stages.
-export const legacyRegionalEvents = (ledger, units) => (ledger?.events || []).flatMap(item => {
-  const map = { submission: "submitted", crawl: "crawled", googleIndex: "indexed", searchPerformance: "served" };
-  const stage = map[item.type];
-  let unit; try { unit = normalizeUnitUrl(item.url); } catch { return []; }
-  if (!stage || !units.has(unit)) return [];
-  const status = item.data?.status;
-  const result = stage === "served" ? "yes" : ["submitted", "accepted", "crawled", "indexed"].includes(status) ? "yes" : status === "unobserved" ? null : "no";
-  if (!result) return [];
-  const metrics = stage === "served" ? { impressions: item.data.impressions, clicks: item.data.clicks, rangeStart: item.data.rangeStart, rangeEnd: item.data.rangeEnd } : null;
-  const event = { unit, experiment: "B", engine: "google", stage, result: stage === "served" && !(item.data.impressions > 0) ? "no" : result,
-    observedAt: new Date(item.observedAt).toISOString(), method: stage === "served" ? "gsc_performance" : stage === "submitted" ? "gsc_sitemap" : "gsc_url_inspection",
-    source: item.source, metrics, note: "imported from legacy regional ledger" };
-  return [{ id: eventId(event), ...event }];
-});
-
 const dayIndex = (iso, start) => Math.floor((Date.parse(iso) - start) / DAY);
 
 // One row per unit × engine × window. Unknown stays null; unobservable stays "unobservable".

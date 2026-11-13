@@ -38,14 +38,6 @@
       "minBodyCharacters": 600,
       "minInternalLinks": 3
     },
-    "B": {
-      "id": "B-regional",
-      "label": "지역페이지형",
-      "routePrefix": "/regions/",
-      "launchedAt": null,
-      "emit": "candidates",
-      "emitEnv": "SEO_REGIONS_EMIT"
-    },
     "C": {
       "id": "C-indexkit",
       "label": "IndexKit형 네이버 블로그 원문 링크 실험",

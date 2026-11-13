@@ -2,7 +2,6 @@
 // sitemap.xml, scripts/seo-audit.mjs, tests and the observation tooling.
 import { experimentConfig, readJson, siteState, toSiteUrlFor } from "./common.js";
 import { buildLandingModel } from "./landings.js";
-import { buildRegionalModel, emittedRegionalPages, regionEmitMode } from "./regions.js";
 import { buildIndexKitModel } from "./indexkit.js";
 
 export const existingRoutes = () => {
@@ -38,25 +37,21 @@ export const assertNoRouteConflicts = (existing, pages, prefixes) => {
 
 let cache;
 export const buildExperimentRegistry = (env = process.env) => {
-  const key = [env.SEO_REGIONS_EMIT || "", env.SEO_INDEXKIT_DATA || "", env.PRODUCTION_READY || "", env.SITE_URL || "", env.BASE_PATH || ""].join("|");
+  const key = [env.SEO_INDEXKIT_DATA || "", env.PRODUCTION_READY || "", env.SITE_URL || "", env.BASE_PATH || ""].join("|");
   if (cache?.key === key) return cache.value;
   const config = experimentConfig();
   const existing = existingRoutes();
   const landings = buildLandingModel();
-  const regional = buildRegionalModel();
-  const emittedRegions = emittedRegionalPages(env);
   const indexkit = buildIndexKitModel();
 
-  const pages = [...landings.pages, ...emittedRegions, ...indexkit.pages].map(summarize);
-  const owners = assertNoRouteConflicts(existing, pages, [config.experiments.B.routePrefix, config.experiments.C.routePrefix]);
+  const pages = [...landings.pages, ...indexkit.pages].map(summarize);
+  const owners = assertNoRouteConflicts(existing, pages, [config.experiments.C.routePrefix]);
 
   // Every internal link an experiment template prints must resolve to a route that is actually built.
   const built = new Set(owners.keys());
   const linkErrors = [];
   for (const page of landings.pages) for (const link of [...page.links, ...page.related, ...page.planRows.map(r => ({ path: r.path }))])
     if (!built.has(link.path)) linkErrors.push(`${page.path} -> ${link.path}`);
-  for (const type of new Set(emittedRegions.map(p => p.type))) for (const guide of emittedRegions.find(p => p.type === type).guides)
-    if (!built.has(guide.path)) linkErrors.push(`/regions/${type}/ guide -> ${guide.path}`);
   if (linkErrors.length) throw new Error("Broken experiment internal links:\n" + linkErrors.join("\n"));
 
   const titles = new Map();
@@ -67,15 +62,6 @@ export const buildExperimentRegistry = (env = process.env) => {
 
   const counts = {
     A: { generatedUrls: landings.pages.length, emittedHtml: landings.pages.length, indexCandidates: landings.pages.filter(p => p.indexCandidate).length },
-    B: {
-      generatedUrls: regional.pages.length,
-      emittedHtml: emittedRegions.length,
-      emitMode: regionEmitMode(env),
-      byLevel: Object.fromEntries(["root", "sido", "sgg", "emd"].map(level => [level, regional.pages.filter(p => p.level === level).length])),
-      areaPages: regional.pages.filter(p => p.level === "emd").length,
-      indexCandidates: regional.pages.filter(p => p.indexCandidate).length,
-      duplicatePairs: regional.duplicatePairs.length
-    },
     C: {
       linkingPages: indexkit.pages.length,
       targets: indexkit.source.targets.length,
@@ -87,8 +73,8 @@ export const buildExperimentRegistry = (env = process.env) => {
       indexCandidates: indexkit.pages.filter(p => p.effectiveIndex === "index").length
     }
   };
-  for (const k of ["A", "B", "C"]) counts[k].noindexHtml = pages.filter(p => p.experiment === k && p.effectiveIndex !== "index").length;
-  const value = { pages, owners, counts, landings, regional, emittedRegions, indexkit };
+  for (const k of ["A", "C"]) counts[k].noindexHtml = pages.filter(p => p.experiment === k && p.effectiveIndex !== "index").length;
+  const value = { pages, owners, counts, landings, indexkit };
   cache = { key, value };
   return value;
 };

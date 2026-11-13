@@ -2,7 +2,6 @@
 // Own pages use the production origin from config.json, so ledger entries do not depend on build env.
 import { experimentConfig } from "./common.js";
 import { buildLandingModel } from "./landings.js";
-import { buildRegionalModel } from "./regions.js";
 import { buildIndexKitModel } from "./indexkit.js";
 
 export const buildObservationUnits = ({ indexkit = buildIndexKitModel() } = {}) => {
@@ -14,9 +13,6 @@ export const buildObservationUnits = ({ indexkit = buildIndexKitModel() } = {}) 
   for (const page of buildLandingModel().pages)
     add({ unit: own(page.path), path: page.path, experiment: "A", kind: "landing", external: false,
       arm: page.indexCandidate ? "index-candidate" : "noindex", startDate: config.experiments.A.launchedAt });
-  for (const page of buildRegionalModel().pages)
-    add({ unit: own(page.path), path: page.path, experiment: "B", kind: page.level, external: false,
-      arm: page.indexCandidate ? "index-candidate" : "noindex-" + page.level, startDate: config.experiments.B.launchedAt });
   const batchById = new Map(indexkit.batches.map(b => [b.id, b]));
   for (const page of indexkit.pages) {
     const start = page.role === "batch" ? page.batch.publishedAt : indexkit.batches.map(b => b.publishedAt).filter(Boolean).sort()[0] || null;

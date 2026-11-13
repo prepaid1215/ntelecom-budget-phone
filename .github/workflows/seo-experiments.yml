@@ -1,4 +1,4 @@
-name: SEO experiments A/B/C checks (no deployment)
+name: SEO experiments A/C checks (no deployment)
 
 on:
   push:
