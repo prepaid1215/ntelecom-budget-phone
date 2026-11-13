@@ -1,4 +1,4 @@
-// Built-HTML tests for experiments A/B/C. Run after `pnpm run build` with the same env.
+// Built-HTML tests for experiments A/C. Run after `pnpm run build` with the same env.
 //   SITE_URL=... PRODUCTION_READY=true node --test scripts/seo-experiments/test-dist.mjs
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -73,7 +73,7 @@ test("robots.txt keeps noindex experiment pages crawlable (noindex must be seen 
   if (state.productionReady) {
     assert.match(robots, /^Allow: \/$/m);
     assert.match(robots, /^Sitemap: /m);
-    for (const prefix of ["/regions/", "/indexkit/", "/%EC%95%A4"]) assert.ok(!robots.includes("Disallow: " + prefix));
+    for (const prefix of ["/indexkit/", "/%EC%95%A4"]) assert.ok(!robots.includes("Disallow: " + prefix));
   } else {
     if(new URL(state.origin).hostname==="prepaid1215.github.io"){
       assert.match(robots, /^Allow: \/$/m);
@@ -119,18 +119,10 @@ test("A: exhaustive rendered overlap — every index candidate stays under the l
   }
 });
 
-test("B: generated vs emitted vs index-candidate counts are tracked separately", () => {
-  const { counts } = registry;
-  assert.equal(counts.B.generatedUrls, 7664);
-  assert.equal(counts.B.indexCandidates, 0);
-  const emitted = [...routes.keys()].filter(r => r.startsWith("/regions/")).length;
-  assert.equal(emitted, counts.B.emittedHtml);
-  assert.equal(emitted, counts.B.emitMode === "all" ? 7664 : 0);
-  for (const page of registry.emittedRegions.filter((_, i) => i % 97 === 0)) {
-    const html = read(page.path);
-    assert.equal(meta(html).robots, "noindex,follow", page.path);
-    assert.match(html, /지역 정보 검수 대기|지역 목록/, page.path);
-  }
+test("retired regional B experiment does not emit pages", () => {
+  assert.equal(registry.pages.some(page => page.experiment === "B"), false);
+  assert.equal([...routes.keys()].some(route => route.startsWith("/regions/")), false);
+  assert.equal(registry.counts.B, undefined);
 });
 
 test("C: built HTML links exactly the expected treatment placements and never control/unassigned URLs", () => {
