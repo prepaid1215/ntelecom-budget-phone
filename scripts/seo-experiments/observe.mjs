@@ -15,7 +15,6 @@ const units = buildObservationUnits();
 if (flag("template")) {
   const experiment = arg("experiment"), engine = arg("engine") || "google";
   const rows = [...units.values()].filter(u => !experiment || u.experiment === experiment)
-    .filter(u => u.experiment !== "B" || u.arm === "index-candidate" || u.kind === "root")
     .map(u => ({ unit: u.unit, experiment: u.experiment, arm: u.arm, engine,
       stage: u.external ? "indexed" : "crawled", result: null, observedAt: null,
       method: u.external ? "exact_url_search" : engine === "google" ? "gsc_url_inspection" : "searchadvisor_report",
@@ -24,7 +23,7 @@ if (flag("template")) {
   process.exit(0);
 }
 const input = arg("input");
-if (!input) { console.error("Usage: observe.mjs --input=events.json | --template [--experiment=A|B|C] [--engine=google|naver]"); process.exit(2); }
+if (!input) { console.error("Usage: observe.mjs --input=events.json | --template [--experiment=A|C] [--engine=google|naver]"); process.exit(2); }
 const raw = JSON.parse(fs.readFileSync(path.resolve(input), "utf8"));
 const incoming = Array.isArray(raw) ? raw : raw.events;
 if (!Array.isArray(incoming) || !incoming.length) throw new Error("input needs a non-empty events array");
