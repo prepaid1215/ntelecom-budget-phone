@@ -17,13 +17,12 @@ const get = async url => { const res = await fetch(url, { redirect: "manual" });
 
 const sample = (list, step) => list.filter((_, i) => i % step === 0);
 const targets = [
-  ...registry.pages.filter(p => p.experiment !== "B"),
-  ...sample(registry.pages.filter(p => p.experiment === "B"), 120),
+  ...registry.pages,
   ...sample(generated.filter(p => p.path !== "/").map(p => ({ path: p.path, title: null })), 25),
   { path: "/", title: null }, { path: "/선불폰/", title: null }, { path: "/알뜰폰/", title: null }
 ];
 
-test(`HTTP 200 + text/html + expected title for ${targets.length} pages (all A/C, sampled B and existing)`, async () => {
+test(`HTTP 200 + text/html + expected title for ${targets.length} pages (all A/C and sampled existing)`, async () => {
   const failures = [];
   for (const page of targets) {
     const r = await get(local(page.path));
