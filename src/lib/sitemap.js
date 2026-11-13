@@ -26,7 +26,7 @@ export const sitemapXml=()=>{
     : [];
   return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
     +indexablePages.map(page=>"<url><loc>"+escapeXml(toSiteUrl(page.path))+"</loc>"+modificationTag(page.path)+"<priority>"+priorityOf(page)+"</priority></url>").join("")
-    // Experiments A/B/C: only pages whose gate made them index candidates, appended after existing entries.
+    // Experiments A/C: only pages whose gate made them index candidates, appended after existing entries.
     +experimentSitemapEntries().map(entry=>"<url><loc>"+escapeXml(entry.loc)+"</loc>"+modificationTag(entry.path)+"<priority>0.5</priority></url>").join("")
     +"</urlset>\n";
 };
