@@ -8,7 +8,7 @@ import { spawnSync } from "node:child_process";
 const PROD = { SITE_URL: "https://xn--h49a29twjdmms77a5sofgdjwa.shop", BASE_PATH: "/", PRODUCTION_READY: "true", };
 const steps = [
   ["unit tests", "node", ["--test", "scripts/seo-experiments/test-units.mjs"]],
-  ["build (production mode, all regions)", "pnpm", ["run", "build"], PROD],
+  ["build (production mode, A/C only)", "pnpm", ["run", "build"], PROD],
   ["seo-audit.mjs (whole site incl. experiments)", "node", ["scripts/seo-audit.mjs"], PROD],
   ["audit-existing-500.mjs", "node", ["scripts/audit-existing-500.mjs"], PROD],
   ["audit-500-links-schema.mjs", "node", ["scripts/audit-500-links-schema.mjs"], PROD],
@@ -22,8 +22,8 @@ const steps = [
   ...(process.argv.includes("--skip-render") ? [] : [["Chromium render check", "python3", ["scripts/seo-experiments/render-check.py"], { ...PROD, ...(process.env.PLAYWRIGHT_BROWSERS_PATH ? { PLAYWRIGHT_BROWSERS_PATH: process.env.PLAYWRIGHT_BROWSERS_PATH } : {}) }]]),
   ["build (PRODUCTION_READY=false) into dist-noready", "npx", ["astro", "build", "--outDir", "dist-noready"], { ...PROD, PRODUCTION_READY: "false" }],
   ["dist tests on PRODUCTION_READY=false build", "node", ["--test", "scripts/seo-experiments/test-dist.mjs"], { ...PROD, PRODUCTION_READY: "false", SEO_DIST: "dist-noready" }],
-  ["build with deploy-pages.yml env (BASE_PATH) into dist-pages", "npx", ["astro", "build", "--outDir", "dist-pages"], { SITE_URL: "https://prepaid1215.github.io", BASE_PATH: "/ntelecom-budget-phone", PRODUCTION_READY: "false", SEO_REGIONS_EMIT: "candidates" }],
-  ["dist tests on deploy-env build", "node", ["--test", "scripts/seo-experiments/test-dist.mjs"], { SITE_URL: "https://prepaid1215.github.io", BASE_PATH: "/ntelecom-budget-phone", PRODUCTION_READY: "false", SEO_REGIONS_EMIT: "candidates", SEO_DIST: "dist-pages" }],
+  ["build with deploy-pages.yml env (BASE_PATH) into dist-pages", "npx", ["astro", "build", "--outDir", "dist-pages"], { SITE_URL: "https://prepaid1215.github.io", BASE_PATH: "/ntelecom-budget-phone", PRODUCTION_READY: "false" }],
+  ["dist tests on deploy-env build", "node", ["--test", "scripts/seo-experiments/test-dist.mjs"], { SITE_URL: "https://prepaid1215.github.io", BASE_PATH: "/ntelecom-budget-phone", PRODUCTION_READY: "false", SEO_DIST: "dist-pages" }],
   ["system test (C CLI, fixture build, manifest, observe, report)", "node", ["--test", "scripts/seo-experiments/test-system.mjs"], PROD]
 ];
 const results = [];
