@@ -1,7 +1,7 @@
 // End-to-end system test for experiment C and the observation pipeline, run on a TEMP copy of the data.
 //   SITE_URL=... node --test scripts/seo-experiments/test-system.mjs
 // 1. indexkit CLI on a copy of src/data/seo-experiments/indexkit.json (the real 1-URL file is never written)
-// 2. fixture Astro build into dist-fixture/ with SEO_REGIONS_EMIT=candidates (the production limit)
+// 2. fixture Astro build into dist-fixture/ with regional routes retired
 // 3. link manifest + test-dist on that build (treatment linked, control absent, index vs noindex carrier)
 // 4. observe.mjs + report.mjs on a temp ledger (7/14/28-day JSON/CSV)
 // Fixture blog URLs (blog id "ikfixture…") are synthetic and exist only inside this test.
@@ -20,7 +20,7 @@ const outDir = "dist-fixture";
 fs.copyFileSync("src/data/seo-experiments/indexkit.json", kit);
 fs.writeFileSync(ledger, JSON.stringify({ schemaVersion: 1, updatedAt: null, events: [] }) + "\n");
 const realBefore = fs.readFileSync("src/data/seo-experiments/indexkit.json", "utf8");
-const env = { ...process.env, SEO_INDEXKIT_DATA: kit, SEO_OBSERVATION_LEDGER: ledger, SEO_REGIONS_EMIT: "candidates", PRODUCTION_READY: "true",
+const env = { ...process.env, SEO_INDEXKIT_DATA: kit, SEO_OBSERVATION_LEDGER: ledger, PRODUCTION_READY: "true",
   SITE_URL: process.env.SITE_URL || "https://xn--h49a29twjdmms77a5sofgdjwa.shop", BASE_PATH: "/" };
 const cli = (...args) => spawnSync("node", ["scripts/seo-experiments/indexkit.mjs", ...args], { env, encoding: "utf8" });
 const ok = (...args) => { const r = cli(...args); assert.equal(r.status, 0, r.stderr); return JSON.parse(r.stdout); };
@@ -52,10 +52,10 @@ test("2. CLI: register, assign (frozen) and publish two carrier arms", () => {
   assert.equal(fs.readFileSync("src/data/seo-experiments/indexkit.json", "utf8"), realBefore, "real data file must be untouched");
 });
 
-test("3. fixture build (production limit SEO_REGIONS_EMIT=candidates) passes dist tests and the link manifest", () => {
+test("3. fixture build without regional B passes dist tests and the link manifest", () => {
   execFileSync("npx", ["astro", "build", "--outDir", outDir], { env, stdio: "ignore" });
   const routes = fs.readdirSync(outDir);
-  assert.ok(!routes.includes("regions"), "candidates mode must not emit region pages while there are 0 candidates");
+  assert.ok(!routes.includes("regions"), "retired B experiment must never emit region pages");
   const dist = spawnSync("node", ["--test", "scripts/seo-experiments/test-dist.mjs"], { env: { ...env, SEO_DIST: outDir }, encoding: "utf8" });
   assert.equal(dist.status, 0, dist.stdout.split("\n").filter(l => /not ok|error|expected|actual/.test(l)).slice(0, 20).join("\n"));
   const run = spawnSync("node", ["scripts/seo-experiments/link-manifest.mjs", `--out=${tmp}`], { env: { ...env, SEO_DIST: outDir }, encoding: "utf8" });
