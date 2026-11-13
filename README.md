@@ -96,33 +96,26 @@ pnpm run dev
 pnpm run build
 ```
 
-## 전국 지역페이지 생성 검수
+## 운영 방향: 알뜰폰 검색·소셜 콘텐츠 → 가입
 
-전국 행정동 원본을 기반으로 선불폰·알뜰폰 지역 URL 후보와 시도·시군구·행정동 허브를 별도 검수 폴더에 생성합니다. 현재 데이터 기준 유형별 3,832개, 합계 7,664개의 정적 HTML 후보가 만들어집니다. 이 수는 생성 파일 수이며 검색 노출·색인 수가 아닙니다.
+- 목표: 검색·콘텐츠 유입을 실제 KT·LG망 알뜰폰 가입과 번호이동으로 연결
+- 채널: 네이버 블로그(정보 탐색), 인스타그램(생활 콘텐츠·카드뉴스), 스레드(일상·질문), 자체 사이트(요금제 비교·가입)
+- 독립 사이트: `https://앤텔레콤개통방법.shop/`
+- 우선 실험: **A 검색의도 랜딩**과 **C 네이버 블로그 원문 발견·색인**
+- **B 지역 대량페이지 실험은 2026-11-13 종료·제거.** /regions/ 라우트와 지역 URL 생성·배포·자동 검사를 사용하지 않습니다. 이전 검수 데이터는 `seo-lab/regions/`에 참고 기록으로만 남깁니다.
+- 자세한 게시·링크·성과 기록 규칙: [다채널 연계 운영 계획](docs/channel-funnel.md)
 
-```bash
-pnpm run regions:generate
-pnpm run regions:audit
-pnpm run regions:quality-test
-pnpm run regions:pipeline-test
-pnpm run regions:sources-test
-```
+Vercel에서는 저장소의 `pnpm-lock.yaml`과 `packageManager`를 사용해 정적 Astro 빌드를 그대로 실행할 수 있습니다.
 
-지역 HTML은 `seo-lab-regions-preview/`, 선불폰·알뜰폰 검색 의도별 상품 비교 예시는 `seo-lab-regional-content-preview/`에만 생성됩니다. 두 폴더 모두 Astro 경로·공개 sitemap·robots·DNS·배포 설정과 분리되어 있습니다. 지역 사례·매장 주소·재고 정보가 원본 자료에서 검증되지 않았으므로 지역 색인 후보는 0개입니다. 출처 신뢰는 `seo-lab/regions/source-snapshots.json`의 SHA-256 고정 자료와 JSON 포인터 값 대조로 검사합니다. IndexFlow 상태 원장은 `seo-lab/regions/index-flow-observations.json`에 보존되므로 미리보기 재생성 후에도 관측 기록을 유지합니다. 관측 전 색인 수와 노출값은 0이 아닌 `null`로 둡니다.
+## SEO 실험 A·C
 
-행정구역 데이터 출처, URL 잠금 정책, 근거 등록 형식은 [`seo-lab/regions/README.md`](seo-lab/regions/README.md)를 참고하세요.
-
-Vercel에서는 저장소의 `pnpm-lock.yaml`과 `packageManager`를 사용해 정적 Astro 빌드를 그대로 실행할 수 있습니다. 별도 서버나 `vercel.json`은 필요하지 않습니다.
-
-## SEO 실험 A·B·C
-
-A 검색의도 랜딩, B 지역페이지, C 네이버 블로그 원문 링크 실험이 Astro 라우트로 통합되어 있습니다. 구조와 현재 수치는 [`seo-lab/README.md`](seo-lab/README.md#통합-구현-v1-astro-라우트)를 참고하세요.
+A는 검색 질문별 랜딩 페이지 실험이며, C는 네이버 블로그 원문 URL의 발견 가능성과 색인 여부를 구분해 확인하는 실험입니다. 색인이나 가입을 자동으로 보장하지 않습니다.
 
 ```bash
-pnpm run seo:test            # 전체 검증 (빌드 4종 + 단위·산출물·HTTP·렌더링·시스템 테스트 + 기존 감사)
-pnpm run seo:indexkit status # C 대상·배정 상태
-pnpm run seo:observe --input=events.json   # Google·네이버 관측 기록
-pnpm run seo:report          # 7·14·28일 비교 JSON/CSV
+pnpm run seo:test         # A·C 및 기존 페이지 검증
+pnpm run seo:indexkit status
+pnpm run seo:observe --input=events.json
+pnpm run seo:report
 ```
 
 ## 운영 전에 반드시 설정
