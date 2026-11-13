@@ -33,7 +33,7 @@ const dedicatedSections=[
   {path:"/guides/",effectiveIndex:"index",pageType:"hub",priority:"P1"},
   {path:"/start/",effectiveIndex:"noindex",pageType:"conversion",priority:"P0"}
 ];
-// SEO experiments A/B/C: every emitted route with its gate decision (src/lib/seo-experiments/registry.js).
+// SEO experiments A/C: every emitted route with its gate decision (src/lib/seo-experiments/registry.js).
 const experimentRegistry=buildExperimentRegistry();
 const experimentPages=experimentRegistry.pages;
 const pageByPath=new Map([...pages,...postpaidGuides,...dedicatedSections,...experimentPages].map(page=>[page.path,page]));
@@ -139,7 +139,7 @@ console.log(JSON.stringify({
   uniqueCanonicals:canonicals.size,
   basePath:basePrefix || "/",
   sitemapUrls,
-  experimentHtml:Object.fromEntries(["A","B","C"].map(k=>[k,experimentPages.filter(p=>p.experiment===k).length])),
+  experimentHtml:Object.fromEntries(["A","C"].map(k=>[k,experimentPages.filter(p=>p.experiment===k).length])),
   experimentSitemapUrls:experimentLocations.length,
   productionReady,
   errors:errors.length
