@@ -1,6 +1,6 @@
 """Chromium rendering check of built pages (requires Python Playwright + a Chromium build).
    python3 scripts/seo-experiments/render-check.py [--screenshots=DIR]
-Starts scripts/seo-experiments/serve.mjs, renders A/C pages, sampled B and existing pages at
+Starts scripts/seo-experiments/serve.mjs, renders A/C pages and existing pages at
 390px (mobile) and 1280px, and fails on console errors, failed same-origin requests, missing/extra
 H1, robots/canonical mismatch with the HTML, or horizontal overflow."""
 import json, subprocess, sys, time, os, urllib.parse
@@ -10,8 +10,8 @@ PORT = 4399
 shots = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--screenshots=")), None)
 registry = json.loads(subprocess.check_output(["node", "-e",
   "import('./src/lib/seo-experiments/registry.js').then(m=>{const r=m.buildExperimentRegistry();"
-  "const b=r.pages.filter(p=>p.experiment==='B');const pick=k=>b.find(p=>p.kind===k);"
-  "console.log(JSON.stringify([...r.pages.filter(p=>p.experiment!=='B'),pick('root'),pick('sido'),pick('sgg'),pick('emd'),b[b.length-1]].filter(Boolean).map(p=>({path:p.path,title:p.title,exp:p.experiment}))))})"]))
+  "console.log(JSON.stringify(r.pages.map(p=>({path:p.path,title:p.title,exp:p.experiment}))))})"
+]))
 pages = registry + [{"path": p, "title": None, "exp": "existing"} for p in ["/", "/선불폰/", "/알뜰폰/", "/guide/", "/plans/k/item/7gb-naverpay/", "/lp/k/100min-15gb-daiso/price/"]]
 server = subprocess.Popen(["node", "scripts/seo-experiments/serve.mjs", f"--port={PORT}"], stdout=subprocess.PIPE)
 server.stdout.readline()
